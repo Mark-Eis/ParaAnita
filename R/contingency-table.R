@@ -1,0 +1,624 @@
+# ParaAnita R Package
+# Mark Eisler - Nov 2023
+# For Binary and Binomial Data Analysis
+#
+# Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
+#
+# contingency-table.R
+
+# ========================================
+#' @title
+#' Contingency Tables for Two or More Categorical Variables
+#'
+#' @description
+#' `contingency_table()` compiles a contingency table for two or more categorical variables, the first of which is
+#' typically an outcome (dependent) varable to be used for the column headings, while the remainder are typically
+#' explanatory (independent) variables that will appear in the contingency table either as factors or optionally as row
+#' headings.
+#'
+#' `xcontingency_table()` compiles a contingency table for a categorical outcome varable and multiple categorical
+#' explanatory variables that are \dQuote{crossed} to obtain a single explanatory factor.
+#'
+#' `pcontingency_table()` is deprecated; use `contingency_table()` instead.
+#'
+#' @details
+#' Categorical variables (i.e. factors or character vectors) in `.data` required as factors in the resulting
+#' contingency table may be selected for inclusion or exclusion using the \code{\dots} argument and the
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax from package \pkg{\link[dplyr]{dplyr}}, including use of
+#' \dQuote{selection helpers}. If no \code{\dots} arguments are supplied, all categorical variables in `.data`
+#' (other than `.dep_var`) will be used.
+#'
+#' A [list][base::list] of [defused R expressions][rlang::topic-defuse], as for instance created by
+#' [`expl_fcts()`][expl_fcts], may be used as the \code{\dots} arguments and should be injected using the
+#' [splice-operator][rlang::splice-operator], `!!!`, see examples.
+#'
+#' If `.rownames = TRUE`, the resulting contingency table will be a conventional `data.frame` rather than a
+#' `tibble` and the first categorical variable (other than `.dep_var`) will be used for row headings rather than
+#' as a factor. Having row headings allows the result to be passed as an argument to [`chisq.test()`][stats::chisq.test],
+#' [`fisher.test()`][stats::fisher.test] or [`chsqfish()`][chsqfish], e.g., conveniently using `|>` in a
+#' [piped sequence][=pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
+#' one explanatory (independent) variable will most likely result in the error message
+#' \dQuote{duplicate 'row.names' are not allowed}, in which case `xcontingency_table()` should be used instead.
+#'
+#' Multiple categorical explanatory variables in a contingency table compiled by `xcontingency_table()` are
+#' \dQuote{crossed} using [`fct_cross()`][forcats::fct_cross].
+#'
+#' @seealso  [`defused R expressions`][rlang::topic-defuse], [`fct_cross()`][forcats::fct_cross],
+#' [`splice-operator`][rlang::splice-operator] and [`tibble`][tibble::tibble-package].
+#' @family contingency_table
+#'
+#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
+#'   `character vector`, `factor`, or `numeric`. 
+#'
+#' @param .wt frequency weights, either `NULL` (default) or the quoted name of a numeric variable.
+#' \itemize{
+#'   \item if `NULL`, the number of rows for each unique combination of the dependent and independent
+#'     variables are counted.
+#'   \item if the quoted name of a numeric variable representing frequency weights, these are summated for each
+#'     unique combination of the dependent and independent variables.
+#' }
+#'
+#' @param .vars a list of  [`quosures`][rlang::topic-quosure], the first of which is must be the dependent
+#'   variable, followed by any number of categorical independent variables e.g., `quos(dv, iv1, iv2, iv3)`.
+#'
+#' @param .crossname a character string to be used as the name of the column of for the crossed variables. If
+#'   omitted, the names of the crossed variables are used combined in \dQuote{snake case}.
+#'
+#' @param .rownames `logical`. If `TRUE`, value is a data frame with the levels of the first
+#'   (or crossed) independent variable as row names, rather than a tibble; default `FALSE`.
+#'
+#' @inheritParams expl_fcts
+#'
+#' @return
+#' For `contingency_table()`, an object of class `"contingency_table"`, `"announce"`, inheriting from
+#'   [`tibble`][tibble::tibble-package], or a [`data.frame`][base::data.frame], depending on whether
+#'   `.rownames = FALSE` (default) or `TRUE`.
+#'
+#' Similarly for `xcontingency_table()`, an object of class `"xcontingency_table"`, `"announce"` inheriting from
+#'   [`tibble`] or a `data.frame`, again depending on the value of `rownames`.
+#'
+#' @keywords manip
+#' @export
+#' @examples
+#' (d <- tibble(
+#'     iv = letters[1:4] |> sample(10, replace = TRUE),
+#'     dv = c(0L:3L) |> sample(10, replace = TRUE)
+#' ))
+#'
+#' d |> contingency_table(dv)
+#' d |> contingency_table(dv, .rownames = TRUE)
+#'
+#' d <- tibble(
+#'     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
+#'     dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
+#'   ) |> print()
+#'
+#' d |> contingency_table(dv)
+#' d |> contingency_table(dv, .rownames = TRUE)
+#'
+#' d <- tibble(
+#'     iv = letters[1:4] |> sample(100, replace = TRUE),
+#'     dv = c("Success", "Fail", "Borderline")  |> sample(100, replace = TRUE)
+#'   ) |> count(iv, dv) |> print()
+#'
+#' d |> contingency_table(dv, .wt = n)
+#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
+#'
+#' rm(d)
+#' 
+#' ## Using gss_cat dataset from {forcats} package
+#' \dontshow{
+#'   if (!requireNamespace("forcats", quietly = TRUE)) 
+#'     warning("package 'forcats' must be installed")
+#'   try(gss_cat <- forcats::gss_cat)
+#' }
+#'
+#' gss_cat |> contingency_table(race, relig, denom)
+#' gss_cat |> contingency_table(race, !c(marital, rincome:partyid))
+#'
+#' \dontrun{
+#'   gss_cat |> contingency_table(race, relig, denom, .rownames = T) 
+#'   ## gives error message "duplicate 'row.names' are not allowed";
+#'   ## use xcontingency_table() instead
+#' }
+#'
+#' gss_cat |> xcontingency_table(race, relig, denom)
+#' gss_cat |> xcontingency_table(race, !c(marital, rincome:partyid))
+#' gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
+#' gss_cat |> xcontingency_table(race, relig, denom, .rownames = T) |> head(10)
+#'
+#' ## Two more esoteric examples
+#' ivars <- quos(relig, denom)
+#' gss_cat |> contingency_table(race, !!!ivars)
+#'
+#' ivars <- c("relig", "denom")
+#' gss_cat |> contingency_table(race, any_of(ivars))
+#'
+#' rm(ivars)
+#'
+#' \dontshow{
+#'   rm(gss_cat)
+#' }
+#'
+
+contingency_table <- function(.data, .dep_var, ..., .wt = NULL, .rownames = FALSE) {
+    .dep_var <- enquo(.dep_var)
+    .wt = enquo(.wt)
+    stopifnot(is.data.frame(.data), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
+
+    if (...length())
+        pos <- eval_select(expr(!!.dep_var | (c(...) & chr_or_fct())), data = .data)
+    else 
+        pos <- eval_select(expr(!!.dep_var | chr_or_fct()), data = .data)
+
+    ctab <- .data |>
+        summarise(n = !!.wt %||% n(), .by = c(!!!syms(names(pos)))) |>
+        pivot_wider(names_from = !!.dep_var, values_from = n, values_fill = 0)
+
+    if (.rownames)
+        column_to_rownames(ctab, names(pos)[2])
+    else
+        new_contingency_table(ctab)
+}
+
+# ========================================
+#  Constructor for a Contingency Table
+#  new_contingency_table()
+#
+# Not exported
+
+new_contingency_table <- function(x = data.frame(NULL), prt_str = "Contingency Table", ...) {
+    stopifnot(is.data.frame(x))
+    x <- announce(x, prt_str)
+    structure(x, class = c("contingency_table", class(x)), ...)
+}
+
+# ========================================
+#  Contingency Table for Crossed Categorical Variables
+#
+#' @rdname contingency_table
+#' @export
+
+xcontingency_table <- function(.data, .dep_var, ..., .crossname = NULL, .wt = NULL, .rownames = FALSE) {
+    .dep_var <- enquo(.dep_var)
+    .wt = enquo(.wt)
+    stopifnot(is.data.frame(.data), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
+
+    if (...length())
+        pos <- eval_select(expr(!(!!.dep_var) & (c(...) & chr_or_fct())), data = .data)
+    else 
+        pos <- eval_select(expr(!(!!.dep_var) & chr_or_fct()), data = .data)
+
+    .crossname <- sym(.crossname %||% paste(names(pos), collapse = "_"))
+    ctab <- .data |>
+        mutate(!!.crossname := fct_cross(!!!syms(names(pos)))) |>
+        contingency_table(!!.dep_var, !!.crossname, .rownames = .rownames)
+    if (.rownames)
+        ctab
+    else
+        new_xcontingency_table(ctab)
+}
+
+# ========================================
+#  Constructor for a Crossed Contingency Table
+#  new_xcontingency_table()
+#
+# Not exported
+
+# new_xcontingency_table <- function(x = data.frame(NULL), ...) {
+    # stopifnot(is.data.frame(x))
+    # structure(x, class = c("xcontingency_table", class(x)), ...)
+# }
+
+new_xcontingency_table <- function(x = data.frame(NULL), ...) {
+    stopifnot(is.data.frame(x))
+    structure(x, class = c("xcontingency_table", class(x)), lead = "Crossed Contingency Table", ...)
+}
+
+# ========================================
+#  Print Contingency Table with Format String
+#  S3method print.contingency_table()
+#
+#' @rdname contingency_table
+#' @export
+
+print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+    NextMethod()
+}
+
+contingency_table_names <- c(
+    contingency_table = "Contingency Table",
+    xcontingency_table = "Crossed Contingency Table",
+    binom_contingency = "Binomial Contingency Table"
+)
+
+# ========================================
+#  Contingency Table for Many Categorical Independent Variables
+#    Deprecated, use contingency_table()
+#' @rdname contingency_table
+#' @export
+
+pcontingency_table <- function(.data, .vars, .wt = NULL, .rownames = FALSE) {
+    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function pcontingency_table() is now deprecated!\n\n",
+    "Instead of: pcontingency_table(my_data, my_vars),\n",
+    "\t Please use: contingency_table(my_data, my_depvar, ...).\n")
+    .vars |> is_quosures() |> stopifnot()
+    .wt = enquo(.wt)
+    .data |>
+            group_by(!!!.vars) |>
+            summarise(n = n(), .groups = "drop") |>
+        pivot_wider(names_from = !!.vars[[1]], values_from = n, values_fill = 0) |>
+        (\(x) {
+            if (.rownames) 
+                column_to_rownames(x, as_label(.vars[[2]]))
+            else x
+        })()
+}
+
+# ========================================
+#' Binomial Contingency Table for Data with a Binary Outcome
+#'
+#' @description
+#' [`binom_contingency()`] creates a binomial contingency table for data with a binary dependent variable and
+#' one or more categorical independent variables, optionally including totals, proportions and confidence intervals.
+#'
+#' `binom_pcontingency()` is deprecated; use [`binom_contingency()`] instead.
+#'
+#' `binom_propci()` is deprecated; use [`binom_contingency()`] with `.propci` argument set to `TRUE`.
+#'
+#' @details
+#' Categorical variables (i.e. factors or character vectors) in `.data` required as factors in the resulting
+#' contingency table may be selected for inclusion or exclusion using the \code{\dots} argument and the
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax from package \pkg{\link[dplyr]{dplyr}}, including use of
+#' \dQuote{selection helpers}. If no \code{\dots} arguments are supplied, all categorical variables in `.data`
+#' (other than `.dep_var`) will be used.
+#'
+#' A [list][base::list] of [defused R expressions][rlang::topic-defuse], as for instance created by
+#' [`expl_fcts()`][expl_fcts], may be used as the \code{\dots} arguments and should be injected using the
+#' [splice-operator][rlang::splice-operator], `!!!`, see examples.
+#'
+#' Use `drop_zero = TRUE` to drop [`levels`][base::levels] of explanatory factors for which values of
+#' `.dep_var` are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
+#' numerically 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating
+#' odds ratios using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
+#'
+#' @note
+#' Confidence intervals are calculated using [`prop.test()`][stats::prop.test], and are based on Wilson's score method
+#'   \emph{without} continuity correction (Newcombe, 1998).
+#'
+#' @references
+#' Confidence interval from R's `prop.test()` differs from hand calculation and result from SAS.
+#'   \href{https://stats.stackexchange.com/questions/183225/confidence-interval-from-rs-prop-test-differs-from-hand-calculation-and-resul/183238#183238}{
+#'   Stack Exchange}.
+#'
+#' Newcombe R.G. (1998). Two-Sided Confidence Intervals for the Single Proportion: Comparison of Seven Methods.
+#'   \emph{Statistics in Medicine}, \strong{17}, 857-872.
+#'   \href{https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8<857::AID-SIM777>3.0.CO;2-E}{
+#'     \doi{10.1002/(SICI)1097-0258(19980430)17:8<857::AID-SIM777>3.0.CO;2-E}}.
+#'
+#' Venables, W.N. and Ripley, B.D. (2002) \emph{Modern Applied Statistics with S.} New York: Springer.
+#'   \href{https://doi.org/10.1007/978-0-387-21706-2}{\doi{10.1007/978-0-387-21706-2}}.
+#'
+#' Yates' continuity correction in confidence interval returned by `prop.test`.
+#'   \href{https://stats.stackexchange.com/questions/5206/yates-continuity-correction-in-confidence-interval-returned-by-prop-test}{
+#'   Stack Exchange}.
+#'
+#' @seealso [`drop_zero()`][drop_zero], [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio],
+#'   [`prop.test()`][stats::prop.test] and [`tibble`][tibble::tibble-package].
+#'
+#' @family contingency_table
+#'
+#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of a binary dependent variable, which should be
+#'   `numeric` with values of \var{0} and \var{1}. 
+#'
+#' @param .level the confidence level required; default \var{0.95}.
+#'
+#' @param .drop_zero `logical`. If `TRUE`, [`levels`][base::levels] of explanatory factors for which values of
+#'   `.dep_var` are either all zero or all one are dropped from the output; default `FALSE`.
+#'
+#' @param .propci `logical`. If `TRUE`, each row of the output `"binom_contingency"` object includes totals, proportions
+#'   and confidence intervals; default `FALSE`.
+#'
+#' @param .vars list of [`quosures`][rlang::topic-quosure] comprising a binomial dependent variable followed by
+#'   any number of categorical independent variables e.g., `quos(dv, iv1, iv2, iv3)`. For this to work properly, the
+#'   arguments should be unnamed.
+#'
+#' @inheritParams expl_fcts
+#' @inheritParams contingency_table
+#'
+#' @return
+#' An object of class `"binom_contingency"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
+#'   with columns `pn` and `qn` representing the number of "successes" and "failures" respectively, and further columns
+#'   for independant (explanatory) variables.
+#'
+#' If `.propci = TRUE` additional columns are output representing totals, proportions and confidence intervals.
+#'
+#' @keywords manip
+#' @export
+#' @examples
+#' ## Bernoulli data with a single explanatory variable
+#' (d <- bernoulli_data())
+#' d |> binom_contingency(dv)
+#' d |> binom_contingency(dv, .propci = TRUE)
+#'
+#' ## Bernoulli data for a single explanatory variable with levels at which responses are all zero
+#' (d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5)))
+#' d |> binom_contingency(dv)
+#' ## Invokes warning: -
+#' ##   '! glm.fit: fitted probabilities numerically 0 or 1 occurred'
+#' try(d |> binom_contingency(dv) |>
+#'     odds_ratio(.ind_var = iv))
+#'
+#' ##  Argument .drop_zero = TRUE in binomial contingency() prevents this warning
+#' d |> binom_contingency(dv, .drop_zero = TRUE)
+#' d |> binom_contingency(dv, .drop_zero = TRUE) |>
+#'     odds_ratio(.ind_var = iv)
+#'
+#' ## Bernoulli data with multiple explanatory variables
+#' (d <- list(
+#'     iv2 = list(i = c("a", "c", "e", "g"), j = c("b", "d", "f", "h")),
+#'     iv3 = list(k = c("a", "b", "c", "d"), l = c("e", "f", "g", "h")),
+#'     iv4 = list(k = c("a", "b"), l = c("c", "d"), m = c("e", "f"))
+#' ) |> add_grps(bernoulli_data(levels = 8), iv, .key = _))
+#'
+#' d |> binom_contingency(dv)
+#' d |> binom_contingency(dv, iv, iv3)
+#' d |> binom_contingency(dv, !c(iv2, iv4))
+#' d |> binom_contingency(dv, !!!expl_fcts(d))
+#'
+#' d |> binom_contingency(dv, .propci = TRUE)
+#' d |> binom_contingency(dv, .drop_zero = TRUE)
+#'
+#' d |>
+#'    binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
+#'    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
+#'    summary()
+#'
+#' d |>
+#'    binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
+#'    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
+#'    odds_ratio()
+#'
+#' ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
+#' d |> binom_contingency(dv, last_col(1L))  ## Offset of 1L used, since last column of d is dv
+#' d |> binom_contingency(dv, !last_col())
+#' d |> binom_contingency(dv, num_range("iv", 2:3))
+#' d |> binom_contingency(dv, !num_range("iv", 2:3))
+#' d |> binom_contingency(dv, starts_with("iv"))
+#' d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
+#'
+#' rm(d)
+
+binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
+    .dep_var <- enquo(.dep_var)
+    stopifnot(is.data.frame(.data), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
+
+    ctab <- contingency_table(.data = .data, .dep_var = !!.dep_var, ...) |>
+        rename(pn = `1`, qn = `0`) |>
+        relocate(qn, .after = pn)
+
+    if (.drop_zero)
+            ctab <- ctab |>
+                filter(as.logical(pn), as.logical(qn)) |>
+                mutate(across(where(is.factor), fct_drop))
+
+    if (.propci) {
+        ctab <- mutate(ctab,
+            n = pn + qn,
+            proptest = map2(pn, n, \(x, n) prop.test(x, n, conf.level = .level, correct = FALSE)),
+            p = proptest |> map_dbl("estimate"),
+            lower = proptest |> map_dbl(list("conf.int", 1)),
+            upper = proptest |> map_dbl(list("conf.int", 2)),
+            across(proptest, ~ NULL)
+        )
+        ctab %@% "conf.level" <- .level
+    }
+    new_binom_contingency(ctab)
+}
+
+# ========================================
+#  Constructor for a Binomial Contingency Table
+#  new_binom_contingency()
+#
+# Not exported
+
+new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer()), ...) {
+    stopifnot(inherits(x, "contingency_table"))
+    structure(x, class = c("binom_contingency", class(x)), lead  = "Binomial Contingency Table", ...)
+}
+
+# ========================================
+#  Print Binomial Contingency Table with Confidence Level
+#  S3method print.contingency_table()
+#
+#' @rdname binom_contingency
+#' @export
+
+print.binom_contingency <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+    NextMethod()
+    .level <- x %@% conf.level
+    if (!is.null(.level))
+        cat("\tConfidence level", .level, "\n")
+    invisible(x)
+}
+
+# ========================================
+#  Binomial Contingency Table for Data with a Binary Outcome and Multiple Independent Variables,
+#    optionally including totals, proportions and confidence intervals.
+#    Deprecated, use binom_contingency()
+#' @rdname binom_contingency
+#' @export
+
+binom_pcontingency <- function(.data, .vars, .propci = FALSE, level = 0.95) {
+    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function binom_pcontingency() is now deprecated!\n\n",
+    "Instead of: binom_pcontingency(my_data, my_vars),\n",
+    "\t Please use: binom_contingency(my_data, my_depvar, ...).\n")
+    .vars |> is_quosures() |> stopifnot()
+    .data |>
+        pcontingency_table(.vars) |>
+        rename(pn = `1`, qn = `0`) |>
+        relocate(qn, .after = pn) |>
+        (\(x) {
+            if (.propci)
+                x |> mutate(
+                    n = pn + qn,
+                    pt = map2(pn, n, prop.test, conf.level = level),
+                    p = pt |> map_dbl("estimate"),
+                    lower = pt |> map_dbl(list("conf.int", 1)),
+                    upper = pt |> map_dbl(list("conf.int", 2)),
+                    across(pt, ~ NULL)
+                )
+            else x
+        })()
+}
+
+# ========================================
+#  Binomial Contingency Table for Data with a Binary Outcome  With Totals, Proportions And Confidence Intervals
+#    Deprecated, use binom_contingency() with .propci argument set to TRUE
+#' @rdname binom_contingency
+#' @export
+
+binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
+    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function binom_propci() is now deprecated!\n\n",
+    "Instead of: binom_propci(my_data, my_depvar, my_indvar),\n",
+    "\t Please use: binom_contingency(my_data, my_depvar, my_indvar, .propci = TRUE).\n")
+    .dep_var <- enquo(.dep_var) 
+    .ind_var <- enquo(.ind_var) 
+
+    .data |>
+        binom_contingency(!!.dep_var, !!.ind_var) |>
+        mutate(
+            n = pn + qn,
+            pt = map2(pn, n, prop.test, conf.level = level),
+            p = pt |> map_dbl("estimate"),
+            lower = pt |> map_dbl(list("conf.int", 1)),
+            upper = pt |> map_dbl(list("conf.int", 2)),
+            across(pt, ~ NULL)
+        ) 
+}
+
+
+# ========================================
+#' @title
+#' Explanatory Factors in Data as List of Expressions
+#'
+#' @description
+#' Create a list of defused expressions representing the names of all or a selection of explanatory factors or character
+#' vectors in a dataset. 
+#'
+#' @details
+#' By default, `expl_fcts()` creates a [`list`][base::list] of [`symbols`][base::symbol] i.e.,
+#' [defused R expressions][rlang::topic-defuse], representing the names of all or a selection of explanatory factors (or
+#' character vectors) in `.data`, using [`syms`][rlang::syms] from package \pkg{\link[rlang]{rlang}}. Alternatively, if
+#' `.syms = FALSE`, a `character vector` of the names of the explanatory factors (or character vectors) in `.data` is
+#' returned instead.
+#'
+#' Variables in `.data` may be selected for inclusion or exclusion using the \code{\dots} argument and the
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax from package \pkg{\link[dplyr]{dplyr}}, including use of
+#' \dQuote{selection helpers}. If no \code{\dots} arguments are supplied, all categorical variables in `.data` will
+#' be included in the list.
+#' 
+#' A list of `symbols` returned by `expl_fcts()` may be \dQuote{injected} into the \code{\dots} arguments of
+#' [`contingency_table()`][contingency_table], [`xcontingency_table()`][xcontingency_table],
+#' [`binom_contingency()`][binom_contingency] and other similar functions, using the
+#' [splice-operator][rlang::splice-operator] `!!!`. If `.syms = TRUE`, the functions [`all_of`][tidyselect::all_of] or
+#' [`any_of`][tidyselect::any_of] should be used to wrap the resulting `character vector` of names instead of using
+#' `!!!`. A list of `symbols` returned by `expl_fcts()` may also be used to provide a list argument with injection
+#' support to \pkg{\link[purrr]{purrr}} package [map][purrr::map] functions, using the
+#' [injection-operator][rlang::injection-operator] `!!` (see examples).
+#'
+#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
+#'
+#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factor`s or
+#'   `character vector`s in `.data`, to be included (or excluded) in the output.
+#' 
+#' @param .named `logical`, whether to name the elements of the list. If `TRUE`, unnamed inputs are
+#'   automatically named with [`as_label()`][rlang::as_label]; default `FALSE`.
+#' 
+# #' @param .syms `logical`, whether to return the elements of the list as a `character vector` rather than a list
+# #'   of symbols; default `TRUE`.
+#' 
+#' @param .syms `logical`. If `FALSE`, a `character vector` is returned rather than a list of `symbols`; default `TRUE`.
+#'
+#' @seealso [`!!`][rlang::injection-operator], [`!!!`][rlang::splice-operator], [`all_of`][tidyselect::all_of],
+#'   [`any_of`][tidyselect::any_of], [`as_label()`][rlang::as_label], [`defused R expressions`][rlang::topic-defuse],
+#'   [`map()`][purrr::map] and [`symbol`][base::symbol].
+#' @family contingency_table
+#'
+#' @return A `list` of `symbols` representing the names of selected explanatory `factors` or `character vector`s in
+#'   `.data`, unless `.syms = FALSE`, in which case the selected names are returned as a `character vector` instead.
+#'
+#' @keywords manip models
+#' @export
+#' @examples
+#' (d <- list(
+#'     iv2 = list(g = c("a", "c", "e"), h = c("b", "d", "f")),
+#'     iv3 = list(i = c("a", "b", "c"), j = c("d", "e", "f")),
+#'     iv4 = list(k = c("a", "b"), l = c("c", "d"), m = c("e", "f"))
+#' ) |> add_grps(bernoulli_data(levels = 6), iv, .key = _))
+#'
+#' d |> expl_fcts()
+#' d |> expl_fcts(.named = TRUE)
+#' d |> expl_fcts(.syms = FALSE)
+#' d |> expl_fcts(.named = TRUE, .syms = FALSE)
+#'
+#' ## Select or exclude factors
+#' d |> expl_fcts(iv, iv3)
+#' d |> expl_fcts(!c(iv, iv3))
+#'
+#' ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
+#' d |> expl_fcts(last_col(1L))  ## Offset of 1L used, since last column of d is dv
+#' d |> expl_fcts(!last_col())
+#' d |> expl_fcts(num_range("iv", 2:3))
+#' d |> expl_fcts(!num_range("iv", 2:3))
+#' d |> expl_fcts(starts_with("iv"))
+#' d |> expl_fcts(!starts_with("iv")) ## Here, negation of selection helper excludes all explanatory factors
+#'
+#' ## In following three examples, each triplet should give identical results
+#' ## Include all explanatory factors
+#' d |> binom_contingency(dv)
+#' d |> binom_contingency(dv, !!!expl_fcts(d))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, .syms = FALSE)))
+#'
+#' ## Include only iv and iv3
+#' d |> binom_contingency(dv, iv, iv3)
+#' d |> binom_contingency(dv, !!!expl_fcts(d, iv, iv3))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .syms = FALSE)))
+#'
+#' ## Exclude iv and iv3
+#' d |> binom_contingency(dv, !c(iv, iv3))
+#' d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .syms = FALSE)))
+#'
+#' ## Use with purr::map(), binom_contingency(), glm() and odds_ratio()
+#' expl_fcts(d, .named = TRUE) |>
+#'     map(\(x) binom_contingency(d, dv, !!x))
+#' expl_fcts(d, .named = TRUE) |>
+#'     map(\(x) binom_contingency(d, dv, !!x) |> glm(cbind(pn, qn) ~ ., binomial, data = _))
+#' expl_fcts(d, .named = TRUE) |>
+#'     map(\(x) binom_contingency(d, dv, !!x, .drop_zero = T) |> odds_ratio(.ind_var = !!x))
+#'
+#' rm(d)
+
+expl_fcts <- function (.data, ..., .named = FALSE, .syms = TRUE) {
+    if (...length())
+        pos <- eval_select(expr(c(...) & chr_or_fct()), data = .data)
+    else 
+        pos <- eval_select(expr(chr_or_fct()), data = .data)
+    efs <- names(pos)
+    if(.named)
+        efs <- set_names(efs)
+    if(.syms)
+        syms(efs)
+    else
+        efs
+}
+
+
+# ========================================
+# chr_or_fct
+# Predicate function
+# Not exported
+chr_or_fct <- function()
+    force(\(x) is.factor(x) | is.character(x))
+
