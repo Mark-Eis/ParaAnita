@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jun 2023
+# Mark Eisler - Dec 2023
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -18,8 +18,8 @@
 #' \code{contr_colnames()<-} sets the column names of the contrasts for a factor.
 #'
 #' \code{cntr_pfx()<-} prefixes the current column names of the contrasts for a factor with the character or string
-#' provided. This can be useful when factor levels are elided with the factor name as, for instance, in the printed output of
-#' \code{\link[stats]{summary.glm}}.
+#' provided. This can be useful when factor levels are elided with the factor name as, for instance, in the printed
+#' output of \code{\link[stats]{summary.glm}}.
 #'
 #' If contrasts are not set for \var{x}, both \code{contr_colnames()<-} and \code{cntr_pfx()<-} set the contrast attribute
 #'   using the default function from \code{\link[base]{options}("contrasts")} before modifying the column names.
@@ -34,10 +34,10 @@
 #'
 #' @export
 #' @examples
-#' d <- data.frame(
+#' (d <- data.frame(
 #'   f = gl(5, 5, labels = LETTERS[1:5]),
 #'   dv = sample(c(0,1), 25, replace = TRUE)
-#' ) |> print()
+#' ))
 #'
 #' contrasts(d$f) <- contr.helmert
 #' contrasts(d$f)
@@ -111,7 +111,7 @@ contr_colnames <- function(x)
 #'
 #' @export
 #' @examples
-#' f <- gl(5, 5, labels = LETTERS[1:5]) |> print()
+#' (f <- gl(5, 5, labels = LETTERS[1:5]))
 #'
 #' contrasts(f)<- contr.helmert
 #' f
