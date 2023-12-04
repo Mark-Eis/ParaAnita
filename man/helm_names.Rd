@@ -35,7 +35,7 @@ The function \code{helm_names()} is an alias for \code{\link{contr_colnames}} an
 and to optimise help searches.
 }
 \examples{
-f <- gl(5, 5, labels = LETTERS[1:5]) |> print()
+(f <- gl(5, 5, labels = LETTERS[1:5]))
 
 contrasts(f)<- contr.helmert
 f
