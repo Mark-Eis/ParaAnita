@@ -101,7 +101,7 @@ and \code{"tbl_df"}, and containing the following columns: -
 together with the estimates of the regression coefficients, their standard errors and probabilities.
 }
 \details{
-\code{odds_ratio()} is a generic function used to calculates odds ratios and their profiled confidence intervals for
+\code{odds_ratio()} is a generic function used to calculate odds ratios and their profiled confidence intervals for
 univariable \acronym{GLMs} with a single categorical independent variable, or for multivariable \acronym{GLMs}, and
 output these together with the estimates of the regression coefficients, their standard errors and probabilities.
 The function invokes particular \code{\link[utils:methods]{methods}} which depend on the \code{\link[base:class]{class}} of the first

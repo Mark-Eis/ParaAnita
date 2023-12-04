@@ -16,7 +16,7 @@
 #' together with the estimates of the regression coefficients, their standard errors and probabilities.
 #'
 #' @details
-#' `odds_ratio()` is a generic function used to calculates odds ratios and their profiled confidence intervals for
+#' `odds_ratio()` is a generic function used to calculate odds ratios and their profiled confidence intervals for
 #' univariable \acronym{GLMs} with a single categorical independent variable, or for multivariable \acronym{GLMs}, and
 #' output these together with the estimates of the regression coefficients, their standard errors and probabilities.
 #' The function invokes particular [`methods`][utils:: methods] which depend on the [`class`][base::class] of the first
