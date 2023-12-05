@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Jul 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -102,11 +102,11 @@ rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
 #' 
 #' @export
 #' @examples
-#' t <- bernoulli_data(2, 50, c(0.6, 0.4)) |> contingency_table(dv, iv, .rownames = T) |> print()
+#' t <- bernoulli_data(2, 50, c(0.6, 0.4)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
 #'
 #' t |> chsqfish()
 #'
-#' t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |> contingency_table(dv, iv, .rownames = T) |> print()
+#' t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
 #'
 #' t |> chsqfish()
 #'
