@@ -113,8 +113,10 @@
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv)                     ## Linear predictor scale
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, type = "response")  ## Response scale
 #'
-#' ## Standard error on linear predictor or response scale
+#' ## Standard error on linear predictor scale
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA)
+#'
+#' ## Standard error on response scale
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA, type = "response")
 #'
 #' rm(d)

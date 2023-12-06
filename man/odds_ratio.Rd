@@ -131,18 +131,22 @@ value of \var{0.95} is used.
 ## contrasts from options("contrasts"); contrasts not printed 
 d |> odds_ratio(.dep_var = dv, .ind_var = iv)
 
-## Using the default contrasts from options("contrasts"); adjust confidence level, contrasts are printed 
+## Using the default contrasts from options("contrasts")
+## — adjust confidence level, contrasts are printed 
 d |> odds_ratio(.dep_var = dv, .ind_var = iv, .level = 0.99, .print_contr = TRUE)
 
-## Specifying treatment contrasts, with last level as base; contrasts not printed
+## Specifying treatment contrasts, with last level as base
+## — contrasts not printed
 d |> set_contrasts(iv, base =  99L, contr = contr.treatment) |>
     odds_ratio(.dep_var = dv, .ind_var = iv)
 
-## Specifying treatment contrasts, with last level as base; contrasts printed
+## Specifying treatment contrasts, with last level as base
+## — contrasts printed
 d |> set_contrasts(iv, base =  99L, contr = contr.treatment) |>
     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 
-## Helmert contrasts specified; contrasts printed
+## Helmert contrasts specified
+## — contrasts printed
 d |> set_contrasts(iv, contr = contr.helmert) |>
     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 
@@ -150,10 +154,12 @@ d |> set_contrasts(iv, contr = contr.helmert) |>
 options("contrasts" =  c(unordered = "contr.helmert", ordered = "contr.poly"))
 getOption("contrasts")
 
-## Using the default, unordered Helmert contrasts; contrasts printed
+## Using the default, unordered Helmert contrasts
+## — contrasts printed
 d |> odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 
-## Specify treatment contrasts; contrasts printed
+## Specify treatment contrasts
+## — contrasts printed
 d |> set_contrasts(iv, contr = contr.treatment) |>
     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 
@@ -182,7 +188,8 @@ glm1 |> odds_ratio()
 
 glm1 |> odds_ratio(.printcall = F, .stat = TRUE, .print_contr = TRUE)
 
-## Compare S3 method for class "glm" to that for "data.frame" - only possible for univariable analyses
+## Compare S3 method for class "glm" to that for "data.frame"
+## — only possible for univariable analyses
 (d <- binom_data())
 
 glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>

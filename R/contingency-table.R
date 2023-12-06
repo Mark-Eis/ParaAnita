@@ -36,7 +36,6 @@
 #' `tibble` and the first categorical variable (other than `.dep_var`) will be used for row headings rather than
 #' as a factor. Having row headings allows the result to be passed as an argument to [`chisq.test()`][stats::chisq.test],
 #' [`fisher.test()`][stats::fisher.test] or [`chsqfish()`][chsqfish], e.g., conveniently using `|>` in a
-# #' [piped sequence][=pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
 #' [piped sequence][pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
 #' one explanatory (independent) variable will most likely result in the error message
 #' \dQuote{duplicate 'row.names' are not allowed}, in which case `xcontingency_table()` should be used instead.

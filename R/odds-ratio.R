@@ -93,7 +93,8 @@
 #' (d <- bernoulli_data())
 #'
 #' ## Invoking the S3 method for class "data.frame" and using the default
-#' ## contrasts from options("contrasts"); contrasts not printed 
+#' ## contrasts from options("contrasts")
+#' ## — contrasts not printed 
 #' d |> odds_ratio(.dep_var = dv, .ind_var = iv)
 #'
 #' ## Using the default contrasts from options("contrasts")

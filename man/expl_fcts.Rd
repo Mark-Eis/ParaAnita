@@ -68,7 +68,8 @@ d |> expl_fcts(!last_col())
 d |> expl_fcts(num_range("iv", 2:3))
 d |> expl_fcts(!num_range("iv", 2:3))
 d |> expl_fcts(starts_with("iv"))
-d |> expl_fcts(!starts_with("iv")) ## Here, negation of selection helper excludes all explanatory factors
+## Negation of selection helper excludes all explanatory factors
+d |> expl_fcts(!starts_with("iv"))
 
 ## In following three examples, each triplet should give identical results
 ## Include all explanatory factors
