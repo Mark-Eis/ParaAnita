@@ -28,7 +28,7 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     announce(), chsqfish(), drop_null(), drop_zero(), expl_fcts(),
     fct_to_num(), good_levels(), lf(), print_allrows(), print_lf(),
     rm_objects() and starsig().
-License: GPL (>= 3)
+License: MIT + file LICENSE
 Depends: 
     R (>= 4.1.0)
 Imports: 
