@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Aug 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -386,39 +386,6 @@ print.summ_anov <- function(x, ...) {
 #' 
 #' rm(d, alist)
 
-# anova_tbl <- function(anova_ls) {
-    # stopifnot(
-        # is.list(anova_ls),
-        # all(map_lgl(anova_ls, isa, c("anova", "data.frame"))),
-        # all(map_lgl(anova_ls[-1], \(x) identical(row.names(anova_ls[[1]])[1], row.names(x)[1])))
-    # )
-
-    # badnames <- map_lgl(anova_ls, ~ nrow(.) > 2) 
-    # if (any(badnames))
-        # warning(
-            # paste(names(badnames)[badnames], collapse = ", "),
-            # if (length(badnames[badnames]) > 1) " have" else " has",
-            # " > 1 independent variable, interpret with caution"
-        # )
-
-    # duplex <- !identical(row.names(anova_ls[[1]])[[1]], "NULL")
-
-    # an_tbl <- anova_ls |> imap(~
-        # .x[1, !(is.na(.x[1,]) |> as.vector())] |>
-         # as_tibble() |> 'row.names<-'(NULL) |>
-         # rename_with(~ gsub("Resid.", if(duplex) "§" else "Null", .x, fixed = TRUE)) |>
-         # bind_cols(.x[2, ] |> as_tibble() |> 'row.names<-'(NULL)) |>
-         # rename_with(~ gsub(if(duplex) "Resid." else "§", "M2_Resid.", .x, fixed = TRUE)) |>
-         # rename_with(~ gsub("§", "M1_Resid.", .x, fixed = TRUE))
-    # ) |>
-    # list_rbind(names_to = "Name")
-
-    # if ("Pr(>Chi)" %in% names(an_tbl))
-        # an_tbl <- mutate(an_tbl, sig = starsig(`Pr(>Chi)`))
-
-    # new_anova_tbl(an_tbl, paste("Comparing", if (duplex) "two models" else "to null model"))
-# }
-
 anova_tbl <- function(anova_ls) {
     stopifnot(
         is.list(anova_ls),
@@ -439,10 +406,14 @@ anova_tbl <- function(anova_ls) {
     an_tbl <- anova_ls |> map(\(x)
         x[1, !(is.na(x[1,]))] |>
         as_tibble() |>
-        rename_with(\(y) gsub("Resid.", if(duplex) "§" else "Null", y, fixed = TRUE)) |>
+        # rename_with(\(y) gsub("Resid.", if(duplex) "§" else "Null", y, fixed = TRUE)) |>
+        # bind_cols(x[2, ] |> as_tibble())  |>
+        # rename_with(\(y) gsub(if(duplex) "Resid." else "§", "M2_Resid.", y, fixed = TRUE)) |>
+        # rename_with(~ gsub("§", "M1_Resid.", .x, fixed = TRUE))) |>
+        rename_with(\(y) gsub("Resid.", if(duplex) "U+00A7" else "Null", y, fixed = TRUE)) |>
         bind_cols(x[2, ] |> as_tibble())  |>
-        rename_with(\(y) gsub(if(duplex) "Resid." else "§", "M2_Resid.", y, fixed = TRUE)) |>
-        rename_with(~ gsub("§", "M1_Resid.", .x, fixed = TRUE))) |>
+        rename_with(\(y) gsub(if(duplex) "Resid." else "U+00A7", "M2_Resid.", y, fixed = TRUE)) |>
+        rename_with(~ gsub("U+00A7", "M1_Resid.", .x, fixed = TRUE))) |>
     list_rbind(names_to = "Name")
 
     if ("Pr(>Chi)" %in% names(an_tbl))

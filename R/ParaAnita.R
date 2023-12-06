@@ -56,21 +56,9 @@
 #'
 #'  rm_objects(model, c(4, "_d"))
 
-# rm_objects <- function(basename, suffixes, envir = caller_env()) {
-    # basename <- enquo(basename)
-    # intro <- paste0("Objects matching \"", as_name(basename), "…\"")
-    # envstr <- paste("in", ifelse(identical(env_name(envir), ""), "this", env_name(envir)), "environment:\n\t")
-    # objs <- expr(ls(envir, pattern = as_name(basename)))
-
-    # cat(intro, envstr, eval(objs), "\n")
-    # rm(list = map_chr(suffixes, ~ paste0(as_name(basename), .)), envir = envir)
-    # cat(intro, "remaining", envstr, eval(objs), "\n")
-    # invisible(eval(objs))
-# }
-
 rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
     basename <- enquo(basename)
-    intro <- paste0("Objects matching \"", as_name(basename), "…\"")
+    intro <- paste0("Objects matching \"", as_name(basename), "\u2026\"")
     envirname <- rlang::env_name(envir)
     envstr <- paste("in", ifelse(identical(envirname, ""), "this", envirname), "environment:\n\t")
     objs <- expr(ls(envir, pattern = as_name(basename)))
@@ -155,7 +143,7 @@ starsig <- function(p) {
     if (!is.numeric(p))
         stop("p must be numeric") 
 
-    cut(p, c(0, 0.001, 0.01, 0.05, 0.1, 1), include.lowest = T, right = F) |>
+    cut(p, c(0, 0.001, 0.01, 0.05, 0.1, 1), include.lowest = TRUE, right = FALSE) |>
     `levels<-`(c("***", "**", "*", ".", "NS"))
 }
 
