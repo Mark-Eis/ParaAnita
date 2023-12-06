@@ -51,8 +51,6 @@ the alternative \code{"response"} is on the scale of the response variable; defa
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name(s) of the response variable(s) in the data
 representing the number of successes and failures respectively, see \code{\link[stats:glm]{glm()}}; default
 \code{cbind(pn, qn)}.}
-
-\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 }
 \value{
 An object of class \code{c("glm_plotdata", "announce")}, also inheriting from \code{"tbl_df"}, \code{"tbl"} and
@@ -89,10 +87,10 @@ may be plotted conveniently using the \code{\link[ggplot2:ggplot]{ggplot()}} S3 
 \code{glm_plotdata()} allows exploration of proposed groupings of the levels of the independent variable, such as
 obtained using \code{\link[=add_grps]{add_grps()}} or \code{\link[forcats:fct_collapse]{fct_collapse()}}, and will include both the
 grouped and ungrouped levels in its output. In such cases, \code{.ind_var} should contain the groupings and the \code{.ungroup}
-argument should name a column in \code{.data} containing the ungrouped levels, see examples. The grouped levels are used
-as the independent variable in the \acronym{GLM} and are shown within the output object in the column \code{grouped} while
-the ungrouped levels are shown in the column \code{level}. If the \code{.ungroup} is \code{NULL} (the default), levels of \code{.ind_var}
-will appear in the column \code{level} and the \code{grouped} column in the output will contain \code{\link[base:NA]{NA}}.
+argument should name a column in \code{object}'s data containing the ungrouped levels, see examples. The grouped levels are
+used as the independent variable in the \acronym{GLM} and are shown within the output object in the column \code{grouped}
+while the ungrouped levels are shown in the column \code{level}. If the \code{.ungroup} is \code{NULL} (the default), levels of
+\code{.ind_var} will appear in the column \code{level} and the \code{grouped} column in the output will contain \code{\link[base:NA]{NA}}.
 
 If \code{conf_level} is a value such as \var{0.95} (the default) or a similar value, \code{lower} and \code{upper}
 values in the output delimit the prediction confidence intervals at that confidence level. If \code{conf_level} is

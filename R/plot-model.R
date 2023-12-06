@@ -24,10 +24,10 @@
 #' `glm_plotdata()` allows exploration of proposed groupings of the levels of the independent variable, such as
 #' obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse], and will include both the
 #' grouped and ungrouped levels in its output. In such cases, `.ind_var` should contain the groupings and the `.ungroup`
-#' argument should name a column in `.data` containing the ungrouped levels, see examples. The grouped levels are used
-#' as the independent variable in the \acronym{GLM} and are shown within the output object in the column `grouped` while
-#' the ungrouped levels are shown in the column `level`. If the `.ungroup` is `NULL` (the default), levels of `.ind_var`
-#' will appear in the column `level` and the `grouped` column in the output will contain [`NA`][base::NA].
+#' argument should name a column in `object`'s data containing the ungrouped levels, see examples. The grouped levels are
+#' used as the independent variable in the \acronym{GLM} and are shown within the output object in the column `grouped`
+#' while the ungrouped levels are shown in the column `level`. If the `.ungroup` is `NULL` (the default), levels of
+#' `.ind_var` will appear in the column `level` and the `grouped` column in the output will contain [`NA`][base::NA].
 #'
 #' If `conf_level` is a value such as \var{0.95} (the default) or a similar value, `lower` and `upper`
 #' values in the output delimit the prediction confidence intervals at that confidence level. If `conf_level` is
@@ -53,8 +53,8 @@
 #'
 #' @param \dots further arguments passed to or from other methods.
 #' 
-#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
-#'
+# #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
+# #'
 #' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
 #'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
 #'   `cbind(pn, qn)`.
@@ -268,7 +268,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' @details
 #' `glm_plotlist()` invokes [`binom_contingency()`][binom_contingency] and [`glm_plotdata()`][glm_plotdata] to create
 #' a `list` of `"glm_plotdata"` objects for plotting univariable \acronym{GLM} predictions with error bars for each
-#' of a number of independent variables in `.data`. Independent variables to be included are selected using the
+#' of a number of independent variables in `data`. Independent variables to be included are selected using the
 #' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}},
 #' including use of \dQuote{selection helpers}.
 #'
@@ -276,7 +276,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' independent variables (e.g. as obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse])
 #' and inclusion of both grouped and ungrouped levels in the `"glm_plotdata"` objects comprising its output list. In
 #' such cases, the `.ungroups` argument is used to provide a named `character vector` of the names of the corresponding
-#' factors in `.data` giving the grouped and ungrouped levels of the form `ungrouped_name = "grouped_name"`; levels not
+#' factors in `data` giving the grouped and ungrouped levels of the form `ungrouped_name = "grouped_name"`; levels not
 #' otherwise mentioned will be left as is.
 #'
 #' The grouped levels are used as the independent variable in the \acronym{GLM} invoked by `glm_plotdata()` and are

@@ -44,7 +44,7 @@ for each of a number of independent variables.
 \details{
 \code{glm_plotlist()} invokes \code{\link[=binom_contingency]{binom_contingency()}} and \code{\link[=glm_plotdata]{glm_plotdata()}} to create
 a \code{list} of \code{"glm_plotdata"} objects for plotting univariable \acronym{GLM} predictions with error bars for each
-of a number of independent variables in \code{.data}. Independent variables to be included are selected using the
+of a number of independent variables in \code{data}. Independent variables to be included are selected using the
 \code{\dots} argument with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}},
 including use of \dQuote{selection helpers}.
 
@@ -52,7 +52,7 @@ Like \code{\link[=glm_plotdata]{glm_plotdata()}}, \code{glm_plotlist()} allows e
 independent variables (e.g. as obtained using \code{\link[=add_grps]{add_grps()}} or \code{\link[forcats:fct_collapse]{fct_collapse()}})
 and inclusion of both grouped and ungrouped levels in the \code{"glm_plotdata"} objects comprising its output list. In
 such cases, the \code{.ungroups} argument is used to provide a named \verb{character vector} of the names of the corresponding
-factors in \code{.data} giving the grouped and ungrouped levels of the form \code{ungrouped_name = "grouped_name"}; levels not
+factors in \code{data} giving the grouped and ungrouped levels of the form \code{ungrouped_name = "grouped_name"}; levels not
 otherwise mentioned will be left as is.
 
 The grouped levels are used as the independent variable in the \acronym{GLM} invoked by \code{glm_plotdata()} and are
