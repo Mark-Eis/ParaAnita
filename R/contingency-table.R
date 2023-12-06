@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Nov 2023
+# Mark Eisler - Dec 2023
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -36,7 +36,8 @@
 #' `tibble` and the first categorical variable (other than `.dep_var`) will be used for row headings rather than
 #' as a factor. Having row headings allows the result to be passed as an argument to [`chisq.test()`][stats::chisq.test],
 #' [`fisher.test()`][stats::fisher.test] or [`chsqfish()`][chsqfish], e.g., conveniently using `|>` in a
-#' [piped sequence][=pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
+# #' [piped sequence][=pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
+#' [piped sequence][pipeOp] (see examples). However, using `.rownames = TRUE` for a contingency table with more than
 #' one explanatory (independent) variable will most likely result in the error message
 #' \dQuote{duplicate 'row.names' are not allowed}, in which case `xcontingency_table()` should be used instead.
 #'
@@ -572,7 +573,8 @@ binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
 #' d |> expl_fcts(num_range("iv", 2:3))
 #' d |> expl_fcts(!num_range("iv", 2:3))
 #' d |> expl_fcts(starts_with("iv"))
-#' d |> expl_fcts(!starts_with("iv")) ## Here, negation of selection helper excludes all explanatory factors
+#' ## Negation of selection helper excludes all explanatory factors
+#' d |> expl_fcts(!starts_with("iv"))
 #'
 #' ## In following three examples, each triplet should give identical results
 #' ## Include all explanatory factors

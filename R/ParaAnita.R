@@ -102,11 +102,13 @@ rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
 #' 
 #' @export
 #' @examples
-#' t <- bernoulli_data(2, 50, c(0.6, 0.4)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
+#' (t <- bernoulli_data(2, 50, c(0.6, 0.4)) |>
+#'   contingency_table(dv, iv, .rownames = TRUE))
 #'
 #' t |> chsqfish()
 #'
-#' t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
+#' (t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |>
+#'   contingency_table(dv, iv, .rownames = TRUE))
 #'
 #' t |> chsqfish()
 #'

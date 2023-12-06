@@ -89,7 +89,7 @@ If \code{.rownames = TRUE}, the resulting contingency table will be a convention
 \code{tibble} and the first categorical variable (other than \code{.dep_var}) will be used for row headings rather than
 as a factor. Having row headings allows the result to be passed as an argument to \code{\link[stats:chisq.test]{chisq.test()}},
 \code{\link[stats:fisher.test]{fisher.test()}} or \code{\link[=chsqfish]{chsqfish()}}, e.g., conveniently using \verb{|>} in a
-\link[==pipeOp]{piped sequence} (see examples). However, using \code{.rownames = TRUE} for a contingency table with more than
+\link[=pipeOp]{piped sequence} (see examples). However, using \code{.rownames = TRUE} for a contingency table with more than
 one explanatory (independent) variable will most likely result in the error message
 \dQuote{duplicate 'row.names' are not allowed}, in which case \code{xcontingency_table()} should be used instead.
 

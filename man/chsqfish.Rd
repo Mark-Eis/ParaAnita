@@ -22,11 +22,11 @@ expected values are 5 or greater, otherwise applies \code{\link[stats]{fisher.te
 \code{\link[stats]{fisher.test}}
 }
 \examples{
-t <- bernoulli_data(2, 50, c(0.6, 0.4)) |> contingency_table(dv, iv, .rownames = T) |> print()
+t <- bernoulli_data(2, 50, c(0.6, 0.4)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
 
 t |> chsqfish()
 
-t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |> contingency_table(dv, iv, .rownames = T) |> print()
+t <- bernoulli_data(3, 10, c(0.8, 0.5, 0.2)) |> contingency_table(dv, iv, .rownames = TRUE) |> print()
 
 t |> chsqfish()
 

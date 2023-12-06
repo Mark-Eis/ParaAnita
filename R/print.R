@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Aug 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -149,8 +149,9 @@ print_all.default <- function(x, ...) {
 #' (obj |> lf(3))            # three line feeds, returned object rendered visible
 #' obj |> lf(3) |> paste("consectetur adipiscing elit", sep = ", ")
 #'
-#' obj |> print() |> lf(3)   # line feeds are unexpectedly before printed output; use print_lf() instead.
+#' obj |> print() |> lf(3)   # line feeds are unexpectedly before printed output.
 #'
+#' ## Use print_lf() instead
 #' obj |> print_lf()         # object printed with line feed and returned invisibly
 #' obj |> print_lf(3)        # object printed with three line feeds and returned invisibly
 #' (obj |> print_lf(3))      # Ditto, then rendered visible

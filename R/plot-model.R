@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Nov 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -113,9 +113,9 @@
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv)                     ## Linear predictor scale
 #' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, type = "response")  ## Response scale
 #'
-#' ## Standard error
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA)                     ## Linear predictor scale
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA, type = "response")  ## Response scale
+#' ## Standard error on linear predictor or response scale
+#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA)
+#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA, type = "response")
 #'
 #' rm(d)
 
