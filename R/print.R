@@ -13,7 +13,8 @@
 #' @name Print_Methods
 #' 
 #' @description
-#' S3 methods to enable printing of [`announce`][announce] and other objects.
+#' S3 methods to enable printing of [`announce`][announce], [`binom_contingency`][binom_contingency],
+#' [`contingency_table`][contingency_table] and other objects.
 #'
 #' @details
 #' To be completed...
@@ -64,3 +65,35 @@ classlist <- function(clist) {
         clist <- classlist(clist %@% previous)
     clist
 }
+
+# ========================================
+#  Print Binomial Contingency Table with Confidence Level
+#  S3method print.contingency_table()
+#
+#' @rdname Print_Methods
+#' @export
+
+print.binom_contingency <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+    NextMethod()
+    .level <- x %@% conf.level
+    if (!is.null(.level))
+        cat("\tConfidence level", .level, "\n")
+    invisible(x)
+}
+
+# ========================================
+#  Print Contingency Table with Format String
+#  S3method print.contingency_table()
+#
+#' @rdname Print_Methods
+#' @export
+
+print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+    NextMethod()
+}
+
+contingency_table_names <- c(
+    contingency_table = "Contingency Table",
+    xcontingency_table = "Crossed Contingency Table",
+    binom_contingency = "Binomial Contingency Table"
+)

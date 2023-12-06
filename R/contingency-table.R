@@ -216,23 +216,6 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 }
 
 # ========================================
-#  Print Contingency Table with Format String
-#  S3method print.contingency_table()
-#
-#' @rdname contingency_table
-#' @export
-
-print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
-    NextMethod()
-}
-
-contingency_table_names <- c(
-    contingency_table = "Contingency Table",
-    xcontingency_table = "Crossed Contingency Table",
-    binom_contingency = "Binomial Contingency Table"
-)
-
-# ========================================
 #  Contingency Table for Many Categorical Independent Variables
 #    Deprecated, use contingency_table()
 #' @rdname contingency_table
@@ -425,21 +408,6 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
 new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer()), ...) {
     stopifnot(inherits(x, "contingency_table"))
     structure(x, class = c("binom_contingency", class(x)), lead  = "Binomial Contingency Table", ...)
-}
-
-# ========================================
-#  Print Binomial Contingency Table with Confidence Level
-#  S3method print.contingency_table()
-#
-#' @rdname binom_contingency
-#' @export
-
-print.binom_contingency <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
-    NextMethod()
-    .level <- x %@% conf.level
-    if (!is.null(.level))
-        cat("\tConfidence level", .level, "\n")
-    invisible(x)
 }
 
 # ========================================

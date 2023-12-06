@@ -3,7 +3,6 @@
 \name{contingency_table}
 \alias{contingency_table}
 \alias{xcontingency_table}
-\alias{print.contingency_table}
 \alias{pcontingency_table}
 \title{Contingency Tables for Two or More Categorical Variables}
 \usage{
@@ -16,15 +15,6 @@ xcontingency_table(
   .crossname = NULL,
   .wt = NULL,
   .rownames = FALSE
-)
-
-\method{print}{contingency_table}(
-  x,
-  width = NULL,
-  ...,
-  n = NULL,
-  max_extra_cols = NULL,
-  max_footer_lines = NULL
 )
 
 pcontingency_table(.data, .vars, .wt = NULL, .rownames = FALSE)

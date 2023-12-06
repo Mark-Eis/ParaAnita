@@ -2,7 +2,6 @@
 % Please edit documentation in R/contingency-table.R
 \name{binom_contingency}
 \alias{binom_contingency}
-\alias{print.binom_contingency}
 \alias{binom_pcontingency}
 \alias{binom_propci}
 \title{Binomial Contingency Table for Data with a Binary Outcome}
@@ -14,15 +13,6 @@ binom_contingency(
   .drop_zero = FALSE,
   .propci = FALSE,
   .level = 0.95
-)
-
-\method{print}{binom_contingency}(
-  x,
-  width = NULL,
-  ...,
-  n = NULL,
-  max_extra_cols = NULL,
-  max_footer_lines = NULL
 )
 
 binom_pcontingency(.data, .vars, .propci = FALSE, level = 0.95)

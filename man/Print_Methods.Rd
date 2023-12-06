@@ -3,20 +3,43 @@
 \name{Print_Methods}
 \alias{Print_Methods}
 \alias{print.announce}
+\alias{print.binom_contingency}
+\alias{print.contingency_table}
 \title{S3 Print Methods}
 \usage{
 \method{print}{announce}(x, ...)
+
+\method{print}{binom_contingency}(
+  x,
+  width = NULL,
+  ...,
+  n = NULL,
+  max_extra_cols = NULL,
+  max_footer_lines = NULL
+)
+
+\method{print}{contingency_table}(
+  x,
+  width = NULL,
+  ...,
+  n = NULL,
+  max_extra_cols = NULL,
+  max_footer_lines = NULL
+)
 }
 \arguments{
 \item{x}{an object used to select a method.}
 
 \item{...}{further arguments passed to or from other methods.}
+
+\item{width}{only used when \code{max.levels} is NULL, see above.}
 }
 \value{
 The argument \code{x}.
 }
 \description{
-S3 methods to enable printing of \code{\link{announce}} and other objects.
+S3 methods to enable printing of \code{\link{announce}}, \code{\link{binom_contingency}},
+\code{\link{contingency_table}} and other objects.
 }
 \details{
 To be completed...

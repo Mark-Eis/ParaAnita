@@ -32,6 +32,7 @@
 #'   \code{NULL}.
 #'
 #' @inheritParams base::print
+#' @inheritParams base::print.data.frame
 #' @inheritParams tibble::print.tbl_df
 #'
 #' @return Invisibly returns its argument.
