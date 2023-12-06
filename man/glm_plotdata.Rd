@@ -140,7 +140,7 @@ rm(d)
 \code{\link[purrr:imap]{imap}} and  \code{\link[tibble:tibble-package]{tibble}}.
 
 Other plot_model: 
-\code{\link{Plot_GLM}},
+\code{\link{Plot_Model}},
 \code{\link{glm_plotlist}()},
 \code{\link{var_labs}()}
 }

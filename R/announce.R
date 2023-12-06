@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Aug 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -70,7 +70,7 @@ validate_announce <- function(x) {
 #' @export
 #' @examples
 #' announce()
-#' (cpt <- announce("x", lead = "Lorum ipsum dolor sit amet"))
+#' (cpt <- announce("x", lead = "Lorem ipsum dolor sit amet"))
 #' .class2(cpt)
 #'
 #' ## an Announce object, or one inheriting from announce, can be safely overwritten
@@ -89,36 +89,36 @@ announce <- function(object = vector(), lead = "Announce", ...) {
 	validate_announce(new_announce(object, lead))
 }
 
-# ========================================
-#  Print an Announce Object
-#  S3method print.contingency_table()
-#
-#' @rdname announce
-#' @export
+# # # ========================================
+# #  Print an Announce Object
+# #  S3method print.announce()
+# #
+# #' @rdname announce
+# #' @export
 
-print.announce <- function(x, ...) {
-	validate_announce(x)
-    .lead <- x %@% lead
-    cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
-    x %@% lead <- NULL
-    class(x) <- class(x)[-c(inherits(x, "announce", TRUE))]
-    NextMethod()
-    class(x) <- classlist(.Class)
-    x %@% lead <- .lead
-    invisible(x)
-}
+# print.announce <- function(x, ...) {
+	# validate_announce(x)
+    # .lead <- x %@% lead
+    # cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
+    # x %@% lead <- NULL
+    # class(x) <- class(x)[-c(inherits(x, "announce", TRUE))]
+    # NextMethod()
+    # class(x) <- classlist(.Class)
+    # x %@% lead <- .lead
+    # invisible(x)
+# }
 
-# ========================================
-#  Recursive function to find deepest, nested "previous" attribute of .Class
-#  Used by print.announce() to restore class(x) after NextMethod(); "announce" is
-#  removed from class(x) before NextMethod() to avoid risk of pathological recursion. 
-# 
-#  classlist()
-#
-#  Not exported
+# # ========================================
+# #  Recursive function to find deepest, nested "previous" attribute of .Class
+# #  Used by print.announce() to restore class(x) after NextMethod(); "announce" is
+# #  removed from class(x) before NextMethod() to avoid risk of pathological recursion. 
+# # 
+# #  classlist()
+# #
+# #  Not exported
 
-classlist <- function(clist) {
-    if (!is.null(clist %@% previous))
-        clist <- classlist(clist %@% previous)
-    clist
-}
+# classlist <- function(clist) {
+    # if (!is.null(clist %@% previous))
+        # clist <- classlist(clist %@% previous)
+    # clist
+# }

@@ -75,7 +75,7 @@ although they are taken into consideration in calculating denominators in the ca
 \code{\link[forcats:fct_collapse]{fct_collapse}} and \code{\link{Plot_GLM}}.
 
 Other plot_model: 
-\code{\link{Plot_GLM}},
+\code{\link{Plot_Model}},
 \code{\link{glm_plotdata}()},
 \code{\link{var_labs}()}
 }

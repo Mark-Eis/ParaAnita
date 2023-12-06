@@ -50,7 +50,7 @@ rm(demog, mgps, var_labs, ygps)
 \code{\link[ggplot2:as_labeller]{as_labeller}}, \code{\link[ggplot2:facet_wrap]{facet_wrap}}, \code{\link[ggplot2:labeller]{labeller}}.
 
 Other plot_model: 
-\code{\link{Plot_GLM}},
+\code{\link{Plot_Model}},
 \code{\link{glm_plotdata}()},
 \code{\link{glm_plotlist}()}
 }

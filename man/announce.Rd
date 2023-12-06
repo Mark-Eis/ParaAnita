@@ -2,12 +2,9 @@
 % Please edit documentation in R/announce.R
 \name{announce}
 \alias{announce}
-\alias{print.announce}
 \title{Announce Class for Consistent Printing}
 \usage{
 announce(object = vector(), lead = "Announce", ...)
-
-\method{print}{announce}(x, ...)
 }
 \arguments{
 \item{object}{Object to be converted to \code{"announce"} class.}
@@ -27,7 +24,7 @@ Creates an object of class \code{"announce"} with a built-in title string used f
 }
 \examples{
 announce()
-(cpt <- announce("x", lead = "Lorum ipsum dolor sit amet"))
+(cpt <- announce("x", lead = "Lorem ipsum dolor sit amet"))
 .class2(cpt)
 
 ## an Announce object, or one inheriting from announce, can be safely overwritten
@@ -40,6 +37,7 @@ rm(cpt)
 \code{\link[base:cat]{cat()}}, \code{\link[base:print]{print()}}.
 
 Other print: 
+\code{\link{Print_Methods}},
 \code{\link{lf}()},
 \code{\link{print_all}()}
 }

@@ -395,7 +395,7 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' @title
 #' Plot Model Predictions with Error Bars for Univariable GLM
 #'
-#' @name Plot_GLM
+#' @name Plot_Model
 #' 
 #' @description
 #' S3 method to enable [`ggplot()`][ggplot2::ggplot] in package \pkg{\link[ggplot2]{ggplot2}} to plot `"glm_plotdata"`
