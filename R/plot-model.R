@@ -291,7 +291,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' although they are taken into consideration in calculating denominators in the case of grouped levels.
 #'
 #' @seealso [`add_grps`][add_grps], [`bind_rows`][dplyr::bind_rows] and [`binom_contingency`][binom_contingency]
-#'   [`fct_collapse`][forcats::fct_collapse] and [`Plot_GLM`].
+#'   and [`fct_collapse`][forcats::fct_collapse].
 #' @family plot_model
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> independent variables to be included in the plot data.

@@ -5,6 +5,7 @@
 \alias{print_all.data.frame}
 \alias{print_all.tbl}
 \alias{print_all.tbl_df}
+\alias{print_all.odds_ratio}
 \alias{print_all.htest}
 \title{Print All (or More) of an Object}
 \usage{
@@ -37,6 +38,8 @@ print_all(x, ...)
   max_extra_cols = NULL,
   max_footer_lines = NULL
 )
+
+\method{print_all}{odds_ratio}(x, linefeeds = NULL)
 
 \method{print_all}{htest}(x, ...)
 }
@@ -100,6 +103,10 @@ tib |> print_all(linefeeds = 3) |> names()
 df <- tib |> as.data.frame()
 df |> print_all()                         ## Does nothing more than regular print()
 df |> print_all(linefeeds = 2) |> names() ## Regular data frame printing, with line feeds
+
+binom_data(26, 100) |>
+    odds_ratio(.ind_var = iv, .print_contr = TRUE) |>
+    print_all()
 
 rm(df, tib)
 }

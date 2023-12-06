@@ -14,14 +14,14 @@ the \acronym{LHS} of the model formula; should be numeric with values of \var{0}
 with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 
 \item{\dots}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> the \acronym{RHS} of any number of model formulae to be compared,
-based on independent variables in   \code{.data}.}
+based on independent variables in \code{.data}.}
+
+\item{.family}{a description of the error distribution and link function to be used in the model. Can be a character
+string naming a family function, a family function or the result of a call to a family function; default
+\code{binomial}.}
 
 \item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a column for ordering results. Use
 \code{\link[dplyr:desc]{desc}} to sort by a variable in descending order; default \code{desc(AIC)}.}
-
-\item{family}{a description of the error distribution and link function to be used in the model. Can be a character
-string naming a family function, a family function or the result of a call to a family function; default
-\code{binomial}.}
 }
 \value{
 An object of classes \code{"comp_glm"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}} and hence

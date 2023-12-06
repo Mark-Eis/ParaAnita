@@ -5,8 +5,6 @@
 \alias{odds_ratio.binom_contingency}
 \alias{odds_ratio.data.frame}
 \alias{odds_ratio.default}
-\alias{print.odds_ratio}
-\alias{print_all.odds_ratio}
 \title{Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs}
 \usage{
 odds_ratio(object, ...)
@@ -40,17 +38,6 @@ odds_ratio(object, ...)
   .stat = FALSE,
   .print_contr = FALSE
 )
-
-\method{print}{odds_ratio}(
-  x,
-  width = NULL,
-  ...,
-  n = NULL,
-  max_extra_cols = NULL,
-  max_footer_lines = NULL
-)
-
-\method{print_all}{odds_ratio}(x, linefeeds = NULL)
 }
 \arguments{
 \item{object}{an object from which the odds ratios are to be calculated, which may be a

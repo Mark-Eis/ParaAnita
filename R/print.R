@@ -14,16 +14,16 @@
 #' 
 #' @description
 #' S3 methods to enable printing of [`announce`][announce], [`binom_contingency`][binom_contingency],
-#' [`contingency_table`][contingency_table] and other objects.
+#' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov] objects.
 #'
 #' @details
-#' To be completed...
-#' These print methods return their argument `x` invisibly (via [`invisible()`][base::invisible]).
+#'  These print methods return their argument `x` invisibly (via [`invisible()`][base::invisible]).
 #'
-#' @seealso  [`print()`][base::print].
+#' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl].
 #' @family print
 #'
 #' @inheritParams base::print
+#' @inheritParams tibble::print.tbl_df
 #'
 #' @return The argument `x`.
 #'
@@ -97,3 +97,35 @@ contingency_table_names <- c(
     xcontingency_table = "Crossed Contingency Table",
     binom_contingency = "Binomial Contingency Table"
 )
+
+# ========================================
+#  Print Odds Ratios and Confidence Intervals with Contrasts
+#  S3method print.odds_ratio()
+#
+#' @rdname Print_Methods
+#' @export
+
+print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+    contr <- (x %@% glm)$contrasts
+    has_contr <- !is.null(contr)
+    NextMethod()
+    if (x %@% print_contr) {
+        if (has_contr)
+            announce(contr, "Contrasts")
+        else
+            announce(options("contrasts")[[1]], "Default contrasts used")
+    } |> print()
+    invisible(x)
+}
+
+# ========================================
+#  Print GLM Summary and Anova List with Format String
+#  S3method print.summ_anov()
+#
+#' @rdname Print_Methods
+#' @export
+
+print.summ_anov <- function(x, ...) {
+    map(x, print)
+    invisible(x)
+}

@@ -36,9 +36,9 @@
 #'   with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.
 #'
 #' @param \dots <[`dynamic-dots`][rlang::dyn-dots]> the \acronym{RHS} of any number of model formulae to be compared,
-#'   based on independent variables in   \code{.data}.
+#'   based on independent variables in `.data`.
 #'
-#' @param family a description of the error distribution and link function to be used in the model. Can be a character
+#' @param .family a description of the error distribution and link function to be used in the model. Can be a character
 #'   string naming a family function, a family function or the result of a call to a family function; default
 #'   \code{binomial}.
 #'
@@ -319,18 +319,6 @@ new_summ_anov <- function(x = glm(0~NULL), test = "Chisq") {
             anova = announce(anova(x, test = test), "GLM Anova")
         ),
         class = c("summ_anov", "list"))
-}
-
-# ========================================
-#  Print GLM Summary and Anova List with Format String
-#  S3method print.summ_anov()
-#
-#' @rdname summanov
-#' @export
-
-print.summ_anov <- function(x, ...) {
-    map(x, print)
-    invisible(x)
 }
 
 # ========================================

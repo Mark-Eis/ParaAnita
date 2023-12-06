@@ -259,34 +259,3 @@ new_odds_ratio <- function(object = data.frame("x"), ..., .glm = glm(0 ~ NULL), 
     structure(object, class = c("odds_ratio", class(object)), ..., glm = .glm, print_contr = .print_contr)
 }
 
-
-# ========================================
-#  Print Odds Ratios and Confidence Intervals with Contrasts
-#  S3method print.odds_ratio()
-#
-#' @rdname odds_ratio
-#' @export
-
-print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
-    contr <- (x %@% glm)$contrasts
-    has_contr <- !is.null(contr)
-    NextMethod()
-    if (x %@% print_contr) {
-        if (has_contr)
-            announce(contr, "Contrasts")
-        else
-            announce(options("contrasts")[[1]], "Default contrasts used")
-    } |> print()
-    invisible(x)
-}
-
-# # ========================================
-# Print All Rows of an odds_ratio Object
-# S3method print_all.contr_or()
-#
-#' @rdname odds_ratio
-#' @export
-
-print_all.odds_ratio <- function(x, linefeeds = NULL) {
-   NextMethod()
-}

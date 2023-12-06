@@ -5,6 +5,8 @@
 \alias{print.announce}
 \alias{print.binom_contingency}
 \alias{print.contingency_table}
+\alias{print.odds_ratio}
+\alias{print.summ_anov}
 \title{S3 Print Methods}
 \usage{
 \method{print}{announce}(x, ...)
@@ -26,6 +28,17 @@
   max_extra_cols = NULL,
   max_footer_lines = NULL
 )
+
+\method{print}{odds_ratio}(
+  x,
+  width = NULL,
+  ...,
+  n = NULL,
+  max_extra_cols = NULL,
+  max_footer_lines = NULL
+)
+
+\method{print}{summ_anov}(x, ...)
 }
 \arguments{
 \item{x}{an object used to select a method.}
@@ -33,20 +46,32 @@
 \item{...}{further arguments passed to or from other methods.}
 
 \item{width}{only used when \code{max.levels} is NULL, see above.}
+
+\item{n}{Number of rows to show. If \code{NULL}, the default, will print all rows
+if less than the \code{print_max} \link[pillar:pillar_options]{option}.
+Otherwise, will print as many rows as specified by the
+\code{print_min} \link[pillar:pillar_options]{option}.}
+
+\item{max_extra_cols}{Number of extra columns to print abbreviated information for,
+if the width is too small for the entire tibble. If \code{NULL},
+the \code{max_extra_cols} \link[pillar:pillar_options]{option} is used.
+The previously defined \code{n_extra} argument is soft-deprecated.}
+
+\item{max_footer_lines}{Maximum number of footer lines. If \code{NULL},
+the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
 }
 \value{
 The argument \code{x}.
 }
 \description{
 S3 methods to enable printing of \code{\link{announce}}, \code{\link{binom_contingency}},
-\code{\link{contingency_table}} and other objects.
+\code{\link{contingency_table}}, \code{\link{odds_ratio}} and \code{\link[=summanov]{summ_anov}} objects.
 }
 \details{
-To be completed...
 These print methods return their argument \code{x} invisibly (via \code{\link[base:invisible]{invisible()}}).
 }
 \seealso{
-\code{\link[base:print]{print()}}.
+\code{\link[base:print]{print()}}, \code{\link[tibble:formatting]{print.tbl()}}.
 
 Other print: 
 \code{\link{announce}()},

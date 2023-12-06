@@ -49,6 +49,10 @@
 #' df |> print_all()                         ## Does nothing more than regular print()
 #' df |> print_all(linefeeds = 2) |> names() ## Regular data frame printing, with line feeds
 #'
+#' binom_data(26, 100) |>
+#'     odds_ratio(.ind_var = iv, .print_contr = TRUE) |>
+#'     print_all()
+#'
 #' rm(df, tib)
 
 print_all <- function(x, ...) {
@@ -96,6 +100,17 @@ print_all.tbl_df <- function(x, linefeeds = NULL, width = NULL, ..., max_extra_c
     max_footer_lines = NULL) {
 
     NextMethod()
+}
+
+# # ========================================
+# Print All Rows of an odds_ratio Object
+# S3method print_all.contr_or()
+#
+#' @rdname print_all
+#' @export
+
+print_all.odds_ratio <- function(x, linefeeds = NULL) {
+   NextMethod()
 }
 
 # ========================================

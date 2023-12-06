@@ -2,12 +2,9 @@
 % Please edit documentation in R/comp-glm.R
 \name{summanov}
 \alias{summanov}
-\alias{print.summ_anov}
 \title{List of Summary and Analysis of Deviance Objects for Related Univariable GLMs}
 \usage{
 summanov(data, .dep_var, ..., .family = binomial, .test = "Chisq")
-
-\method{print}{summ_anov}(x, ...)
 }
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}

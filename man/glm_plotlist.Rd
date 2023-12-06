@@ -72,7 +72,7 @@ although they are taken into consideration in calculating denominators in the ca
 }
 \seealso{
 \code{\link{add_grps}}, \code{\link[dplyr:bind_rows]{bind_rows}} and \code{\link{binom_contingency}}
-\code{\link[forcats:fct_collapse]{fct_collapse}} and \code{\link{Plot_GLM}}.
+and \code{\link[forcats:fct_collapse]{fct_collapse}}.
 
 Other plot_model: 
 \code{\link{Plot_Model}},
