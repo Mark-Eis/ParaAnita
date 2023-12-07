@@ -19,8 +19,6 @@
 #' `xcontingency_table()` compiles a contingency table for a categorical outcome varable and multiple categorical
 #' explanatory variables that are \dQuote{crossed} to obtain a single explanatory factor.
 #'
-#' `pcontingency_table()` is deprecated; use `contingency_table()` instead.
-#'
 #' @details
 #' Categorical variables (i.e. factors or character vectors) in `.data` required as factors in the resulting
 #' contingency table may be selected for inclusion or exclusion using the \code{\dots} argument and the
@@ -48,8 +46,13 @@
 #'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `contingency_table`.
 #' @family contingency_table
 #'
+#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
+#'
 #' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
 #'   `character vector`, `factor`, or `numeric`. 
+#'
+#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factor`s or
+#'   `character vector`s in `.data`, to be included (or excluded) in the output.
 #'
 #' @param .wt frequency weights, either `NULL` (default) or the quoted name of a numeric variable.
 #' \itemize{
@@ -59,16 +62,11 @@
 #'     unique combination of the dependent and independent variables.
 #' }
 #'
-#' @param .vars a list of  [`quosures`][rlang::topic-quosure], the first of which is must be the dependent
-#'   variable, followed by any number of categorical independent variables e.g., `quos(dv, iv1, iv2, iv3)`.
-#'
 #' @param .crossname a character string to be used as the name of the column of for the crossed variables. If
 #'   omitted, the names of the crossed variables are used combined in \dQuote{snake case}.
 #'
 #' @param .rownames `logical`. If `TRUE`, value is a data frame with the levels of the first
 #'   (or crossed) independent variable as row names, rather than a tibble; default `FALSE`.
-#'
-#' @inheritParams expl_fcts
 #'
 #' @return
 #' For `contingency_table()`, an object of class `"contingency_table"`, `"announce"`, inheriting from
@@ -216,28 +214,6 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
     structure(x, class = c("xcontingency_table", class(x)), lead = "Crossed Contingency Table", ...)
 }
 
-# ========================================
-#  Contingency Table for Many Categorical Independent Variables
-#    Deprecated, use contingency_table()
-#' @rdname contingency_table
-#' @export
-
-pcontingency_table <- function(.data, .vars, .wt = NULL, .rownames = FALSE) {
-    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function pcontingency_table() is now deprecated!\n\n",
-    "Instead of: pcontingency_table(my_data, my_vars),\n",
-    "\t Please use: contingency_table(my_data, my_depvar, ...).\n")
-    .vars |> is_quosures() |> stopifnot()
-    .wt = enquo(.wt)
-    .data |>
-            group_by(!!!.vars) |>
-            summarise(n = n(), .groups = "drop") |>
-        pivot_wider(names_from = !!.vars[[1]], values_from = n, values_fill = 0) |>
-        (\(x) {
-            if (.rownames) 
-                column_to_rownames(x, as_label(.vars[[2]]))
-            else x
-        })()
-}
 
 # ========================================
 #' Binomial Contingency Table for Data with a Binary Outcome
@@ -245,10 +221,6 @@ pcontingency_table <- function(.data, .vars, .wt = NULL, .rownames = FALSE) {
 #' @description
 #' [`binom_contingency()`] creates a binomial contingency table for data with a binary dependent variable and
 #' one or more categorical independent variables, optionally including totals, proportions and confidence intervals.
-#'
-#' `binom_pcontingency()` is deprecated; use [`binom_contingency()`] instead.
-#'
-#' `binom_propci()` is deprecated; use [`binom_contingency()`] with `.propci` argument set to `TRUE`.
 #'
 #' @details
 #' Categorical variables (i.e. factors or character vectors) in `.data` required as factors in the resulting
@@ -304,11 +276,6 @@ pcontingency_table <- function(.data, .vars, .wt = NULL, .rownames = FALSE) {
 #' @param .propci `logical`. If `TRUE`, each row of the output `"binom_contingency"` object includes totals, proportions
 #'   and confidence intervals; default `FALSE`.
 #'
-#' @param .vars list of [`quosures`][rlang::topic-quosure] comprising a binomial dependent variable followed by
-#'   any number of categorical independent variables e.g., `quos(dv, iv1, iv2, iv3)`. For this to work properly, the
-#'   arguments should be unnamed.
-#'
-#' @inheritParams expl_fcts
 #' @inheritParams contingency_table
 #'
 #' @return
@@ -405,66 +372,11 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
 #  Constructor for a Binomial Contingency Table
 #  new_binom_contingency()
 #
-# Not exported
+#  Not exported
 
 new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer()), ...) {
     stopifnot(inherits(x, "contingency_table"))
     structure(x, class = c("binom_contingency", class(x)), lead  = "Binomial Contingency Table", ...)
-}
-
-# ========================================
-#  Binomial Contingency Table for Data with a Binary Outcome and Multiple Independent Variables,
-#    optionally including totals, proportions and confidence intervals.
-#    Deprecated, use binom_contingency()
-#' @rdname binom_contingency
-#' @export
-
-binom_pcontingency <- function(.data, .vars, .propci = FALSE, level = 0.95) {
-    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function binom_pcontingency() is now deprecated!\n\n",
-    "Instead of: binom_pcontingency(my_data, my_vars),\n",
-    "\t Please use: binom_contingency(my_data, my_depvar, ...).\n")
-    .vars |> is_quosures() |> stopifnot()
-    .data |>
-        pcontingency_table(.vars) |>
-        rename(pn = `1`, qn = `0`) |>
-        relocate(qn, .after = pn) |>
-        (\(x) {
-            if (.propci)
-                x |> mutate(
-                    n = pn + qn,
-                    pt = map2(pn, n, prop.test, conf.level = level),
-                    p = pt |> map_dbl("estimate"),
-                    lower = pt |> map_dbl(list("conf.int", 1)),
-                    upper = pt |> map_dbl(list("conf.int", 2)),
-                    across(pt, ~ NULL)
-                )
-            else x
-        })()
-}
-
-# ========================================
-#  Binomial Contingency Table for Data with a Binary Outcome  With Totals, Proportions And Confidence Intervals
-#    Deprecated, use binom_contingency() with .propci argument set to TRUE
-#' @rdname binom_contingency
-#' @export
-
-binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
-    warning("From ParaAnita Version: 0.0.5.0000 - Pututua, function binom_propci() is now deprecated!\n\n",
-    "Instead of: binom_propci(my_data, my_depvar, my_indvar),\n",
-    "\t Please use: binom_contingency(my_data, my_depvar, my_indvar, .propci = TRUE).\n")
-    .dep_var <- enquo(.dep_var) 
-    .ind_var <- enquo(.ind_var) 
-
-    .data |>
-        binom_contingency(!!.dep_var, !!.ind_var) |>
-        mutate(
-            n = pn + qn,
-            pt = map2(pn, n, prop.test, conf.level = level),
-            p = pt |> map_dbl("estimate"),
-            lower = pt |> map_dbl(list("conf.int", 1)),
-            upper = pt |> map_dbl(list("conf.int", 2)),
-            across(pt, ~ NULL)
-        ) 
 }
 
 
@@ -496,16 +408,13 @@ binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
 #' `!!!`. A list of `symbols` returned by `expl_fcts()` may also be used to provide a list argument with injection
 #' support to \pkg{\link[purrr]{purrr}} package [map][purrr::map] functions, using the
 #' [injection-operator][rlang::injection-operator] `!!` (see examples).
-#'
-#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
-#'
-#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factor`s or
-#'   `character vector`s in `.data`, to be included (or excluded) in the output.
 #' 
 #' @param .named `logical`, whether to name the elements of the list. If `TRUE`, unnamed inputs are
 #'   automatically named with [`as_label()`][rlang::as_label]; default `FALSE`.
 #' 
 #' @param .syms `logical`. If `FALSE`, a `character vector` is returned rather than a list of `symbols`; default `TRUE`.
+#'
+#' @inheritParams contingency_table
 #'
 #' @seealso [`!!`][rlang::injection-operator], [`!!!`][rlang::splice-operator], [`all_of`][tidyselect::all_of],
 #'   [`any_of`][tidyselect::any_of], [`as_label()`][rlang::as_label], [`defused R expressions`][rlang::topic-defuse],
@@ -568,7 +477,7 @@ binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
 #'
 #' rm(d)
 
-expl_fcts <- function (.data, ..., .named = FALSE, .syms = TRUE) {
+expl_fcts <- function(.data, ..., .named = FALSE, .syms = TRUE) {
     if (...length())
         pos <- eval_select(expr(c(...) & chr_or_fct()), data = .data)
     else 

@@ -1,6 +1,6 @@
 Package: ParaAnita
 Title: Functions for Binary and Binomial Data Analysis
-Version: 0.0.5.6016
+Version: 0.0.5.7000
 Date: 2023-12-07
 Authors@R:
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
@@ -50,4 +50,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-VersonName: A sus órdenes
+VersonName: Adelante y hacia arriba

@@ -9,7 +9,7 @@ expl_fcts(.data, ..., .named = FALSE, .syms = TRUE)
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
+\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
 \verb{character vector}s in \code{.data}, to be included (or excluded) in the output.}
 
 \item{.named}{\code{logical}, whether to name the elements of the list. If \code{TRUE}, unnamed inputs are

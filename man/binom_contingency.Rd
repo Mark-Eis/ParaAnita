@@ -2,8 +2,6 @@
 % Please edit documentation in R/contingency-table.R
 \name{binom_contingency}
 \alias{binom_contingency}
-\alias{binom_pcontingency}
-\alias{binom_propci}
 \title{Binomial Contingency Table for Data with a Binary Outcome}
 \usage{
 binom_contingency(
@@ -14,10 +12,6 @@ binom_contingency(
   .propci = FALSE,
   .level = 0.95
 )
-
-binom_pcontingency(.data, .vars, .propci = FALSE, level = 0.95)
-
-binom_propci(.data, .dep_var, .ind_var, level = 0.95)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -35,10 +29,6 @@ binom_propci(.data, .dep_var, .ind_var, level = 0.95)
 and confidence intervals; default \code{FALSE}.}
 
 \item{.level}{the confidence level required; default \var{0.95}.}
-
-\item{.vars}{list of \code{\link[rlang:topic-quosure]{quosures}} comprising a binomial dependent variable followed by
-any number of categorical independent variables e.g., \code{quos(dv, iv1, iv2, iv3)}. For this to work properly, the
-arguments should be unnamed.}
 }
 \value{
 An object of class \code{"binom_contingency"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -50,10 +40,6 @@ If \code{.propci = TRUE} additional columns are output representing totals, prop
 \description{
 \code{\link[=binom_contingency]{binom_contingency()}} creates a binomial contingency table for data with a binary dependent variable and
 one or more categorical independent variables, optionally including totals, proportions and confidence intervals.
-
-\code{binom_pcontingency()} is deprecated; use \code{\link[=binom_contingency]{binom_contingency()}} instead.
-
-\code{binom_propci()} is deprecated; use \code{\link[=binom_contingency]{binom_contingency()}} with \code{.propci} argument set to \code{TRUE}.
 }
 \details{
 Categorical variables (i.e. factors or character vectors) in \code{.data} required as factors in the resulting

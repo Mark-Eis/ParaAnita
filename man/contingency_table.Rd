@@ -3,7 +3,6 @@
 \name{contingency_table}
 \alias{contingency_table}
 \alias{xcontingency_table}
-\alias{pcontingency_table}
 \title{Contingency Tables for Two or More Categorical Variables}
 \usage{
 contingency_table(.data, .dep_var, ..., .wt = NULL, .rownames = FALSE)
@@ -16,8 +15,6 @@ xcontingency_table(
   .wt = NULL,
   .rownames = FALSE
 )
-
-pcontingency_table(.data, .vars, .wt = NULL, .rownames = FALSE)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -25,7 +22,7 @@ pcontingency_table(.data, .vars, .wt = NULL, .rownames = FALSE)
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the dependent variable, which may be a
 \verb{character vector}, \code{factor}, or \code{numeric}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
 \verb{character vector}s in \code{.data}, to be included (or excluded) in the output.}
 
 \item{.wt}{frequency weights, either \code{NULL} (default) or the quoted name of a numeric variable.
@@ -41,9 +38,6 @@ unique combination of the dependent and independent variables.
 
 \item{.crossname}{a character string to be used as the name of the column of for the crossed variables. If
 omitted, the names of the crossed variables are used combined in \dQuote{snake case}.}
-
-\item{.vars}{a list of  \code{\link[rlang:topic-quosure]{quosures}}, the first of which is must be the dependent
-variable, followed by any number of categorical independent variables e.g., \code{quos(dv, iv1, iv2, iv3)}.}
 }
 \value{
 For \code{contingency_table()}, an object of class \code{"contingency_table"}, \code{"announce"}, inheriting from
@@ -61,8 +55,6 @@ headings.
 
 \code{xcontingency_table()} compiles a contingency table for a categorical outcome varable and multiple categorical
 explanatory variables that are \dQuote{crossed} to obtain a single explanatory factor.
-
-\code{pcontingency_table()} is deprecated; use \code{contingency_table()} instead.
 }
 \details{
 Categorical variables (i.e. factors or character vectors) in \code{.data} required as factors in the resulting
