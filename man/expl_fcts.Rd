@@ -18,8 +18,8 @@ automatically named with \code{\link[rlang:as_label]{as_label()}}; default \code
 \item{.syms}{\code{logical}. If \code{FALSE}, a \verb{character vector} is returned rather than a list of \code{symbols}; default \code{TRUE}.}
 }
 \value{
-A \code{list} of \code{symbols} representing the names of selected explanatory \code{factors} or \verb{character vector}s in
-\code{.data}, unless \code{.syms = FALSE}, in which case the selected names are returned as a \verb{character vector} instead.
+A \code{list} of \code{symbols} representing the names of selected explanatory \code{factors} or \verb{character vectors} in
+\code{.data}; unless \code{.syms = FALSE}, in which case the selected names are returned as a \verb{character vector} instead.
 }
 \description{
 Create a list of defused expressions representing the names of all or a selection of explanatory factors or character

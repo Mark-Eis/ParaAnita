@@ -11,6 +11,7 @@
 #' @export str_to_title
 #' @export tibble
 #' @importFrom broom glance
+#' @importFrom dplyr across
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_cols
 #' @importFrom dplyr bind_rows

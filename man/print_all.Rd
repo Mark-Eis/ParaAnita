@@ -14,6 +14,7 @@ print_all(x, ...)
 \method{print_all}{data.frame}(
   x,
   linefeeds = NULL,
+  ...,
   digits = NULL,
   quote = FALSE,
   right = TRUE,
@@ -39,7 +40,7 @@ print_all(x, ...)
   max_footer_lines = NULL
 )
 
-\method{print_all}{odds_ratio}(x, linefeeds = NULL)
+\method{print_all}{odds_ratio}(x, linefeeds = NULL, ...)
 
 \method{print_all}{htest}(x, ...)
 }

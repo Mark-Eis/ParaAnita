@@ -17,7 +17,7 @@
 #' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov] objects.
 #'
 #' @details
-#'  These print methods return their argument `x` invisibly (via [`invisible()`][base::invisible]).
+#' These print methods return their argument `x` invisibly (via [`invisible()`][base::invisible]).
 #'
 #' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl].
 #' @family print

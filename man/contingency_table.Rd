@@ -150,7 +150,8 @@ rm(ivars)
 }
 \seealso{
 \code{\link[rlang:topic-defuse]{defused R expressions}}, \code{\link[forcats:fct_cross]{fct_cross()}},
-\code{\link[rlang:splice-operator]{splice-operator}} and \code{\link[tibble:tibble-package]{tibble}}.
+\code{\link[rlang:splice-operator]{splice-operator}} and \code{\link[tibble:tibble-package]{tibble}};
+\code{\link{Print_Methods}} for S3 method for printing objects of class \code{contingency_table}.
 
 Other contingency_table: 
 \code{\link{binom_contingency}()},

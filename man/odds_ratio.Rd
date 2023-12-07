@@ -208,8 +208,8 @@ rm(d, glm1)
 \seealso{
 \code{\link[=binom_contingency]{binom_contingency()}}, \code{\link[stats:contrast]{contrast matrix}},
 \code{\link[stats:contrasts]{contrasts()}}, \code{\link[stats:glm]{glm()}}, \code{\link[=set_contrasts]{set_contrasts()}},
-\code{\link[stats:summary.glm]{summary.glm()}} and \code{\link[=print_all]{print_all()}} for easy printing of all the rows of
-a longer \code{tibble}.
+\code{\link[stats:summary.glm]{summary.glm()}}; \code{\link{Print_Methods}} and \code{\link[=print_all]{print_all()}} for S3
+methods for printing objects of class \code{odds_ratio}.
 }
 \concept{odds-ratio}
 \keyword{models}

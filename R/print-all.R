@@ -66,7 +66,7 @@ print_all <- function(x, ...) {
 #' @rdname print_all
 #' @export
 
-print_all.data.frame <- function(x, linefeeds = NULL, digits = NULL, quote = FALSE, right = TRUE, 
+print_all.data.frame <- function(x, linefeeds = NULL, ..., digits = NULL, quote = FALSE, right = TRUE, 
     row.names = TRUE, max = NULL) {
 
     print(x, digits = digits, quote = quote, right = right, row.names = row.names, max = max)
@@ -109,7 +109,7 @@ print_all.tbl_df <- function(x, linefeeds = NULL, width = NULL, ..., max_extra_c
 #' @rdname print_all
 #' @export
 
-print_all.odds_ratio <- function(x, linefeeds = NULL) {
+print_all.odds_ratio <- function(x, linefeeds = NULL, ...) {
    NextMethod()
 }
 

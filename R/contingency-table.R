@@ -44,7 +44,8 @@
 #' \dQuote{crossed} using [`fct_cross()`][forcats::fct_cross].
 #'
 #' @seealso  [`defused R expressions`][rlang::topic-defuse], [`fct_cross()`][forcats::fct_cross],
-#' [`splice-operator`][rlang::splice-operator] and [`tibble`][tibble::tibble-package].
+#'   [`splice-operator`][rlang::splice-operator] and [`tibble`][tibble::tibble-package];
+#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `contingency_table`.
 #' @family contingency_table
 #'
 #' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
@@ -287,7 +288,8 @@ pcontingency_table <- function(.data, .vars, .wt = NULL, .rownames = FALSE) {
 #'   Stack Exchange}.
 #'
 #' @seealso [`drop_zero()`][drop_zero], [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio],
-#'   [`prop.test()`][stats::prop.test] and [`tibble`][tibble::tibble-package].
+#'   [`prop.test()`][stats::prop.test] and [`tibble`][tibble::tibble-package];
+#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `contingency_table`.
 #'
 #' @family contingency_table
 #'
@@ -503,9 +505,6 @@ binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
 #' @param .named `logical`, whether to name the elements of the list. If `TRUE`, unnamed inputs are
 #'   automatically named with [`as_label()`][rlang::as_label]; default `FALSE`.
 #' 
-# #' @param .syms `logical`, whether to return the elements of the list as a `character vector` rather than a list
-# #'   of symbols; default `TRUE`.
-#' 
 #' @param .syms `logical`. If `FALSE`, a `character vector` is returned rather than a list of `symbols`; default `TRUE`.
 #'
 #' @seealso [`!!`][rlang::injection-operator], [`!!!`][rlang::splice-operator], [`all_of`][tidyselect::all_of],
@@ -513,8 +512,8 @@ binom_propci <- function(.data, .dep_var, .ind_var, level = 0.95) {
 #'   [`map()`][purrr::map] and [`symbol`][base::symbol].
 #' @family contingency_table
 #'
-#' @return A `list` of `symbols` representing the names of selected explanatory `factors` or `character vector`s in
-#'   `.data`, unless `.syms = FALSE`, in which case the selected names are returned as a `character vector` instead.
+#' @return A `list` of `symbols` representing the names of selected explanatory `factors` or `character vectors` in
+#'   `.data`; unless `.syms = FALSE`, in which case the selected names are returned as a `character vector` instead.
 #'
 #' @keywords manip models
 #' @export
