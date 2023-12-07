@@ -22,8 +22,8 @@ new_announce <- function(object = vector(), lead = "Announce: -\n", ...) {
 #  Validator for an Announce Object
 #  validate_announce()
 #
-# # Not exported, but probably should be…
-#' @export
+#  Not exported, but probably should be…
+# #' @export
 
 validate_announce <- function(x) {
     lead <- x %@% lead
@@ -88,37 +88,3 @@ announce <- function(object = vector(), lead = "Announce", ...) {
         class(object) <- class(object)[-c(inherits(object, "announce", TRUE))]
 	validate_announce(new_announce(object, lead))
 }
-
-# # # ========================================
-# #  Print an Announce Object
-# #  S3method print.announce()
-# #
-# #' @rdname announce
-# #' @export
-
-# print.announce <- function(x, ...) {
-	# validate_announce(x)
-    # .lead <- x %@% lead
-    # cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
-    # x %@% lead <- NULL
-    # class(x) <- class(x)[-c(inherits(x, "announce", TRUE))]
-    # NextMethod()
-    # class(x) <- classlist(.Class)
-    # x %@% lead <- .lead
-    # invisible(x)
-# }
-
-# # ========================================
-# #  Recursive function to find deepest, nested "previous" attribute of .Class
-# #  Used by print.announce() to restore class(x) after NextMethod(); "announce" is
-# #  removed from class(x) before NextMethod() to avoid risk of pathological recursion. 
-# # 
-# #  classlist()
-# #
-# #  Not exported
-
-# classlist <- function(clist) {
-    # if (!is.null(clist %@% previous))
-        # clist <- classlist(clist %@% previous)
-    # clist
-# }

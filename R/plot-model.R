@@ -360,7 +360,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
 #' @seealso [`as_labeller`][ggplot2::as_labeller], [`facet_wrap`][ggplot2::facet_wrap], [`labeller`][ggplot2::labeller].
 #' @family plot_model
 #'
-#' @param .var character vector containing the names of the variables to be revised.
+#' @param labels character vector containing the names of the variables to be revised.
 #'
 #' @return A character vector containing the revised names.
 #'
@@ -510,7 +510,7 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #  S3method ggplot.glm_plotdata()
 #
 #' @rdname plot_model
-#' @export
+# #' @export
 
 ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE, rev_y = FALSE, ...,
     environment = parent.frame()) {

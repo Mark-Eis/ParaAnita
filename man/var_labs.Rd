@@ -7,7 +7,7 @@
 var_labs(labels)
 }
 \arguments{
-\item{.var}{character vector containing the names of the variables to be revised.}
+\item{labels}{character vector containing the names of the variables to be revised.}
 }
 \value{
 A character vector containing the revised names.

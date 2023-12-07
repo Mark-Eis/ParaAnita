@@ -1,0 +1,34 @@
+# First R Package
+# Mark Eisler Dec 2023
+# For Anita Rabaza
+#
+# Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
+#
+# reexport-rlang.R
+
+ 
+# ========================================
+
+#' @importFrom rlang %@%
+#' @export
+rlang::`%@%`
+
+#' @importFrom rlang  %|%
+#' @export
+rlang::`%|%`
+
+#' @importFrom rlang %||%
+#' @export
+rlang::`%||%`
+
+#' @importFrom rlang eval_tidy
+#' @export
+rlang::eval_tidy
+
+#' @importFrom rlang quos
+#' @export
+rlang::quos
+
+#' @importFrom rlang set_names
+#' @export
+rlang::set_names
