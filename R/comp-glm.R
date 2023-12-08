@@ -394,10 +394,6 @@ anova_tbl <- function(anova_ls) {
     an_tbl <- anova_ls |> map(\(x)
         x[1, !(is.na(x[1,]))] |>
         as_tibble() |>
-        # rename_with(\(y) gsub("Resid.", if(duplex) "§" else "Null", y, fixed = TRUE)) |>
-        # bind_cols(x[2, ] |> as_tibble())  |>
-        # rename_with(\(y) gsub(if(duplex) "Resid." else "§", "M2_Resid.", y, fixed = TRUE)) |>
-        # rename_with(~ gsub("§", "M1_Resid.", .x, fixed = TRUE))) |>
         rename_with(\(y) gsub("Resid.", if(duplex) "U+00A7" else "Null", y, fixed = TRUE)) |>
         bind_cols(x[2, ] |> as_tibble())  |>
         rename_with(\(y) gsub(if(duplex) "Resid." else "U+00A7", "M2_Resid.", y, fixed = TRUE)) |>
@@ -405,7 +401,7 @@ anova_tbl <- function(anova_ls) {
     list_rbind(names_to = "Name")
 
     if ("Pr(>Chi)" %in% names(an_tbl))
-        an_tbl <- mutate(an_tbl, sig = starsig(`Pr(>Chi)`))
+        an_tbl <- mutate(an_tbl, sig = starsig(.data$`Pr(>Chi)`))
 
     new_anova_tbl(an_tbl, paste("Comparing", if (duplex) "two models" else "to null model"))
 }
