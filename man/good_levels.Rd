@@ -12,7 +12,7 @@ good_levels(.data, .dep_var, .ind_var)
 
 drop_null(.data, .dep_var, .ind_var)
 
-drop_zero(.data, .ind_var, .dep_var = cbind(pn, qn))
+drop_zero(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn))
 
 levels_data(data)
 

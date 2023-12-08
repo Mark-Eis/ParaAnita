@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Jun 2023
+# Mark Eisler - Dec 2023
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -112,7 +112,7 @@ drop_null <- function(.data, .dep_var, .ind_var) {
 #' @rdname good_levels
 #' @export
 
-drop_zero <- function(.data, .ind_var, .dep_var = cbind(pn, qn)) {
+drop_zero <- function(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn)) {
     .dep_var <- enquo(.dep_var)
     .data |>
         filter(as.logical((!!.dep_var)[, 1]), as.logical((!!.dep_var)[, 2])) |>
