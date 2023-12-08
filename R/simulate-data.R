@@ -85,7 +85,7 @@ binom_data <- function(levels = 5, length = 20L, probs = seq(0.5, 0.1, length.ou
     tibble(    
         iv = letters[1:levels] |> as.factor(),
         pn = rbinom(levels, length, probs),
-        qn = length - pn
+        qn = length - .data$pn
     ) |>
     announce("Simulated Binomial Data") 
 }
