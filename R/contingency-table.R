@@ -368,22 +368,23 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
     # new_binom_contingency(ctab)
 # }
 
+
 binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
     .dep_var <- enquo(.dep_var)
     stopifnot(is.data.frame(.data), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
 
     ctab <- contingency_table(.data = .data, .dep_var = !!.dep_var, ...) |>
         rename(pn = `1`, qn = `0`) |>
-        relocate(qn, .after = "pn")
+        relocate("qn", .after = "pn")
 
     if (.drop_zero)
             ctab <- ctab |>
-                filter(as.logical(.data$pn), as.logical(qn)) |>
+                filter(as.logical(.data$pn), as.logical(.data$qn)) |>
                 mutate(across(where(is.factor), fct_drop))
 
     if (.propci) {
         ctab <- mutate(ctab,
-            n = .data$pn + qn,
+            n = .data$pn + .data$qn,
             proptest = map2(.data$pn, n, \(x, n) prop.test(x, n, conf.level = .level, correct = FALSE)),
             p = proptest |> map_dbl("estimate"),
             lower = proptest |> map_dbl(list("conf.int", 1)),
@@ -393,8 +394,8 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
         ctab %@% "conf.level" <- .level
     }
     new_binom_contingency(ctab)
-    # ParaAnita:::new_binom_contingency(ctab)
 }
+
 
 # ========================================
 #  Constructor for a Binomial Contingency Table
