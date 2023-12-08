@@ -386,10 +386,10 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
         ctab <- mutate(ctab,
             n = .data$pn + .data$qn,
             proptest = map2(.data$pn, n, \(x, n) prop.test(x, n, conf.level = .level, correct = FALSE)),
-            p = proptest |> map_dbl("estimate"),
-            lower = proptest |> map_dbl(list("conf.int", 1)),
-            upper = proptest |> map_dbl(list("conf.int", 2)),
-            across(proptest, ~ NULL)
+            p = .data$proptest |> map_dbl("estimate"),
+            lower = .data$proptest |> map_dbl(list("conf.int", 1)),
+            upper = .data$proptest |> map_dbl(list("conf.int", 2)),
+            across("proptest", ~ NULL)
         )
         ctab %@% "conf.level" <- .level
     }
