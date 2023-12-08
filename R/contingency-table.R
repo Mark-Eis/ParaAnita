@@ -374,7 +374,7 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
     stopifnot(is.data.frame(.data), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
 
     ctab <- contingency_table(.data = .data, .dep_var = !!.dep_var, ...) |>
-        rename(pn = `1`, qn = `0`) |>
+        rename(pn = "1", qn = "0") |>
         relocate("qn", .after = "pn")
 
     if (.drop_zero)
