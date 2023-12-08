@@ -369,7 +369,6 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 # }
 
 binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
-	marker()
     .dep_var <- enquo(.dep_var)
     stopifnot(is.data.frame(.data), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
 
