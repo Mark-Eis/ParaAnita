@@ -61,8 +61,8 @@ print.announce <- function(x, ...) {
 #  Not exported
 
 classlist <- function(clist) {
-    if (!is.null(clist %@% previous))
-        clist <- classlist(clist %@% previous)
+    if (!is.null(clist %@% "previous"))
+        clist <- classlist(clist %@% "previous")
     clist
 }
 
