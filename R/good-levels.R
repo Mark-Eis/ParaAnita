@@ -9,43 +9,52 @@
 
 # ========================================
 #' @title
-#' Remove Levels of Independent Variable Having Values of Bernoulli Dependent Variable All Zero or All One
+#' Remove Levels of Independent Variable with Dependent Variable All Successes or All Failures
 #'
 #' @description
-#' \code{good_levels()} identifies \code{\link{levels}} of an independent variable for which values of the dependent
+#' `good_levels()` identifies `levels` of an independent variable for which values of a Bernoulli dependent
 #' variable are neither all zero nor all one i.e., those for which \eqn{0 < p < 1}{0 < p < 1}.
 #'
-#' \code{drop_null()} drops all data with \code{levels} of the independent variable for which the dependent variable
-#' has values either all zero or all one.
+#' `drop_null()` drops all data with `levels` of an independent variable for which a Bernoulli dependent
+#' variable has values either all zero or all one i.e., those identified by `good_levels()`.
 #'
-#' \code{levels_data} returns the levels for all factors in data. 
+#' `drop_zero()` drops all data with `levels` of an independent variable for which a binomial dependent variable
+#' has either all successes or failures.
 #'
-#' \code{nlevels_data} returns the number of levels for all factors in data. 
+#' `levels_data` returns the levels for all factors in data. 
+#'
+#' `nlevels_data` returns the number of levels for all factors in data. 
 #'
 #' @details
-#' For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, \code{good_levels()}
-#' identifies \code{\link{levels}} of an independent variable for which values of the dependent variable are neither
-#' all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
+#' For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, `good_levels()`
+#' identifies  [`levels`][base::levels] of an independent variable for which values of the dependent variable are
+#' neither all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
 #'
-#' For a similar dataset, \code{drop_null()} drops all rows of data other than those with \code{levels} of the
-#' independent variable identified by \code{good_levels()}. Unused factor levels are dropped from the independent
+#' For a similar dataset, `drop_null()` drops all rows of data other than those with `levels` of the
+#' independent variable identified by `good_levels()`. Unused factor levels are dropped from the independent
 #' variable.
 #'
-#' For a binomial dataset, \code{drop_zero()} drops all rows of data having either zero successes or zero failures. 
+#' For a binomial dataset, `drop_zero()` drops rows of data having either all successes and no failures, or no
+#' successes and all failures.
 #'
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
 #' @family good_levels
 #'
-#' @param .ind_var <[`data-masked`][rlang::args_data_masking]> quoted name of the independent variable, which may be a
-#'   \code{factor}, or character vector. 
+#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of a Bernoulli dependent variable that
+#'   should be `numeric` with values of \var{0} and \var{1}; or in the case of `drop zero()`, a binomial dependent
+#'   variable, default `cbind(.data$pn, .data$qn)`, representing the number of successes and failures respectively,
+#'   see [`glm()`][stats::glm].
+#'
+#' @param .ind_var <[`data-masked`][rlang::args_data_masking]> quoted name of the independent variable, which may be
+#'   a `factor`, or a `character vector`. 
 #'
 #' @inheritParams binom_contingency
 #'
-#' @return \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the
-#'   corresponding values of \code{.dep_var} are neither all zero nor all one. Both \code{drop_null()} and
-#'   \code{drop_zero()} return a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package])
-#'   equivalent to data, including only rows with levels of \code{.ind_var} for which \code{.dep_var} values are neither
-#'   all zero nor all one or having neither zero successes nor zero failures respectively.
+#' @return `good_levels()` returns a character vector comprising the `levels` of `.ind_var` for which the
+#'   corresponding values of `.dep_var` are neither all zero nor all one. Both `drop_null()` and
+#'   `drop_zero()` return a data frame or a data frame extension e.g., a [`tibble`][tibble::tibble-package],
+#'   equivalent to data, including only rows with levels of `.ind_var` for which `.dep_var` values are neither
+#'   all zero nor all one or having neither all successes nor all failures respectively.
 #'
 #' @export
 #' @examples

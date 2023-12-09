@@ -6,7 +6,7 @@
 \alias{drop_zero}
 \alias{levels_data}
 \alias{nlevels_data}
-\title{Remove Levels of Independent Variable Having Values of Bernoulli Dependent Variable All Zero or All One}
+\title{Remove Levels of Independent Variable with Dependent Variable All Successes or All Failures}
 \usage{
 good_levels(.data, .dep_var, .ind_var)
 
@@ -21,25 +21,30 @@ nlevels_data(data)
 \arguments{
 \item{.data, data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a binary dependent variable, which should be
-\code{numeric} with values of \var{0} and \var{1}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a Bernoulli dependent variable that
+should be \code{numeric} with values of \var{0} and \var{1}; or in the case of \verb{drop zero()}, a binomial dependent
+variable, default \code{cbind(.data$pn, .data$qn)}, representing the number of successes and failures respectively,
+see \code{\link[stats:glm]{glm()}}.}
 
-\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the independent variable, which may be a
-\code{factor}, or character vector.}
+\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the independent variable, which may be
+a \code{factor}, or a \verb{character vector}.}
 }
 \value{
 \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the
 corresponding values of \code{.dep_var} are neither all zero nor all one. Both \code{drop_null()} and
-\code{drop_zero()} return a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}})
+\code{drop_zero()} return a data frame or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}},
 equivalent to data, including only rows with levels of \code{.ind_var} for which \code{.dep_var} values are neither
-all zero nor all one or having neither zero successes nor zero failures respectively.
+all zero nor all one or having neither all successes nor all failures respectively.
 }
 \description{
-\code{good_levels()} identifies \code{\link{levels}} of an independent variable for which values of the dependent
+\code{good_levels()} identifies \code{levels} of an independent variable for which values of a Bernoulli dependent
 variable are neither all zero nor all one i.e., those for which \eqn{0 < p < 1}{0 < p < 1}.
 
-\code{drop_null()} drops all data with \code{levels} of the independent variable for which the dependent variable
-has values either all zero or all one.
+\code{drop_null()} drops all data with \code{levels} of an independent variable for which a Bernoulli dependent
+variable has values either all zero or all one i.e., those identified by \code{good_levels()}.
+
+\code{drop_zero()} drops all data with \code{levels} of an independent variable for which a binomial dependent variable
+has either all successes or failures.
 
 \code{levels_data} returns the levels for all factors in data.
 
@@ -47,14 +52,15 @@ has values either all zero or all one.
 }
 \details{
 For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, \code{good_levels()}
-identifies \code{\link{levels}} of an independent variable for which values of the dependent variable are neither
-all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
+identifies  \code{\link[base:levels]{levels}} of an independent variable for which values of the dependent variable are
+neither all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
 
 For a similar dataset, \code{drop_null()} drops all rows of data other than those with \code{levels} of the
 independent variable identified by \code{good_levels()}. Unused factor levels are dropped from the independent
 variable.
 
-For a binomial dataset, \code{drop_zero()} drops all rows of data having either zero successes or zero failures.
+For a binomial dataset, \code{drop_zero()} drops rows of data having either all successes and no failures, or no
+successes and all failures.
 }
 \examples{
 d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
