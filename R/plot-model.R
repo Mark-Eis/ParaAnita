@@ -134,6 +134,7 @@ glm_plotdata <- function(object, ...)
 glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NULL, conf_level = 0.95,
     type = c("link", "response")) {
 
+    check_dots_empty()
     .ind_var <- enquo(.ind_var)
     .ungroup <- enquo(.ungroup)
 
@@ -148,14 +149,18 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
 #' @rdname glm_plotdata
 #' @export
 
-glm_plotdata.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_var, .ungroup = NULL, conf_level = 0.95,
+glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = NULL, conf_level = 0.95,
     type = c("link", "response")) {
 
+    if(missing(.dep_var)) {
+        pn <- qn <- NULL 
+        .dep_var <- expr(cbind(pn, qn))
+    } else
+        .dep_var <- enquo(.dep_var)
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enquo(.ind_var)
-        .ungroup <- enquo(.ungroup)
+       .ungroup <- enquo(.ungroup)
     }
-    .dep_var <- enquo(.dep_var)
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
@@ -512,73 +517,6 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' @rdname plot_model
 # #' @export
 
-# ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE, rev_y = FALSE, ...,
-    # environment = parent.frame()) {
-
-    # check_dots_empty()
-    # notgrp <- is.na(data$grouped)
-    # faceted <- !is.null(data %@% facet_by)
-
-    # NextMethod(mapping = aes(level, pred)) +
-    # # geom_col(
-        # # colour = factor(ifelse(notgrp, 0, data$grouped)),
-        # # fill = "steelblue3",
-        # # linewidth = ifelse(notgrp, 0.5, 1)
-    # # ) +
-    # geom_col(
-        # aes(
-            # y = pred,
-           	# colour = factor(ifelse(notgrp, 0, grouped))
-        # ),
-        # fill = "steelblue3",
-        # linewidth = 1
-    # ) +
-    # geom_errorbar(
-        # aes(ymax = upper, ymin = lower),
-        # linewidth = if(faceted) 0.75 else 1,
-        # width = 0.2
-    # ) +
-    # geom_point(
-        # aes(y = obs),
-        # colour = "black",
-        # fill = "springgreen2",
-        # size = ifelse(notgrp, 0, ifelse(faceted, 2, 3)),
-        # shape = "square filled",
-        # stroke = ifelse(notgrp, 0, ifelse(faceted, 0.25, 0.5))
-    # ) +
-    # theme(
-        # axis.text.x = element_text(
-            # color = "black",
-            # size = if(faceted) 12 else 15
-        # ),
-        # strip.text.x = element_text(color = "black", size = 12)
-    # ) +
-    # geom_text(
-        # aes(label = paste("n", "=", n, sep = ifelse(faceted, "", " ")), y = 0),
-        # size = if(faceted) 3.5 else 5,
-        # vjust = if(faceted) 1.4 else 1.75
-    # ) +
-    # labs(
-        # x = NULL,
-        # y = "Probability",
-        # title = "Model Predictions and CI"
-    # ) + {
-        # var_labs <- match.fun("var_labs")
-        # if (faceted) {
-            # facet_wrap(
-                # data_sym(data %@% facet_by),
-                # scales = "free",            # drops unused levels
-                # labeller = as_labeller(var_labs)
-            # )
-        # } else labs(subtitle = data %@% subtitle |> var_labs())
-    # } + {
-        # if (as_percent)
-            # scale_y_continuous(labels = function(x) paste0(x * 100, "%"))
-    # } + {
-        # if (rev_y)
-            # scale_y_reverse()
-    # }
-# }
 
 ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE, rev_y = FALSE, ...,
     environment = parent.frame()) {
