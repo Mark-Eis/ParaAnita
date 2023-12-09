@@ -41,13 +41,13 @@
 
 print.announce <- function(x, ...) {
 	validate_announce(x)
-    .lead <- x %@% lead
+    .lead <- x %@% "lead"
     cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
-    x %@% lead <- NULL
+    x %@% "lead" <- NULL
     class(x) <- class(x)[-c(inherits(x, "announce", TRUE))]
     NextMethod()
     class(x) <- classlist(.Class)
-    x %@% lead <- .lead
+    x %@% "lead" <- .lead
     invisible(x)
 }
 
