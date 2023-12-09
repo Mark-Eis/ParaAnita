@@ -96,7 +96,7 @@ good_levels <- function(.data, .dep_var, .ind_var) {
     .ind_var <- enquo(.ind_var)
     .data |>
         contingency_table(!!.dep_var, !!.ind_var) |>
-        filter(`1` != 0, `0` != 0) |>
+        filter(.data$`1` != 0, .data$`0` != 0) |>
         mutate(across(!!.ind_var, fct_drop)) |>
         (`[[`)(.ind_var |> as_name()) |>
         levels()
