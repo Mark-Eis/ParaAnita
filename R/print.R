@@ -75,7 +75,7 @@ classlist <- function(clist) {
 
 print.binom_contingency <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
     NextMethod()
-    .level <- x %@% conf.level
+    .level <- x %@% "conf.level"
     if (!is.null(.level))
         cat("\tConfidence level", .level, "\n")
     invisible(x)
@@ -109,7 +109,7 @@ print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NU
     contr <- (x %@% glm)$contrasts
     has_contr <- !is.null(contr)
     NextMethod()
-    if (x %@% print_contr) {
+    if (x %@% "print_contr") {
         if (has_contr)
             announce(contr, "Contrasts")
         else
