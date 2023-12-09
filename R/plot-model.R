@@ -134,6 +134,7 @@ glm_plotdata <- function(object, ...)
 glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NULL, conf_level = 0.95,
     type = c("link", "response")) {
 
+    check_dots_empty()
     .ind_var <- enquo(.ind_var)
     .ungroup <- enquo(.ungroup)
 
@@ -148,14 +149,18 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
 #' @rdname glm_plotdata
 #' @export
 
-glm_plotdata.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_var, .ungroup = NULL, conf_level = 0.95,
+glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = NULL, conf_level = 0.95,
     type = c("link", "response")) {
 
+    if(missing(.dep_var)) {
+        pn <- qn <- NULL 
+        .dep_var <- expr(cbind(pn, qn))
+    } else
+        .dep_var <- enquo(.dep_var)
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enquo(.ind_var)
-        .ungroup <- enquo(.ungroup)
+       .ungroup <- enquo(.ungroup)
     }
-    .dep_var <- enquo(.dep_var)
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")

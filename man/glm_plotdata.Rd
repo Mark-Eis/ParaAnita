@@ -21,7 +21,7 @@ glm_plotdata(object, ...)
 \method{glm_plotdata}{data.frame}(
   object,
   ...,
-  .dep_var = cbind(pn, qn),
+  .dep_var,
   .ind_var,
   .ungroup = NULL,
   conf_level = 0.95,
