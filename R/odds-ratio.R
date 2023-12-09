@@ -196,6 +196,7 @@ odds_ratio <- function(object, ...)
 odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .printcall = FALSE, .stat = FALSE,
     .print_contr = FALSE) {
 
+    check_dots_empty()
     .ind_var <- enquo(.ind_var)
 
     NextMethod()
@@ -209,6 +210,7 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
 
 odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_var, .level = 0.95, .printcall = FALSE,
     .stat = FALSE, .print_contr = FALSE) {
+    	pn <- qn <- NULL
 
     if (!inherits(object, "binom_contingency"))
         .ind_var <- enquo(.ind_var)
