@@ -338,12 +338,12 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
             conf_level = .conf_level,
             type = "response"
         ) |>
-        filter(obs > 0, obs < 1)
+        filter(.data$obs > 0, .data$obs < 1)
     )
     if (!is.null(.facet_by)){
         plist <- bind_rows(plist, .id = .facet_by)
-        plist %@% facet_by = .facet_by
-        plist %@% subtitle = NULL
+        plist %@% "facet_by" = .facet_by
+        plist %@% "subtitle" = NULL
     }
     plist
 }
