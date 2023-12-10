@@ -40,9 +40,9 @@ odds_ratio(object, ...)
 )
 }
 \arguments{
-\item{object}{an object from which the odds ratios are to be calculated, which may be a
-\link[=binom_contingency]{binomial contingency table}, a \link[base:data.frame]{data frame} (or a data frame extension e.g.,
-a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}}.}
+\item{object}{an object from which the odds ratios are to be calculated, which may be a \code{\link{binom_contingency}} table,
+a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a
+\code{\link[stats:glm]{glm}}.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 

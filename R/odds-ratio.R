@@ -44,9 +44,9 @@
 #'   methods for printing objects of class `odds_ratio`.
 #' @family odds-ratio
 #'
-#' @param object an object from which the odds ratios are to be calculated, which may be a 
-#'   [binomial contingency table][binom_contingency], a [data frame][base::data.frame] (or a data frame extension e.g.,
-#'   a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm].
+#' @param object an object from which the odds ratios are to be calculated, which may be a [`binom_contingency`] table,
+#'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), or a
+#'   [`glm`][stats::glm].
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
@@ -212,6 +212,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_va
     .stat = FALSE, .print_contr = FALSE) {
     	pn <- qn <- NULL
 
+    check_dots_empty()
     if (!inherits(object, "binom_contingency"))
         .ind_var <- enquo(.ind_var)
     .dep_var <- enquo(.dep_var)
