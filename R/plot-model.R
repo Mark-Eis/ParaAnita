@@ -203,7 +203,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     fit <- pred$fit
     ebar <- pred$se.fit
     if (!is.na(conf_level)) {
-        .df <- with(object$data, pn + qn) - 1
+        .df <- sum(weights(object)) - 1
         ebar <- ebar * qt((1 + conf_level)/2, .df)
     }
     fit.lower <- pred$fit - ebar
@@ -230,19 +230,19 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
             pred = fit,
             lower = fit.lower,
             upper = fit.upper,
-            across(.data$pred:.data$upper, unname),
-            across(.data$obs:.data$upper, zapsmall),
+            across("pred":"upper", unname),
+            across("obs":"upper", zapsmall),
             .keep = "none"
         ) 
 
     {
         if ("ungrouped" %in% (pdta |> names()))
             pdta |>
-            rename(tmp = .data$level) |>
-            rename(level = ungrouped, grouped = .data$tmp)
+            rename(tmp = "level") |>
+            rename(level = ungrouped, grouped = "tmp")
         else
            pdta |> mutate(grouped = as.factor(NA))
-    } |> relocate(.data$grouped, .after = .data$level) |>
+    } |> relocate("grouped", .after = "level") |>
     new_glm_plotdata(conf_level = conf_level, subtitle = as_label(ind_var), type = type)
 }
 

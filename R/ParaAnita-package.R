@@ -114,6 +114,7 @@
 #' @importFrom stats qt
 #' @importFrom stats rbinom
 #' @importFrom stats setNames
+#' @importFrom stats weights
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_locate
 #' @importFrom stringr str_split

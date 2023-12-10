@@ -210,7 +210,7 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
 
 odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_var, .level = 0.95, .printcall = FALSE,
     .stat = FALSE, .print_contr = FALSE) {
-    	pn <- qn <- NULL
+    pn <- qn <- NULL
 
     check_dots_empty()
     if (!inherits(object, "binom_contingency"))
