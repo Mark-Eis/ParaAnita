@@ -251,7 +251,7 @@ odds_ratio.default <- function(object, ..., .level = 0.95, .printcall = TRUE, .s
             odds_ratio = c(0, coef(.glm)[-1]) |> exp(),
             ci = rbind(c(NA, NA), confint(.glm, level = .level)[-1,]) |> exp(),
             sig = starsig(.data$p_val),
-            across(.data$estimate:.data$odds_ratio, zapsmall)
+            across("estimate":"odds_ratio", zapsmall)
         )
     new_odds_ratio(object, ..., .glm = .glm, .print_contr = .print_contr)
 }
