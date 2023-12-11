@@ -7,6 +7,15 @@
 
 **ORCID** = [0000-0001-6843-3345](https://orcid.org/0000-0001-6843-3345)
 
+## Installation
+
+You can install the development version of ParaAnita from [GitHub](https://github.com/) with:
+      
+``` r
+# install.packages("devtools")
+devtools::install_github("Mark-Eis/ParaAnita")
+```
+
 ### ParaAnita Package Description: –
 Summarises binary (Bernoulli) and binomial proportion data in contingency tables with `contingency_table()`, `pcontingency_table()`, `xcontingency_table()`, `binom_contigency()` and `binom_pcontigency()`.
 
@@ -18,8 +27,9 @@ Gets, sets and manipulates contrast `names` with `contr_colnames()`, `contr_coln
 
 Compares related univariable models of data using various measures with `anova_glms()`, `anova_tbl()`, `comp_glm()` and `univ_anova()`.
 
-Arranges data in a format convenient for plotting with standard errors and optional groupings of levels of selected categorical explanatory variables, and plots the data in individual or faceted plots with `get_plotlist()`, `glmplot_data()`, `plot_model()` and `var_labs()`.
+Arranges data with standard errors and optional groupings of levels of selected categorical variables in a format convenient for plotting with `get_plotlist()` and `glmplot_data()`, and plots the data in individual or faceted plots with `ggplot.glm_plotdata()` and 
+`var_labs()`.
 
 Creates simulated Bernoulli and binomial proportion data sets with categorical explanatory variables with `bernoulli data()` and `binom_data()`.
 
-Provides various auxiliary functions to simplify these tasks with `add_grps()`, `announce()`, `chsqfish()`, `drop_null()`, `drop_zero()`, `expl_fcts()`, `fct_to_num()`, `good_levels()`, `lf()`, `print_allrows()`, `print_lf()`,  `rm_objects()` and `starsig()`.
+Provides various auxiliary functions to simplify these tasks with `add_grps()`, `announce()`, `chsqfish()`, `drop_null()`, `drop_zero()`, `expl_fcts()`, `fct_to_num()`, `good_levels()`, `lf()`, `print_all()`, `print_lf()`,  `rm_objects()` and `starsig()`.
