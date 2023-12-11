@@ -245,7 +245,7 @@ odds_ratio.default <- function(object, ..., .level = 0.95, .printcall = TRUE, .s
         as.data.frame() |>
         rownames_to_column(var = "parameter") |>
         as_tibble() |>
-        rename(c("estimate" = last_col(3), "se" = last_col(2), "p_val" = last_col())) |>
+        rename(c(estimate = last_col(3), se = last_col(2), p_val = last_col())) |>
         mutate(
             across(last_col(1), \(x) if (.stat) x else NULL),
             odds_ratio = c(0, coef(.glm)[-1]) |> exp(),
