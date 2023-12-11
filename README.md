@@ -17,7 +17,7 @@ devtools::install_github("Mark-Eis/ParaAnita")
 ```
 
 ### ParaAnita Package Description: –
-Summarises binary (Bernoulli) and binomial proportion data in contingency tables with `contingency_table()`, `pcontingency_table()`, `xcontingency_table()`, `binom_contigency()` and `binom_pcontigency()`.
+Summarises binary (Bernoulli) and binomial proportion data in contingency tables with `contingency_table()`, `xcontingency_table()`, `binom_contigency()`.
 
 Calculates odds ratios and their confidence intervals and associated probabilities with `odds_ratio()`.
 
