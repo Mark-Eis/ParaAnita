@@ -34,7 +34,7 @@ a \code{factor}, or a \verb{character vector}.}
 corresponding values of \code{.dep_var} are neither all zero nor all one. Both \code{drop_null()} and
 \code{drop_zero()} return a data frame or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}},
 equivalent to data, including only rows with levels of \code{.ind_var} for which \code{.dep_var} values are neither
-all zero nor all one or having neither all successes nor all failures respectively.
+all zero nor all one, or neither having all successes nor all failures respectively.
 }
 \description{
 \code{good_levels()} identifies \code{levels} of an independent variable for which values of a Bernoulli dependent
@@ -64,20 +64,32 @@ successes and all failures.
 }
 \examples{
 d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
-d |> binom_contingency(dv, iv)
+d |> binom_contingency(dv)
 d |> levels_data()
 d |> good_levels(dv, iv)
-d |> drop_null(dv, iv) |> binom_contingency(dv, iv)
 d |> drop_null(dv, iv) |> levels_data()
+d |> drop_null(dv, iv) |> binom_contingency(dv)
+d |> binom_contingency(dv) |> drop_zero(iv)
+
+identical(
+  d |> drop_null(dv, iv) |> binom_contingency(dv),
+  d |> binom_contingency(dv) |> drop_zero(iv)
+)
 
 d_ls <- map2(c(0.5, 0.4, 1, 1), c(0.1, 0, 0.6, 0), seq, length.out = 5) |>
-    map(~ bernoulli_data(probs = .x)) |>
+    map(\(x) bernoulli_data(probs = x)) |>
     (\(x) setNames(x, paste0("data", seq_along(x))))()
-d_ls |> map(\(d) d |> binom_contingency(dv, iv))
+
+d_ls |> map(\(d) d |> binom_contingency(dv))
 d_ls |> map(levels_data)
 d_ls |> map(\(d) d |> good_levels(dv, iv))
-d_ls |> map(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv, iv))
-d_ls |> map(\(d) d |> binom_contingency(dv, iv) |> drop_zero(iv))
+d_ls |> map(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv))
+d_ls |> map(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
+
+identical(
+  d_ls |> map(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv)), 
+  d_ls |> map(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
+)
 
 rm(d, d_ls)
 
