@@ -95,7 +95,7 @@ contr_colnames <- function(x)
 #' \var{x}.
 #'
 #' If factor \var{x} does not have an associated Helmert contrast matrix, \code{helm_names()<-} will set one, giving a
-#' warning. The names of the levels of factor \var{x} need to be fairly short for function this to be helpful.
+#' message. The names of the levels of factor \var{x} need to be fairly short for function this to be helpful.
 #'
 #' The function \code{helm_names()} is an alias for \code{\link{contr_colnames}} and included simply for completeness
 #' and to optimise help searches. 
@@ -145,7 +145,7 @@ helm_names <- function(x)
 `helm_names<-` <- function(x, value) {
 	
 	if(!identical(contrasts(x) |> `dimnames<-`(NULL), contr.helmert(length(levels(x))) |> `dimnames<-`(NULL))) {
-		warning("In `helm_names()<-`, setting Helmert contrasts for factor x.", call. = FALSE)
+		message("Setting Helmert contrasts for factor x with `helm_names()<-`.")
 		contrasts(x)<- contr.helmert
 	}	
 	len <- levels(x) |> length()

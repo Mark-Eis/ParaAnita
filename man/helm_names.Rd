@@ -29,7 +29,7 @@ these column names based on the names the levels of the factor
 \var{x}.
 
 If factor \var{x} does not have an associated Helmert contrast matrix, \code{helm_names()<-} will set one, giving a
-warning. The names of the levels of factor \var{x} need to be fairly short for function this to be helpful.
+message. The names of the levels of factor \var{x} need to be fairly short for function this to be helpful.
 
 The function \code{helm_names()} is an alias for \code{\link{contr_colnames}} and included simply for completeness
 and to optimise help searches.
