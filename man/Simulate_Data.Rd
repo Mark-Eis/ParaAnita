@@ -8,13 +8,13 @@
 \usage{
 bernoulli_data(
   levels = 5,
-  length = 20,
+  length = 66,
   probs = seq(0.5, 0.1, length.out = levels)
 )
 
 binom_data(
   levels = 5,
-  length = 20L,
+  length = 66L,
   probs = seq(0.5, 0.1, length.out = levels)
 )
 }
@@ -60,6 +60,10 @@ A random sample from a binomial distribution of size \code{length} is obtained f
 
 \code{bernoulli_data()} and \code{binom_data()} are used for demonstrating and testing functions such as
 \code{\link[=contingency_table]{contingency_table()}}, \code{\link[=binom_contingency]{binom_contingency()}} and \code{\link[=odds_ratio]{odds_ratio()}}.
+}
+\note{
+The default length of 66 is the minimum number of trials with probability of success of 0.1 for which the
+overall probability of zero failures is less than 1 in 1000 i.e., \eqn{(1 - 0.1)^{66} < 0.001}.
 }
 \examples{
 bernoulli_data()

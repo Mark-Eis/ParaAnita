@@ -58,6 +58,9 @@
 #'
 #' \item{`qn`}{an `integer` representing  the number of failures.}
 #'
+#' @note The default length of 66 is the minimum number of trials with probability of success of 0.1 for which the
+#'   overall probability of zero failures is less than 1 in 1000 i.e., \eqn{(1 - 0.1)^{66} < 0.001}. 
+#'
 #' @export
 #' @examples
 #' bernoulli_data()
@@ -67,7 +70,7 @@
 #' binom_data()
 #' binom_data(probs = seq(0.4, 0, length.out = 5))
 #'
-bernoulli_data <- function(levels = 5, length = 20, probs = seq(0.5, 0.1, length.out = levels)) {
+bernoulli_data <- function(levels = 5, length = 66, probs = seq(0.5, 0.1, length.out = levels)) {
     stopifnot(length(probs) == levels)
     tibble(
         iv = letters[1:levels] |> rep(each = length) |> as.factor(),
@@ -80,7 +83,7 @@ bernoulli_data <- function(levels = 5, length = 20, probs = seq(0.5, 0.1, length
 #' @export
 #' @rdname Simulate_Data
 
-binom_data <- function(levels = 5, length = 20L, probs = seq(0.5, 0.1, length.out = levels)) {
+binom_data <- function(levels = 5, length = 66L, probs = seq(0.5, 0.1, length.out = levels)) {
     stopifnot(length(probs) == levels)
     tibble(    
         iv = letters[1:levels] |> as.factor(),
