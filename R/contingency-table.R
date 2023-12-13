@@ -87,18 +87,18 @@
 #' d |> contingency_table(dv)
 #' d |> contingency_table(dv, .rownames = TRUE)
 #'
-#' d <- tibble(
+#' (d <- tibble(
 #'     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
 #'     dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
-#'   ) |> print()
+#'   ))
 #'
 #' d |> contingency_table(dv)
 #' d |> contingency_table(dv, .rownames = TRUE)
 #'
-#' d <- tibble(
+#' (d <- tibble(
 #'     iv = letters[1:4] |> sample(100, replace = TRUE),
 #'     dv = c("Success", "Fail", "Borderline")  |> sample(100, replace = TRUE)
-#'   ) |> count(iv, dv) |> print()
+#'   ) |> count(iv, dv))
 #'
 #' d |> contingency_table(dv, .wt = n)
 #' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()

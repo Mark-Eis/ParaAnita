@@ -70,6 +70,26 @@ S3 methods to enable printing of \code{\link{announce}}, \code{\link{binom_conti
 \details{
 These print methods return their argument \code{x} invisibly (via \code{\link[base:invisible]{invisible()}}).
 }
+\examples{
+
+announce("x", lead = "Lorem ipsum dolor sit amet")
+
+(d <- bernoulli_data())
+d |> binom_contingency(dv)
+
+(d2 <- tibble(
+    iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
+    dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
+  ))
+
+d2 |> contingency_table(dv)
+
+d |> odds_ratio(.dep_var = dv, .ind_var = iv)
+
+d |> summanov(dv, iv)
+
+rm(d, d2)
+}
 \seealso{
 \code{\link[base:print]{print()}}, \code{\link[tibble:formatting]{print.tbl()}}.
 

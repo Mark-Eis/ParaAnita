@@ -29,7 +29,26 @@
 #'
 #' @keywords print
 #' @export
-# #' @examples
+#' @examples
+#'
+#' announce("x", lead = "Lorem ipsum dolor sit amet")
+#'
+#' (d <- bernoulli_data())
+#' d |> binom_contingency(dv)
+#'
+#' (d2 <- tibble(
+#'     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
+#'     dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
+#'   ))
+#'
+#' d2 |> contingency_table(dv)
+#'
+#' d |> odds_ratio(.dep_var = dv, .ind_var = iv)
+#'
+#' d |> summanov(dv, iv)
+#'
+#' rm(d, d2)
+
 
 
 # ========================================
