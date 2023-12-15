@@ -31,9 +31,12 @@
 #' @export
 #' @examples
 #'
+#' ## print.announce() — print an 'announce' object
 #' announce("x", lead = "Lorem ipsum dolor sit amet")
 #'
 #' (d <- bernoulli_data())
+#'
+#' ## print.binom_contingency() — print a 'binom_contingency' object
 #' d |> binom_contingency(dv)
 #'
 #' (d2 <- tibble(
@@ -41,14 +44,16 @@
 #'     dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
 #'   ))
 #'
+#' ## print.contingency_table() — print a 'contingency_table' object
 #' d2 |> contingency_table(dv)
 #'
+#' ## print.odds_ratio() — print an 'odds_ratio' object
 #' d |> odds_ratio(.dep_var = dv, .ind_var = iv)
 #'
+#' ## print.summanov() — print a 'summanov' object
 #' d |> summanov(dv, iv)
 #'
 #' rm(d, d2)
-
 
 
 # ========================================
