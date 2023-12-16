@@ -43,7 +43,7 @@
 #'
 #' @seealso  [`defused R expressions`][rlang::topic-defuse], [`fct_cross()`][forcats::fct_cross],
 #'   [`splice-operator`][rlang::splice-operator] and [`tibble`][tibble::tibble-package];
-#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `contingency_table`.
+#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `"contingency_table"`.
 #' @family contingency_table
 #'
 #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
@@ -261,7 +261,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' @seealso [`drop_zero()`][drop_zero], [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio],
 #'   [`prop.test()`][stats::prop.test] and [`tibble`][tibble::tibble-package];
-#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `contingency_table`.
+#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `"binom_contingency"`.
 #'
 #' @family contingency_table
 #'

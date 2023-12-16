@@ -13,13 +13,14 @@
 #' @name Print_Methods
 #' 
 #' @description
-#' S3 methods to enable printing of [`announce`][announce], [`binom_contingency`][binom_contingency],
-#' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov] objects.
+#' S3 methods for printing objects of class `"announce"`, `"binom_contingency"`, `"contingency_table"`,
+#' `"odds_ratio"` and `"summ_anov"`.
 #'
 #' @details
-#' These print methods return their argument `x` invisibly (via [`invisible()`][base::invisible]).
+#' These print methods return their argument `x` invisibly, via [`invisible()`][base::invisible].
 #'
-#' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl].
+#' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl], [`binom_contingency`][binom_contingency],
+#' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov].
 #' @family print
 #'
 #' @inheritParams base::print

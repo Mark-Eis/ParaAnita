@@ -74,8 +74,9 @@ list_transpose(uva)$anova
 rm(d, uva)
 }
 \seealso{
-\code{\link[stats:anova.glm]{anova.glm()}}, \code{\link[purrr:list_transpose]{list_transpose()}},
-\code{\link[stats:glm]{glm()}} and \code{\link[stats:summary.glm]{summary.glm()}}.
+\code{\link[stats:anova.glm]{anova.glm()}}, \code{\link[purrr:list_transpose]{list_transpose()}}, \code{\link[stats:glm]{glm()}} and
+\code{\link[stats:summary.glm]{summary.glm()}}; \code{\link{Print_Methods}} for S3 method for printing objects of class
+\code{"summ_anov"}.
 
 Other comp_glm: 
 \code{\link{anova_tbl}()},

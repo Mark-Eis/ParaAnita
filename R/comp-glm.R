@@ -244,8 +244,9 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' categorical independent variables in \code{data}. [`anova_tbl`][anova_tbl] also provides a succinct summmary from
 #' the list of anovas.
 #'
-#' @seealso [`anova.glm()`][stats::anova.glm], [`list_transpose()`][purrr::list_transpose],
-#'   [`glm()`][stats::glm] and [`summary.glm()`][stats::summary.glm].
+#' @seealso [`anova.glm()`][stats::anova.glm], [`list_transpose()`][purrr::list_transpose], [`glm()`][stats::glm] and
+#'   [`summary.glm()`][stats::summary.glm]; [`Print_Methods`][Print_Methods] for S3 method for printing objects of class
+#'   `"summ_anov"`.
 #' @family comp_glm
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more factors or character vectors in
@@ -257,9 +258,6 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' @inheritParams comp_glm
 #'
 #' @return
-# #' A [`list`][base::list] of class `"summanov"` of length equal to the number of \code{\dots} arguments. Each list
-# #'   element comprises a nested sub-list of class `"summ_anov"` with the following two elements: -
-#'
 #' A [`list`][base::list] of `summ_anov` objects of length equal to the number of factors or character vectors selected
 #'   using the \code{\dots} arguments. A `summ_anov` object is simply a list with class `"summ_anov"`, comprising the
 #'   following two elements: -

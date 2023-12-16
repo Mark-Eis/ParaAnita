@@ -41,7 +41,7 @@
 #' @seealso [`binom_contingency()`][binom_contingency], [`contrast matrix`][stats::contr.helmert],
 #'   [`contrasts()`][stats::contrasts], [`glm()`][stats::glm], [`set_contrasts()`][set_contrasts],
 #'   [`summary.glm()`][stats::summary.glm]; [`Print_Methods`][Print_Methods] and [`print_all()`][print_all] for S3
-#'   methods for printing objects of class `odds_ratio`.
+#'   methods for printing objects of class `"odds_ratio"`.
 #' @family odds-ratio
 #'
 #' @param object an object from which the odds ratios are to be calculated, which may be a [`binom_contingency`] table,

@@ -64,11 +64,11 @@ the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
 The argument \code{x}.
 }
 \description{
-S3 methods to enable printing of \code{\link{announce}}, \code{\link{binom_contingency}},
-\code{\link{contingency_table}}, \code{\link{odds_ratio}} and \code{\link[=summanov]{summ_anov}} objects.
+S3 methods for printing objects of class \code{"announce"}, \code{"binom_contingency"}, \code{"contingency_table"},
+\code{"odds_ratio"} and \code{"summ_anov"}.
 }
 \details{
-These print methods return their argument \code{x} invisibly (via \code{\link[base:invisible]{invisible()}}).
+These print methods return their argument \code{x} invisibly, via \code{\link[base:invisible]{invisible()}}.
 }
 \examples{
 
@@ -97,7 +97,8 @@ d |> summanov(dv, iv)
 rm(d, d2)
 }
 \seealso{
-\code{\link[base:print]{print()}}, \code{\link[tibble:formatting]{print.tbl()}}.
+\code{\link[base:print]{print()}}, \code{\link[tibble:formatting]{print.tbl()}}, \code{\link{binom_contingency}},
+\code{\link{contingency_table}}, \code{\link{odds_ratio}} and \code{\link[=summanov]{summ_anov}}.
 
 Other print: 
 \code{\link{announce}()},
