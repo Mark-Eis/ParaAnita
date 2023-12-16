@@ -116,7 +116,7 @@ gss_cat |> contingency_table(race, relig, denom)
 gss_cat |> contingency_table(race, !c(marital, rincome:partyid))
 
 \dontrun{
-  gss_cat |> contingency_table(race, relig, denom, .rownames = T) 
+  gss_cat |> contingency_table(race, relig, denom, .rownames = TRUE) 
   ## gives error message "duplicate 'row.names' are not allowed";
   ## use xcontingency_table() instead
 }
@@ -124,7 +124,7 @@ gss_cat |> contingency_table(race, !c(marital, rincome:partyid))
 gss_cat |> xcontingency_table(race, relig, denom)
 gss_cat |> xcontingency_table(race, !c(marital, rincome:partyid))
 gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
-gss_cat |> xcontingency_table(race, relig, denom, .rownames = T) |> head(10)
+gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
 
 ## Two more esoteric examples
 ivars <- quos(relig, denom)

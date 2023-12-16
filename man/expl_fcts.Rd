@@ -93,7 +93,7 @@ expl_fcts(d, .named = TRUE) |>
 expl_fcts(d, .named = TRUE) |>
     map(\(x) binom_contingency(d, dv, !!x) |> glm(cbind(pn, qn) ~ ., binomial, data = _))
 expl_fcts(d, .named = TRUE) |>
-    map(\(x) binom_contingency(d, dv, !!x, .drop_zero = T) |> odds_ratio(.ind_var = !!x))
+    map(\(x) binom_contingency(d, dv, !!x, .drop_zero = TRUE) |> odds_ratio(.ind_var = !!x))
 
 rm(d)
 }
