@@ -152,7 +152,7 @@
 #' ## Invoking the S3 method for class "glm"
 #' glm1 |> odds_ratio()
 #'
-#' glm1 |> odds_ratio(.printcall = F, .stat = TRUE, .print_contr = TRUE)
+#' glm1 |> odds_ratio(.printcall = FALSE, .stat = TRUE, .print_contr = TRUE)
 #'
 #' ## Compare S3 method for class "glm" to that for "data.frame"
 #' ## — only possible for univariable analyses
