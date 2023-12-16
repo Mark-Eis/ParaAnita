@@ -64,7 +64,7 @@
 #' @export
 
 print.announce <- function(x, ...) {
-	validate_announce(x)
+    validate_announce(x)
     .lead <- x %@% "lead"
     cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
     x %@% "lead" <- NULL
@@ -115,12 +115,6 @@ print.binom_contingency <- function(x, width = NULL, ..., n = NULL, max_extra_co
 print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
     NextMethod()
 }
-
-contingency_table_names <- c(
-    contingency_table = "Contingency Table",
-    xcontingency_table = "Crossed Contingency Table",
-    binom_contingency = "Binomial Contingency Table"
-)
 
 # ========================================
 #  Print Odds Ratios and Confidence Intervals with Contrasts
