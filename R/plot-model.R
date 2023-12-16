@@ -199,7 +199,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     dispersion <- summary(object)$dispersion
     residual.scale <- as.vector(sqrt(dispersion))
     pred <- # linear predictors and se from lm, same as predict.glm()
-        predict.lm(object, se.fit = T, scale = residual.scale, type = "response")
+        predict.lm(object, se.fit = TRUE, scale = residual.scale, type = "response")
     fit <- pred$fit
     ebar <- pred$se.fit
     if (!is.na(conf_level)) {
@@ -476,14 +476,14 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 # #' (dp <- plotdata(d, .ind_var = iv))
 #'
 #' ## Plot model predictions and error bars with reversed y-axis
-#' dp |> ggplot(rev_y = T) + plabs
+#' dp |> ggplot(rev_y = TRUE) + plabs
 #'
 #' ## Grouped plot data on GLM linear predictor scale
 #' (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv))
 # #' (dp <- plotdata(d, .ind_var = iv2, .ungroup = iv))
 #'
 #' ## Plot model predictions and error bars with reversed y-axis
-#' dp |> ggplot(rev_y = T) + plabs
+#' dp |> ggplot(rev_y = TRUE) + plabs
 #'
 #' ## Revise y-axis title
 #' plabs$y <- "Proportion Positive (%)"
@@ -493,18 +493,18 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 # #' (dp <- plotdata(d, .ind_var = iv, type = "response"))
 #'
 #' ## Plot model predictions and error bars
-#' dp |> ggplot(as_percent = T) + plabs
+#' dp |> ggplot(as_percent = TRUE) + plabs
 #'
 #' ## Grouped plot data on GLM reponse scale
 #' (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
 # #' (dp <- plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
 #'
 #' ## Plot model predictions and error bars
-#' dp |> ggplot(as_percent = T) + plabs
+#' dp |> ggplot(as_percent = TRUE) + plabs
 #'
 #' ## Override default subtitle
 #' plabs$subtitle <- "Fascinating Results"
-#' dp |> ggplot(as_percent = T) + plabs
+#' dp |> ggplot(as_percent = TRUE) + plabs
 #'
 #' theme_set(oldtheme)    ## Restore original ggplot defaults
 #' rm(d, dp, oldtheme, plabs)

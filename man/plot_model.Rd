@@ -90,13 +90,13 @@ var_labs <- as_labeller(toupper)
 (dp <- glm_plotdata(d, .ind_var = iv))
 
 ## Plot model predictions and error bars with reversed y-axis
-dp |> ggplot(rev_y = T) + plabs
+dp |> ggplot(rev_y = TRUE) + plabs
 
 ## Grouped plot data on GLM linear predictor scale
 (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv))
 
 ## Plot model predictions and error bars with reversed y-axis
-dp |> ggplot(rev_y = T) + plabs
+dp |> ggplot(rev_y = TRUE) + plabs
 
 ## Revise y-axis title
 plabs$y <- "Proportion Positive (\%)"
@@ -105,17 +105,17 @@ plabs$y <- "Proportion Positive (\%)"
 (dp <- glm_plotdata(d, .ind_var = iv, type = "response"))
 
 ## Plot model predictions and error bars
-dp |> ggplot(as_percent = T) + plabs
+dp |> ggplot(as_percent = TRUE) + plabs
 
 ## Grouped plot data on GLM reponse scale
 (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
 
 ## Plot model predictions and error bars
-dp |> ggplot(as_percent = T) + plabs
+dp |> ggplot(as_percent = TRUE) + plabs
 
 ## Override default subtitle
 plabs$subtitle <- "Fascinating Results"
-dp |> ggplot(as_percent = T) + plabs
+dp |> ggplot(as_percent = TRUE) + plabs
 
 theme_set(oldtheme)    ## Restore original ggplot defaults
 rm(d, dp, oldtheme, plabs)
