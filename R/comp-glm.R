@@ -31,7 +31,7 @@
 #'
 #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]). 
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the binary dependent variable to be used as
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable to be used as
 #'   the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column matrix
 #'   with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.
 #'
@@ -42,7 +42,7 @@
 #'   string naming a family function, a family function or the result of a call to a family function; default
 #'   \code{binomial}.
 #'
-#' @param .arrange_by <[`data-masked`][rlang::args_data_masking]> quoted name of a column for ordering results. Use
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name of a column for ordering results. Use
 #'   [`desc`][dplyr::desc] to sort by a variable in descending order; default \code{desc(AIC)}.
 #'
 #' @note It is the user's responsibility to check models are suitably nested to ensure meaningful comparisons.
@@ -161,7 +161,7 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 #' 
 #' @param data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the binary dependent variable, which should
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable, which should
 #'   be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the numbers of 
 #'   successes and failures e.g., \code{cbind(pn, qn)}.
 #'

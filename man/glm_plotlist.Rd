@@ -16,7 +16,7 @@ glm_plotlist(
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name(s) of the response variable(s) in the data
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of the response variable(s) in the data
 representing the number of successes and failures respectively, see \code{\link[stats:glm]{glm()}}; default
 \code{cbind(pn, qn)}.}
 

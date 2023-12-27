@@ -46,7 +46,7 @@ a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \
 
 \item{\dots}{further arguments passed to or from other methods.}
 
-\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of an independent variable, which may be
+\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of an independent variable, which may be
 either a character vector or factor.}
 
 \item{.level}{the confidence level required; default \var{0.95}.}
@@ -59,7 +59,7 @@ default \code{FALSE}.}
 \item{.print_contr}{\code{logical}. If \code{TRUE}, and \code{.ind_var} has a contrast attribute set, the contrast
 matrix will be printed; default \code{FALSE}.}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name(s) of the response variable(s) in the data
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of the response variable(s) in the data
 representing the number of successes and failures respectively, see \code{\link[stats:glm]{glm()}}; default
 \code{cbind(pn, qn)}.}
 }

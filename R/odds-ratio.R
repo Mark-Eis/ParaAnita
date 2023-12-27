@@ -50,10 +50,10 @@
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param .ind_var <[`data-masked`][rlang::args_data_masking]> quoted name of an independent variable, which may be
+#' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of an independent variable, which may be
 #'   either a character vector or factor.
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
 #'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
 #'   `cbind(pn, qn)`.
 #'

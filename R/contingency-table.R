@@ -48,7 +48,7 @@
 #'
 #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
 #'   `character vector`, `factor`, or `numeric`. 
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factor`s or
@@ -265,7 +265,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' @family contingency_table
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of a binary dependent variable, which should be
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a binary dependent variable, which should be
 #'   `numeric` with values of \var{0} and \var{1}. 
 #'
 #' @param .level the confidence level required; default \var{0.95}.

@@ -9,7 +9,7 @@ comp_glm(.data, .dep_var, ..., .family = binomial, .arrange_by = desc(AIC))
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the binary dependent variable to be used as
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable to be used as
 the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column matrix
 with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 
@@ -20,7 +20,7 @@ based on independent variables in \code{.data}.}
 string naming a family function, a family function or the result of a call to a family function; default
 \code{binomial}.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a column for ordering results. Use
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a column for ordering results. Use
 \code{\link[dplyr:desc]{desc}} to sort by a variable in descending order; default \code{desc(AIC)}.}
 }
 \value{

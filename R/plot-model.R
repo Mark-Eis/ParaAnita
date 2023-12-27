@@ -55,13 +55,13 @@
 #' 
 # #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 # #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
 #'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
 #'   `cbind(pn, qn)`.
 #'
-#' @param .ind_var <[`data-masked`][rlang::args_data_masking]> quoted name of the independent variable.
+#' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable.
 #'
-#' @param .ungroup <[`data-masked`][rlang::args_data_masking]> quoted name of the column containing the ungrouped levels
+#' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped levels
 #'   of `.ind_var`, see details; default `NULL`.
 #'
 #' @param conf_level the confidence level required for the error bars; default \var{0.95}. If `NA`, error bars are

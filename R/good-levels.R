@@ -40,12 +40,12 @@
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
 #' @family good_levels
 #'
-#' @param .dep_var <[`data-masked`][rlang::args_data_masking]> quoted name of a Bernoulli dependent variable that
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a Bernoulli dependent variable that
 #'   should be `numeric` with values of \var{0} and \var{1}; or in the case of `drop zero()`, a binomial dependent
 #'   variable, default `cbind(.data$pn, .data$qn)`, representing the number of successes and failures respectively,
 #'   see [`glm()`][stats::glm].
 #'
-#' @param .ind_var <[`data-masked`][rlang::args_data_masking]> quoted name of the independent variable, which may be
+#' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable, which may be
 #'   a `factor`, or a `character vector`. 
 #'
 #' @inheritParams binom_contingency

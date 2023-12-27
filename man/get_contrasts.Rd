@@ -15,7 +15,7 @@ set_contrasts(data, .f, how.many = NULL, ...) <- value
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.f}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a \code{factor} in \code{data}.}
+\item{.f}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a \code{factor} in \code{data}.}
 
 \item{how.many}{the number of contrasts to set, by default one less
     than \code{nlevels(object)}.}

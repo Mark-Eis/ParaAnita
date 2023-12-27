@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Jun 2023
+# Mark Eisler Dec 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -40,7 +40,7 @@
 #'   [`contr.treatment`][stats::contr.treatment] or [`contr.SAS`][stats::contr.SAS].
 #' @family get-contrasts
 #'
-#' @param .f <[`data-masked`][rlang::args_data_masking]> quoted name of a \code{factor} in \code{data}.
+#' @param .f <[`data-masking`][rlang::args_data_masking]> quoted name of a \code{factor} in \code{data}.
 #'
 #' @inheritParams stats::C
 #' @inheritParams stats::contrasts

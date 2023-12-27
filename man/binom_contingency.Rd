@@ -16,7 +16,7 @@ binom_contingency(
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a binary dependent variable, which should be
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which should be
 \code{numeric} with values of \var{0} and \var{1}.}
 
 \item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or

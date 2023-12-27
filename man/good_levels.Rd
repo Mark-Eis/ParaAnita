@@ -21,12 +21,12 @@ nlevels_data(data)
 \arguments{
 \item{.data, data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a Bernoulli dependent variable that
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a Bernoulli dependent variable that
 should be \code{numeric} with values of \var{0} and \var{1}; or in the case of \verb{drop zero()}, a binomial dependent
 variable, default \code{cbind(.data$pn, .data$qn)}, representing the number of successes and failures respectively,
 see \code{\link[stats:glm]{glm()}}.}
 
-\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the independent variable, which may be
+\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable, which may be
 a \code{factor}, or a \verb{character vector}.}
 }
 \value{
