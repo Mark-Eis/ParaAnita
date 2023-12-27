@@ -5,3 +5,68 @@ template:
   bslib:
     pkgdown-nav-height: 100px
 
+reference:
+- title: "Contingency Tables"
+  desc: >
+    Summarise binary and binomial proportion data in contingency tables
+  contents: 
+  - matches("contingency")
+- title: "Odds Ratios"
+  desc: "Calculate odds ratios, their confidence intervals and associated probabilities."
+  contents:
+  - matches("odds_ratio")
+- title: "Contrasts"
+  desc: "Get, set or remove the contrasts attribute for selected categorical variables."
+  contents:
+  - starts_with("get_contr")
+  - starts_with("set_contr")
+- title: "Contrast Names"
+  desc: "Get, set and manipulate contrast names."
+  contents:
+  - starts_with("contr_col")
+  - starts_with("helm_names")
+- title: "Compare Univariable Models"
+  desc: "Compare related univariable models of data using various measures."
+  contents:
+  - anova_tbl
+  - comp_glm
+  - summanov
+  - univ_anova
+- title: "Plotting"
+  desc: >
+    Plot data with standard errors and optional groupings of levels of selected categorical variables
+  contents:
+  - glm_plotlist
+  - glm_plotdata
+  - ggplot.glm_plotdata
+  - var_labs
+- title: "Simulate Data"
+  desc: >
+    Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables 
+  contents:
+  - bernoulli_data
+  - binom_data
+- title: "Auxiliary Functions"
+  desc: >
+    Various auxiliary functions to simplify tasks 
+  contents:
+  - add_grps
+  - chsqfish
+  - drop_null
+  - drop_zero
+  - expl_fcts
+  - fct_to_num
+  - good_levels
+  - rm_objects
+  - starsig
+- title: "Printing"
+  desc: >
+    Facilitate printing 
+  contents:
+  - announce
+  - lf
+  - print_all
+  - print_lf
+
+
+  

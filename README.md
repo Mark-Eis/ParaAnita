@@ -37,4 +37,4 @@ The ParaAnita R package includes a number of functions intended simplify a numbe
 
 - Provides various auxiliary functions to simplify these tasks with `add_grps()`,`chsqfish()`, `drop_null()`, `drop_zero()`, `expl_fcts()`, `fct_to_num()`, `good_levels()`, `rm_objects()` and `starsig()`.
 
-- Provides functions facilitate printing with `announce()`,  `lf()`, `print_all()`, `print_lf()`.
+- Provides functions to facilitate printing with `announce()`, `lf()`, `print_all()`, `print_lf()`.
