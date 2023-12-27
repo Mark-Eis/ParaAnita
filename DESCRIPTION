@@ -16,7 +16,7 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     set_contr_treat()<-.  Gets, sets and manipulates contrast names with
     contr_colnames(), contr_colnames<-(), contr_colpfx<-(), helm_names()
     and helm_names<-().  Compares related univariable models of data using
-    various measures with anova_glms(), anova_tbl(), comp_glm() and
+    various measures with anova_tbl(), comp_glm(), summanov() and
     univ_anova().  Arranges data with standard errors and optional
     groupings of levels of selected categorical variables in a format
     convenient for plotting with get_plotlist() and glmplot_data(), and
