@@ -9,12 +9,14 @@ reference:
 - title: "Contingency Tables"
   desc: >
     Summarise binary and binomial proportion data in contingency tables
-  contents: 
-  - matches("contingency")
+  contents:   
+  - binom_contingency   
+  - contingency_table   
+  - xcontingency_table   
 - title: "Odds Ratios"
   desc: "Calculate odds ratios, their confidence intervals and associated probabilities."
   contents:
-  - matches("odds_ratio")
+  - odds_ratio
 - title: "Contrasts"
   desc: "Get, set or remove the contrasts attribute for selected categorical variables."
   contents:
@@ -61,12 +63,13 @@ reference:
   - starsig
 - title: "Printing"
   desc: >
-    Facilitate printing 
+    Facilitate printing with S3 methods and other functions
   contents:
   - announce
   - lf
   - print_all
   - print_lf
+  - Print_Methods
 
 
   
