@@ -1,6 +1,6 @@
 Package: ParaAnita
 Title: Functions for Binary and Binomial Data Analysis
-Version: 0.0.5.7032
+Version: 0.0.5.7033
 Date: 2023-12-27
 Authors@R:
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
@@ -8,10 +8,10 @@ Authors@R:
 Maintainer: Mark Eisler <mark.eisler@bristol.ac.uk>
 Description: Summarises binary (Bernoulli) and binomial proportion data in
     contingency tables with contingency_table(), xcontingency_table(), and
-    binom_contigency().  Calculates odds ratios and their confidence
+    binom_contingency().  Calculates odds ratios and their confidence
     intervals and associated probabilities with odds_ratio().  Gets, sets
     or removes the contrasts attribute for selected categorical variables
-    (factors) within data with get_contrasts(), get_data_contr(),
+    (factors) within data with get_contrasts(), get_contr_data(),
     set_contrasts(), set_contrasts()<-, set_contr_treat() and
     set_contr_treat()<-.  Gets, sets and manipulates contrast names with
     contr_colnames(), contr_colnames<-(), contr_colpfx<-(), helm_names()
@@ -19,11 +19,11 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     various measures with anova_tbl(), comp_glm(), summanov() and
     univ_anova().  Arranges data with standard errors and optional
     groupings of levels of selected categorical variables in a format
-    convenient for plotting with get_plotlist() and glmplot_data(), and
+    convenient for plotting with glm_plotlist() and glm_plotdata(), and
     plots the data in individual or faceted plots with
     ggplot.glm_plotdata() and var_labs().  Creates simulated Bernoulli and
     binomial proportion data sets with categorical explanatory variables
-    with bernoulli data() and binom_data(). Provides various auxiliary
+    with bernoulli_data() and binom_data(). Provides various auxiliary
     functions to simplify these tasks with add_grps(), announce(),
     chsqfish(), drop_null(), drop_zero(), expl_fcts(), fct_to_num(),
     good_levels(), lf(), print_all(), print_lf(), rm_objects() and

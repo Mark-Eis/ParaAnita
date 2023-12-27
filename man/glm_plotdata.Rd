@@ -53,9 +53,7 @@ representing the number of successes and failures respectively, see \code{\link[
 \code{cbind(pn, qn)}.}
 }
 \value{
-An object of class \code{c("glm_plotdata", "announce")}, also inheriting from \code{"tbl_df"}, \code{"tbl"} and
-\code{"data.frame"}, with values on the linear predictor or response scale (depending on \code{type}) in columns as
-follows: -
+An object of class \code{"glm_plotdata"}, \code{"announce"})\verb{, inheriting from [}tibble\verb{][tibble::tibble-package], with values on the linear predictor or response scale (depending on }type`) in columns as follows: -
 
 \item{level}{Level of the independent variable.}
 

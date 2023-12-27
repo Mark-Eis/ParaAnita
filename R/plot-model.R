@@ -53,8 +53,6 @@
 #'
 #' @param \dots further arguments passed to or from other methods.
 #' 
-# #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
-# #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
 #'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
 #'   `cbind(pn, qn)`.
@@ -70,9 +68,8 @@
 #' @param type the type of prediction required. The default is on the scale of the linear predictors;
 #'   the alternative `"response"` is on the scale of the response variable; default `"link"`.
 #'
-#' @return An object of class `c("glm_plotdata", "announce")`, also inheriting from `"tbl_df"`, `"tbl"` and
-#'   `"data.frame"`, with values on the linear predictor or response scale (depending on `type`) in columns as
-#'   follows: -
+#' @return An object of class `"glm_plotdata"`, `"announce"`)`, inheriting from [`tibble`][tibble::tibble-package],
+#'   with values on the linear predictor or response scale (depending on `type`) in columns as follows: -
 #'
 #' \item{level}{Level of the independent variable.}
 #'
