@@ -68,7 +68,7 @@
 #' @param type the type of prediction required. The default is on the scale of the linear predictors;
 #'   the alternative `"response"` is on the scale of the response variable; default `"link"`.
 #'
-#' @return An object of class `"glm_plotdata"`, `"announce"`)`, inheriting from [`tibble`][tibble::tibble-package],
+#' @return An object of class `"glm_plotdata"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
 #'   with values on the linear predictor or response scale (depending on `type`) in columns as follows: -
 #'
 #' \item{level}{Level of the independent variable.}
