@@ -25,7 +25,7 @@ Gets, sets or removes the contrasts attribute for selected categorical variables
 
 Gets, sets and manipulates contrast `names` with `contr_colnames()`, `contr_colnames()<-`, `contr_colpfx()<-`, `helm_names()` and `helm_names()<-`.
 
-Compares related univariable models of data using various measures with `anova_glms()`, `anova_tbl()`, `comp_glm()` and `univ_anova()`.
+Compares related univariable models of data using various measures with `anova_tbl()`, `comp_glm()`, `summanov()` and `univ_anova()`.
 
 Arranges data with standard errors and optional groupings of levels of selected categorical variables in a format convenient for plotting with `get_plotlist()` and `glmplot_data()`, and plots the data in individual or faceted plots with `ggplot.glm_plotdata()` and 
 `var_labs()`.
