@@ -16,7 +16,7 @@ A \verb{character vector}, length of \code{p}.
 Stars for statistical significance with levels as usual in R. A vectorised function.
 }
 \examples{
-(test_seq <- c(0.0003, 0.0010, 0.0032, 0.0100, 0.0316, 0.0631, 0.1000, 0.3162, 1.0000))
+(test_seq <- c(0.0003, 0.0010, 0.0032, 0.0100, 0.0316, 0.0500, 0.0631, 0.1000, 0.3162))
 starsig(test_seq)
 rbind(test_seq, as.character(starsig(test_seq)))
 data.frame(val = test_seq, sig = starsig(test_seq))
