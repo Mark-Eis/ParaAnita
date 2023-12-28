@@ -8,7 +8,7 @@ template:
 reference:
 - title: "Contingency Tables"
   desc: >
-    Summarise binary and binomial proportion data in contingency tables
+    Summarise binary and binomial proportion data in contingency tables.
   contents:   
   - binom_contingency   
   - contingency_table   
@@ -27,49 +27,56 @@ reference:
   contents:
   - starts_with("contr_col")
   - starts_with("helm_names")
-- title: "Compare Univariable Models"
-  desc: "Compare related univariable models of data using various measures."
+- title: "Compare Models"
+  desc: >
+    Compare related generalised linear models using anova and other measures.
   contents:
   - anova_tbl
   - comp_glm
   - summanov
   - univ_anova
-- title: "Plotting"
+- title: "Plot Models"
   desc: >
-    Plot data with standard errors and optional groupings of levels of selected categorical variables
+    Plot model results and standard errors, with optional grouping of levels of selected categorical variables.
   contents:
   - glm_plotlist
   - glm_plotdata
   - ggplot.glm_plotdata
   - var_labs
-- title: "Simulate Data"
-  desc: >
-    Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables 
-  contents:
-  - bernoulli_data
-  - binom_data
-- title: "Auxiliary Functions"
-  desc: >
-    Various auxiliary functions to simplify tasks 
+- title: "Work with Factors"
+  desc: "Add, modify, remove or select factors in data."
   contents:
   - add_grps
-  - chsqfish
   - drop_null
   - drop_zero
   - expl_fcts
   - fct_to_num
   - good_levels
-  - rm_objects
+- title: "Simulate Data"
+  desc: >
+    Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables.
+  contents:
+  - bernoulli_data
+  - binom_data
+- title: "Statistical Auxiliary Functions"
+  desc: "Simplify statistical analysis with auxiliary functions."
+  contents:
+  - chsqfish
   - starsig
 - title: "Printing"
   desc: >
-    Facilitate printing with S3 methods and other functions
+    Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.
   contents:
   - announce
   - lf
   - print_all
   - print_lf
   - Print_Methods
+- title: "Tidy up workspace"
+  desc: >
+    Clear the workspace of related objects such as similarly named models. 
+  contents:
+  - rm_objects
 
 
   
