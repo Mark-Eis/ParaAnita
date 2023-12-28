@@ -18,7 +18,7 @@ devtools::install_github("Mark-Eis/ParaAnita")
 
 ### ParaAnita Package Description: –
 
-The ParaAnita R package includes a number of functions intended simplify a number of common procedures necessary for binary  (Bernoulli) and binomial data analysis using general linear models. More specifically, ParaAnita does the following: – 
+The **ParaAnita R package** includes functions intended to address and simplify a number of issues commonly encountered during binary (Bernoulli) and binomial data analysis using generalised linear models. More specifically, *ParaAnita* does the following: – 
 
 - Summarises binary and binomial proportion data in contingency tables with `contingency_table()`, `xcontingency_table()`, `binom_contingency()`.
 
@@ -26,15 +26,18 @@ The ParaAnita R package includes a number of functions intended simplify a numbe
 
 - Gets, sets or removes the contrasts attribute for selected categorical variables (`factors`) within data with `get_contrasts()`, `get_contr_data()`, `set_contrasts()`, `set_contrasts<-()`, `set_contr_treat()` and `set_contr_treat<-()`.
 
-- Gets, sets and manipulates contrast `names` with `contr_colnames()`, `contr_colnames<-()`, `contr_colpfx<-()`, `helm_names()` and `helm_names<-()`.
+- Gets, sets and manipulates categorical variable contrast `names` with `contr_colnames()`, `contr_colnames<-()`, `contr_colpfx<-()`, `helm_names()` and `helm_names<-()`.
 
-- Compares related univariable models of data using various measures, with `anova_tbl()`, `comp_glm()`, `summanov()` and `univ_anova()`.
+- Compares related generalised linear models using various measures with `anova_tbl()`, `comp_glm()`, `summanov()` and `univ_anova()`.
 
-- Arranges data with standard errors and optional groupings of levels of selected categorical variables in a format convenient for plotting with `glm_plotlist()` and `glm_plotdata()`, and plots the data in individual or faceted plots with `ggplot.glm_plotdata()` and 
-`var_labs()`.
+- Collates model results and standard errors, with optional grouping of levels of selected categorical variables, in a format convenient for plotting with `glm_plotlist()` and `glm_plotdata()`, and plots these in individual or faceted plots with `ggplot.glm_plotdata()` and `var_labs()`.
 
-- Creates simulated Bernoulli and binomial proportion data sets with categorical explanatory variables with `bernoulli_data()` and `binom_data()`.
+- Adds, modifies, removes or selects factors in data with `add_grps()`, `drop_null()`, `drop_zero()`, `expl_fcts()`, `fct_to_num()`, and `good_levels()`.
 
-- Provides various auxiliary functions to simplify these tasks with `add_grps()`,`chsqfish()`, `drop_null()`, `drop_zero()`, `expl_fcts()`, `fct_to_num()`, `good_levels()`, `rm_objects()` and `starsig()`.
+- Simulates Bernoulli and binomial proportion data sets with categorical explanatory variables with `bernoulli_data()` and `binom_data()`.
 
-- Provides functions to facilitate printing with `announce()`, `lf()`, `print_all()`, `print_lf()`.
+- Simplifies statistical analysis with `chsqfish()` and `starsig()`.
+
+- Provides auxiliary print functions and prints objects derived from ParaAnita S3 methods with `announce()`, `lf()`, `print_all()` and `print_lf()`.
+
+- Tidies up the R workspace with `rm_objects()`.

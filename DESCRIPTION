@@ -22,7 +22,7 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     format convenient for plotting with glm_plotlist() and glm_plotdata();
     and plots these in individual or faceted plots with
     ggplot.glm_plotdata() and var_labs().  Adds, modifies, removes or
-    selects factors in data with add_grps() drop_null(), drop_zero(),
+    selects factors in data with add_grps(), drop_null(), drop_zero(),
     expl_fcts(), fct_to_num(), and good_levels().  Simulates Bernoulli and
     binomial proportion data sets with categorical explanatory variables
     with bernoulli_data() and binom_data(). Simplifies statistical
