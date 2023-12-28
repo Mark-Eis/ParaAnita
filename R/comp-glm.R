@@ -147,8 +147,8 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 #' Analyses of Deviance Summarising Fits of Univariable GLMs
 #' 
 #' @description
-#' `univ_anova()` provides a succinct summary of the univariable \acronym{GLM} analyses of deviance for all potential
-#' categorical independent variables in a data set.
+#' `univ_anova()` provides a succinct summary of the analyses of deviance for all univariable GLMs based on each
+#' possible categorical independent variable in a Bernoulli or binomial data set.
 #'
 #' @details
 #' \code{univ_anova()} uses [`add1()`][stats::add1] in the \pkg{\link[stats]{stats}} package to compare univariable
