@@ -6,28 +6,34 @@ template:
     pkgdown-nav-height: 100px
 
 reference:
-- title: "Contingency Tables"
+- title: Contingency Tables
   desc: >
     Summarise binary and binomial proportion data in contingency tables.
   contents:   
   - binom_contingency   
   - contingency_table   
   - xcontingency_table   
-- title: "Odds Ratios"
-  desc: "Calculate odds ratios, their confidence intervals and associated probabilities."
+
+- title: Odds Ratios
+  desc: Calculate odds ratios, their confidence intervals and associated probabilities.
   contents:
   - odds_ratio
-- title: "Contrasts"
-  desc: "Get, set or remove the contrasts attribute for selected categorical variables."
+
+- title: Contrasts
+
+- subtitle: Contrast Attribute
+  desc: Get, set or remove the contrasts attribute for selected categorical variables.
   contents:
   - starts_with("get_contr")
   - starts_with("set_contr")
-- title: "Contrast Names"
-  desc: "Get, set and manipulate contrast names."
+
+- subtitle: Contrast Names
+  desc: Get, set and manipulate contrast names.
   contents:
   - starts_with("contr_col")
   - starts_with("helm_names")
-- title: "Compare Models"
+
+- title: Compare Models
   desc: >
     Compare related generalised linear models using anova and other measures.
   contents:
@@ -35,7 +41,8 @@ reference:
   - comp_glm
   - summanov
   - univ_anova
-- title: "Plot Models"
+
+- title: Plot Models
   desc: >
     Plot model results and standard errors, with optional grouping of levels of selected categorical variables.
   contents:
@@ -43,27 +50,29 @@ reference:
   - glm_plotdata
   - ggplot.glm_plotdata
   - var_labs
-- title: "Work with Factors"
-  desc: "Add, modify, remove or select factors in data."
+
+- title: Work with Factors
+  desc: Add, modify, remove or select factors in data.
   contents:
   - add_grps
-  - drop_null
-  - drop_zero
+  - starts_with("drop")
   - expl_fcts
   - fct_to_num
   - good_levels
-- title: "Simulate Data"
+
+- title: Simulate Data
   desc: >
     Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables.
   contents:
   - bernoulli_data
   - binom_data
-- title: "Statistical Auxiliary Functions"
-  desc: "Simplify statistical analysis with auxiliary functions."
+- title: Statistical Auxiliary Functions
+  desc: Simplify statistical analysis with auxiliary functions.
   contents:
   - chsqfish
   - starsig
-- title: "Printing"
+
+- title: Printing
   desc: >
     Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.
   contents:
@@ -72,7 +81,8 @@ reference:
   - print_all
   - print_lf
   - Print_Methods
-- title: "Tidy up workspace"
+
+- title: Tidy up workspace
   desc: >
     Clear the workspace of related objects such as similarly named models. 
   contents:
