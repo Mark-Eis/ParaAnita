@@ -9,7 +9,7 @@
 
 # ========================================
 #' @title
-#' Remove Levels of Independent Variable with Dependent Variable All Successes or All Failures
+#' Remove Levels of Independent Variable where Dependent Variable All Success or All Failure
 #'
 #' @description
 #' `good_levels()` identifies `levels` of an independent variable for which values of a Bernoulli dependent
