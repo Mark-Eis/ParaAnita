@@ -9,12 +9,12 @@ summanov(data, .dep_var, ..., .family = binomial, .test = "Chisq")
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable to be used as
-the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column matrix
-with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable to be used
+as the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column
+matrix with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more factors or character vectors in
-\code{.data}, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.}
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more factors or character vectors
+in \code{.data}, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.}
 
 \item{.family}{a description of the error distribution and link function to be used in the model. Can be a character
 string naming a family function, a family function or the result of a call to a family function; default

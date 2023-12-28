@@ -12,15 +12,15 @@
 #' Compare Series of Nested GLMs
 #'
 #' @description
-#' Compare a series of nested binomial \acronym{GLMs} by supplying data, a dependent variable and a list of terms
-#' representing the right-hand side of each of a series of model formulae.
+#' Compare a series of nested Bernoulli or binomial \acronym{GLMs} by supplying data, a dependent variable and
+#' a list of terms representing the right-hand side of each of a series of model formulae.
 #'
 #' @details
 #' \code{comp_glm()} builds the formulas from the dependent variable and the formula right-hand side, calls
 #' [`glm`][stats::glm], and saves the resulting objects of class \code{"glm"} as a list column in a
 #' [`tibble`][tibble::tibble-package], together with model fit information obtained using
-#' [`glance.glm`][broom::glance.glm] from the \pkg{\link[broom]{broom}} package. The output may be ordered by a selected
-#' column, otherwise by default in descending order of Akaike's Information Criterion (\acronym{AIC}).
+#' [`glance.glm`][broom::glance.glm] from the \pkg{\link[broom]{broom}} package. The output may be ordered by a
+#' selected column, otherwise by default in descending order of Akaike's Information Criterion (\acronym{AIC}).
 #'
 #' \code{comp_glm()} may be used conveniently to compare a series of related binomial \acronym{GLMs} based on different
 #' groupings of factors added to \code{.data} using [`add_grps`][add_grps].
@@ -31,9 +31,9 @@
 #'
 #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]). 
 #'
-#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable to be used as
-#'   the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column matrix
-#'   with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable to be used
+#'   as the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column
+#'   matrix with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.
 #'
 #' @param \dots <[`dynamic-dots`][rlang::dyn-dots]> the \acronym{RHS} of any number of model formulae to be compared,
 #'   based on independent variables in `.data`.
@@ -118,7 +118,8 @@ comp_glm <- function(.data, .dep_var, ..., .family = binomial, .arrange_by = des
         print(.family)
         stop("'family' not recognized")
     }
-    # NB - Putting this line directly in tibble() thows error: 'cannot coerce class ‘"rlang_data_pronoun"’ to a data.frame'
+    # NB - Putting this line directly in tibble() thows error: -
+    # 'cannot coerce class ‘"rlang_data_pronoun"’ to a data.frame'
     glms <- lapply(.f_rhs_ls, \(x) glm(new_formula(get_expr(.dep_var), get_expr(x), quo_get_env(x)), .family, .data))
     tibble(
         f_rhs = names(.f_rhs_ls), 
@@ -161,9 +162,9 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 #' 
 #' @param data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
-#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable, which should
-#'   be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the numbers of 
-#'   successes and failures e.g., \code{cbind(pn, qn)}.
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable, which
+#'   should be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the 
+#'   numbers of successes and failures e.g., \code{cbind(pn, qn)}.
 #'
 #' @param .family a family function; default \code{"binomial"}. (See [`family`][stats::family] for details of family
 #'   functions.)
@@ -249,8 +250,8 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #'   `"summ_anov"`.
 #' @family comp_glm
 #'
-#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more factors or character vectors in
-#'   \code{.data}, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.
+#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more factors or character vectors
+#'   in \code{.data}, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.
 #'
 #' @param .test a character string, (partially) matching one of \code{"Chisq", "LRT", "Rao", "F"} or \code{"Cp"};
 #'   default \code{"Chisq"}.

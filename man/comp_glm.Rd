@@ -9,9 +9,9 @@ comp_glm(.data, .dep_var, ..., .family = binomial, .arrange_by = desc(AIC))
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable to be used as
-the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column matrix
-with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable to be used
+as the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column
+matrix with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 
 \item{\dots}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> the \acronym{RHS} of any number of model formulae to be compared,
 based on independent variables in \code{.data}.}
@@ -49,15 +49,15 @@ eight further goodness-of-fit measures output by \code{\link[broom]{glance.glm}}
 \item{null.deviance}{Deviance of the null model.}
 }
 \description{
-Compare a series of nested binomial \acronym{GLMs} by supplying data, a dependent variable and a list of terms
-representing the right-hand side of each of a series of model formulae.
+Compare a series of nested Bernoulli or binomial \acronym{GLMs} by supplying data, a dependent variable and
+a list of terms representing the right-hand side of each of a series of model formulae.
 }
 \details{
 \code{comp_glm()} builds the formulas from the dependent variable and the formula right-hand side, calls
 \code{\link[stats:glm]{glm}}, and saves the resulting objects of class \code{"glm"} as a list column in a
 \code{\link[tibble:tibble-package]{tibble}}, together with model fit information obtained using
-\code{\link[broom:glance.glm]{glance.glm}} from the \pkg{\link[broom]{broom}} package. The output may be ordered by a selected
-column, otherwise by default in descending order of Akaike's Information Criterion (\acronym{AIC}).
+\code{\link[broom:glance.glm]{glance.glm}} from the \pkg{\link[broom]{broom}} package. The output may be ordered by a
+selected column, otherwise by default in descending order of Akaike's Information Criterion (\acronym{AIC}).
 
 \code{comp_glm()} may be used conveniently to compare a series of related binomial \acronym{GLMs} based on different
 groupings of factors added to \code{.data} using \code{\link{add_grps}}.

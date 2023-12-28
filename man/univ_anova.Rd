@@ -14,9 +14,9 @@ univ_anova(
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable, which should
-be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the numbers of
-successes and failures e.g., \code{cbind(pn, qn)}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the binary dependent variable, which
+should be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the
+numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 
 \item{.family}{a family function; default \code{"binomial"}. (See \code{\link[stats:family]{family}} for details of family
 functions.)}
