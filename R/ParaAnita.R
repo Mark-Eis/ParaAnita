@@ -128,7 +128,7 @@ chsqfish <- function(...) {
 #' 
 #' @param p A numeric vector of probabilities.
 #' 
-#' @return A character vector, length of \code{p}.
+#' @return A `character vector`, length of \code{p}.
 #' 
 #' @export
 #' @examples
