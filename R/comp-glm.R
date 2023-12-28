@@ -325,8 +325,7 @@ new_summ_anov <- function(x = glm(0~NULL), test = "Chisq") {
 #' Create Tibble from List of Anovas
 #'
 #' @description
-#' Create a tibble from a list of anovas, each of which compares a model to the null model or compares two
-#' nested models.
+#' Create a tibble from a list of anovas that compare a model to the null model or that compare two nested models.
 #'
 #' @details
 #' The anovas to be compared must all be of the same type i.e., all must be analyses of a single model object or
