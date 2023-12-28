@@ -32,8 +32,8 @@ glm_plotdata(object, ...)
 }
 \arguments{
 \item{object}{an object from which the data for plotting univariable GLM predictions are to be collated; may be a
-\link[=binom_contingency]{binomial contingency table}, a \link[base:data.frame]{data frame} (or a data frame extension e.g.,
-a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}} as used by the default S3 method.}
+\code{\link[=binom_contingency]{binomial contingency table}}, a \code{\link[base:data.frame]{data frame}} (or a data frame extension
+e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}} as used by the default S3 method.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 

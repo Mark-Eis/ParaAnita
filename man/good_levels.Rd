@@ -6,7 +6,7 @@
 \alias{drop_zero}
 \alias{levels_data}
 \alias{nlevels_data}
-\title{Remove Levels of Independent Variable with Dependent Variable All Successes or All Failures}
+\title{Remove Levels of Independent Variable where Dependent Variable All Success or All Failure}
 \usage{
 good_levels(.data, .dep_var, .ind_var)
 

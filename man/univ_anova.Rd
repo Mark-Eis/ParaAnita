@@ -29,8 +29,8 @@ An object of class \verb{c("univ_anova" "announce")}, inheriting from \code{"ano
 the differences between the fitted univariable \acronym{GLMs} and the null model.
 }
 \description{
-\code{univ_anova()} provides a succinct summary of the univariable \acronym{GLM} analyses of deviance for all potential
-categorical independent variables in a data set.
+\code{univ_anova()} provides a succinct summary of the analyses of deviance for all univariable GLMs based on each
+possible categorical independent variable in a Bernoulli or binomial data set.
 }
 \details{
 \code{univ_anova()} uses \code{\link[stats:add1]{add1()}} in the \pkg{\link[stats]{stats}} package to compare univariable
