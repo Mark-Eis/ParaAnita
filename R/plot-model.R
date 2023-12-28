@@ -48,8 +48,8 @@
 #' @family plot_model
 #'
 #' @param object an object from which the data for plotting univariable GLM predictions are to be collated; may be a 
-#'   [binomial contingency table][binom_contingency], a [data frame][base::data.frame] (or a data frame extension e.g.,
-#'   a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm] as used by the default S3 method.
+#'   [`binomial contingency table`][binom_contingency], a [`data frame`][base::data.frame] (or a data frame extension
+#'   e.g., a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm] as used by the default S3 method.
 #'
 #' @param \dots further arguments passed to or from other methods.
 #' 
