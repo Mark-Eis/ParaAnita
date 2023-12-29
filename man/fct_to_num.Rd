@@ -7,19 +7,19 @@
 fct_to_num(f)
 }
 \arguments{
-\item{f}{factor to be converted to numeric values}
+\item{f}{\code{factor} to be converted to numeric values}
 }
 \value{
 Numeric
 }
 \description{
-Transform a factor to approximately its original numeric values.
+Transform a \code{factor} to approximately its original numeric values.
 }
 \details{
-See \sQuote{Warning} section of \code{\link[base]{factor}}: \dQuote{In particular, \code{as.numeric}
-applied to a factor is meaningless, and may happen by implicit coercion. To transform a factor
-\code{f} to approximately its original numeric values, \code{as.numeric(levels(f))[f]} is
-recommended and slightly more efficient than \code{as.numeric(as.character(f))}.}
+See \sQuote{Warning} section of \code{\link[base:factor]{factor}}: \dQuote{In particular, \code{as.numeric} applied to a factor
+is meaningless, and may happen by implicit coercion. To transform a factor \code{f} to approximately its original
+numeric values, \code{as.numeric(levels(f))[f]} is recommended and slightly more efficient than
+\code{as.numeric(as.character(f))}.}
 }
 \examples{
 f <- factor(2001:2020)
@@ -34,7 +34,7 @@ rm(f)
 
 }
 \seealso{
-\code{\link[base]{factor}}
+\code{\link[base:factor]{factor}}
 
 Other factor-manip: 
 \code{\link{add_grps}()}

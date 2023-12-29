@@ -38,7 +38,7 @@
 #' successes and all failures.
 #'
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
-#' @family good_levels
+#' @family levels_data
 #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a Bernoulli dependent variable that
 #'   should be `numeric` with values of \var{0} and \var{1}; or in the case of `drop zero()`, a binomial dependent
@@ -139,19 +139,3 @@ drop_zero <- function(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn)) {
         filter(as.logical((!!.dep_var)[, 1]), as.logical((!!.dep_var)[, 2])) |>
         mutate(across({{.ind_var}}, fct_drop))
 }
-
-# ========================================
-# Levels of all Factors in Data
-#' @rdname good_levels
-#' @export
-
-levels_data <- function(data)
-    map(data |> select(where(is.factor)), levels)
-
-# ========================================
-# Number of Levels of all Factors in Data
-#' @rdname good_levels
-#' @export
-
-nlevels_data <- function(data)
-    map_int(data |> select(where(is.factor)), nlevels)

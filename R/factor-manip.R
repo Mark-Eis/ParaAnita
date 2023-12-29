@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Jun 2023
+# Mark Eisler - Dec 2023
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -12,39 +12,38 @@
 #' Add Factors to Data Based on Grouped Levels of an Existing Factor
 #'
 #' @description
-#' Add new factors to data based on grouped levels of an existing factor, using a key compatible with
-#' \code{\link[forcats]{fct_collapse}}.
+#' Add new factors to data based on grouped levels of an existing factor, using a key compatible with `fct_collapse`.
 #'
 #' @details
-#' The \code{.key} argument should be a series of named lists nested within an outer list. Each nested named list must
-#' contain one or more named character vectors representing the new factor groupings. The nested lists  should be
-#' structured for compatibility with \code{\link[forcats]{fct_collapse}} in the package \pkg{forcats}.
+#' The `.key` argument should be a series of named lists nested within an outer list. Each nested named list must
+#' contain one or more named `character vector`s representing the new factor groupings. The nested lists should be
+#' structured for compatibility with [`fct_collapse()`][forcats::fct_collapse] in package \pkg{forcats}.
 #'
-#' \code{add_grps()} will add new, grouped factors to \code{.data}, one for each nested list and with the same name.
-#' Levels are assigned to these new grouped factors using the name of whichever character vector, if any, contains the
-#' old factor level. If none does, the original ungroupsed factor level is used.
+#' `add_grps()` will add new, grouped factors to `data`, one for each nested list and with the same name. Levels are
+#' assigned to these new grouped factors using the name of whichever character vector, if any, contains the old
+#' factor level. If none does, the original ungrouped factor level is used.
 #'
-#' Various different groupings of a \code{factor} may be conveniently added to \code{.data} using \code{add_grps()} and
-#' the corresponding series of related binomial \code{\link[stats]{glm}s} compared using \code{\link{comp_glm}}.
+#' Various different groupings of a [`factor`][base::factor] may be conveniently added to `data` using `add_grps()`
+#' and the corresponding series of related binomial [`glm`][stats::glm]s compared using [`comp_glm()`][comp_glm].
 #'
-#' @seealso \code{\link{comp_glm}}, \code{\link[forcats]{fct_collapse}}, \code{\link[base]{list}}.
+#' @seealso [`comp_glm()`][comp_glm],  [`fct_collapse()`][forcats::fct_collapse], [`list()`][base::list].
 #' @family factor-manip
 #'
-#' @param .fct the quoted name of an existing (ungrouped) \code{factor}.
+#' @param .fct the quoted name of an existing (ungrouped) `factor`.
 #'
-#' @param .key a \code{list} of nested, named lists representing the groupings, each containing a series of named
-#'   character vectors.
+#' @param .key a `list` of nested, named lists representing the groupings, each containing a series of named
+#'   `character vectors`.
 #'
-#' @param .sort \code{logical}, whether to sort levels of new factors; default \code{TRUE}.
+#' @param .sort `logical`, whether to sort levels of new factors; default `TRUE`.
 #'
 #' @inheritParams binom_contingency
 #'
-#' @return A data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), equivalent to \code{.data}
-#'   with the additional grouped factor(s).
+#' @return A data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), equivalent to
+#'   `data` with the additional grouped factor(s).
 #'
 #' @export
 #' @examples
-#' d <- binom_data(levels = 6) |> print()
+#' (d <- binom_data(levels = 6))
 #'
 #' ## One grouped factor
 #' grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f"))
@@ -133,18 +132,18 @@ add_grps <- function (data, .fct, .key, .sort = TRUE) {
 #' Factor as Numeric
 #'
 #' @description
-#' Transform a factor to approximately its original numeric values.
+#' Transform a `factor` to approximately its original numeric values.
 #'
 #' @details
-#' See \sQuote{Warning} section of \code{\link[base]{factor}}: \dQuote{In particular, \code{as.numeric}
-#' applied to a factor is meaningless, and may happen by implicit coercion. To transform a factor
-#' \code{f} to approximately its original numeric values, \code{as.numeric(levels(f))[f]} is
-#' recommended and slightly more efficient than \code{as.numeric(as.character(f))}.}
+#' See \sQuote{Warning} section of [`factor`][base::factor]: \dQuote{In particular, `as.numeric` applied to a factor
+#' is meaningless, and may happen by implicit coercion. To transform a factor `f` to approximately its original
+#' numeric values, `as.numeric(levels(f))[f]` is recommended and slightly more efficient than
+#' `as.numeric(as.character(f))`.}
 #'
-#' @seealso \code{\link[base]{factor}}
+#' @seealso [`factor`][base::factor]
 #' @family factor-manip
 #'
-#' @param f factor to be converted to numeric values
+#' @param f `factor` to be converted to numeric values
 #'
 #' @return Numeric
 #'

@@ -12,32 +12,31 @@ add_grps(data, .fct, .key, .sort = TRUE)
 \item{.fct}{the quoted name of an existing (ungrouped) \code{factor}.}
 
 \item{.key}{a \code{list} of nested, named lists representing the groupings, each containing a series of named
-character vectors.}
+\verb{character vectors}.}
 
 \item{.sort}{\code{logical}, whether to sort levels of new factors; default \code{TRUE}.}
 }
 \value{
-A data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), equivalent to \code{.data}
-with the additional grouped factor(s).
+A data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), equivalent to
+\code{data} with the additional grouped factor(s).
 }
 \description{
-Add new factors to data based on grouped levels of an existing factor, using a key compatible with
-\code{\link[forcats]{fct_collapse}}.
+Add new factors to data based on grouped levels of an existing factor, using a key compatible with \code{fct_collapse}.
 }
 \details{
 The \code{.key} argument should be a series of named lists nested within an outer list. Each nested named list must
-contain one or more named character vectors representing the new factor groupings. The nested lists  should be
-structured for compatibility with \code{\link[forcats]{fct_collapse}} in the package \pkg{forcats}.
+contain one or more named \verb{character vector}s representing the new factor groupings. The nested lists should be
+structured for compatibility with \code{\link[forcats:fct_collapse]{fct_collapse()}} in package \pkg{forcats}.
 
-\code{add_grps()} will add new, grouped factors to \code{.data}, one for each nested list and with the same name.
-Levels are assigned to these new grouped factors using the name of whichever character vector, if any, contains the
-old factor level. If none does, the original ungroupsed factor level is used.
+\code{add_grps()} will add new, grouped factors to \code{data}, one for each nested list and with the same name. Levels are
+assigned to these new grouped factors using the name of whichever character vector, if any, contains the old
+factor level. If none does, the original ungrouped factor level is used.
 
-Various different groupings of a \code{factor} may be conveniently added to \code{.data} using \code{add_grps()} and
-the corresponding series of related binomial \code{\link[stats]{glm}s} compared using \code{\link{comp_glm}}.
+Various different groupings of a \code{\link[base:factor]{factor}} may be conveniently added to \code{data} using \code{add_grps()}
+and the corresponding series of related binomial \code{\link[stats:glm]{glm}}s compared using \code{\link[=comp_glm]{comp_glm()}}.
 }
 \examples{
-d <- binom_data(levels = 6) |> print()
+(d <- binom_data(levels = 6))
 
 ## One grouped factor
 grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f"))
@@ -111,7 +110,7 @@ gss_cat |>
 rm(grp_key, d)
 }
 \seealso{
-\code{\link{comp_glm}}, \code{\link[forcats]{fct_collapse}}, \code{\link[base]{list}}.
+\code{\link[=comp_glm]{comp_glm()}},  \code{\link[forcats:fct_collapse]{fct_collapse()}}, \code{\link[base:list]{list()}}.
 
 Other factor-manip: 
 \code{\link{fct_to_num}()}

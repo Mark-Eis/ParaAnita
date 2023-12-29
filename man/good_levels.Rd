@@ -4,8 +4,6 @@
 \alias{good_levels}
 \alias{drop_null}
 \alias{drop_zero}
-\alias{levels_data}
-\alias{nlevels_data}
 \title{Remove Levels of Independent Variable where Dependent Variable All Success or All Failure}
 \usage{
 good_levels(.data, .dep_var, .ind_var)
@@ -13,13 +11,9 @@ good_levels(.data, .dep_var, .ind_var)
 drop_null(.data, .dep_var, .ind_var)
 
 drop_zero(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn))
-
-levels_data(data)
-
-nlevels_data(data)
 }
 \arguments{
-\item{.data, data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
+\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a Bernoulli dependent variable that
 should be \code{numeric} with values of \var{0} and \var{1}; or in the case of \verb{drop zero()}, a binomial dependent
@@ -110,5 +104,8 @@ gss_cat |> nlevels_data()
 }
 \seealso{
 \code{\link{binom_contingency}} and \code{\link[base:levels]{levels}}.
+
+Other levels_data: 
+\code{\link{levels_data}()}
 }
-\concept{good_levels}
+\concept{levels_data}

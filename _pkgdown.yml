@@ -51,14 +51,23 @@ reference:
   - ggplot.glm_plotdata
   - var_labs
 
-- title: Work with Factors
-  desc: Add, modify, remove or select factors in data.
+
+- title: Factors
+
+- subtitle: Factor Levels
+  desc: Enumerate, remove or select factors in data.
   contents:
-  - add_grps
   - starts_with("drop")
   - expl_fcts
-  - fct_to_num
   - good_levels
+  - levels_data
+  - nlevels_data
+
+- subtitle: Manipulate Factors
+  desc: Group or transform factors in data.
+  contents:
+  - add_grps
+  - fct_to_num
 
 - title: Simulate Data
   desc: >
