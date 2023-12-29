@@ -8,6 +8,13 @@
 \description{
 Summarises binary (Bernoulli) and binomial proportion data in contingency tables with contingency_table(), xcontingency_table(), and binom_contingency(). Calculates odds ratios and their confidence intervals and associated probabilities with odds_ratio(). Gets, sets or removes the contrasts attribute for selected categorical variables (factors) within data with get_contrasts(), get_contr_data(), set_contrasts(), set_contrasts<-(), set_contr_treat() and set_contr_treat<-(). Gets, sets and manipulates contrast names with contr_colnames(), contr_colnames<-(), contr_colpfx<-(), helm_names() and helm_names<-(). Compares related generalised linear models using various measures with anova_tbl(), comp_glm(), summanov() and univ_anova(). Collates model results and standard errors, with optional grouping of levels of selected categorical variables, in a format convenient for plotting with glm_plotlist() and glm_plotdata(); and plots these in individual or faceted plots with ggplot.glm_plotdata() and var_labs(). Adds, modifies, removes or selects factors in data with add_grps(), drop_null(), drop_zero(), expl_fcts(), fct_to_num(), and good_levels(). Simulates Bernoulli and binomial proportion data sets with categorical explanatory variables with bernoulli_data() and binom_data(). Simplifies statistical analysis with chsqfish() and starsig(). Provides auxilliary print functions and prints objects derived from ParaAnita S3 methods with announce(), lf(), print_all(), print_lf(). Tidies up workspace with rm_objects().
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://mark-eis.github.io/ParaAnita/}
+}
+
+}
 \author{
 \strong{Maintainer}: Mark Eisler \email{Mark.Eisler@bristol.ac.uk} (\href{https://orcid.org/0000-0001-6843-3345}{ORCID}) [copyright holder]
 
