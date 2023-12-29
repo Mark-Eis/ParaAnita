@@ -56,9 +56,9 @@
         </dt>
         <dd>Contingency Tables for Two or More Categorical Variables</dd>
       </dl></div><div class="section level2">
-      <h2 id="odds-ratios">Odds Ratios<a class="anchor" aria-label="anchor" href="#odds-ratios"></a></h2>
+      <h2 id="compare-models">Compare Models<a class="anchor" aria-label="anchor" href="#compare-models"></a></h2>
       
-      <p class="section-desc"></p><p>Calculate odds ratios, their confidence intervals and associated probabilities.</p>
+      <p class="section-desc"></p><p>Compare related generalised linear models using anova and other measures.</p>
 
       
     </div><div id="" class="section level2">
@@ -68,9 +68,24 @@
 
       <dl><dt>
           
-          <code><a href="odds_ratio.html">odds_ratio()</a></code> 
+          <code><a href="anova_tbl.html">anova_tbl()</a></code> 
         </dt>
-        <dd>Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs</dd>
+        <dd>Create Tibble from List of Anovas</dd>
+      </dl><dl><dt>
+          
+          <code><a href="comp_glm.html">comp_glm()</a></code> 
+        </dt>
+        <dd>Compare Series of Nested GLMs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="summanov.html">summanov()</a></code> 
+        </dt>
+        <dd>List of Summary and Analysis of Deviance Objects for Related Univariable GLMs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="univ_anova.html">univ_anova()</a></code> 
+        </dt>
+        <dd>Analyses of Deviance Summarising Fits of Univariable GLMs</dd>
       </dl></div><div class="section level2">
       <h2 id="contrasts">Contrasts<a class="anchor" aria-label="anchor" href="#contrasts"></a></h2>
       
@@ -119,68 +134,6 @@
           <code><a href="helm_names.html">helm_names()</a></code> <code><a href="helm_names.html">`helm_names&lt;-`()</a></code> 
         </dt>
         <dd>Create and Set Names for Helmert Contrasts</dd>
-      </dl></div><div class="section level2">
-      <h2 id="compare-models">Compare Models<a class="anchor" aria-label="anchor" href="#compare-models"></a></h2>
-      
-      <p class="section-desc"></p><p>Compare related generalised linear models using anova and other measures.</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="anova_tbl.html">anova_tbl()</a></code> 
-        </dt>
-        <dd>Create Tibble from List of Anovas</dd>
-      </dl><dl><dt>
-          
-          <code><a href="comp_glm.html">comp_glm()</a></code> 
-        </dt>
-        <dd>Compare Series of Nested GLMs</dd>
-      </dl><dl><dt>
-          
-          <code><a href="summanov.html">summanov()</a></code> 
-        </dt>
-        <dd>List of Summary and Analysis of Deviance Objects for Related Univariable GLMs</dd>
-      </dl><dl><dt>
-          
-          <code><a href="univ_anova.html">univ_anova()</a></code> 
-        </dt>
-        <dd>Analyses of Deviance Summarising Fits of Univariable GLMs</dd>
-      </dl></div><div class="section level2">
-      <h2 id="plot-models">Plot Models<a class="anchor" aria-label="anchor" href="#plot-models"></a></h2>
-      
-      <p class="section-desc"></p><p>Plot model results and standard errors, with optional grouping of levels of selected categorical variables.</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="glm_plotlist.html">glm_plotlist()</a></code> 
-        </dt>
-        <dd>Data for Plotting Univariable GLM Predictions and Error Bars for Multiple Independent Variables</dd>
-      </dl><dl><dt>
-          
-          <code><a href="glm_plotdata.html">glm_plotdata()</a></code> 
-        </dt>
-        <dd>Collate Data for Plotting Univariable GLM Predictions with Error Bars</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_model.html">ggplot(<i>&lt;glm_plotdata&gt;</i>)</a></code> 
-        </dt>
-        <dd>Plot Model Predictions with Error Bars for Univariable GLM</dd>
-      </dl><dl><dt>
-          
-          <code><a href="var_labs.html">var_labs()</a></code> 
-        </dt>
-        <dd>Format or Lookup Variable Names for Plot Titles</dd>
       </dl></div><div class="section level2">
       <h2 id="factors">Factors<a class="anchor" aria-label="anchor" href="#factors"></a></h2>
       
@@ -235,6 +188,84 @@
         </dt>
         <dd>Factor as Numeric</dd>
       </dl></div><div class="section level2">
+      <h2 id="odds-ratios">Odds Ratios<a class="anchor" aria-label="anchor" href="#odds-ratios"></a></h2>
+      
+      <p class="section-desc"></p><p>Calculate odds ratios, their confidence intervals and associated probabilities.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="odds_ratio.html">odds_ratio()</a></code> 
+        </dt>
+        <dd>Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs</dd>
+      </dl></div><div class="section level2">
+      <h2 id="plot-models">Plot Models<a class="anchor" aria-label="anchor" href="#plot-models"></a></h2>
+      
+      <p class="section-desc"></p><p>Plot model results and standard errors, with optional grouping of levels of selected categorical variables.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="glm_plotlist.html">glm_plotlist()</a></code> 
+        </dt>
+        <dd>Data for Plotting Univariable GLM Predictions and Error Bars for Multiple Independent Variables</dd>
+      </dl><dl><dt>
+          
+          <code><a href="glm_plotdata.html">glm_plotdata()</a></code> 
+        </dt>
+        <dd>Collate Data for Plotting Univariable GLM Predictions with Error Bars</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_model.html">ggplot(<i>&lt;glm_plotdata&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot Model Predictions with Error Bars for Univariable GLM</dd>
+      </dl><dl><dt>
+          
+          <code><a href="var_labs.html">var_labs()</a></code> 
+        </dt>
+        <dd>Format or Lookup Variable Names for Plot Titles</dd>
+      </dl></div><div class="section level2">
+      <h2 id="printing">Printing<a class="anchor" aria-label="anchor" href="#printing"></a></h2>
+      
+      <p class="section-desc"></p><p>Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="announce.html">announce()</a></code> 
+        </dt>
+        <dd>Announce Class for Consistent Printing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lf.html">lf()</a></code> <code><a href="lf.html">print_lf()</a></code> 
+        </dt>
+        <dd>Pipe-Friendly Line Feeds and Printing</dd>
+      </dl><dl><dt>
+          
+          <code><a href="print_all.html">print_all()</a></code> 
+        </dt>
+        <dd>Print All (or More) of an Object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="Print_Methods.html">print(<i>&lt;announce&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;binom_contingency&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;contingency_table&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;odds_ratio&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;summ_anov&gt;</i>)</a></code> 
+        </dt>
+        <dd>S3 Print Methods</dd>
+      </dl></div><div class="section level2">
       <h2 id="simulate-data">Simulate Data<a class="anchor" aria-label="anchor" href="#simulate-data"></a></h2>
       
       <p class="section-desc"></p><p>Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables.</p>
@@ -271,37 +302,6 @@
           <code><a href="starsig.html">starsig()</a></code> 
         </dt>
         <dd>Stars for Statistical Significance</dd>
-      </dl></div><div class="section level2">
-      <h2 id="printing">Printing<a class="anchor" aria-label="anchor" href="#printing"></a></h2>
-      
-      <p class="section-desc"></p><p>Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="announce.html">announce()</a></code> 
-        </dt>
-        <dd>Announce Class for Consistent Printing</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lf.html">lf()</a></code> <code><a href="lf.html">print_lf()</a></code> 
-        </dt>
-        <dd>Pipe-Friendly Line Feeds and Printing</dd>
-      </dl><dl><dt>
-          
-          <code><a href="print_all.html">print_all()</a></code> 
-        </dt>
-        <dd>Print All (or More) of an Object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Print_Methods.html">print(<i>&lt;announce&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;binom_contingency&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;contingency_table&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;odds_ratio&gt;</i>)</a></code> <code><a href="Print_Methods.html">print(<i>&lt;summ_anov&gt;</i>)</a></code> 
-        </dt>
-        <dd>S3 Print Methods</dd>
       </dl></div><div class="section level2">
       <h2 id="tidy-up-workspace">Tidy up workspace<a class="anchor" aria-label="anchor" href="#tidy-up-workspace"></a></h2>
       

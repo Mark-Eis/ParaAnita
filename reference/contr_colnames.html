@@ -88,27 +88,27 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  A  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  A  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4  A  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  A  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  B  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  B  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  B  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  A  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  B  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  B  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  B  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  B  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 B  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 C  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 C  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12 C  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 C  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 C  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 C  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 C  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 C  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 C  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 16 D  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17 D  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18 D  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 D  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 D  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 20 D  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 21 E  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 E  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 E  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 E  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 E  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 E  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 E  1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.helmert</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span></span></span>
@@ -126,18 +126,18 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -4.734e-01  4.472e-01  -1.059    0.290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f1          -9.503e-17  6.455e-01   0.000    1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f2          -2.703e-01  3.727e-01  -0.725    0.468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f3          -3.804e-01  3.090e-01  -1.231    0.218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f4          -2.282e-01  2.437e-01  -0.937    0.349</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.1151     0.4282   0.269    0.788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f1            0.8959     0.7217   1.241    0.214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f2           -0.2986     0.3879  -0.770    0.441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f3           -0.1493     0.2690  -0.555    0.579</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f4            0.0726     0.2067   0.351    0.725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 33.651  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.617  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 31.924  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 41.924</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -158,18 +158,18 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -4.734e-01  4.472e-01  -1.059    0.290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fA v. B     -9.503e-17  6.455e-01   0.000    1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fAB v. C    -2.703e-01  3.727e-01  -0.725    0.468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fABC v. D   -3.804e-01  3.090e-01  -1.231    0.218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fABCD v. E  -2.282e-01  2.437e-01  -0.937    0.349</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.1151     0.4282   0.269    0.788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fA v. B       0.8959     0.7217   1.241    0.214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fAB v. C     -0.2986     0.3879  -0.770    0.441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fABC v. D    -0.1493     0.2690  -0.555    0.579</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fABCD v. E    0.0726     0.2067   0.351    0.725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 33.651  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.617  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 31.924  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 41.924</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -183,18 +183,18 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate Std. Error z value Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -4.734e-01  4.472e-01  -1.059    0.290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: A v. B    -9.503e-17  6.455e-01   0.000    1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: AB v. C   -2.703e-01  3.727e-01  -0.725    0.468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABC v. D  -3.804e-01  3.090e-01  -1.231    0.218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABCD v. E -2.282e-01  2.437e-01  -0.937    0.349</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)    0.1151     0.4282   0.269    0.788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: A v. B      0.8959     0.7217   1.241    0.214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: AB v. C    -0.2986     0.3879  -0.770    0.441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABC v. D   -0.1493     0.2690  -0.555    0.579</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABCD v. E   0.0726     0.2067   0.351    0.725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 33.651  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.617  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 31.924  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 41.924</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
