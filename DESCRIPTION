@@ -1,7 +1,7 @@
 Package: ParaAnita
 Title: Functions for Binary and Binomial Data Analysis
-Version: 0.0.5.7034
-Date: 2023-12-28
+Version: 1.0.0.0000
+Date: 2023-12-29
 Authors@R:
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
@@ -31,6 +31,7 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     announce(), lf(), print_all(), print_lf().  Tidies up workspace with
     rm_objects().
 License: MIT + file LICENSE
+URL: https://mark-eis.github.io/ParaAnita/
 Depends: 
     R (>= 4.1.0)
 Imports: 
@@ -53,4 +54,3 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 VersonName: Entre Dos Aguas
-URL: https://mark-eis.github.io/ParaAnita/
