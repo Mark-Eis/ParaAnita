@@ -64,8 +64,8 @@ representing the number of successes and failures respectively, see \code{\link[
 \code{cbind(pn, qn)}.}
 }
 \value{
-An object of classes \code{"odds_ratio"}, \code{"announce"}, inheriting from\code{"data.frame"} possibly also from \code{"tbl"}
-and \code{"tbl_df"}, and containing the following columns: -
+An object of classes \code{"odds_ratio"}, \code{"announce"}, inheriting from\code{"data.frame"} (and also \code{"tbl"}
+and \code{"tbl_df"}), and containing the following columns: -
 
 \item{parameter}{The names of the model parameters.}
 
