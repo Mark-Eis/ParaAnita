@@ -112,13 +112,13 @@ the null model. Other data types e.g. <code>"character"</code> vectors will be i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 396 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv    iv2   iv3   iv4      dv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a     g     i     k         0</span>
@@ -132,12 +132,12 @@ the null model. Other data types e.g. <code>"character"</code> vectors will be i
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Df Deviance    AIC     LRT  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;none&gt;      467.95 469.95                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv      5   448.91 460.91 19.0394 0.0018899 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2     1   466.13 470.13  1.8153 0.1778685    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3     1   456.51 460.51 11.4390 0.0007192 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4     2   451.75 457.75 16.1990 0.0003037 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Df Deviance    AIC    LRT  Pr(&gt;Chi)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;none&gt;      480.72 482.72                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv      5   435.86 447.86 44.859 1.550e-08 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2     1   470.43 474.43 10.283  0.001342 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3     1   455.66 459.66 25.052 5.581e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4     2   452.25 458.25 28.462 6.602e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-in"><span></span></span>
@@ -149,12 +149,12 @@ the null model. Other data types e.g. <code>"character"</code> vectors will be i
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iv    iv2   iv3   iv4      pn    qn</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        29    37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        20    46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        21    45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        19    47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m        11    55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m        10    56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        34    32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        25    41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        22    44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        16    50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m        17    49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m         3    63</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ___________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Univariable Analysis of Deviance: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -162,12 +162,12 @@ the null model. Other data types e.g. <code>"character"</code> vectors will be i
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Df Deviance    AIC     LRT  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;none&gt;     19.0394 47.179                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv      5   0.0000 38.140 19.0394 0.0018899 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2     1  17.2241 47.364  1.8153 0.1778685    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3     1   7.6004 37.740 11.4390 0.0007192 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4     2   2.8405 34.980 16.1990 0.0003037 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Df Deviance    AIC    LRT  Pr(&gt;Chi)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;none&gt;      44.859 72.301                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv      5    0.000 37.443 44.859 1.550e-08 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2     1   34.576 64.018 10.283  0.001342 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3     1   19.807 49.250 25.052 5.581e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4     2   16.397 47.840 28.462 6.602e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-in"><span></span></span>
