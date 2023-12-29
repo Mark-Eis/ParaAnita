@@ -67,8 +67,8 @@
 #' @param .print_contr `logical`. If `TRUE`, and `.ind_var` has a contrast attribute set, the contrast
 #'   matrix will be printed; default `FALSE`.
 #'
-#' @return An object of classes `"odds_ratio"`, `"announce"`, inheriting from`"data.frame"` possibly also from `"tbl"`
-#'   and `"tbl_df"`, and containing the following columns: -
+#' @return An object of classes `"odds_ratio"`, `"announce"`, inheriting from`"data.frame"` (and also `"tbl"`
+#'   and `"tbl_df"`), and containing the following columns: -
 #'
 #' \item{parameter}{The names of the model parameters.}
 #'
