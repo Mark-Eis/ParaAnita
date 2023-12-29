@@ -12,9 +12,14 @@ reference:
   - binom_contingency
   - contingency_table
   - xcontingency_table
-- title: Odds Ratios
-  desc: Calculate odds ratios, their confidence intervals and associated probabilities.
-  contents: odds_ratio
+- title: Compare Models
+  desc: |
+    Compare related generalised linear models using anova and other measures.
+  contents:
+  - anova_tbl
+  - comp_glm
+  - summanov
+  - univ_anova
 - title: Contrasts
 - subtitle: Contrast Attribute
   desc: Get, set or remove the contrasts attribute for selected categorical variables.
@@ -26,22 +31,6 @@ reference:
   contents:
   - starts_with("contr_col")
   - starts_with("helm_names")
-- title: Compare Models
-  desc: |
-    Compare related generalised linear models using anova and other measures.
-  contents:
-  - anova_tbl
-  - comp_glm
-  - summanov
-  - univ_anova
-- title: Plot Models
-  desc: |
-    Plot model results and standard errors, with optional grouping of levels of selected categorical variables.
-  contents:
-  - glm_plotlist
-  - glm_plotdata
-  - ggplot.glm_plotdata
-  - var_labs
 - title: Factors
 - subtitle: Factor Levels
   desc: Enumerate, remove or select factors in data.
@@ -56,6 +45,26 @@ reference:
   contents:
   - add_grps
   - fct_to_num
+- title: Odds Ratios
+  desc: Calculate odds ratios, their confidence intervals and associated probabilities.
+  contents: odds_ratio
+- title: Plot Models
+  desc: |
+    Plot model results and standard errors, with optional grouping of levels of selected categorical variables.
+  contents:
+  - glm_plotlist
+  - glm_plotdata
+  - ggplot.glm_plotdata
+  - var_labs
+- title: Printing
+  desc: |
+    Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.
+  contents:
+  - announce
+  - lf
+  - print_all
+  - print_lf
+  - Print_Methods
 - title: Simulate Data
   desc: |
     Simulate Bernoulli and binomial proportion data sets with categorical explanatory variables.
@@ -67,15 +76,6 @@ reference:
   contents:
   - chsqfish
   - starsig
-- title: Printing
-  desc: |
-    Auxilliary print functions and printing of objects derived from ParaAnita S3 methods.
-  contents:
-  - announce
-  - lf
-  - print_all
-  - print_lf
-  - Print_Methods
 - title: Tidy up workspace
   desc: "Clear the workspace of related objects such as similarly named models. \n"
   contents: rm_objects
