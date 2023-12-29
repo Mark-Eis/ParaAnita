@@ -128,14 +128,14 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 396 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv    iv2   iv3   iv4      dv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 386 more rows</span></span>
@@ -155,21 +155,21 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = data)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.2436     0.2480   0.982 0.325952    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.5490     0.3515  -1.562 0.118296    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -1.3022     0.3752  -3.471 0.000518 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.5558     0.3901  -3.988 6.65e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -2.5462     0.4947  -5.147 2.65e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -2.5462     0.4947  -5.147 2.65e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8329     0.2678  -3.110  0.00187 **</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivb           0.6506     0.3645   1.785  0.07427 . </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivc           0.1398     0.3741   0.374  0.70868   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -0.5724     0.4093  -1.399  0.16195   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -0.5724     0.4093  -1.399  0.16195   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -1.0129     0.4477  -2.263  0.02365 * </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 404.44  on 390  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 416.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.10  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 439.51  on 390  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 451.51</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -186,8 +186,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv    5   59.635       390     404.44 1.446e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     462.10              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv    5   22.595       390     439.51 0.0004034 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -202,16 +202,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8329     0.1546  -5.386  7.2e-08 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.3065     0.2267  -1.352    0.176    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.95551    0.15867  -6.022 1.72e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h        -0.07685    0.22640  -0.339    0.734    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 462.24  on 394  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 466.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.10  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 461.98  on 394  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 465.98</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -228,8 +228,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev Pr(&gt;Chi)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1   1.8362       394     462.24   0.1754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     462.10         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1  0.11527       394     461.98   0.7342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ______________</span>
@@ -242,16 +242,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3469     0.1443  -2.404   0.0162 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.5425     0.2551  -6.046 1.48e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.5596     0.1477  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -0.9788     0.2378  -4.117 3.84e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 422.61  on 394  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 426.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.10  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 444.29  on 394  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 448.29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -268,8 +268,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   41.461       394     422.61 1.202e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     462.10              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   17.812       394     444.29 2.438e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -284,17 +284,17 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.03031    0.17410  -0.174    0.862    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l        -1.15083    0.26920  -4.275 1.91e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m        -2.27228    0.34920  -6.507 7.66e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4947     0.1794  -2.757 0.005833 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.5247     0.2666  -1.968 0.049069 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.1147     0.2945  -3.785 0.000154 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 407.28  on 393  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 413.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.1  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 446.8  on 393  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 452.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -311,8 +311,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   56.792       393     407.28 4.654e-13 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395      462.1              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   15.305       393      446.8 0.0004748 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -330,21 +330,21 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = data)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.2436     0.2480   0.982 0.325952    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.5490     0.3515  -1.562 0.118296    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -1.3022     0.3752  -3.471 0.000518 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.5558     0.3901  -3.988 6.65e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -2.5462     0.4947  -5.147 2.65e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -2.5462     0.4947  -5.147 2.65e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8329     0.2678  -3.110  0.00187 **</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivb           0.6506     0.3645   1.785  0.07427 . </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivc           0.1398     0.3741   0.374  0.70868   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -0.5724     0.4093  -1.399  0.16195   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -0.5724     0.4093  -1.399  0.16195   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -1.0129     0.4477  -2.263  0.02365 * </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 404.44  on 390  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 416.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.10  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 439.51  on 390  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 451.51</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -361,8 +361,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv    5   59.635       390     404.44 1.446e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     462.10              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv    5   22.595       390     439.51 0.0004034 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -377,16 +377,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3469     0.1443  -2.404   0.0162 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.5425     0.2551  -6.046 1.48e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.5596     0.1477  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -0.9788     0.2378  -4.117 3.84e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 422.61  on 394  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 426.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.10  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 444.29  on 394  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 448.29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -403,8 +403,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   41.461       394     422.61 1.202e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     462.10              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   17.812       394     444.29 2.438e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -419,17 +419,17 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.03031    0.17410  -0.174    0.862    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l        -1.15083    0.26920  -4.275 1.91e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m        -2.27228    0.34920  -6.507 7.66e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4947     0.1794  -2.757 0.005833 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.5247     0.2666  -1.968 0.049069 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.1147     0.2945  -3.785 0.000154 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 464.07  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 407.28  on 393  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 413.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 462.1  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 446.8  on 393  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 452.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -446,8 +446,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395     464.07              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   56.792       393     407.28 4.654e-13 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   395      462.1              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   15.305       393      446.8 0.0004748 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -460,12 +460,12 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iv    iv2   iv3   iv4      pn    qn</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        37    29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        28    38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        17    49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        14    52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m         6    60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m         6    60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        20    46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        30    36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        22    44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        13    53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m        13    53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m         9    57</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">uva</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">summanov</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">num_range</a></span><span class="op">(</span><span class="st">"iv"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________</span>
@@ -482,16 +482,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8329     0.1546  -5.386  7.2e-08 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.3065     0.2267  -1.352    0.176    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.95551    0.15867  -6.022 1.72e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h        -0.07685    0.22640  -0.339    0.734    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.635  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 57.798  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 86.818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.595  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 22.479  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 52.436</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -508,8 +508,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev Pr(&gt;Chi)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1   1.8362         4     57.798   0.1754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     22.595         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1  0.11527         4     22.479   0.7342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ______________</span>
@@ -522,16 +522,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3469     0.1443  -2.404   0.0162 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.5425     0.2551  -6.046 1.48e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.5596     0.1477  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -0.9788     0.2378  -4.117 3.84e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.635  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 18.174  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 47.193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.5947  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  4.7822  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 34.738</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -548,8 +548,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   41.461         4     18.174 1.202e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5    22.5947              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   17.812         4     4.7822 2.438e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -564,19 +564,19 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.03031    0.17410  -0.174    0.862    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l        -1.15083    0.26920  -4.275 1.91e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m        -2.27228    0.34925  -6.506 7.71e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4947     0.1794  -2.757 0.005833 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.5247     0.2666  -1.968 0.049069 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.1147     0.2945  -3.785 0.000154 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.6345  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  2.8427  on 3  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 33.862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.5947  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  7.2897  on 3  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 39.246</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Anova: -</span>
@@ -591,8 +591,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   56.792         3      2.843 4.654e-13 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5    22.5947              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   15.305         3     7.2897 0.0004748 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -610,16 +610,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8329     0.1546  -5.386  7.2e-08 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.3065     0.2267  -1.352    0.176    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.95551    0.15867  -6.022 1.72e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h        -0.07685    0.22640  -0.339    0.734    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.635  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 57.798  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 86.818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.595  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 22.479  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 52.436</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -635,16 +635,16 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3469     0.1443  -2.404   0.0162 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.5425     0.2551  -6.046 1.48e-09 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.5596     0.1477  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -0.9788     0.2378  -4.117 3.84e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.635  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 18.174  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 47.193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.5947  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  4.7822  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 34.738</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -660,19 +660,19 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.03031    0.17410  -0.174    0.862    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l        -1.15083    0.26920  -4.275 1.91e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m        -2.27228    0.34925  -6.506 7.71e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4947     0.1794  -2.757 0.005833 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.5247     0.2666  -1.968 0.049069 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.1147     0.2945  -3.785 0.000154 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 59.6345  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  2.8427  on 3  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 33.862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 22.5947  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  7.2897  on 3  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 39.246</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -691,8 +691,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev Pr(&gt;Chi)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1   1.8362         4     57.798   0.1754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     22.595         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2   1  0.11527         4     22.479   0.7342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________</span>
@@ -708,8 +708,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   41.461         4     18.174 1.202e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5    22.5947              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3   1   17.812         4     4.7822 2.438e-05 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -727,8 +727,8 @@ the list of anovas.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5     59.635              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   56.792         3      2.843 4.654e-13 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                     5    22.5947              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4   2   15.305         3     7.2897 0.0004748 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
