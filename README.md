@@ -24,9 +24,9 @@ The **ParaAnita R package** includes functions intended to address and simplify 
 
 - Calculates odds ratios and their confidence intervals and associated probabilities with `odds_ratio()`.
 
-- Gets, sets or removes the contrasts attribute for selected categorical variables (`factors`) within data with `get_contrasts()`, `get_contr_data()`, `set_contrasts()`, `set_contrasts<-()`, `set_contr_treat()` and `set_contr_treat<-()`.
+- Gets, sets or removes the contrasts attribute for selected categorical variables (`factors`) within data with `get_contrasts()`, `get_contr_data()`, `set_contrasts()`, [`set_contrasts<-()`](https://mark-eis.github.io/ParaAnita/reference/get_contrasts.html), `set_contr_treat()` and [`set_contr_treat<-()`](https://mark-eis.github.io/ParaAnita/reference/get_contr_data.html).
 
-- Gets, sets and manipulates categorical variable contrast `names` with `contr_colnames()`, `contr_colnames<-()`, `contr_colpfx<-()`, `helm_names()` and `helm_names<-()`.
+- Gets, sets and manipulates categorical variable contrast `names` with `contr_colnames()`, [`contr_colnames<-()`](https://mark-eis.github.io/ParaAnita/reference/contr_colnames.html), [`contr_colpfx<-()`](https://mark-eis.github.io/ParaAnita/reference/contr_colnames.html), `helm_names()` and [`helm_names<-()`](https://mark-eis.github.io/ParaAnita/reference/helm_names.html).
 
 - Compares related generalised linear models using various measures with `anova_tbl()`, `comp_glm()`, `summanov()` and `univ_anova()`.
 
