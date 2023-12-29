@@ -29,7 +29,7 @@ Description: Summarises binary (Bernoulli) and binomial proportion data in
     analysis with chsqfish() and starsig(). Provides auxilliary print
     functions and prints objects derived from ParaAnita S3 methods with
     announce(), lf(), print_all(), print_lf().  Tidies up workspace with
-    rm_objects().
+    rm_objects(). 
 License: MIT + file LICENSE
 URL: https://mark-eis.github.io/ParaAnita/
 Depends: 
