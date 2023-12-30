@@ -84,31 +84,31 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-in"><span>  dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fl">25</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    f dv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  A  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  A  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  A  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  A  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  A  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  A  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  A  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  A  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  B  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  B  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7  B  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  B  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  B  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  B  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  B  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 B  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11 C  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12 C  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 C  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 C  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 C  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 C  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 C  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 C  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 16 D  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17 D  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18 D  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 D  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 D  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 D  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 D  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 21 E  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 E  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23 E  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24 E  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 E  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 E  1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.helmert</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span></span></span>
@@ -126,22 +126,20 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.433e-01  4.472e-01   0.544   0.5864  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f1          -1.350e-16  6.455e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f2          -2.783e-18  3.727e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f3           2.452e-01  3.090e-01   0.794   0.4275  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f4          -4.074e-01  2.437e-01  -1.672   0.0945 .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -3.875e+00  5.834e+02  -0.007    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f1           9.489e-16  6.455e-01   0.000    1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f2          -6.054e+00  9.723e+02  -0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f3           1.513e+00  2.431e+02   0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f4           1.070e+00  1.459e+02   0.007    0.994</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.296  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 32.671  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 26.920  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 36.92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">contr_colnames</span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A v. B"</span>, <span class="st">"AB v. C"</span>, <span class="st">"ABC v. D"</span>, <span class="st">"ABCD v. E"</span><span class="op">)</span></span></span>
@@ -160,22 +158,20 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  2.433e-01  4.472e-01   0.544   0.5864  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fA v. B     -1.350e-16  6.455e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fAB v. C    -2.783e-18  3.727e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fABC v. D    2.452e-01  3.090e-01   0.794   0.4275  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> fABCD v. E  -4.074e-01  2.437e-01  -1.672   0.0945 .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -3.875e+00  5.834e+02  -0.007    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fA v. B      9.489e-16  6.455e-01   0.000    1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fAB v. C    -6.054e+00  9.723e+02  -0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fABC v. D    1.513e+00  2.431e+02   0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> fABCD v. E   1.070e+00  1.459e+02   0.007    0.994</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.296  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 32.671  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 26.920  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 36.92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">contr_colpfx</span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">": "</span></span></span>
@@ -187,22 +183,20 @@ using the default function from <code><a href="https://rdrr.io/r/base/options.ht
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = dv ~ f, family = binomial, data = d)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate Std. Error z value Pr(&gt;|z|)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   2.433e-01  4.472e-01   0.544   0.5864  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: A v. B    -1.350e-16  6.455e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: AB v. C   -2.783e-18  3.727e-01   0.000   1.0000  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABC v. D   2.452e-01  3.090e-01   0.794   0.4275  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABCD v. E -4.074e-01  2.437e-01  -1.672   0.0945 .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -3.875e+00  5.834e+02  -0.007    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: A v. B     9.489e-16  6.455e-01   0.000    1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: AB v. C   -6.054e+00  9.723e+02  -0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABC v. D   1.513e+00  2.431e+02   0.006    0.995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> f: ABCD v. E  1.070e+00  1.459e+02   0.007    0.994</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.296  on 24  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 30.198  on 20  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 40.198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 32.671  on 24  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 26.920  on 20  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 36.92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
