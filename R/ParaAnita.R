@@ -78,8 +78,7 @@ rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
 #'
 #' @details
 #' Uses \code{\link[stats]{chisq.test}()} to calculate expected values and then applies Chi-squared test if all
-#' expected values are 5 or greater, otherwise applies \code{\link[stats]{fisher.test}()}, and
-#' \code{\link[stats]{fisher.test}}
+#' expected values are 5 or greater, otherwise applies \code{\link[stats]{fisher.test}()}.
 #'
 #' @seealso  \code{\link[stats]{chisq.test}}, \code{\link{contingency_table}}.
 #' 
