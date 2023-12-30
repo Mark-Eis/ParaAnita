@@ -152,15 +152,15 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 330 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv       dv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> a         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 320 more rows</span></span>
 <span class="r-in"><span></span></span>
@@ -172,11 +172,11 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iv       pn    qn</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a        34    32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b        22    44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a        36    30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b        24    42</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c        23    43</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d        15    51</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e         5    61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e         7    59</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    iv <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
@@ -185,16 +185,16 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv    dv        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> c     Fail      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> d     Fail      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> b     Fail      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> c     Borderline</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> b     Borderline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> d     Fail      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> b     Borderline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> b     Borderline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a     Fail      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     Borderline</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> b     Success   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     Fail      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> c     Success   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a     Success   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a     Fail      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> b     Borderline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> c     Borderline</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> d     Fail      </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## print.contingency_table() — print a 'contingency_table' object</span></span></span>
 <span class="r-in"><span><span class="va">d2</span> <span class="op">|&gt;</span> <span class="fu"><a href="contingency_table.html">contingency_table</a></span><span class="op">(</span><span class="va">dv</span><span class="op">)</span></span></span>
@@ -204,10 +204,10 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iv     Fail Borderline Success</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> c         1          1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> d         1          0       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> b         1          1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> a         2          0       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> d         2          0       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b         0          3       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> a         2          1       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> c         0          1       0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## print.odds_ratio() — print an 'odds_ratio' object</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="odds_ratio.html">odds_ratio</a></span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
@@ -218,11 +218,11 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   parameter   estimate    se     p_val odds_ratio ci[,"2.5 %"] [,"97.5 %"] sig  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)   0.060<span style="text-decoration: underline;">6</span> 0.246 0.806         1           <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     NS   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ivb          -<span style="color: #BB0000;">0.754</span>  0.359 0.035<span style="text-decoration: underline;">7</span>        0.471        0.230        0.945 *    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ivc          -<span style="color: #BB0000;">0.686</span>  0.357 0.054<span style="text-decoration: underline;">5</span>        0.503        0.248        1.01  .    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd          -<span style="color: #BB0000;">1.28</span>   0.383 0.000<span style="text-decoration: underline;">806</span>      0.277        0.128        0.578 ***  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive          -<span style="color: #BB0000;">2.56</span>   0.526 0.000<span style="text-decoration: underline;">001</span>1     0.077<span style="text-decoration: underline;">1</span>       0.024<span style="text-decoration: underline;">5</span>       0.201 ***  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)    0.182 0.247 0.461         1           <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     NS   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ivb           -<span style="color: #BB0000;">0.742</span> 0.356 0.037<span style="text-decoration: underline;">0</span>        0.476        0.235        0.951 *    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ivc           -<span style="color: #BB0000;">0.808</span> 0.358 0.023<span style="text-decoration: underline;">8</span>        0.446        0.219        0.892 *    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd           -<span style="color: #BB0000;">1.41</span>  0.384 0.000<span style="text-decoration: underline;">250</span>      0.245        0.113        0.512 ***  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive           -<span style="color: #BB0000;">2.31</span>  0.470 0.000<span style="text-decoration: underline;">000</span>9     0.098<span style="text-decoration: underline;">9</span>       0.036<span style="text-decoration: underline;">6</span>       0.236 ***  </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## print.summanov() — print a 'summanov' object</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="summanov.html">summanov</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span></span></span>
@@ -240,21 +240,21 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  0.06062    0.24630   0.246 0.805570    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivb         -0.75377    0.35895  -2.100 0.035733 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivc         -0.68633    0.35693  -1.923 0.054493 .  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivd         -1.28440    0.38332  -3.351 0.000806 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ive         -2.56206    0.52636  -4.868 1.13e-06 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.1823     0.2472   0.738  0.46080    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.7419     0.3558  -2.085  0.03704 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -0.8080     0.3576  -2.260  0.02383 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.4061     0.3839  -3.663  0.00025 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -2.3139     0.4700  -4.923 8.51e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 403.17  on 329  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 366.95  on 325  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 376.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 412.82  on 329  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 378.20  on 325  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 388.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Anova: -</span>
@@ -269,8 +269,8 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   329     403.17              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv    4   36.217       325     366.95 2.611e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL                   329     412.82              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv    4   34.624       325     378.20 5.549e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
