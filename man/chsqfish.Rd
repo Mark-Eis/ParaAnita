@@ -18,8 +18,7 @@ Test input data using Chi-squared or Fisher's exact test as appropriate.
 }
 \details{
 Uses \code{\link[stats]{chisq.test}()} to calculate expected values and then applies Chi-squared test if all
-expected values are 5 or greater, otherwise applies \code{\link[stats]{fisher.test}()}, and
-\code{\link[stats]{fisher.test}}
+expected values are 5 or greater, otherwise applies \code{\link[stats]{fisher.test}()}.
 }
 \examples{
 (t <- bernoulli_data(2, 50, c(0.6, 0.4)) |>
