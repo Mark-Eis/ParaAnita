@@ -25,7 +25,6 @@ returns a named \verb{integer vector} comprising the number of \code{levels} of 
 Does what it says on the tin.
 }
 \examples{
-
 ## Using gss_cat dataset from {forcats} package
 \dontshow{
    if (!requireNamespace("forcats", quietly = TRUE)) 
