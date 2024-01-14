@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Dec 2023
+# Mark Eisler - Jan 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -29,36 +29,6 @@
 #'
 #' @export
 #' @examples
-# #' d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
-# #' d |> binom_contingency(dv)
-# #' d |> levels_data()
-# #' d |> good_levels(dv, iv)
-# #' d |> drop_null(dv, iv) |> levels_data()
-# #' d |> drop_null(dv, iv) |> binom_contingency(dv)
-# #' d |> binom_contingency(dv) |> drop_zero(iv)
-# #'
-# #' identical(
-# #'   d |> drop_null(dv, iv) |> binom_contingency(dv),
-# #'   d |> binom_contingency(dv) |> drop_zero(iv)
-# #' )
-# #'
-# #' d_ls <- map2(c(0.5, 0.4, 1, 1), c(0.1, 0, 0.6, 0), seq, length.out = 5) |>
-# #'     map(\(x) bernoulli_data(probs = x)) |>
-# #'     (\(x) setNames(x, paste0("data", seq_along(x))))()
-# #'
-# #' d_ls |> map(\(d) d |> binom_contingency(dv))
-# #' d_ls |> map(levels_data)
-# #' d_ls |> map(\(d) d |> good_levels(dv, iv))
-# #' d_ls |> map(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv))
-# #' d_ls |> map(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
-# #'
-# #' identical(
-# #'   d_ls |> map(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv)), 
-# #'   d_ls |> map(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
-# #' )
-# #'
-# #' rm(d, d_ls)
-#'
 #' ## Using gss_cat dataset from {forcats} package
 #' \dontshow{
 #'    if (!requireNamespace("forcats", quietly = TRUE)) 
