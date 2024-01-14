@@ -197,7 +197,8 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
     .print_contr = FALSE) {
 
     check_dots_empty()
-    .ind_var <- enquo(.ind_var)
+    # .ind_var <- enquo(.ind_var)
+    .ind_var <- rlang::enexpr(.ind_var)
 
     NextMethod()
 }
@@ -216,6 +217,9 @@ odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_va
     # if (!inherits(object, "binom_contingency"))
         # .ind_var <- enquo(.ind_var)
     # .dep_var <- enquo(.dep_var)
+    if (!inherits(object, "binom_contingency"))
+        .ind_var <- rlang::enexpr(.ind_var)
+    .dep_var <- rlang::enexpr(.dep_var)
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
@@ -224,7 +228,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_va
     # object <- new_formula(get_expr(.dep_var), get_expr(.ind_var), env = rlang::get_env(.ind_var)) |>
         # glm(family = "binomial", data = object)
 
-    object <- glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object)
+    object <- glm(rlang::inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object)
 
     NextMethod(.printcall = .printcall)           
 }
