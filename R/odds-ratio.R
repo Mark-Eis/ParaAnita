@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -213,16 +213,18 @@ odds_ratio.data.frame <- function(object, ..., .dep_var = cbind(pn, qn), .ind_va
     pn <- qn <- NULL
 
     check_dots_empty()
-    if (!inherits(object, "binom_contingency"))
-        .ind_var <- enquo(.ind_var)
-    .dep_var <- enquo(.dep_var)
+    # if (!inherits(object, "binom_contingency"))
+        # .ind_var <- enquo(.ind_var)
+    # .dep_var <- enquo(.dep_var)
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
-    object <- new_formula(get_expr(.dep_var), get_expr(.ind_var), env = rlang::get_env(.ind_var)) |>
-        glm(family = "binomial", data = object)
+    # object <- new_formula(get_expr(.dep_var), get_expr(.ind_var), env = rlang::get_env(.ind_var)) |>
+        # glm(family = "binomial", data = object)
+
+    object <- glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object)
 
     NextMethod(.printcall = .printcall)           
 }
