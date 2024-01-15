@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.0002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,26 +73,26 @@ expected values are 5 or greater, otherwise applies <code><a href="https://rdrr.
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="Simulate_Data.html">bernoulli_data</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">50</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.4</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="contingency_table.html">contingency_table</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 32 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 23 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 28 22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 20 30</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">t</span> <span class="op">|&gt;</span> <span class="fu">chsqfish</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $observed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 32 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 23 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 28 22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 20 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $expected</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 27.5 22.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 27.5 22.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 24 26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 24 26</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $test</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Pearson's Chi-squared test with Yates' continuity correction</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  t</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> X-squared = 2.5859, df = 1, p-value = 0.1078</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> X-squared = 1.9631, df = 1, p-value = 0.1612</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -101,23 +101,23 @@ expected values are 5 or greater, otherwise applies <code><a href="https://rdrr.
 <span class="r-in"><span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="Simulate_Data.html">bernoulli_data</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="contingency_table.html">contingency_table</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 8 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 7 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b 4 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 4 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> c 2 8</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">t</span> <span class="op">|&gt;</span> <span class="fu">chsqfish</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Chi-squared approximation may be incorrect</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $observed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 8 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 7 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b 4 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 4 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> c 2 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $expected</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          1        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 5.333333 4.666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 5.333333 4.666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 5.333333 4.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 4.333333 5.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 4.333333 5.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> c 4.333333 5.666667</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $test</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -125,7 +125,7 @@ expected values are 5 or greater, otherwise applies <code><a href="https://rdrr.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	2000 replicates)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  chsq$observed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value = 0.1409</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value = 0.1009</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
