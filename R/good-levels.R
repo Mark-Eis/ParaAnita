@@ -104,7 +104,7 @@
 #' }
 
 good_levels <- function(.data, .dep_var, .ind_var) {
-    .ind_var <- rlang::enquo(.ind_var)
+    .ind_var <- enquo(.ind_var)
     .data |>
         contingency_table({{.dep_var}}, !!.ind_var) |>
         filter(.data$`1` != 0, .data$`0` != 0) |>
