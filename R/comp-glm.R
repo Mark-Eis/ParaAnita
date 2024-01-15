@@ -299,7 +299,7 @@ summanov <- function(data, .dep_var, ..., .family = binomial, .test = "Chisq") {
         names() |>
         setNames(nm = _) |>
         lapply(\(x)
-	        inject(!!.dep_var ~ !!sym(x)) |>
+            inject(!!.dep_var ~ !!sym(x)) |>
             glm(.family, data) |>
             new_summ_anov(test = .test)
         ) |>
@@ -414,7 +414,7 @@ anova_tbl <- function(anova_ls) {
 
 new_anova_tbl <- function(x = data.frame(NULL), subhead = "") {
     stopifnot(is.data.frame(x))
-	prt_str <- paste0("Analysis of Deviance (", subhead, ")")
+    prt_str <- paste0("Analysis of Deviance (", subhead, ")")
     x <- announce(x, prt_str)
     structure(x, class = c("anova_tbl", class(x)))
 }
