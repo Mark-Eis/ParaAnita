@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2023
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -294,13 +294,15 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' rm(d, uva)
 
 summanov <- function(data, .dep_var, ..., .family = binomial, .test = "Chisq") {
-    .dep_var <- enquo(.dep_var)
+    .dep_var <- enexpr(.dep_var)
     eval_select(expr(c(...)), data) |>
         names() |>
         setNames(nm = _) |>
-        map(\(x) new_formula(get_expr(.dep_var), sym(x)) |>
+        lapply(\(x)
+	        inject(!!.dep_var ~ !!sym(x)) |>
             glm(.family, data) |>
-            new_summ_anov(test = .test)) |>
+            new_summ_anov(test = .test)
+        ) |>
         announce("GLM Summary and Analysis of Deviance")
 }
 
