@@ -19,8 +19,8 @@ binom_contingency(
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which should be
 \code{numeric} with values of \var{0} and \var{1}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
-\verb{character vector}s in \code{.data}, to be included (or excluded) in the output.}
+\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
+\verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
 
 \item{.drop_zero}{\code{logical}. If \code{TRUE}, \code{\link[base:levels]{levels}} of explanatory factors for which values of
 \code{.dep_var} are either all zero or all one are dropped from the output; default \code{FALSE}.}

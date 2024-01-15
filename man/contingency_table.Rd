@@ -22,8 +22,8 @@ xcontingency_table(
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the dependent variable, which may be a
 \verb{character vector}, \code{factor}, or \code{numeric}.}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
-\verb{character vector}s in \code{.data}, to be included (or excluded) in the output.}
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
+\verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
 
 \item{.wt}{frequency weights, either \code{NULL} (default) or the quoted name of a numeric variable.
 \itemize{

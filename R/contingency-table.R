@@ -51,8 +51,8 @@
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the dependent variable, which may be a
 #'   `character vector`, `factor`, or `numeric`. 
 #'
-#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factor`s or
-#'   `character vector`s in `.data`, to be included (or excluded) in the output.
+#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factors` or
+#'   `character vectors` in `.data`, to be included in (or excluded from) the output.
 #'
 #' @param .wt frequency weights, either `NULL` (default) or the quoted name of a numeric variable.
 #' \itemize{
@@ -393,8 +393,8 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' @details
 #' By default, `expl_fcts()` creates a [`list`][base::list] of [`symbols`][base::symbol] i.e.,
 #' [defused R expressions][rlang::topic-defuse], representing the names of all or a selection of explanatory factors (or
-#' character vectors) in `.data`, using [`syms`][rlang::syms] from package \pkg{\link[rlang]{rlang}}. Alternatively, if
-#' `.syms = FALSE`, a `character vector` of the names of the explanatory factors (or character vectors) in `.data` is
+#' character vectors) in `.data`, using [`syms()`][rlang::syms] from package \pkg{\link[rlang]{rlang}}. Alternatively,
+#' if `.syms = FALSE`, a `character vector` of the names of the explanatory factors (or character vectors) in `.data` is
 #' returned instead.
 #'
 #' Variables in `.data` may be selected for inclusion or exclusion using the \code{\dots} argument and the
@@ -405,21 +405,21 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' A list of `symbols` returned by `expl_fcts()` may be \dQuote{injected} into the \code{\dots} arguments of
 #' [`contingency_table()`][contingency_table], [`xcontingency_table()`][xcontingency_table],
 #' [`binom_contingency()`][binom_contingency] and other similar functions, using the
-#' [splice-operator][rlang::splice-operator] `!!!`. If `.syms = TRUE`, the functions [`all_of`][tidyselect::all_of] or
-#' [`any_of`][tidyselect::any_of] should be used to wrap the resulting `character vector` of names instead of using
+#' [splice-operator][rlang::splice-operator] `!!!`. If `.syms = FALSE`, the functions [`all_of()`][tidyselect::all_of]
+#' or [`any_of()`][tidyselect::any_of] should be used to wrap the resulting `character vector` of names instead of using
 #' `!!!`. A list of `symbols` returned by `expl_fcts()` may also be used to provide a list argument with injection
-#' support to \pkg{\link[purrr]{purrr}} package [map][purrr::map] functions, using the
+#' support to [`lapply()`][base::lapply] (or \pkg{\link[purrr]{purrr}} package [map()][purrr::map] functions), using the
 #' [injection-operator][rlang::injection-operator] `!!` (see examples).
 #' 
 #' @param .named `logical`, whether to name the elements of the list. If `TRUE`, unnamed inputs are
-#'   automatically named with [`as_label()`][rlang::as_label]; default `FALSE`.
+#'   automatically named with [`set_names()`][rlang::set_names]; default `FALSE`.
 #' 
 #' @param .syms `logical`. If `FALSE`, a `character vector` is returned rather than a list of `symbols`; default `TRUE`.
 #'
 #' @inheritParams contingency_table
 #'
 #' @seealso [`!!`][rlang::injection-operator], [`!!!`][rlang::splice-operator], [`all_of`][tidyselect::all_of],
-#'   [`any_of`][tidyselect::any_of], [`as_label()`][rlang::as_label], [`defused R expressions`][rlang::topic-defuse],
+#'   [`any_of`][tidyselect::any_of], [`set_names()`][rlang::set_names], [`defused R expressions`][rlang::topic-defuse],
 #'   [`map()`][purrr::map] and [`symbol`][base::symbol].
 #' @family contingency_table
 #'
@@ -469,13 +469,19 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
 #' d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .syms = FALSE)))
 #'
-#' ## Use with purr::map(), binom_contingency(), glm() and odds_ratio()
+#' ## Use with lapply, binom_contingency(), glm() and odds_ratio()
 #' expl_fcts(d, .named = TRUE) |>
-#'     map(\(x) binom_contingency(d, dv, !!x))
+#'     lapply(\(x) binom_contingency(d, dv, !!x))
 #' expl_fcts(d, .named = TRUE) |>
-#'     map(\(x) binom_contingency(d, dv, !!x) |> glm(cbind(pn, qn) ~ ., binomial, data = _))
+#'     lapply(\(x)
+#'         binom_contingency(d, dv, !!x) |>
+#'         glm(cbind(pn, qn) ~ ., binomial, data = _)
+#'     )
 #' expl_fcts(d, .named = TRUE) |>
-#'     map(\(x) binom_contingency(d, dv, !!x, .drop_zero = TRUE) |> odds_ratio(.ind_var = !!x))
+#'     lapply(\(x)
+#'         binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>
+#'         odds_ratio(.ind_var = !!x)
+#'     )
 #'
 #' rm(d)
 

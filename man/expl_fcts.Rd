@@ -9,11 +9,11 @@ expl_fcts(.data, ..., .named = FALSE, .syms = TRUE)
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factor}s or
-\verb{character vector}s in \code{.data}, to be included (or excluded) in the output.}
+\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
+\verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
 
 \item{.named}{\code{logical}, whether to name the elements of the list. If \code{TRUE}, unnamed inputs are
-automatically named with \code{\link[rlang:as_label]{as_label()}}; default \code{FALSE}.}
+automatically named with \code{\link[rlang:set_names]{set_names()}}; default \code{FALSE}.}
 
 \item{.syms}{\code{logical}. If \code{FALSE}, a \verb{character vector} is returned rather than a list of \code{symbols}; default \code{TRUE}.}
 }
@@ -28,8 +28,8 @@ vectors in a dataset.
 \details{
 By default, \code{expl_fcts()} creates a \code{\link[base:list]{list}} of \code{\link[base:name]{symbols}} i.e.,
 \link[rlang:topic-defuse]{defused R expressions}, representing the names of all or a selection of explanatory factors (or
-character vectors) in \code{.data}, using \code{\link[rlang:sym]{syms}} from package \pkg{\link[rlang]{rlang}}. Alternatively, if
-\code{.syms = FALSE}, a \verb{character vector} of the names of the explanatory factors (or character vectors) in \code{.data} is
+character vectors) in \code{.data}, using \code{\link[rlang:sym]{syms()}} from package \pkg{\link[rlang]{rlang}}. Alternatively,
+if \code{.syms = FALSE}, a \verb{character vector} of the names of the explanatory factors (or character vectors) in \code{.data} is
 returned instead.
 
 Variables in \code{.data} may be selected for inclusion or exclusion using the \code{\dots} argument and the
@@ -40,10 +40,10 @@ be included in the list.
 A list of \code{symbols} returned by \code{expl_fcts()} may be \dQuote{injected} into the \code{\dots} arguments of
 \code{\link[=contingency_table]{contingency_table()}}, \code{\link[=xcontingency_table]{xcontingency_table()}},
 \code{\link[=binom_contingency]{binom_contingency()}} and other similar functions, using the
-\link[rlang:splice-operator]{splice-operator} \verb{!!!}. If \code{.syms = TRUE}, the functions \code{\link[tidyselect:all_of]{all_of}} or
-\code{\link[tidyselect:all_of]{any_of}} should be used to wrap the resulting \verb{character vector} of names instead of using
+\link[rlang:splice-operator]{splice-operator} \verb{!!!}. If \code{.syms = FALSE}, the functions \code{\link[tidyselect:all_of]{all_of()}}
+or \code{\link[tidyselect:all_of]{any_of()}} should be used to wrap the resulting \verb{character vector} of names instead of using
 \verb{!!!}. A list of \code{symbols} returned by \code{expl_fcts()} may also be used to provide a list argument with injection
-support to \pkg{\link[purrr]{purrr}} package \link[purrr:map]{map} functions, using the
+support to \code{\link[base:lapply]{lapply()}} (or \pkg{\link[purrr]{purrr}} package \link[purrr:map]{map()} functions), using the
 \link[rlang:injection-operator]{injection-operator} \verb{!!} (see examples).
 }
 \examples{
@@ -87,19 +87,25 @@ d |> binom_contingency(dv, !c(iv, iv3))
 d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
 d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .syms = FALSE)))
 
-## Use with purr::map(), binom_contingency(), glm() and odds_ratio()
+## Use with lapply, binom_contingency(), glm() and odds_ratio()
 expl_fcts(d, .named = TRUE) |>
-    map(\(x) binom_contingency(d, dv, !!x))
+    lapply(\(x) binom_contingency(d, dv, !!x))
 expl_fcts(d, .named = TRUE) |>
-    map(\(x) binom_contingency(d, dv, !!x) |> glm(cbind(pn, qn) ~ ., binomial, data = _))
+    lapply(\(x)
+        binom_contingency(d, dv, !!x) |>
+        glm(cbind(pn, qn) ~ ., binomial, data = _)
+    )
 expl_fcts(d, .named = TRUE) |>
-    map(\(x) binom_contingency(d, dv, !!x, .drop_zero = TRUE) |> odds_ratio(.ind_var = !!x))
+    lapply(\(x)
+        binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>
+        odds_ratio(.ind_var = !!x)
+    )
 
 rm(d)
 }
 \seealso{
 \code{\link[rlang:injection-operator]{!!}}, \code{\link[rlang:splice-operator]{!!!}}, \code{\link[tidyselect:all_of]{all_of}},
-\code{\link[tidyselect:all_of]{any_of}}, \code{\link[rlang:as_label]{as_label()}}, \code{\link[rlang:topic-defuse]{defused R expressions}},
+\code{\link[tidyselect:all_of]{any_of}}, \code{\link[rlang:set_names]{set_names()}}, \code{\link[rlang:topic-defuse]{defused R expressions}},
 \code{\link[purrr:map]{map()}} and \code{\link[base:name]{symbol}}.
 
 Other contingency_table: 
