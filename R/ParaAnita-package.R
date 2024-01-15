@@ -21,6 +21,7 @@
 #' @importFrom dplyr group_by
 #' @importFrom dplyr mutate
 #' @importFrom dplyr n
+#' @importFrom dplyr pull
 #' @importFrom dplyr relocate
 #' @importFrom dplyr rename
 #' @importFrom dplyr rename_with
