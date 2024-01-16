@@ -67,8 +67,8 @@ environment. For example, conveniently remove a series of sequentially numbered 
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A character vector of matching names remaining in the workspace or another specified
-environment, returned invisibly.</p>
+<p>A character vector of matching names remaining in the calling <code>environment</code>, usually the workspace unless
+<code>rm_objects()</code> was called within a function, or another specified environment, returned invisibly.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -93,7 +93,7 @@ matching <code>basename</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co">## Remove three of them</span></span></span>
 <span class="r-in"><span> <span class="fu">rm_objects</span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" in unnamed environment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" found in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model1 model2 model3 model4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" remaining in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model4 </span>
@@ -105,7 +105,7 @@ matching <code>basename</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co">## Remove three of them</span></span></span>
 <span class="r-in"><span> <span class="fu">rm_objects</span><span class="op">(</span><span class="va">model_</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model_…" in unnamed environment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model_…" found in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model_a model_b model_c model_d </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model_…" remaining in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model_d </span>
@@ -115,7 +115,7 @@ matching <code>basename</code>.</p>
 <span class="r-in"><span>   <span class="va">model1</span> <span class="op">&lt;-</span> <span class="va">model2</span> <span class="op">&lt;-</span> <span class="va">model3</span> <span class="op">&lt;-</span> <span class="va">model4</span> <span class="op">&lt;-</span> <span class="va">model5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="fl">1</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu">rm_objects</span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">}</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" in unnamed environment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" found in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model1 model2 model3 model4 model5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" remaining in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	  </span>
@@ -124,7 +124,7 @@ matching <code>basename</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "model4"  "model_d"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu">rm_objects</span><span class="op">(</span><span class="va">model</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"_d"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" in unnamed environment:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" found in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 model4 model_d </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Objects matching "model…" remaining in unnamed environment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	  </span>
