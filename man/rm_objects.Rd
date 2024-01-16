@@ -15,8 +15,8 @@ rm_objects(basename, suffixes, envir = parent.frame())
 \code{caller_env()}.}
 }
 \value{
-A character vector of matching names remaining in the workspace or another specified
-environment, returned invisibly.
+A character vector of matching names remaining in the calling \code{environment}, usually the workspace unless
+\code{rm_objects()} was called within a function, or another specified environment, returned invisibly.
 }
 \description{
 Remove a series of sequentially named objects from the workspace or from another specified

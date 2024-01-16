@@ -13,7 +13,7 @@
 #' Remove a series of sequentially named objects from the workspace or from another specified
 #' environment. For example, conveniently remove a series of sequentially numbered models.
 #'
-#' \code{rm_objects()} lists all objects in the workspace (or another specified environment) whose
+#' `rm_objects()` lists all objects in the workspace (or another specified environment) whose
 #' names start with \code{basename}, then removes any in which \code{basename} is followed by
 #' an element included in \code{suffixes}, and finally lists all remaining objects with names
 #' matching \code{basename}.
@@ -25,8 +25,8 @@
 #' @param envir An environment from which to remove objects. Use \code{.GlobalEnv} for the workspace; default
 #' \code{caller_env()}.
 #'
-#' @return A character vector of matching names remaining in the workspace or another specified
-#' environment, returned invisibly.
+#' @return A character vector of matching names remaining in the calling `environment`, usually the workspace unless
+#'   `rm_objects()` was called within a function, or another specified environment, returned invisibly.
 #'
 #' @keywords environment
 #' @export
@@ -64,7 +64,7 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     envstr <- paste("in", if (nchar(envirname)) envirname else "unnamed", "environment:\n\t")
     objs <- expr(ls(envir, pattern = as.symbol(basename)))
 
-    cat(intro, envstr, eval(objs), "\n")
+    cat(intro, "found", envstr, eval(objs), "\n")
     rm(list = map_chr(suffixes, ~paste0(as.symbol(basename), .)), envir = envir)
     cat(intro, "remaining", envstr, eval(objs), "\n")
     invisible(eval(objs))
