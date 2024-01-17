@@ -67,7 +67,7 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     envirname <- if (identical(envir, globalenv())) "global" else environmentName(envir)
     if (!nchar(envirname))
         envirname <- "(unnamed)"
-    envstr <- paste("in", envirname, "environment: \u2012\n\t")
+    envstr <- paste("in", envirname, "environment: \u2013\n\t")
     objs <- quote(ls(envir, pattern = as.symbol(basename)))
 
     found <- eval(objs)
