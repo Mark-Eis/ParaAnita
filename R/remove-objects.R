@@ -61,7 +61,7 @@
 
 rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     basename <- deparse(substitute(basename)) 
-    intro <- paste0("Objects matching \"", as.symbol(basename), "…\"")
+    intro <- paste0("Objects matching \"", as.symbol(basename), "\u2026\"")
     envirname <- environmentName(envir)
     envstr <- paste("in", if (nchar(envirname)) envirname else "unnamed", "environment:\n\t")
     objs <- expr(ls(envir, pattern = as.symbol(basename)))
