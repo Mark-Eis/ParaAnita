@@ -60,7 +60,7 @@ environment. For example, conveniently remove a series of sequentially numbered 
 
 <dt>envir</dt>
 <dd><p>An environment from which to remove objects. Use <code>.GlobalEnv</code> for the workspace; default
-<code>caller_env()</code>.</p></dd>
+<code><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame()</a></code> i.e., the environment in which <code>rm_objects()</code> was called.</p></dd>
 
 </dl></div>
     <div class="section level2">
