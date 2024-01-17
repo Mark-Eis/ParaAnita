@@ -11,22 +11,22 @@
 #' Remove Sequentially Numbered Objects from Workspace
 #'
 #' Remove a series of sequentially named objects from the workspace or from another specified
-#' environment. For example, conveniently remove a series of sequentially numbered models.
+#' `environment`. For example, conveniently remove a series of sequentially numbered models.
 #'
-#' `rm_objects()` lists all objects in the workspace (or another specified environment) whose
-#' names start with \code{basename}, then removes any in which \code{basename} is followed by
-#' an element included in \code{suffixes}, and finally lists all remaining objects with names
-#' matching \code{basename}.
+#' `rm_objects()` lists all objects in the workspace (or another specified  [`environment`][base::environment])
+#' whose names start with `basename`, then removes any in which `basename` is followed by an element included in
+#' `suffixes`, and finally lists all remaining objects with names matching `basename`.
 #'
-#' @seealso \code{\link[base]{ls}} and \code{\link[base]{rm}}.
+#' @seealso [`environment`][base::environment], [`ls()`][base::ls] and [`rm()`][base::rm].
 #'
 #' @param basename Common base name (quoted) of the series of objects.
 #' @param suffixes A numeric or character vector representing the suffixes of the series of objects.
-#' @param envir An environment from which to remove objects. Use \code{.GlobalEnv} for the workspace; default
-#' \code{caller_env()}.
+#' @param envir An environment from which to remove objects. Use `.GlobalEnv` for the workspace; default
+#' `caller_env()`.
 #'
-#' @return A character vector of matching names remaining in the calling `environment`, usually the workspace unless
-#'   `rm_objects()` was called within a function, or another specified environment, returned invisibly.
+#' @return A character vector of matching names remaining in the calling [`environment`][base::environment], usually
+#'   the workspace unless `rm_objects()` was called within a function, or another specified `environment`, returned
+#'   invisibly.
 #'
 #' @keywords environment
 #' @export
@@ -65,7 +65,8 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     objs <- expr(ls(envir, pattern = as.symbol(basename)))
 
     cat(intro, "found", envstr, eval(objs), "\n")
-    rm(list = map_chr(suffixes, ~paste0(as.symbol(basename), .)), envir = envir)
+    # rm(list = map_chr(suffixes, ~paste0(as.symbol(basename), .)), envir = envir)
+    rm(list = vapply(suffixes, \(x) paste0(as.symbol(basename), x), vector("character", 1)), envir = envir)
     cat(intro, "remaining", envstr, eval(objs), "\n")
     invisible(eval(objs))
 }

@@ -15,18 +15,18 @@ rm_objects(basename, suffixes, envir = parent.frame())
 \code{caller_env()}.}
 }
 \value{
-A character vector of matching names remaining in the calling \code{environment}, usually the workspace unless
-\code{rm_objects()} was called within a function, or another specified environment, returned invisibly.
+A character vector of matching names remaining in the calling \code{\link[base:environment]{environment}}, usually
+the workspace unless \code{rm_objects()} was called within a function, or another specified \code{environment}, returned
+invisibly.
 }
 \description{
 Remove a series of sequentially named objects from the workspace or from another specified
-environment. For example, conveniently remove a series of sequentially numbered models.
+\code{environment}. For example, conveniently remove a series of sequentially numbered models.
 }
 \details{
-\code{rm_objects()} lists all objects in the workspace (or another specified environment) whose
-names start with \code{basename}, then removes any in which \code{basename} is followed by
-an element included in \code{suffixes}, and finally lists all remaining objects with names
-matching \code{basename}.
+\code{rm_objects()} lists all objects in the workspace (or another specified  \code{\link[base:environment]{environment}})
+whose names start with \code{basename}, then removes any in which \code{basename} is followed by an element included in
+\code{suffixes}, and finally lists all remaining objects with names matching \code{basename}.
 }
 \examples{
  ## Note: running outside example() will be more informative
@@ -56,6 +56,6 @@ matching \code{basename}.
  rm_objects(model, c(4, "_d"))
 }
 \seealso{
-\code{\link[base]{ls}} and \code{\link[base]{rm}}.
+\code{\link[base:environment]{environment}}, \code{\link[base:ls]{ls()}} and \code{\link[base:rm]{rm()}}.
 }
 \keyword{environment}
