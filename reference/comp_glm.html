@@ -162,16 +162,16 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 396 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv    iv2   iv3   iv4      dv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> a     g     i     k         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a     g     i     k         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a     g     i     k         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a     g     i     k         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a     g     i     k         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 386 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Models arranged in descending order of AIC by default.</span></span></span>
@@ -182,10 +182,10 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   f_rhs .glm       null.deviance df.null logLik   AIC   BIC deviance df.residual</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;named li&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">237.</span>  479.  487.     475.         394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">221.</span>  453.  477.     441.         390</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">223.</span>  450.  458.     446.         394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">222.</span>  449.  461.     443.         393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">235.</span>  474.  482.     470.         394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">222.</span>  449.  457.     445.         394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">214.</span>  440.  463.     428.         390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">215.</span>  437.  449.     431.         393</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: nobs &lt;int&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Arrange models by formula right-hand side </span></span></span>
@@ -196,29 +196,29 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   f_rhs .glm       null.deviance df.null logLik   AIC   BIC deviance df.residual</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;named li&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">221.</span>  453.  477.     441.         390</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">237.</span>  479.  487.     475.         394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">223.</span>  450.  458.     446.         394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               475.     395  -<span style="color: #BB0000;">222.</span>  449.  461.     443.         393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">214.</span>  440.  463.     428.         390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">235.</span>  474.  482.     470.         394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">222.</span>  449.  457.     445.         394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               472.     395  -<span style="color: #BB0000;">215.</span>  437.  449.     431.         393</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: nobs &lt;int&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Inspect components of .glm list-column</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">formula</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">summary</span><span class="op">)</span></span></span>
@@ -230,20 +230,20 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1214     0.2466  -0.492 0.622674    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.1223     0.3498  -0.350 0.726679    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -0.6408     0.3615  -1.773 0.076289 .  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.1908     0.3892  -3.060 0.002217 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -1.7245     0.4353  -3.962 7.45e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -1.6014     0.4227  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.1214     0.2466   0.492  0.62267    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.4891     0.3514  -1.392  0.16402    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -1.1800     0.3742  -3.153  0.00162 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.1800     0.3742  -3.153  0.00162 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -1.8441     0.4227  -4.363 1.29e-05 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -2.4239     0.4941  -4.906 9.28e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 475.39  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 441.27  on 390  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 453.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 471.72  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 427.52  on 390  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 439.52</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -256,16 +256,16 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8091     0.1539  -5.257 1.47e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.1973     0.2224  -0.887    0.375    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.7855     0.1532  -5.126 2.96e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.2997     0.2241  -1.337    0.181    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 475.39  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 474.60  on 394  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 478.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 471.72  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 469.92  on 394  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 473.92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -278,16 +278,16 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3677     0.1445  -2.544    0.011 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.2417     0.2393  -5.189 2.11e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4097     0.1451  -2.823  0.00476 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.1998     0.2396  -5.007 5.54e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 475.39  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 446.33  on 394  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 450.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 471.72  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 444.77  on 394  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 448.77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -300,17 +300,17 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1823     0.1748  -1.043  0.29694    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.8370     0.2635  -3.177  0.00149 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.6006     0.3034  -5.276 1.32e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1214     0.1744  -0.696 0.486502    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.9372     0.2646  -3.542 0.000398 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.8596     0.3186  -5.836 5.34e-09 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 475.39  on 395  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 443.37  on 393  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 449.37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 471.72  on 395  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 430.62  on 393  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 436.62</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -324,12 +324,12 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iv    iv2   iv3   iv4      pn    qn</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        31    35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        29    37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        21    45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        14    52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m         9    57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m        10    56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     g     i     k        35    31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     h     i     k        27    39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     g     i     l        17    49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        17    49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m        10    56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m         6    60</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">comps</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">comp_glm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, <span class="va">iv</span>, <span class="va">iv2</span>, <span class="va">iv3</span>, <span class="va">iv4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ______________________</span>
@@ -338,29 +338,29 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   f_rhs .glm       null.deviance df.null logLik   AIC   BIC deviance df.residual</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;named li&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               34.1       5  -<span style="color: #BB0000;">29.6</span>  63.3  62.9 3.33<span style="color: #949494;">e</span>+ 1           4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               34.1       5  -<span style="color: #BB0000;">13.0</span>  37.9  36.7 7.99<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               34.1       5  -<span style="color: #BB0000;">15.5</span>  35.0  34.6 5.05<span style="color: #949494;">e</span>+ 0           4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               34.1       5  -<span style="color: #BB0000;">14.0</span>  34.0  33.4 2.10<span style="color: #949494;">e</span>+ 0           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> iv2   <span style="color: #949494;">&lt;glm&gt;</span>               44.2       5  -<span style="color: #BB0000;">34.0</span>  72.0  71.6 4.24<span style="color: #949494;">e</span>+ 1           4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv3   <span style="color: #949494;">&lt;glm&gt;</span>               44.2       5  -<span style="color: #BB0000;">21.4</span>  46.8  46.4 1.72<span style="color: #949494;">e</span>+ 1           4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv    <span style="color: #949494;">&lt;glm&gt;</span>               44.2       5  -<span style="color: #BB0000;">12.8</span>  37.6  36.3 1.15<span style="color: #949494;">e</span><span style="color: #BB0000;">-14</span>           0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv4   <span style="color: #949494;">&lt;glm&gt;</span>               44.2       5  -<span style="color: #BB0000;">14.3</span>  34.7  34.1 3.10<span style="color: #949494;">e</span>+ 0           3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: nobs &lt;int&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Inspect components of .glm list-column</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">formula</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562a2faf8d78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5649b184b170&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">summary</span><span class="op">)</span></span></span>
@@ -372,16 +372,38 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.8091     0.1539  -5.257 1.47e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.1973     0.2224  -0.887    0.375    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.7855     0.1532  -5.126 2.96e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv2h         -0.2997     0.2241  -1.337    0.181    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.119  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 33.330  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 63.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 44.196  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 42.400  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 71.985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = new_formula(get_expr(.dep_var), get_expr(x), quo_get_env(x)), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     family = .family, data = .data)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.4097     0.1451  -2.823  0.00476 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.1998     0.2396  -5.007 5.54e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 44.196  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 17.249  on 4  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 46.833</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -394,44 +416,22 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1214     0.2466  -0.492 0.622674    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.1223     0.3498  -0.350 0.726679    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -0.6408     0.3615  -1.773 0.076289 .  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.1908     0.3892  -3.060 0.002217 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -1.7245     0.4353  -3.962 7.45e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -1.6014     0.4227  -3.788 0.000152 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.1214     0.2466   0.492  0.62267    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivb          -0.4891     0.3514  -1.392  0.16402    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivc          -1.1800     0.3742  -3.153  0.00162 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivd          -1.1800     0.3742  -3.153  0.00162 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ive          -1.8441     0.4227  -4.363 1.29e-05 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ivf          -2.4239     0.4941  -4.906 9.32e-07 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 3.4119e+01  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 7.9936e-15  on 0  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 37.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 4.4196e+01  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance: 1.1546e-14  on 0  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 37.584</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = new_formula(get_expr(.dep_var), get_expr(x), quo_get_env(x)), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family = .family, data = .data)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3677     0.1445  -2.544    0.011 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv3j         -1.2417     0.2393  -5.189 2.11e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.1188  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  5.0541  on 4  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 34.994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
@@ -442,17 +442,17 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1823     0.1748  -1.043  0.29694    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.8370     0.2635  -3.177  0.00149 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.6006     0.3034  -5.276 1.32e-07 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1214     0.1744  -0.696 0.486502    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4l         -0.9372     0.2646  -3.542 0.000398 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> iv4m         -1.8596     0.3186  -5.836 5.34e-09 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Dispersion parameter for binomial family taken to be 1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 34.1188  on 5  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  2.0988  on 3  degrees of freedom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 34.038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Null deviance: 44.1958  on 5  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual deviance:  3.1001  on 3  degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 34.684</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
