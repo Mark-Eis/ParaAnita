@@ -27,6 +27,8 @@ Remove a series of sequentially named objects from the workspace or from another
 \code{rm_objects()} lists all objects in the workspace (or another specified  \code{\link[base:environment]{environment}})
 whose names start with \code{basename}, then removes any in which \code{basename} is followed by an element included in
 \code{suffixes}, and finally lists all remaining objects with names matching \code{basename}.
+
+\acronym{#GF}
 }
 \examples{
  ## Note: running outside example() will be more informative

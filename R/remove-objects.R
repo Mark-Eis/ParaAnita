@@ -17,6 +17,8 @@
 #' whose names start with `basename`, then removes any in which `basename` is followed by an element included in
 #' `suffixes`, and finally lists all remaining objects with names matching `basename`.
 #'
+#' \acronym{#GF}
+#'
 #' @seealso [`environment`][base::environment], [`ls()`][base::ls] and [`rm()`][base::rm].
 #'
 #' @param basename Common base name (quoted) of the series of objects.
@@ -62,8 +64,10 @@
 rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     basename <- deparse(substitute(basename)) 
     intro <- paste0("Objects matching \"", as.symbol(basename), "\u2026\"")
-    envirname <- environmentName(envir)
-    envstr <- paste("in", if (nchar(envirname)) envirname else "(unnamed)", "environment:\n\t")
+    envirname <- if (identical(envir, globalenv())) "global" else environmentName(envir)
+    if (!nchar(envirname))
+        envirname <- "(unnamed)"
+    envstr <- paste("in", envirname, "environment:\n\t")
     objs <- quote(ls(envir, pattern = as.symbol(basename)))
 
     cat(intro, "found", envstr, eval(objs), "\n")
