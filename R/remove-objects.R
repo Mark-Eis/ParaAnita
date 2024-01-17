@@ -64,12 +64,14 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     intro <- paste0("Objects matching \"", as.symbol(basename), "\u2026\"")
     envirname <- environmentName(envir)
     envstr <- paste("in", if (nchar(envirname)) envirname else "unnamed", "environment:\n\t")
-    objs <- expr(ls(envir, pattern = as.symbol(basename)))
+    # objs <- expr(ls(envir, pattern = as.symbol(basename)))
+    objs <- ls(envir, pattern = as.symbol(basename))
 
-    cat(intro, "found", envstr, eval(objs), "\n")
-    # rm(list = map_chr(suffixes, ~paste0(as.symbol(basename), .)), envir = envir)
+    # cat(intro, "found", envstr, eval(objs), "\n")
+    cat(intro, "found", envstr, objs, "\n")
     rm(list = vapply(suffixes, \(x) paste0(as.symbol(basename), x), vector("character", 1)), envir = envir)
-    cat(intro, "remaining", envstr, eval(objs), "\n")
+    # cat(intro, "remaining", envstr, eval(objs), "\n")
+    cat(intro, "remaining", envstr, objs, "\n")
     invisible(eval(objs))
 }
 
