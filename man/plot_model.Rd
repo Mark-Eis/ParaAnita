@@ -27,7 +27,7 @@ If not specified, must be supplied in each layer added to the plot.}
 \item{rev_y}{\code{logical}. If \code{TRUE}, the direction of the y-axis is reversed, which may be useful
 when plotting linear predictors; default \code{FALSE}.}
 
-\item{...}{further arguments passed to or from other methods.}
+\item{...}{further arguments passed to or from other methods. Not currently used.}
 
 \item{environment}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Used prior to tidy
 evaluation.}

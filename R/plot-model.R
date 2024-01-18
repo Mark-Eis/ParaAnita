@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -51,7 +51,7 @@
 #'   [`binomial contingency table`][binom_contingency], a [`data frame`][base::data.frame] (or a data frame extension
 #'   e.g., a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm] as used by the default S3 method.
 #'
-#' @param \dots further arguments passed to or from other methods.
+#' @param \dots further arguments passed to or from other methods. Not currently used.
 #' 
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
 #'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
@@ -149,6 +149,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
 glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = NULL, conf_level = 0.95,
     type = c("link", "response")) {
 
+    check_dots_empty()
     if(missing(.dep_var)) {
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
@@ -156,7 +157,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
         .dep_var <- enquo(.dep_var)
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enquo(.ind_var)
-       .ungroup <- enquo(.ungroup)
+        .ungroup <- enquo(.ungroup)
     }
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
@@ -183,14 +184,14 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
 
     type <- match.arg(type)
     stopifnot(
-	    inherits(object, c("glm", "lm")),
-	    	family(object)$family %in% c("binomial", "quasibinomial", "poisson")
+        inherits(object, c("glm", "lm")),
+            family(object)$family %in% c("binomial", "quasibinomial", "poisson")
     )
     if (length(formula(object)[[3]]) > 1)
-	     stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
-	
-	dep_var <- object$formula[[2]]
-	ind_var <- object$formula[[3]]
+         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+    
+    dep_var <- object$formula[[2]]
+    ind_var <- object$formula[[3]]
     ungrouped <- object %@% "ungroup"
 
     dispersion <- summary(object)$dispersion
@@ -271,8 +272,8 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' `glm_plotlist()` invokes [`binom_contingency()`][binom_contingency] and [`glm_plotdata()`][glm_plotdata] to create
 #' a `list` of `"glm_plotdata"` objects for plotting univariable \acronym{GLM} predictions with error bars for each
 #' of a number of independent variables in `data`. Independent variables to be included are selected using the
-#' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}},
-#' including use of \dQuote{selection helpers}.
+#' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package
+#' \pkg{\link[dplyr]{dplyr}}, including use of \dQuote{selection helpers}.
 #'
 #' Like [`glm_plotdata()`][glm_plotdata], `glm_plotlist()` allows exploration of proposed groupings of levels of
 #' independent variables (e.g. as obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse])
@@ -285,7 +286,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' output in the column `grouped` within the corresponding `"glm_plotdata"` object, while the ungrouped levels are shown
 #' in the column `level`, see [`glm_plotdata()`][glm_plotdata].
 #'
-#' The `.conf_level` and `type` arguments are handled as for [`glm_plotdata()`][glm_plotdata].
+#' The `.conf_level` and `.type` arguments are handled as for [`glm_plotdata()`][glm_plotdata].
 #'
 #' [`glm_plotlist()`][glm_plotlist] may be used in conjunction with package \pkg{\link[purrr]{purrr}}
 #' [`map()`][purrr::map] to rapidly obtain multiple plots of univariable \acronym{GLM}s for a number of independent
@@ -322,8 +323,9 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #'
 
 glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.95,
-						    type = c("link", "response"), .facet_by = NULL) {
+                            .type = c("link", "response"), .facet_by = NULL) {
 
+    check_dots_used()
     .dep_var = enquo(.dep_var)
     pos <- eval_select(expr(c(...)), data)
     if (any(!.ungroups %in% names(pos)))
@@ -336,7 +338,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
             .ind_var = !!sym(level),
             .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
             conf_level = .conf_level,
-            type = type
+            type = .type
         ) |>
         filter(.data$obs > 0, .data$obs < 1)
     )
@@ -534,7 +536,7 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     geom_col(
         aes(
             y = .data$pred,
-           	colour = factor(ifelse(notgrp, 0, .data$grouped))
+            colour = factor(ifelse(notgrp, 0, .data$grouped))
         ),
         fill = "steelblue3",
         linewidth = 1
