@@ -10,6 +10,7 @@ glm_plotlist(
   ...,
   .ungroups = NULL,
   .conf_level = 0.95,
+  type = c("link", "response"),
   .facet_by = NULL
 )
 }
@@ -27,6 +28,9 @@ see details; default \code{NULL}.}
 
 \item{.conf_level}{the confidence level required for the error bars; default \var{0.95}. If \code{NA}, error bars are
 standard error.}
+
+\item{type}{the type of prediction required. The default is on the scale of the linear predictors;
+the alternative \code{"response"} is on the scale of the response variable; default \code{"link"}.}
 
 \item{.facet_by}{\code{NULL}, the default; or, if the output is to be combined into a single object to be used for a
 faceted plot, a \verb{character vector} of length one used to name an additional column containing the names of the
@@ -59,6 +63,8 @@ The grouped levels are used as the independent variable in the \acronym{GLM} inv
 output in the column \code{grouped} within the corresponding \code{"glm_plotdata"} object, while the ungrouped levels are shown
 in the column \code{level}, see \code{\link[=glm_plotdata]{glm_plotdata()}}.
 
+The \code{.conf_level} and \code{type} arguments are handled as for \code{\link[=glm_plotdata]{glm_plotdata()}}.
+
 \code{\link[=glm_plotlist]{glm_plotlist()}} may be used in conjunction with package \pkg{\link[purrr]{purrr}}
 \code{\link[purrr:map]{map()}} to rapidly obtain multiple plots of univariable \acronym{GLM}s for a number of independent
 variables.
@@ -71,8 +77,8 @@ although they are taken into consideration in calculating denominators in the ca
 
 }
 \seealso{
-\code{\link{add_grps}}, \code{\link[dplyr:bind_rows]{bind_rows}} and \code{\link{binom_contingency}}
-and \code{\link[forcats:fct_collapse]{fct_collapse}}.
+\code{\link[=add_grps]{add_grps()}}, \code{\link[dplyr:bind_rows]{bind_rows()}}, \code{\link[=binom_contingency]{binom_contingency()}}
+and \code{\link[forcats:fct_collapse]{fct_collapse()}}.
 
 Other plot_model: 
 \code{\link{Plot_Model}},

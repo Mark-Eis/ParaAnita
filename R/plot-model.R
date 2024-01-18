@@ -285,6 +285,8 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' output in the column `grouped` within the corresponding `"glm_plotdata"` object, while the ungrouped levels are shown
 #' in the column `level`, see [`glm_plotdata()`][glm_plotdata].
 #'
+#' The `.conf_level` and `type` arguments are handled as for [`glm_plotdata()`][glm_plotdata].
+#'
 #' [`glm_plotlist()`][glm_plotlist] may be used in conjunction with package \pkg{\link[purrr]{purrr}}
 #' [`map()`][purrr::map] to rapidly obtain multiple plots of univariable \acronym{GLM}s for a number of independent
 #' variables.
@@ -292,8 +294,8 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' Levels of independent variables for which the observed values are all zero or all one are not included in the output,
 #' although they are taken into consideration in calculating denominators in the case of grouped levels.
 #'
-#' @seealso [`add_grps`][add_grps], [`bind_rows`][dplyr::bind_rows] and [`binom_contingency`][binom_contingency]
-#'   and [`fct_collapse`][forcats::fct_collapse].
+#' @seealso [`add_grps()`][add_grps], [`bind_rows()`][dplyr::bind_rows], [`binom_contingency()`][binom_contingency]
+#'   and [`fct_collapse()`][forcats::fct_collapse].
 #' @family plot_model
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> independent variables to be included in the plot data.
@@ -319,7 +321,8 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' # Coming soon!
 #'
 
-glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.95, .facet_by = NULL) {
+glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.95,
+						    type = c("link", "response"), .facet_by = NULL) {
 
     .dep_var = enquo(.dep_var)
     pos <- eval_select(expr(c(...)), data)
@@ -333,7 +336,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
             .ind_var = !!sym(level),
             .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
             conf_level = .conf_level,
-            type = "response"
+            type = type
         ) |>
         filter(.data$obs > 0, .data$obs < 1)
     )
