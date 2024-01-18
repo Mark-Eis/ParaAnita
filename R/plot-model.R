@@ -188,7 +188,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
             family(object)$family %in% c("binomial", "quasibinomial", "poisson")
     )
     if (length(formula(object)[[3]]) > 1)
-         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+	    stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
@@ -528,11 +528,6 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     faceted <- !is.null(data %@% "facet_by")
 
     NextMethod(mapping = aes(.data$level, .data$pred)) +
-    # geom_col(
-        # colour = factor(ifelse(notgrp, 0, data$grouped)),
-        # fill = "steelblue3",
-        # linewidth = ifelse(notgrp, 0.5, 1)
-    # ) +
     geom_col(
         aes(
             y = .data$pred,
