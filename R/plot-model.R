@@ -325,7 +325,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.95,
                             .type = c("link", "response"), .facet_by = NULL) {
 
-    check_dots_used()
+    check_dots_unnamed()
     .dep_var = enquo(.dep_var)
     pos <- eval_select(expr(c(...)), data)
     if (any(!.ungroups %in% names(pos)))
