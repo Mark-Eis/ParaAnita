@@ -187,7 +187,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
             family(object)$family %in% c("binomial", "quasibinomial", "poisson")
     )
     if (length(formula(object)[[3]]) > 1)
-	    stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
@@ -218,12 +218,11 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
             level = !!ind_var,
             ungrouped = !!ungrouped,
             n = object$prior.weights,
-            # n = as.integer(!!dep_var %*% c(1, 1)),
             obs = as.numeric(
                 if (type == "response")
-                    !!dep_var %*% c(1, 0) / n
+                    (!!dep_var)[, 1] / n
                 else
-                    log(!!dep_var %*% c(1, 0) / !!dep_var %*% c(0, 1))
+                    log((!!dep_var)[, 1] / (!!dep_var)[, 2])
             ),
             pred = fit,
             lower = fit.lower,
