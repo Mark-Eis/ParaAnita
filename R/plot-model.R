@@ -217,7 +217,8 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
         mutate(
             level = !!ind_var,
             ungrouped = !!ungrouped,
-            n = as.integer(!!dep_var %*% c(1, 1)),
+            n = object$prior.weights,
+            # n = as.integer(!!dep_var %*% c(1, 1)),
             obs = as.numeric(
                 if (type == "response")
                     !!dep_var %*% c(1, 0) / n
