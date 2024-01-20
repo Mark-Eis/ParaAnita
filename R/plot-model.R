@@ -153,7 +153,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
     check_dots_empty()
     if(missing(.dep_var)) {
-	    	cat("\n\n.dep_var missing in glm_plotdata.data.frame()\n")
+	    	message("In glm_plotdata() \u2013 setting missing `.dep_var` to cbind(pn, qn)\n")
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
