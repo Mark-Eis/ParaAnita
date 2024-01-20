@@ -132,10 +132,12 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
     type = c("link", "response")) {
 
     check_dots_empty()
+ 
     .ind_var <- enexpr(.ind_var)
     .ungroup <- enquo(.ungroup)
 
-    NextMethod()
+    pn <- qn <- NULL
+    NextMethod(.dep_var = cbind(pn, qn))
 }
 
 
@@ -151,10 +153,12 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
     check_dots_empty()
     if(missing(.dep_var)) {
+	    	cat("\n\n.dep_var missing in glm_plotdata.data.frame()\n")
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
         .dep_var <- enexpr(.dep_var)
+
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
