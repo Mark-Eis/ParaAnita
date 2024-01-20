@@ -132,7 +132,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
     type = c("link", "response")) {
 
     check_dots_empty()
-    .ind_var <- enquo(.ind_var)
+    .ind_var <- enexpr(.ind_var)
     .ungroup <- enquo(.ungroup)
 
     NextMethod()
@@ -141,7 +141,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
 
 # ========================================
 #  Format Data for Plotting Univariable GLM Predictions with Error Bars for a Data Frame
-#  S3method p glm_plotdata.data.frame()
+#  S3method glm_plotdata.data.frame()
 #
 #' @rdname glm_plotdata
 #' @export
@@ -154,9 +154,9 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
-        .dep_var <- enquo(.dep_var)
+        .dep_var <- enexpr(.dep_var)
     if (!inherits(object, "binom_contingency")) {
-        .ind_var <- enquo(.ind_var)
+        .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
     }
 
@@ -165,8 +165,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
         stop("\n\targument \"conf_level\" must be positive numeric less than 1")
 
-    object <- new_formula(get_expr(.dep_var), get_expr(.ind_var), env = rlang::get_env(.ind_var)) |>
-        glm(family = "binomial", data = object) |>
+    object <- glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
         structure(ungroup = .ungroup)
 
     NextMethod()      
