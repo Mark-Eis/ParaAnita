@@ -581,3 +581,15 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
             scale_y_reverse()
     }
 }
+
+
+# ========================================
+#  Determine whether glm$y has Bernoulli values
+#  glmy_bern()
+#
+# Not exported
+
+is_glmybern <- function(x) {
+	stopifnot(inherits(x, c("glm", "lm")))
+	all(x$y %in% c(0, 1))
+}
