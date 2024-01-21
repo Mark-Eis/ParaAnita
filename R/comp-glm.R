@@ -107,8 +107,8 @@
 #' rm(comps, d)
 
 comp_glm <- function(.data, .dep_var, ..., .family = binomial, .arrange_by = desc(AIC)) {
-    .dep_var <- enquo(.dep_var)
-    .f_rhs_ls <- enquos(..., .named = TRUE)
+    .dep_var <- enexpr(.dep_var)
+    .f_rhs_ls <- enexprs(..., .named = TRUE)
     
     if (is.character(.family)) 
         .family <- get(.family, mode = "function", envir = parent.frame())
@@ -118,9 +118,8 @@ comp_glm <- function(.data, .dep_var, ..., .family = binomial, .arrange_by = des
         print(.family)
         stop("'family' not recognized")
     }
-    # NB - Putting this line directly in tibble() thows error: -
-    # 'cannot coerce class ‘"rlang_data_pronoun"’ to a data.frame'
-    glms <- lapply(.f_rhs_ls, \(x) glm(new_formula(get_expr(.dep_var), get_expr(x), quo_get_env(x)), .family, .data))
+    # NB - Putting this line directly in tibble() thows error: 'object 'x' not found'
+    glms <- lapply(.f_rhs_ls, \(x) glm(inject(!!.dep_var ~ !!x), .family, .data))
     tibble(
         f_rhs = names(.f_rhs_ls), 
         .glm = glms
