@@ -89,7 +89,6 @@
 #' @importFrom rlang inject
 #' @importFrom rlang is_quosures
 #' @importFrom rlang list2
-#' @importFrom rlang new_formula
 #' @importFrom rlang quo_get_env
 #' @importFrom rlang quos
 #' @importFrom rlang set_names
