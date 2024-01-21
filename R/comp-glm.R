@@ -196,9 +196,9 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 univ_anova <- function(data, .dep_var, .family = binomial, .test = c("none", "Rao", "LRT", "Chisq", "F")) {
     .test = match.arg(.test)
     .family = match.fun(.family)
-    .dep_var <- enquo(.dep_var)
+    .dep_var <- enexpr(.dep_var)
 
-    nullmodel <- glm(!!new_formula(get_expr(.dep_var), expr(1)), .family, data) |> expr() |> eval_tidy()
+    nullmodel <- glm(inject(!!.dep_var ~ 1), .family, data)
 
     add1(
         object = nullmodel,
