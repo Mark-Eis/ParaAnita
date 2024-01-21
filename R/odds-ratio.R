@@ -214,7 +214,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 
     check_dots_empty()
     if(missing(.dep_var)) {
-	    	message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
+        message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
