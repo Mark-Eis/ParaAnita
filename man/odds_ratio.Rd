@@ -22,7 +22,7 @@ odds_ratio(object, ...)
 \method{odds_ratio}{data.frame}(
   object,
   ...,
-  .dep_var = cbind(pn, qn),
+  .dep_var,
   .ind_var,
   .level = 0.95,
   .printcall = FALSE,
