@@ -211,22 +211,36 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     )
     if (length(formula(object)[[3]]) > 1)
         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+    if (is_glmybern(object))
+        # stop("Bernoulli data not currently supported in glm_plotdata() - oops!")
+        warning("Bernoulli data not currently supported in glm_plotdata() - oops!")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
     ungrouped <- object %@% "ungroup"
-
-    ebar <- predict(object, type = "link", se.fit = TRUE)$se.fit
-    if (!is.na(conf_level)) {
-        .df <- sum(object$prior.weights) - 1
-        ebar <- ebar * qt((1 + conf_level)/2, .df)
+    
+    data <- {
+	    if (is_glmybern(object))
+		    object$data |> binom_contingency(!!dep_var, !!ind_var)
+	    else
+		    object$data
     }
-    lower_upper <- ebar %o% c(-1, 1) + rep(object$linear.predictors, 2)
-    if (type == "response")
-        lower_upper <- family(object)$linkinv(lower_upper)
 
-    if (is_glmybern(object))
-        stop("Bernoulli data not currently supported in glm_plotdata() - oops!")
+    pred <- predict(object, data[, substitute(iv)], type = "link", se.fit = TRUE)
+
+    ebar <- {
+	    if (!is.na(conf_level)) {
+	        .df <- sum(object$prior.weights) - 1
+	        ebar <- pred$se.fit * qt((1 + conf_level)/2, .df)
+	    } else
+		    pred$se.fit
+	}
+
+    lower_upper <- ebar %o% c(-1, 1) + rep(pred$fit, 2)
+    if (type == "response")
+       lower_upper <- family(object)$linkinv(lower_upper)
+
+    pred <- predict(object, data[, substitute(iv)], type = type)
 
     pdta <- object$data |>
         mutate(
