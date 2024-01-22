@@ -153,7 +153,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
     check_dots_empty()
     if(missing(.dep_var)) {
-	    	message("In glm_plotdata() \u2013 setting missing `.dep_var` to cbind(pn, qn)")
+            message("In glm_plotdata() \u2013 setting missing `.dep_var` to cbind(pn, qn)")
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
@@ -197,24 +197,23 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     ind_var <- object$formula[[3]]
     ungrouped <- object %@% "ungroup"
 
-    dispersion <- summary(object)$dispersion
-    residual.scale <- as.vector(sqrt(dispersion))
-    pred <- # linear predictors and se from lm, same as predict.glm()
-        predict.lm(object, se.fit = TRUE, scale = residual.scale, type = "response")
-    fit <- pred$fit
-    ebar <- pred$se.fit
+    ebar <- predict(object, type = "link", se.fit = TRUE)$se.fit
     if (!is.na(conf_level)) {
-        .df <- sum(weights(object)) - 1
+        .df <- sum(object$prior.weights) - 1
         ebar <- ebar * qt((1 + conf_level)/2, .df)
     }
-    fit.lower <- pred$fit - ebar
-    fit.upper <- pred$fit + ebar
+    lower_upper <- ebar %o% c(-1, 1) + rep(object$linear.predictors, 2)
+    if (type == "response")
+        lower_upper <- family(object)$linkinv(lower_upper)
 
-    if (type == "response") {
-        .linkinv = family(object)$linkinv
-        fit <- .linkinv(fit)
-        fit.lower <- .linkinv(fit.lower)
-        fit.upper <- .linkinv(fit.upper)
+    if (is_glmybern(object)) {
+        cat("\nBernoulli data in glm_plotdata.default() - oops!\n")
+            stopifnot(
+                identical(
+                object$x[[1]],
+                as.character(binom_contingency(object$data, !!dep_var, !!ind_var)[[1]])
+            )
+        )
     }
 
     pdta <- object$data |>
@@ -228,9 +227,9 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
                 else
                     log((!!dep_var)[, 1] / (!!dep_var)[, 2])
             ),
-            pred = fit,
-            lower = fit.lower,
-            upper = fit.upper,
+            pred = with(object, if (type == "response") fitted.values else linear.predictors),
+            lower = lower_upper[, 1],
+            upper = lower_upper[, 2],
             across("pred":"upper", unname),
             across("obs":"upper", zapsmall),
             .keep = "none"
@@ -594,6 +593,6 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
 # Not exported
 
 is_glmybern <- function(x) {
-	stopifnot(inherits(x, c("glm", "lm")))
-	all(x$y %in% c(0, 1))
+    stopifnot(inherits(x, c("glm", "lm")))
+    all(x$y %in% c(0, 1))
 }
