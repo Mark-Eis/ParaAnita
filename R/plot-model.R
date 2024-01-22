@@ -86,7 +86,7 @@
 #' \item{upper}{Upper extent of error bar.}
 #'
 #' It also has attributes `"conf_level"`, signifying the confidence level, `"subtitle"`, by default the name of the
-#'  independant variable, and `"type"` (see argument `type`).  
+#'  independent variable, and `"type"` (see argument `type`).  
 #'
 #' @keywords dplot
 #' @export
@@ -211,49 +211,43 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     )
     if (length(formula(object)[[3]]) > 1)
         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
-    if (is_glmybern(object))
-        # stop("Bernoulli data not currently supported in glm_plotdata() - oops!")
-        warning("Bernoulli data not currently supported in glm_plotdata() - oops!")
+    if (bern <- is_glmybern(object))
+        warning("Bernoulli data only recently supported in glm_plotdata() - beta version!")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
     ungrouped <- object %@% "ungroup"
     
-    data <- {
-	    if (is_glmybern(object))
-		    object$data |> binom_contingency(!!dep_var, !!ind_var)
-	    else
-		    object$data
-    }
+    if (bern) {
+        data <- object$data |> binom_contingency(!!dep_var, !!ind_var)
+        pn <- qn <- NULL
+        dep_var <- expr(cbind(pn, qn))
+    } else
+        data <- object$data
 
     pred <- predict(object, data[, substitute(iv)], type = "link", se.fit = TRUE)
-
-    ebar <- {
-	    if (!is.na(conf_level)) {
-	        .df <- sum(object$prior.weights) - 1
-	        ebar <- pred$se.fit * qt((1 + conf_level)/2, .df)
-	    } else
-		    pred$se.fit
-	}
+    if (!is.na(conf_level)) {
+        .df <- sum(object$prior.weights) - 1
+        ebar <- pred$se.fit * qt((1 + conf_level)/2, .df)
+    } else
+        ebar <- pred$se.fit
 
     lower_upper <- ebar %o% c(-1, 1) + rep(pred$fit, 2)
     if (type == "response")
        lower_upper <- family(object)$linkinv(lower_upper)
 
-    pred <- predict(object, data[, substitute(iv)], type = type)
-
-    pdta <- object$data |>
+    pdta <- data |>
         mutate(
             level = !!ind_var,
             ungrouped = !!ungrouped,
-            n = object$prior.weights,
+            n = if (bern) pn + qn else object$prior.weights,
             obs = as.numeric(
                 if (type == "response")
                     (!!dep_var)[, 1] / n
                 else
                     log((!!dep_var)[, 1] / (!!dep_var)[, 2])
             ),
-            pred = with(object, if (type == "response") fitted.values else linear.predictors),
+            pred = predict(object, data[, as_name(ind_var)], type = type),
             lower = lower_upper[, 1],
             upper = lower_upper[, 2],
             across("pred":"upper", unname),
@@ -334,7 +328,7 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #'
 #' @param .facet_by `NULL`, the default; or, if the output is to be combined into a single object to be used for a
 #'   faceted plot, a `character vector` of length one used to name an additional column containing the names of the
-#'   independant variables.
+#'   independent variables.
 #'
 #' @inheritParams glm_plotdata
 #' @inheritParams binom_contingency

@@ -71,7 +71,7 @@ with values on the linear predictor or response scale (depending on \code{type})
 \item{upper}{Upper extent of error bar.}
 
 It also has attributes \code{"conf_level"}, signifying the confidence level, \code{"subtitle"}, by default the name of the
-independant variable, and \code{"type"} (see argument \code{type}).
+independent variable, and \code{"type"} (see argument \code{type}).
 }
 \description{
 \code{glm_plotdata()} outputs data collated suitably for easy creation of standardised plots with error bars representing

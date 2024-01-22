@@ -34,7 +34,7 @@ the alternative \code{"response"} is on the scale of the response variable; defa
 
 \item{.facet_by}{\code{NULL}, the default; or, if the output is to be combined into a single object to be used for a
 faceted plot, a \verb{character vector} of length one used to name an additional column containing the names of the
-independant variables.}
+independent variables.}
 }
 \value{
 If the argument \code{.facet_by} is \code{NULL}, a \code{list} of \code{"glm_plotdata"} objects suitable for producing multiple plots
