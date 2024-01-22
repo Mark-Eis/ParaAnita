@@ -12,7 +12,7 @@ confidence intervals or standard errors, based on predictions from univariable g
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.0007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.0008</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,10 +199,11 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d         7    59</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e         8    58</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Ungrouped data</span></span></span>
-<span class="r-in"><span><span class="co">## 95% Confidence interval by default</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span>                     <span class="co">## Linear predictor scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="co">## ___________________________________________________</span></span></span>
+<span class="r-in"><span><span class="co">## Ungrouped data, 95% Confidence interval (default)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On linear predictor scale (default)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -214,8 +215,9 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.80</span>  -<span style="color: #BB0000;">0.646</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">2.92</span>  -<span style="color: #BB0000;">1.35</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">2.72</span>  -<span style="color: #BB0000;">1.24</span> </span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>  <span class="co">## Response scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On response scale</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -228,9 +230,11 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 0.106 0.106 0.051<span style="text-decoration: underline;">3</span> 0.207</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 0.121 0.121 0.061<span style="text-decoration: underline;">6</span> 0.225</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Standard error</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>                     <span class="co">## Linear predictor scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="co">## ________________________________</span></span></span>
+<span class="r-in"><span><span class="co">## Ungrouped data, standard error</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On linear predictor scale (default)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -242,8 +246,9 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.52</span>  -<span style="color: #BB0000;">0.930</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">2.53</span>  -<span style="color: #BB0000;">1.73</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">2.36</span>  -<span style="color: #BB0000;">1.60</span> </span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>  <span class="co">## Response scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On response scale</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -256,7 +261,6 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 0.106 0.106 0.073<span style="text-decoration: underline;">7</span> 0.150</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 0.121 0.121 0.086<span style="text-decoration: underline;">4</span> 0.167</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Grouped data</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>iv2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, cd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="add_grps.html">add_grps</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, .key <span class="op">=</span> <span class="va">_</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> __________________________</span>
@@ -271,9 +275,11 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd        7    59</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e         8    58</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## 95% Confidence interval by default</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span><span class="op">)</span>                     <span class="co">## Linear predictor scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="co">## _________________________________________________</span></span></span>
+<span class="r-in"><span><span class="co">## Grouped data, 95% Confidence interval (default)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On linear predictor scale (default)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -285,8 +291,9 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">2.07</span>  -<span style="color: #BB0000;">1.15</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">2.07</span>  -<span style="color: #BB0000;">1.15</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">1.98</span> -<span style="color: #BB0000;">2.72</span>  -<span style="color: #BB0000;">1.24</span> </span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>  <span class="co">## Response scale</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On response scale</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -299,9 +306,11 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 0.106 0.167 0.112  0.240</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 0.121 0.121 0.061<span style="text-decoration: underline;">6</span> 0.225</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Standard error on linear predictor scale</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="co">## ______________________________</span></span></span>
+<span class="r-in"><span><span class="co">## Grouped data, standard error</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## On linear predictor scale (default)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -314,9 +323,11 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 -<span style="color: #BB0000;">2.13</span>  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">1.84</span>  -<span style="color: #BB0000;">1.38</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 -<span style="color: #BB0000;">1.98</span>  -<span style="color: #BB0000;">1.98</span> -<span style="color: #BB0000;">2.36</span>  -<span style="color: #BB0000;">1.60</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Standard error on response scale</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In glm_plotdata() – setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="co">## On response scale</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">glm_plotdata</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>,</span></span>
+<span class="r-in"><span>        .ungroup <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span>, type <span class="op">=</span> <span class="st">"response"</span></span></span>
+<span class="r-in"><span>     <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
