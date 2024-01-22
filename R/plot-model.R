@@ -93,28 +93,47 @@
 #' @examples
 #' (d <- binom_data())
 #'
-#' ## Ungrouped data
-#' ## 95% Confidence interval by default
-#' d |> glm_plotdata(.ind_var = iv)                     ## Linear predictor scale
-#' d |> glm_plotdata(.ind_var = iv, type = "response")  ## Response scale
+#' ## ___________________________________________________
+#' ## Ungrouped data, 95% Confidence interval (default)
 #'
-#' ## Standard error
-#' d |> glm_plotdata(.ind_var = iv, conf_level = NA)                     ## Linear predictor scale
-#' d |> glm_plotdata(.ind_var = iv, conf_level = NA, type = "response")  ## Response scale
+#' ## On linear predictor scale (default)
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv)
 #'
-#' ## Grouped data
+#' ## On response scale
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, type = "response")
+#'
+#' ## ________________________________
+#' ## Ungrouped data, standard error
+#'
+#' ## On linear predictor scale (default)
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA)
+#'
+#' ## On response scale
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA, type = "response")
+#'
 #' (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
 #'     add_grps(d, iv, .key = _))
 #'
-#' ## 95% Confidence interval by default
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv)                     ## Linear predictor scale
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, type = "response")  ## Response scale
+#' ## _________________________________________________
+#' ## Grouped data, 95% Confidence interval (default)
 #'
-#' ## Standard error on linear predictor scale
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA)
+#' ## On linear predictor scale (default)
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv)
 #'
-#' ## Standard error on response scale
-#' d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA, type = "response")
+#' ## On response scale
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response")
+#'
+#' ## ______________________________
+#' ## Grouped data, standard error
+#'
+#' ## On linear predictor scale (default)
+#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, conf_level = NA)
+#'
+#' ## On response scale
+#' d |> glm_plotdata(
+#'         .dep_var = cbind(pn, qn), .ind_var = iv2,
+#'         .ungroup = iv, conf_level = NA, type = "response"
+#'      )
 #'
 #' rm(d)
 
@@ -153,7 +172,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
     check_dots_empty()
     if(missing(.dep_var)) {
-            message("In glm_plotdata() \u2013 setting missing `.dep_var` to cbind(pn, qn)")
+        warning("setting missing `.dep_var` to cbind(pn, qn)")
         pn <- qn <- NULL 
         .dep_var <- expr(cbind(pn, qn))
     } else
@@ -206,15 +225,8 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     if (type == "response")
         lower_upper <- family(object)$linkinv(lower_upper)
 
-    if (is_glmybern(object)) {
-        cat("\nBernoulli data in glm_plotdata.default() - oops!\n")
-            stopifnot(
-                identical(
-                object$x[[1]],
-                as.character(binom_contingency(object$data, !!dep_var, !!ind_var)[[1]])
-            )
-        )
-    }
+    if (is_glmybern(object))
+        stop("Bernoulli data not currently supported in glm_plotdata() - oops!")
 
     pdta <- object$data |>
         mutate(

@@ -109,28 +109,47 @@ error is shown rather than a confidence interval.
 \examples{
 (d <- binom_data())
 
-## Ungrouped data
-## 95\% Confidence interval by default
-d |> glm_plotdata(.ind_var = iv)                     ## Linear predictor scale
-d |> glm_plotdata(.ind_var = iv, type = "response")  ## Response scale
+## ___________________________________________________
+## Ungrouped data, 95\% Confidence interval (default)
 
-## Standard error
-d |> glm_plotdata(.ind_var = iv, conf_level = NA)                     ## Linear predictor scale
-d |> glm_plotdata(.ind_var = iv, conf_level = NA, type = "response")  ## Response scale
+## On linear predictor scale (default)
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv)
 
-## Grouped data
+## On response scale
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, type = "response")
+
+## ________________________________
+## Ungrouped data, standard error
+
+## On linear predictor scale (default)
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA)
+
+## On response scale
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA, type = "response")
+
 (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
     add_grps(d, iv, .key = _))
 
-## 95\% Confidence interval by default
-d |> glm_plotdata(.ind_var = iv2, .ungroup = iv)                     ## Linear predictor scale
-d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, type = "response")  ## Response scale
+## _________________________________________________
+## Grouped data, 95\% Confidence interval (default)
 
-## Standard error on linear predictor scale
-d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA)
+## On linear predictor scale (default)
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv)
 
-## Standard error on response scale
-d |> glm_plotdata(.ind_var = iv2, .ungroup = iv, conf_level = NA, type = "response")
+## On response scale
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response")
+
+## ______________________________
+## Grouped data, standard error
+
+## On linear predictor scale (default)
+d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, conf_level = NA)
+
+## On response scale
+d |> glm_plotdata(
+        .dep_var = cbind(pn, qn), .ind_var = iv2,
+        .ungroup = iv, conf_level = NA, type = "response"
+     )
 
 rm(d)
 }
