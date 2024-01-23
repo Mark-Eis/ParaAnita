@@ -210,7 +210,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     if (length(formula(object)[[3]]) > 1)
         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
     if (bern <- is_glmybern(object))
-        warning("Bernoulli data only recently supported in glm_plotdata() - beta version!")
+        message("\nIn glm_plotdata()u\2024support for Bernoulli data in beta version!")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
