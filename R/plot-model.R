@@ -209,14 +209,12 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     )
     if (length(formula(object)[[3]]) > 1)
         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
-    if (bern <- is_glmybern(object))
-        message("\nIn glm_plotdata() \u2013 support for Bernoulli data in beta version!")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
     ungrouped <- object %@% "ungroup"
     
-    if (bern) {
+    if (bern <- is_glmybern(object)) {
         data <- object$data |> binom_contingency(!!dep_var, !!ind_var, !!ungrouped)
         pn <- qn <- NULL
         dep_var <- expr(cbind(pn, qn))
@@ -345,7 +343,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                             .type = c("link", "response"), .facet_by = NULL) {
 
     check_dots_unnamed()
-    .dep_var = enquo(.dep_var)
+    .dep_var = enexpr(.dep_var)
     pos <- eval_select(expr(c(...)), data)
     if (any(!.ungroups %in% names(pos)))
         stop(".ungroups \"", paste0(.ungroups[!.ungroups %in% names(pos)], collapse = "\", \""), "\" not found in ...!")
@@ -354,6 +352,8 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
         replace(.ungroups, names(.ungroups)) |>
         imap(\(ugp, level)
             glm_plotdata(
+                data,
+                .dep_var = !!.dep_var,
                 .ind_var = !!sym(level),
                 .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
                 conf_level = .conf_level,
