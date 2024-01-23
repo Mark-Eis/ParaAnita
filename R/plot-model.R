@@ -289,11 +289,11 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #' for each of a number of independent variables.
 #'
 #' @details
-#' `glm_plotlist()` invokes [`binom_contingency()`][binom_contingency] and [`glm_plotdata()`][glm_plotdata] to create
-#' a `list` of `"glm_plotdata"` objects for plotting univariable \acronym{GLM} predictions with error bars for each
-#' of a number of independent variables in `data`. Independent variables to be included are selected using the
-#' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package
-#' \pkg{\link[dplyr]{dplyr}}, including use of \dQuote{selection helpers}.
+#' `glm_plotlist()` invokes [`glm_plotdata()`][glm_plotdata] to create a `list` of `"glm_plotdata"` objects for
+#' plotting univariable \acronym{GLM} predictions with error bars for each of a number of independent variables
+#' in `data`. Independent variables to be included are selected using the \code{\dots} argument with the
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
+#' \dQuote{selection helpers}.
 #'
 #' Like [`glm_plotdata()`][glm_plotdata], `glm_plotlist()` allows exploration of proposed groupings of levels of
 #' independent variables (e.g. as obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse])
@@ -308,15 +308,14 @@ new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subti
 #'
 #' The `.conf_level` and `.type` arguments are handled as for [`glm_plotdata()`][glm_plotdata].
 #'
-#' [`glm_plotlist()`][glm_plotlist] may be used in conjunction with package \pkg{\link[purrr]{purrr}}
-#' [`map()`][purrr::map] to rapidly obtain multiple plots of univariable \acronym{GLM}s for a number of independent
-#' variables.
+#' [`glm_plotlist()`][glm_plotlist] may be used in conjunction with [`lapply()`][base::lapply] (or
+#' \pkg{\link[purrr]{purrr}} package [map()][purrr::map]) to rapidly obtain multiple plots of univariable
+#' \acronym{GLM}s for a number of independent variables.
 #'
 #' Levels of independent variables for which the observed values are all zero or all one are not included in the output,
 #' although they are taken into consideration in calculating denominators in the case of grouped levels.
 #'
-#' @seealso [`add_grps()`][add_grps], [`bind_rows()`][dplyr::bind_rows], [`binom_contingency()`][binom_contingency]
-#'   and [`fct_collapse()`][forcats::fct_collapse].
+#' @seealso [`add_grps()`][add_grps], [`bind_rows()`][dplyr::bind_rows] and [`fct_collapse()`][forcats::fct_collapse].
 #' @family plot_model
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> independent variables to be included in the plot data.
@@ -352,17 +351,18 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
         stop(".ungroups \"", paste0(.ungroups[!.ungroups %in% names(pos)], collapse = "\", \""), "\" not found in ...!")
     
     plist <- setNames(nm = names(pos)) |>
-    replace(.ungroups, names(.ungroups)) |>
-    imap(\(ugp, level) binom_contingency(.data = data, .dep_var = !!.dep_var, all_of(c(level, ugp))) |>
-        glm_plotdata(
-            .ind_var = !!sym(level),
-            .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
-            conf_level = .conf_level,
-            type = .type
-        ) |>
-        filter(.data$obs > 0, .data$obs < 1)
-    )
-    if (!is.null(.facet_by)){
+        replace(.ungroups, names(.ungroups)) |>
+        imap(\(ugp, level)
+            glm_plotdata(
+                .ind_var = !!sym(level),
+                .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
+                conf_level = .conf_level,
+                type = .type
+            ) |>
+            filter(.data$obs > 0, .data$obs < 1)
+        )
+
+    if (!is.null(.facet_by)) {
         plist <- bind_rows(plist, .id = .facet_by)
         plist %@% "facet_by" = .facet_by
         plist %@% "subtitle" = NULL
