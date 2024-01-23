@@ -103,11 +103,11 @@ its name from <code>.facet_by</code> and containing the names of the independent
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>glm_plotlist()</code> invokes <code><a href="binom_contingency.html">binom_contingency()</a></code> and <code><a href="glm_plotdata.html">glm_plotdata()</a></code> to create
-a <code>list</code> of <code>"glm_plotdata"</code> objects for plotting univariable <acronym>GLM</acronym> predictions with error bars for each
-of a number of independent variables in <code>data</code>. Independent variables to be included are selected using the
-<code>...</code> argument with the &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax of package
-<span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of “selection helpers”.</p>
+    <p><code>glm_plotlist()</code> invokes <code><a href="glm_plotdata.html">glm_plotdata()</a></code> to create a <code>list</code> of <code>"glm_plotdata"</code> objects for
+plotting univariable <acronym>GLM</acronym> predictions with error bars for each of a number of independent variables
+in <code>data</code>. Independent variables to be included are selected using the <code>...</code> argument with the
+&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax of package <span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of
+“selection helpers”.</p>
 <p>Like <code><a href="glm_plotdata.html">glm_plotdata()</a></code>, <code>glm_plotlist()</code> allows exploration of proposed groupings of levels of
 independent variables (e.g. as obtained using <code><a href="add_grps.html">add_grps()</a></code> or <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html" class="external-link">fct_collapse()</a></code>)
 and inclusion of both grouped and ungrouped levels in the <code>"glm_plotdata"</code> objects comprising its output list. In
@@ -118,16 +118,15 @@ otherwise mentioned will be left as is.</p>
 output in the column <code>grouped</code> within the corresponding <code>"glm_plotdata"</code> object, while the ungrouped levels are shown
 in the column <code>level</code>, see <code><a href="glm_plotdata.html">glm_plotdata()</a></code>.</p>
 <p>The <code>.conf_level</code> and <code>.type</code> arguments are handled as for <code><a href="glm_plotdata.html">glm_plotdata()</a></code>.</p>
-<p><code>glm_plotlist()</code> may be used in conjunction with package <span class="pkg"><a href="https://purrr.tidyverse.org/reference/purrr-package.html" class="external-link">purrr</a></span>
-<code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> to rapidly obtain multiple plots of univariable <acronym>GLM</acronym>s for a number of independent
-variables.</p>
+<p><code>glm_plotlist()</code> may be used in conjunction with <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> (or
+<span class="pkg"><a href="https://purrr.tidyverse.org/reference/purrr-package.html" class="external-link">purrr</a></span> package <a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a>) to rapidly obtain multiple plots of univariable
+<acronym>GLM</acronym>s for a number of independent variables.</p>
 <p>Levels of independent variables for which the observed values are all zero or all one are not included in the output,
 although they are taken into consideration in calculating denominators in the case of grouped levels.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="add_grps.html">add_grps()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows()</a></code>, <code><a href="binom_contingency.html">binom_contingency()</a></code>
-and <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html" class="external-link">fct_collapse()</a></code>.</p>
+    <div class="dont-index"><p><code><a href="add_grps.html">add_grps()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows()</a></code> and <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html" class="external-link">fct_collapse()</a></code>.</p>
 <p>Other plot_model: 
 <code><a href="plot_model.html">Plot_Model</a></code>,
 <code><a href="glm_plotdata.html">glm_plotdata</a>()</code>,
