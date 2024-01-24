@@ -199,8 +199,7 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
     check_dots_empty()
     .ind_var <- enexpr(.ind_var)
 
-    pn <- qn <- NULL
-    NextMethod(.dep_var = cbind(pn, qn))
+    NextMethod(.dep_var = quote(cbind(pn, qn)))
 }
 
 # ========================================
@@ -213,15 +212,24 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
     .stat = FALSE, .print_contr = FALSE) {
 
     check_dots_empty()
-    if(missing(.dep_var)) {
-        message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
-        pn <- qn <- NULL 
-        .dep_var <- expr(cbind(pn, qn))
-    } else
-        .dep_var <- enexpr(.dep_var)
+    # if(missing(.dep_var)) {
+        # message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
+        # pn <- qn <- NULL 
+        # .dep_var <- expr(cbind(pn, qn))
+    # } else
+        # .dep_var <- enexpr(.dep_var)
 
-    if (!inherits(object, "binom_contingency"))
+    # if (!inherits(object, "binom_contingency"))
+        # .ind_var <- enexpr(.ind_var)
+
+    if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
+        if(missing(.dep_var)) {
+	        message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
+            .dep_var <- quote(cbind(pn, qn))
+        } else
+            .dep_var <- enexpr(.dep_var)
+    }
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
