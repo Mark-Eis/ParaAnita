@@ -98,19 +98,22 @@ evaluation.</p></dd>
     <p>This S3 method plots model predictions and error bars representing confidence intervals or standard errors for a
 univariable glm with a categorical independent variable, optionally allowing representation of groupings of levels of
 the independent variable and faceting of a number of such plots.</p>
-<p><code>ggplot.glm_plotdata()</code> recognises a <code>factor</code> or character column in <code>data</code> named <code>grouped</code> for plotting grouped
+<p><code>ggplot.glm_plotdata()</code> recognises a <code>factor</code> or <code>character</code> column in <code>data</code> named <code>grouped</code> for plotting grouped
 levels of an independent variable that are grouped within the underlying model. If levels are indeed grouped in the
 model, the data bars will be plotted with colour-coded borders representing the groups, and the ungrouped observed
 values contained in the <code>data</code> column <code>level</code> are plotted as symbols. If ungrouped levels are to be plotted, the
 <code>grouped</code> column should only contain <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">NA</a></code> values</p>
 <p>A <code>character</code> column in <code>data</code> containing names of independent variables to be used for faceting may be identified by
 setting an attribute <code>"facet_by"</code> in <code>data</code>. Names of variables to be used for faceting may be converted to more
-informative facet labels for using a vectorised <code><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller()</a></code> function, see <code>labeller</code> under
-<code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code>.</p>
+informative facet labels by using a user-defined, vectorised <code><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller()</a></code> function which should
+be named <code><a href="var_labs.html">var_labs()</a></code>, see <code>labeller</code> under <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code>.</p>
+<p>If an individual plot, rather than a faceted plot, is printed, the name of the independent variable, converted by
+<code><a href="var_labs.html">var_labs()</a></code> (if provided), will be used  for the plot title. The plot title, subtitle and axis labels may be
+overridden using the usual <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code> syntax, see examples.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller()</a></code>.</p>
+    <div class="dont-index"><p><code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/labeller.html" class="external-link">labeller()</a></code>.</p>
 <p>Other plot_model: 
 <code><a href="glm_plotdata.html">glm_plotdata</a>()</code>,
 <code><a href="glm_plotlist.html">glm_plotlist</a>()</code>,
@@ -135,8 +138,11 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-in"><span>  legend.position <span class="op">=</span> <span class="st">"none"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Tweak to improve plot subtitles - see var_labs()</span></span></span>
-<span class="r-in"><span><span class="va">var_labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/as_labeller.html" class="external-link">as_labeller</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## "labeller()" function to provide plot titles - see var_labs()</span></span></span>
+<span class="r-in"><span><span class="va">var_labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/as_labeller.html" class="external-link">as_labeller</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>iv <span class="op">=</span> <span class="st">"Risk Factor (Ungrouped Levels)"</span>,</span></span>
+<span class="r-in"><span>      iv2 <span class="op">=</span> <span class="st">"Risk Factor (Grouped Levels)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Create binomial data with groupings</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>iv2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, cd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
@@ -153,81 +159,106 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd       13    53</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e         2    64</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Ungrouped plot data on GLM linear predictor scale</span></span></span>
+<span class="r-in"><span><span class="co">## Ungrouped plot GLM data on linear predictor scale</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred  lower    upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">0.182</span> -<span style="color: #BB0000;">0.182</span> -<span style="color: #BB0000;">0.669</span>  0.304  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">0.495</span> -<span style="color: #BB0000;">0.495</span> -<span style="color: #BB0000;">0.994</span>  0.004<span style="text-decoration: underline;">49</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">0.981</span> -<span style="color: #BB0000;">0.981</span> -<span style="color: #BB0000;">1.52</span>  -<span style="color: #BB0000;">0.437</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.41</span>  -<span style="color: #BB0000;">1.41</span>  -<span style="color: #BB0000;">2.01</span>  -<span style="color: #BB0000;">0.796</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">4.88</span>  -<span style="color: #BB0000;">2.05</span>   </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars</span></span></span>
 <span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars with reversed y-axis</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars with reversed y-axis</span></span></span>
 <span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Grouped plot data on GLM linear predictor scale</span></span></span>
+<span class="r-in"><span><span class="co">## Grouped plot GLM data on linear predictor scale</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred  lower   upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66 -<span style="color: #BB0000;">0.182</span> -<span style="color: #BB0000;">0.336</span> -<span style="color: #BB0000;">0.684</span>  0.010<span style="text-decoration: underline;">8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 -<span style="color: #BB0000;">0.495</span> -<span style="color: #BB0000;">0.336</span> -<span style="color: #BB0000;">0.684</span>  0.010<span style="text-decoration: underline;">8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 -<span style="color: #BB0000;">0.981</span> -<span style="color: #BB0000;">1.18</span>  -<span style="color: #BB0000;">1.59</span>  -<span style="color: #BB0000;">0.777</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 -<span style="color: #BB0000;">1.41</span>  -<span style="color: #BB0000;">1.18</span>  -<span style="color: #BB0000;">1.59</span>  -<span style="color: #BB0000;">0.777</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">4.88</span>  -<span style="color: #BB0000;">2.05</span>  </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars with reversed y-axis</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars with reversed y-axis</span></span></span>
 <span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Ungrouped plot data on GLM reponse scale</span></span></span>
+<span class="r-in"><span><span class="co">## Ungrouped plot GLM data on reponse scale</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred   lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66 0.455  0.455  0.339   0.575</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 0.379  0.379  0.270   0.501</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 0.273  0.273  0.179   0.392</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 0.197  0.197  0.118   0.311</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 0.030<span style="text-decoration: underline;">3</span> 0.030<span style="text-decoration: underline;">3</span> 0.007<span style="text-decoration: underline;">55</span> 0.114</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Grouped plot data on GLM reponse scale</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars, with y-axis as percentage</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Grouped plot GLM data on reponse scale</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred   lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66 0.455  0.417  0.335   0.503</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 0.379  0.417  0.335   0.503</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 0.273  0.235  0.170   0.315</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 0.197  0.235  0.170   0.315</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 0.030<span style="text-decoration: underline;">3</span> 0.030<span style="text-decoration: underline;">3</span> 0.007<span style="text-decoration: underline;">55</span> 0.114</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and CI error bars</span></span></span>
 <span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_model-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot_model-6.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Grouped plot GLM data on reponse scale with standard errors </span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                    <span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>,</span></span>
+<span class="r-in"><span>                    .ungroup <span class="op">=</span> <span class="va">iv</span>, conf_level <span class="op">=</span> <span class="cn">NA</span>, type <span class="op">=</span> <span class="st">"response"</span></span></span>
+<span class="r-in"><span>                   <span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred  lower  upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66 0.455  0.417  0.374  0.460 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 0.379  0.417  0.374  0.460 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 0.273  0.235  0.200  0.274 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd         66 0.197  0.235  0.200  0.274 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 0.030<span style="text-decoration: underline;">3</span> 0.030<span style="text-decoration: underline;">3</span> 0.015<span style="text-decoration: underline;">0</span> 0.060<span style="text-decoration: underline;">2</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and standard error bars</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Add x-axis label and bespoke titles</span></span></span>
 <span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -236,7 +267,7 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Example for ggplot.glm_plotdata()"</span>,</span></span>
 <span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Fascinating Results"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_model-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot_model-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="va">oldtheme</span><span class="op">)</span>    <span class="co">## Restore original ggplot defaults</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">dp</span>, <span class="va">oldtheme</span><span class="op">)</span></span></span>

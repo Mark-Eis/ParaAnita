@@ -85,7 +85,7 @@ e.g., a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.htm
 
 
 <dt>.ind_var</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name of the independent variable.</p></dd>
+<dd><p>quoted name of the independent variable.</p></dd>
 
 
 <dt>.ungroup</dt>
@@ -104,9 +104,8 @@ the alternative <code>"response"</code> is on the scale of the response variable
 
 
 <dt>.dep_var</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name(s) of the response variable(s) in the data
-representing the number of successes and failures respectively, see <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>; default
-<code>cbind(pn, qn)</code>.</p></dd>
+<dd><p>quoted name(s) of the response variable(s) in the data representing the number of successes and
+failures respectively, see <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>; default <code>cbind(pn, qn)</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -143,7 +142,7 @@ with values on the linear predictor or response scale (depending on <code>type</
 <dd><p>Upper extent of error bar.</p></dd>
 
 
-</dl><p>It also has attributes <code>"conf_level"</code>, signifying the confidence level, <code>"subtitle"</code>, by default the name of the
+</dl><p>It also has attributes <code>"conf_level"</code>, signifying the confidence level, <code>"ind_var"</code>, the name of the
 independent variable, and <code>"type"</code> (see argument <code>type</code>).</p>
     </div>
     <div class="section level2">
@@ -159,9 +158,9 @@ argument should name a column in <code>object</code>'s data containing the ungro
 used as the independent variable in the <acronym>GLM</acronym> and are shown within the output object in the column <code>grouped</code>
 while the ungrouped levels are shown in the column <code>level</code>. If the <code>.ungroup</code> is <code>NULL</code> (the default), levels of
 <code>.ind_var</code> will appear in the column <code>level</code> and the <code>grouped</code> column in the output will contain <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">NA</a></code>.</p>
-<p>If <code>conf_level</code> is a value such as <var>0.95</var> (the default) or a similar value, <code>lower</code> and <code>upper</code>
-values in the output delimit the prediction confidence intervals at that confidence level. If <code>conf_level</code> is
-<code><a href="https://rdrr.io/r/base/NA.html" class="external-link">NA</a></code>, then the <code>lower</code> and <code>upper</code> are the model predictions ±standard error.</p>
+<p>If <code>conf_level</code> is <code>0.95</code> (the default) or a similar value, the <code>lower</code> and <code>upper</code> columns in the output delimit
+the prediction intervals at that confidence level. If <code>conf_level</code> is <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">NA</a></code>, then <code>lower</code> and <code>upper</code>
+are the model predictions ±standard error.</p>
 <p>If <code>type = "link"</code>, then the linear predictors and their confidence intervals or ±standard errors are obtained.
 If <code>type = "response"</code>, then the linear predictors and their confidence intervals or ±standard errors are
 transformed back to the response scale using the link inverse function.</p>
@@ -209,7 +208,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred  lower  upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66  0.121  0.121 -<span style="color: #BB0000;">0.364</span>  0.607</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">0.121</span> -<span style="color: #BB0000;">0.121</span> -<span style="color: #BB0000;">0.607</span>  0.364</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.80</span>  -<span style="color: #BB0000;">0.646</span></span>
@@ -223,7 +222,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n   obs  pred  lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66 0.530 0.530 0.410  0.647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 0.470 0.470 0.353  0.590</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 0.227 0.227 0.142  0.344</span>
@@ -240,7 +239,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs   pred  lower  upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66  0.121  0.121 -<span style="color: #BB0000;">0.125</span>  0.368</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">0.121</span> -<span style="color: #BB0000;">0.121</span> -<span style="color: #BB0000;">0.368</span>  0.125</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.52</span>  -<span style="color: #BB0000;">0.930</span></span>
@@ -254,7 +253,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n   obs  pred  lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     <span style="color: #BB0000;">NA</span>         66 0.530 0.530 0.469  0.591</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     <span style="color: #BB0000;">NA</span>         66 0.470 0.470 0.409  0.531</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     <span style="color: #BB0000;">NA</span>         66 0.227 0.227 0.180  0.283</span>
@@ -285,7 +284,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs  pred  lower  upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66  0.121  0    -<span style="color: #BB0000;">0.342</span>  0.342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 -<span style="color: #BB0000;">0.121</span>  0    -<span style="color: #BB0000;">0.342</span>  0.342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">2.07</span>  -<span style="color: #BB0000;">1.15</span> </span>
@@ -299,7 +298,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n   obs  pred  lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66 0.530 0.5   0.415  0.585</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 0.470 0.5   0.415  0.585</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 0.227 0.167 0.112  0.240</span>
@@ -316,7 +315,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n    obs  pred  lower  upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66  0.121  0    -<span style="color: #BB0000;">0.174</span>  0.174</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 -<span style="color: #BB0000;">0.121</span>  0    -<span style="color: #BB0000;">0.174</span>  0.174</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 -<span style="color: #BB0000;">1.22</span>  -<span style="color: #BB0000;">1.61</span> -<span style="color: #BB0000;">1.84</span>  -<span style="color: #BB0000;">1.38</span> </span>
@@ -333,7 +332,7 @@ error is shown rather than a confidence interval.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   level grouped     n   obs  pred  lower upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> a     ab         66 0.530 0.5   0.457  0.543</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> b     ab         66 0.470 0.5   0.457  0.543</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c     cd         66 0.227 0.167 0.137  0.202</span>
