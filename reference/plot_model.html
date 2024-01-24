@@ -135,6 +135,9 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-in"><span>  legend.position <span class="op">=</span> <span class="st">"none"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Tweak to improve plot subtitles - see var_labs()</span></span></span>
+<span class="r-in"><span><span class="va">var_labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/as_labeller.html" class="external-link">as_labeller</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Create binomial data with groupings</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>iv2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, cd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="add_grps.html">add_grps</a></span><span class="op">(</span><span class="fu"><a href="Simulate_Data.html">binom_data</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">iv</span>, .key <span class="op">=</span> <span class="va">_</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -150,19 +153,8 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     cd       13    53</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e         2    64</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Set plot title and axis labels</span></span></span>
-<span class="r-in"><span><span class="va">plabs</span><span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  x <span class="op">=</span> <span class="st">"Level"</span>,</span></span>
-<span class="r-in"><span>  y <span class="op">=</span> <span class="st">"Linear predictor scale (logit)"</span>,</span></span>
-<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Example for ggplot.glm_plotdata()"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Tweak to improve plot subtitles - see var_labs()</span></span></span>
-<span class="r-in"><span><span class="va">var_labs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/as_labeller.html" class="external-link">as_labeller</a></span><span class="op">(</span><span class="va">toupper</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Ungrouped plot data on GLM linear predictor scale</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -175,13 +167,16 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">1.41</span>  -<span style="color: #BB0000;">1.41</span>  -<span style="color: #BB0000;">2.01</span>  -<span style="color: #BB0000;">0.796</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">4.88</span>  -<span style="color: #BB0000;">2.05</span>   </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Plot model predictions and error bars with reversed y-axis</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">plabs</span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Plot model predictions and error bars with reversed y-axis</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Grouped plot data on GLM linear predictor scale</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -195,15 +190,11 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">3.47</span>  -<span style="color: #BB0000;">4.88</span>  -<span style="color: #BB0000;">2.05</span>  </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Plot model predictions and error bars with reversed y-axis</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">plabs</span></span></span>
-<span class="r-plt img"><img src="plot_model-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Revise y-axis title</span></span></span>
-<span class="r-in"><span><span class="va">plabs</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"Proportion Positive (%)"</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>rev_y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Ungrouped plot data on GLM reponse scale</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -217,12 +208,11 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     <span style="color: #BB0000;">NA</span>         66 0.030<span style="text-decoration: underline;">3</span> 0.030<span style="text-decoration: underline;">3</span> 0.007<span style="text-decoration: underline;">55</span> 0.114</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">plabs</span></span></span>
-<span class="r-plt img"><img src="plot_model-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Grouped plot data on GLM reponse scale</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>setting missing `.dep_var` to cbind(pn, qn)</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_plotdata.html">glm_plotdata</a></span><span class="op">(</span><span class="va">d</span>, .dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv2</span>, .ungroup <span class="op">=</span> <span class="va">iv</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GLM Plot Data: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -236,16 +226,20 @@ informative facet labels for using a vectorised <code><a href="https://ggplot2.t
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     e          66 0.030<span style="text-decoration: underline;">3</span> 0.030<span style="text-decoration: underline;">3</span> 0.007<span style="text-decoration: underline;">55</span> 0.114</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Plot model predictions and error bars</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">plabs</span></span></span>
-<span class="r-plt img"><img src="plot_model-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Override default subtitle</span></span></span>
-<span class="r-in"><span><span class="va">plabs</span><span class="op">$</span><span class="va">subtitle</span> <span class="op">&lt;-</span> <span class="st">"Fascinating Results"</span></span></span>
-<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">plabs</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_model-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Add x-axis label and bespoke titles</span></span></span>
+<span class="r-in"><span><span class="va">dp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>as_percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="st">"Level"</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Example for ggplot.glm_plotdata()"</span>,</span></span>
+<span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Fascinating Results"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_model-6.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="va">oldtheme</span><span class="op">)</span>    <span class="co">## Restore original ggplot defaults</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">dp</span>, <span class="va">oldtheme</span>, <span class="va">plabs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">dp</span>, <span class="va">oldtheme</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
