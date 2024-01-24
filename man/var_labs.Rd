@@ -13,8 +13,8 @@ var_labs(labels)
 A character vector containing the revised names.
 }
 \description{
-Vectorised labeller function used by \code{plot_model} for revising variable names for use as subtitles in
-individual plots or as facet labels in faceted plots.
+Vectorised labeller function used by \code{\link[=ggplot.glm_plotdata]{ggplot.glm_plotdata()}} for revising variable names for use as subtitles
+in individual plots or as facet labels in faceted plots.
 }
 \details{
 \code{var_labs} in package \pkg{\link[ParaAnita]{ParaAnita}} simply applies \code{\link[stringr:case]{str_to_title}}

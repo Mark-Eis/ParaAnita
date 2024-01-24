@@ -376,8 +376,8 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
 #' Format or Lookup Variable Names for Plot Titles
 #'
 #' @description
-#' Vectorised labeller function used by `plot_model` for revising variable names for use as subtitles in
-#' individual plots or as facet labels in faceted plots.
+#' Vectorised labeller function used by [`ggplot.glm_plotdata()`] for revising variable names for use as subtitles
+#' in individual plots or as facet labels in faceted plots.
 #'
 #' @details
 #' `var_labs` in package \pkg{\link[ParaAnita]{ParaAnita}} simply applies [`str_to_title`][stringr::str_to_title]
@@ -479,57 +479,50 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #'   legend.position = "none"
 #' )
 #'
+#' ## Tweak to improve plot subtitles - see var_labs()
+#' var_labs <- as_labeller(toupper)
+#'
 #' ## Create binomial data with groupings
 #' (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
 #'     add_grps(binom_data(), iv, .key = _))
 #'
-#' ## Set plot title and axis labels
-#' plabs<- labs(
-#'   x = "Level",
-#'   y = "Linear predictor scale (logit)",
-#'   title = "Example for ggplot.glm_plotdata()"
-#' )
-#'
-#' ## Tweak to improve plot subtitles - see var_labs()
-#' var_labs <- as_labeller(toupper)
-#'
 #' ## Ungrouped plot data on GLM linear predictor scale
-#' (dp <- glm_plotdata(d, .ind_var = iv))
-# #' (dp <- plotdata(d, .ind_var = iv))
+#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv))
+#'
+#' ## Plot model predictions and error bars
+#' dp |> ggplot()
 #'
 #' ## Plot model predictions and error bars with reversed y-axis
-#' dp |> ggplot(rev_y = TRUE) + plabs
+#' dp |> ggplot(rev_y = TRUE)
 #'
 #' ## Grouped plot data on GLM linear predictor scale
-#' (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv))
-# #' (dp <- plotdata(d, .ind_var = iv2, .ungroup = iv))
+#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv))
 #'
 #' ## Plot model predictions and error bars with reversed y-axis
-#' dp |> ggplot(rev_y = TRUE) + plabs
-#'
-#' ## Revise y-axis title
-#' plabs$y <- "Proportion Positive (%)"
+#' dp |> ggplot(rev_y = TRUE)
 #'
 #' ## Ungrouped plot data on GLM reponse scale
-#' (dp <- glm_plotdata(d, .ind_var = iv, type = "response"))
-# #' (dp <- plotdata(d, .ind_var = iv, type = "response"))
+#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
 #'
 #' ## Plot model predictions and error bars
-#' dp |> ggplot(as_percent = TRUE) + plabs
+#' dp |> ggplot(as_percent = TRUE)
 #'
 #' ## Grouped plot data on GLM reponse scale
-#' (dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
-# #' (dp <- plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
+#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response"))
 #'
 #' ## Plot model predictions and error bars
-#' dp |> ggplot(as_percent = TRUE) + plabs
+#' dp |> ggplot(as_percent = TRUE)
 #'
-#' ## Override default subtitle
-#' plabs$subtitle <- "Fascinating Results"
-#' dp |> ggplot(as_percent = TRUE) + plabs
+#' ## Add x-axis label and bespoke titles
+#' dp |> ggplot(as_percent = TRUE) +
+#' labs(
+#'     x = "Level",
+#'     title = "Example for ggplot.glm_plotdata()",
+#'     subtitle = "Fascinating Results"
+#' )
 #'
 #' theme_set(oldtheme)    ## Restore original ggplot defaults
-#' rm(d, dp, oldtheme, plabs)
+#' rm(d, dp, oldtheme)
 
 
 # ========================================
@@ -583,7 +576,12 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     ) +
     labs(
         x = NULL,
-        y = "Probability",
+        # y = "Probability",
+        y = if (data %@% "type" == "link")
+                "Linear predictor scale (logit)"
+            else {
+            	    if (as_percent) "Proportion Positive (%)" else "Probability"
+            	},
         title = "Model Predictions and CI"
     ) + {
         var_labs <- match.fun("var_labs")

@@ -72,53 +72,50 @@ theme_update(
   legend.position = "none"
 )
 
+## Tweak to improve plot subtitles - see var_labs()
+var_labs <- as_labeller(toupper)
+
 ## Create binomial data with groupings
 (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
     add_grps(binom_data(), iv, .key = _))
 
-## Set plot title and axis labels
-plabs<- labs(
-  x = "Level",
-  y = "Linear predictor scale (logit)",
-  title = "Example for ggplot.glm_plotdata()"
-)
-
-## Tweak to improve plot subtitles - see var_labs()
-var_labs <- as_labeller(toupper)
-
 ## Ungrouped plot data on GLM linear predictor scale
-(dp <- glm_plotdata(d, .ind_var = iv))
+(dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv))
+
+## Plot model predictions and error bars
+dp |> ggplot()
 
 ## Plot model predictions and error bars with reversed y-axis
-dp |> ggplot(rev_y = TRUE) + plabs
+dp |> ggplot(rev_y = TRUE)
 
 ## Grouped plot data on GLM linear predictor scale
-(dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv))
+(dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv))
 
 ## Plot model predictions and error bars with reversed y-axis
-dp |> ggplot(rev_y = TRUE) + plabs
-
-## Revise y-axis title
-plabs$y <- "Proportion Positive (\%)"
+dp |> ggplot(rev_y = TRUE)
 
 ## Ungrouped plot data on GLM reponse scale
-(dp <- glm_plotdata(d, .ind_var = iv, type = "response"))
+(dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
 
 ## Plot model predictions and error bars
-dp |> ggplot(as_percent = TRUE) + plabs
+dp |> ggplot(as_percent = TRUE)
 
 ## Grouped plot data on GLM reponse scale
-(dp <- glm_plotdata(d, .ind_var = iv2, .ungroup = iv, type = "response"))
+(dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response"))
 
 ## Plot model predictions and error bars
-dp |> ggplot(as_percent = TRUE) + plabs
+dp |> ggplot(as_percent = TRUE)
 
-## Override default subtitle
-plabs$subtitle <- "Fascinating Results"
-dp |> ggplot(as_percent = TRUE) + plabs
+## Add x-axis label and bespoke titles
+dp |> ggplot(as_percent = TRUE) +
+labs(
+    x = "Level",
+    title = "Example for ggplot.glm_plotdata()",
+    subtitle = "Fascinating Results"
+)
 
 theme_set(oldtheme)    ## Restore original ggplot defaults
-rm(d, dp, oldtheme, plabs)
+rm(d, dp, oldtheme)
 }
 \seealso{
 \code{\link[ggplot2:facet_wrap]{facet_wrap()}}, \code{\link[ggplot2:ggplot]{ggplot}}, \code{\link[ggplot2:labeller]{labeller()}}.
