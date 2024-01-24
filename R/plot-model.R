@@ -505,6 +505,9 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
 #'
 #' ## Plot model predictions and error bars
+#' dp |> ggplot()
+#'
+#' ## Plot model predictions and error bars, with y-axis as percentage
 #' dp |> ggplot(as_percent = TRUE)
 #'
 #' ## Grouped plot data on GLM reponse scale
