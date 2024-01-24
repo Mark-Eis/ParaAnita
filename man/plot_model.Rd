@@ -44,7 +44,7 @@ This S3 method plots model predictions and error bars representing confidence in
 univariable glm with a categorical independent variable, optionally allowing representation of groupings of levels of
 the independent variable and faceting of a number of such plots.
 
-\code{ggplot.glm_plotdata()} recognises a \code{factor} or character column in \code{data} named \code{grouped} for plotting grouped
+\code{ggplot.glm_plotdata()} recognises a \code{factor} or \code{character} column in \code{data} named \code{grouped} for plotting grouped
 levels of an independent variable that are grouped within the underlying model. If levels are indeed grouped in the
 model, the data bars will be plotted with colour-coded borders representing the groups, and the ungrouped observed
 values contained in the \code{data} column \code{level} are plotted as symbols. If ungrouped levels are to be plotted, the
@@ -52,8 +52,12 @@ values contained in the \code{data} column \code{level} are plotted as symbols. 
 
 A \code{character} column in \code{data} containing names of independent variables to be used for faceting may be identified by
 setting an attribute \code{"facet_by"} in \code{data}. Names of variables to be used for faceting may be converted to more
-informative facet labels for using a vectorised \code{\link[ggplot2:labeller]{labeller()}} function, see \code{labeller} under
-\code{\link[ggplot2:facet_wrap]{facet_wrap()}}.
+informative facet labels by using a user-defined, vectorised \code{\link[ggplot2:labeller]{labeller()}} function which should
+be named \code{\link[=var_labs]{var_labs()}}, see \code{labeller} under \code{\link[ggplot2:facet_wrap]{facet_wrap()}}.
+
+If an individual plot, rather than a faceted plot, is printed, the name of the independent variable, converted by
+\code{var_labs()} (if provided), will be used  for the plot title. The plot title, subtitle and axis labels may be
+overridden using the usual \code{\link[ggplot2:ggplot]{ggplot()}} syntax, see examples.
 }
 \examples{
 ## Example uses randomly generated data; re-running may be worthwhile.  
@@ -72,8 +76,11 @@ theme_update(
   legend.position = "none"
 )
 
-## Tweak to improve plot subtitles - see var_labs()
-var_labs <- as_labeller(toupper)
+## "labeller()" function to provide plot titles - see var_labs()
+var_labs <- as_labeller(
+    c(iv = "Risk Factor (Ungrouped Levels)",
+      iv2 = "Risk Factor (Grouped Levels)")
+)
 
 ## Create binomial data with groupings
 (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
@@ -130,7 +137,7 @@ theme_set(oldtheme)    ## Restore original ggplot defaults
 rm(d, dp, oldtheme)
 }
 \seealso{
-\code{\link[ggplot2:facet_wrap]{facet_wrap()}}, \code{\link[ggplot2:ggplot]{ggplot}}, \code{\link[ggplot2:labeller]{labeller()}}.
+\code{\link[ggplot2:facet_wrap]{facet_wrap()}}, \code{\link[ggplot2:ggplot]{ggplot()}}, \code{\link[ggplot2:labeller]{labeller()}}.
 
 Other plot_model: 
 \code{\link{glm_plotdata}()},

@@ -29,9 +29,9 @@
 #' while the ungrouped levels are shown in the column `level`. If the `.ungroup` is `NULL` (the default), levels of
 #' `.ind_var` will appear in the column `level` and the `grouped` column in the output will contain [`NA`][base::NA].
 #'
-#' If `conf_level` is a value such as \var{0.95} (the default) or a similar value, `lower` and `upper`
-#' values in the output delimit the prediction confidence intervals at that confidence level. If `conf_level` is
-#' [`NA`][base::NA], then the `lower` and `upper` are the model predictions ±standard error.
+#' If `conf_level` is `0.95` (the default) or a similar value, the `lower` and `upper` columns in the output delimit
+#' the prediction intervals at that confidence level. If `conf_level` is [`NA`][base::NA], then `lower` and `upper`
+#' are the model predictions ±standard error.
 #'
 #' If `type = "link"`, then the linear predictors and their confidence intervals or ±standard errors are obtained.
 #' If `type = "response"`, then the linear predictors and their confidence intervals or ±standard errors are
@@ -53,11 +53,10 @@
 #'
 #' @param \dots further arguments passed to or from other methods. Not currently used.
 #' 
-#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name(s) of the response variable(s) in the data
-#'   representing the number of successes and failures respectively, see [`glm()`][stats::glm]; default
-#'   `cbind(pn, qn)`.
+#' @param .dep_var quoted name(s) of the response variable(s) in the data representing the number of successes and
+#'   failures respectively, see [`glm()`][stats::glm]; default `cbind(pn, qn)`.
 #'
-#' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable.
+#' @param .ind_var quoted name of the independent variable.
 #'
 #' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped levels
 #'   of `.ind_var`, see details; default `NULL`.
@@ -175,7 +174,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
         .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
         if(missing(.dep_var)) {
-            warning("setting missing `.dep_var` to cbind(pn, qn)")
+            warning("Missing `.dep_var`; setting to default of cbind(pn, qn)")
             .dep_var <- quote(cbind(pn, qn))
         } else
             .dep_var <- enexpr(.dep_var)
@@ -236,7 +235,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
         mutate(
             level = !!ind_var,
             ungrouped = !!ungrouped,
-            n = if (bern) pn + qn else object$prior.weights,
+            n = as.integer(if (bern) pn + qn else object$prior.weights),
             obs = as.numeric(
                 if (type == "response")
                     (!!dep_var)[, 1] / n
@@ -376,8 +375,8 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
 #' Format or Lookup Variable Names for Plot Titles
 #'
 #' @description
-#' Vectorised labeller function used by [`ggplot.glm_plotdata()`] for revising variable names for use as subtitles
-#' in individual plots or as facet labels in faceted plots.
+#' Vectorised labeller function used by [`ggplot.glm_plotdata()`][ggplot.glm_plotdata] for revising variable names
+#' for use as subtitles in individual plots or as facet labels in faceted plots.
 #'
 #' @details
 #' `var_labs` in package \pkg{\link[ParaAnita]{ParaAnita}} simply applies [`str_to_title`][stringr::str_to_title]
@@ -433,7 +432,7 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' univariable glm with a categorical independent variable, optionally allowing representation of groupings of levels of
 #' the independent variable and faceting of a number of such plots.
 #'
-#' `ggplot.glm_plotdata()` recognises a `factor` or character column in `data` named `grouped` for plotting grouped
+#' `ggplot.glm_plotdata()` recognises a `factor` or `character` column in `data` named `grouped` for plotting grouped
 #' levels of an independent variable that are grouped within the underlying model. If levels are indeed grouped in the
 #' model, the data bars will be plotted with colour-coded borders representing the groups, and the ungrouped observed
 #' values contained in the `data` column `level` are plotted as symbols. If ungrouped levels are to be plotted, the
@@ -441,10 +440,14 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #'
 #' A `character` column in `data` containing names of independent variables to be used for faceting may be identified by
 #' setting an attribute `"facet_by"` in `data`. Names of variables to be used for faceting may be converted to more
-#' informative facet labels for using a vectorised [`labeller()`][ggplot2::labeller] function, see `labeller` under
-#' [`facet_wrap()`][ggplot2::facet_wrap].
+#' informative facet labels by using a user-defined, vectorised [`labeller()`][ggplot2::labeller] function which should
+#' be named [`var_labs()`][var_labs], see `labeller` under [`facet_wrap()`][ggplot2::facet_wrap].
 #'
-#' @seealso [`facet_wrap()`][ggplot2::facet_wrap], [`ggplot`][ggplot2::ggplot], [`labeller()`][ggplot2::labeller].
+#' If an individual plot, rather than a faceted plot, is printed, the name of the independent variable, converted by
+#' `var_labs()` (if provided), will be used  for the plot title. The plot title, subtitle and axis labels may be
+#' overridden using the usual [`ggplot()`][ggplot2::ggplot] syntax, see examples.
+#'
+#' @seealso [`facet_wrap()`][ggplot2::facet_wrap], [`ggplot()`][ggplot2::ggplot], [`labeller()`][ggplot2::labeller].
 #' @family plot_model
 #'
 #' @param as_percent `logical`. If `TRUE`, the y-axis uses a percentage scale; default `FALSE`.
@@ -479,8 +482,11 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #'   legend.position = "none"
 #' )
 #'
-#' ## Tweak to improve plot subtitles - see var_labs()
-#' var_labs <- as_labeller(toupper)
+#' ## "labeller()" function to provide plot titles - see var_labs()
+#' var_labs <- as_labeller(
+#'     c(iv = "Risk Factor (Ungrouped Levels)",
+#'       iv2 = "Risk Factor (Grouped Levels)")
+#' )
 #'
 #' ## Create binomial data with groupings
 #' (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
@@ -593,7 +599,6 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
             else {
                     if (as_percent) "Proportion Positive (%)" else "Probability"
                  },
-        # title = if (is.na(data %@% "conf_level"))
         subtitle = if (is.na(data %@% "conf_level"))
                     "Model Predictions and Standard Errors"
                 else
@@ -606,7 +611,6 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
                 scales = "free",            # drops unused levels
                 labeller = as_labeller(var_labs)
             )
-        # } else labs(subtitle = data %@% "ind_var" |> var_labs())
         } else labs(title = data %@% "ind_var" |> var_labs())
     } + {
         if (as_percent)

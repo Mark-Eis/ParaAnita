@@ -37,7 +37,7 @@ e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm
 
 \item{\dots}{further arguments passed to or from other methods. Not currently used.}
 
-\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable.}
+\item{.ind_var}{quoted name of the independent variable.}
 
 \item{.ungroup}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the column containing the ungrouped levels
 of \code{.ind_var}, see details; default \code{NULL}.}
@@ -48,9 +48,8 @@ standard error.}
 \item{type}{the type of prediction required. The default is on the scale of the linear predictors;
 the alternative \code{"response"} is on the scale of the response variable; default \code{"link"}.}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of the response variable(s) in the data
-representing the number of successes and failures respectively, see \code{\link[stats:glm]{glm()}}; default
-\code{cbind(pn, qn)}.}
+\item{.dep_var}{quoted name(s) of the response variable(s) in the data representing the number of successes and
+failures respectively, see \code{\link[stats:glm]{glm()}}; default \code{cbind(pn, qn)}.}
 }
 \value{
 An object of class \code{"glm_plotdata"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -91,9 +90,9 @@ used as the independent variable in the \acronym{GLM} and are shown within the o
 while the ungrouped levels are shown in the column \code{level}. If the \code{.ungroup} is \code{NULL} (the default), levels of
 \code{.ind_var} will appear in the column \code{level} and the \code{grouped} column in the output will contain \code{\link[base:NA]{NA}}.
 
-If \code{conf_level} is a value such as \var{0.95} (the default) or a similar value, \code{lower} and \code{upper}
-values in the output delimit the prediction confidence intervals at that confidence level. If \code{conf_level} is
-\code{\link[base:NA]{NA}}, then the \code{lower} and \code{upper} are the model predictions ±standard error.
+If \code{conf_level} is \code{0.95} (the default) or a similar value, the \code{lower} and \code{upper} columns in the output delimit
+the prediction intervals at that confidence level. If \code{conf_level} is \code{\link[base:NA]{NA}}, then \code{lower} and \code{upper}
+are the model predictions ±standard error.
 
 If \code{type = "link"}, then the linear predictors and their confidence intervals or ±standard errors are obtained.
 If \code{type = "response"}, then the linear predictors and their confidence intervals or ±standard errors are
