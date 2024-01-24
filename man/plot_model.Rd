@@ -79,31 +79,43 @@ var_labs <- as_labeller(toupper)
 (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
     add_grps(binom_data(), iv, .key = _))
 
-## Ungrouped plot data on GLM linear predictor scale
+## Ungrouped plot GLM data on linear predictor scale
 (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv))
 
-## Plot model predictions and error bars
+## Plot model predictions and CI error bars
 dp |> ggplot()
 
-## Plot model predictions and error bars with reversed y-axis
+## Plot model predictions and CI error bars with reversed y-axis
 dp |> ggplot(rev_y = TRUE)
 
-## Grouped plot data on GLM linear predictor scale
+## Grouped plot GLM data on linear predictor scale
 (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv))
 
-## Plot model predictions and error bars with reversed y-axis
+## Plot model predictions and CI error bars with reversed y-axis
 dp |> ggplot(rev_y = TRUE)
 
-## Ungrouped plot data on GLM reponse scale
+## Ungrouped plot GLM data on reponse scale
 (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
 
-## Plot model predictions and error bars
+## Plot model predictions and CI error bars
+dp |> ggplot()
+
+## Plot model predictions and CI error bars, with y-axis as percentage
 dp |> ggplot(as_percent = TRUE)
 
-## Grouped plot data on GLM reponse scale
+## Grouped plot GLM data on reponse scale
 (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response"))
 
-## Plot model predictions and error bars
+## Plot model predictions and CI error bars
+dp |> ggplot(as_percent = TRUE)
+
+## Grouped plot GLM data on reponse scale with standard errors 
+(dp <- glm_plotdata(
+                    d, .dep_var = cbind(pn, qn), .ind_var = iv2,
+                    .ungroup = iv, conf_level = NA, type = "response"
+                   ))
+
+## Plot model predictions and standard error bars
 dp |> ggplot(as_percent = TRUE)
 
 ## Add x-axis label and bespoke titles

@@ -70,7 +70,7 @@ with values on the linear predictor or response scale (depending on \code{type})
 
 \item{upper}{Upper extent of error bar.}
 
-It also has attributes \code{"conf_level"}, signifying the confidence level, \code{"subtitle"}, by default the name of the
+It also has attributes \code{"conf_level"}, signifying the confidence level, \code{"ind_var"}, the name of the
 independent variable, and \code{"type"} (see argument \code{type}).
 }
 \description{

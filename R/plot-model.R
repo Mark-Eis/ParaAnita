@@ -85,7 +85,7 @@
 #'
 #' \item{upper}{Upper extent of error bar.}
 #'
-#' It also has attributes `"conf_level"`, signifying the confidence level, `"subtitle"`, by default the name of the
+#' It also has attributes `"conf_level"`, signifying the confidence level, `"ind_var"`, the name of the
 #'  independent variable, and `"type"` (see argument `type`).  
 #'
 #' @keywords dplot
@@ -259,7 +259,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
         else
            pdta |> mutate(grouped = as.factor(NA))
     } |> relocate("grouped", .after = "level") |>
-    new_glm_plotdata(conf_level = conf_level, subtitle = as_label(ind_var), type = type)
+    new_glm_plotdata(conf_level = conf_level, ind_var = as_label(ind_var), type = type)
 }
 
 
@@ -269,12 +269,12 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
 #
 # Not exported
 
-new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, subtitle = NULL,
+new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, ind_var = NULL,
     type = c("link", "response")) {
 
     stopifnot(inherits(x, c("tbl_df", "tbl", "data.frame")))
     x <- announce(x, "GLM Plot Data")
-    structure(x, class = c("glm_plotdata", class(x)), ..., conf_level = conf_level, subtitle = subtitle, type = type)
+    structure(x, class = c("glm_plotdata", class(x)), ..., conf_level = conf_level, ind_var = ind_var, type = type)
 }
 
 
@@ -365,7 +365,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
     if (!is.null(.facet_by)) {
         plist <- bind_rows(plist, .id = .facet_by)
         plist %@% "facet_by" = .facet_by
-        plist %@% "subtitle" = NULL
+        plist %@% "ind_var" = NULL
     }
     plist
 }
@@ -486,34 +486,43 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
 #'     add_grps(binom_data(), iv, .key = _))
 #'
-#' ## Ungrouped plot data on GLM linear predictor scale
+#' ## Ungrouped plot GLM data on linear predictor scale
 #' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv))
 #'
-#' ## Plot model predictions and error bars
+#' ## Plot model predictions and CI error bars
 #' dp |> ggplot()
 #'
-#' ## Plot model predictions and error bars with reversed y-axis
+#' ## Plot model predictions and CI error bars with reversed y-axis
 #' dp |> ggplot(rev_y = TRUE)
 #'
-#' ## Grouped plot data on GLM linear predictor scale
+#' ## Grouped plot GLM data on linear predictor scale
 #' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv))
 #'
-#' ## Plot model predictions and error bars with reversed y-axis
+#' ## Plot model predictions and CI error bars with reversed y-axis
 #' dp |> ggplot(rev_y = TRUE)
 #'
-#' ## Ungrouped plot data on GLM reponse scale
+#' ## Ungrouped plot GLM data on reponse scale
 #' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
 #'
-#' ## Plot model predictions and error bars
+#' ## Plot model predictions and CI error bars
 #' dp |> ggplot()
 #'
-#' ## Plot model predictions and error bars, with y-axis as percentage
+#' ## Plot model predictions and CI error bars, with y-axis as percentage
 #' dp |> ggplot(as_percent = TRUE)
 #'
-#' ## Grouped plot data on GLM reponse scale
+#' ## Grouped plot GLM data on reponse scale
 #' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response"))
 #'
-#' ## Plot model predictions and error bars
+#' ## Plot model predictions and CI error bars
+#' dp |> ggplot(as_percent = TRUE)
+#'
+#' ## Grouped plot GLM data on reponse scale with standard errors 
+#' (dp <- glm_plotdata(
+#'                     d, .dep_var = cbind(pn, qn), .ind_var = iv2,
+#'                     .ungroup = iv, conf_level = NA, type = "response"
+#'                    ))
+#'
+#' ## Plot model predictions and standard error bars
 #' dp |> ggplot(as_percent = TRUE)
 #'
 #' ## Add x-axis label and bespoke titles
@@ -579,13 +588,16 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     ) +
     labs(
         x = NULL,
-        # y = "Probability",
         y = if (data %@% "type" == "link")
                 "Linear predictor scale (logit)"
             else {
-            	    if (as_percent) "Proportion Positive (%)" else "Probability"
-            	},
-        title = "Model Predictions and CI"
+                    if (as_percent) "Proportion Positive (%)" else "Probability"
+                 },
+        # title = if (is.na(data %@% "conf_level"))
+        subtitle = if (is.na(data %@% "conf_level"))
+                    "Model Predictions and Standard Errors"
+                else
+                    paste0("Model Predictions and CI", (data %@% "conf_level") * 100, "%")
     ) + {
         var_labs <- match.fun("var_labs")
         if (faceted) {
@@ -594,7 +606,8 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
                 scales = "free",            # drops unused levels
                 labeller = as_labeller(var_labs)
             )
-        } else labs(subtitle = data %@% "subtitle" |> var_labs())
+        # } else labs(subtitle = data %@% "ind_var" |> var_labs())
+        } else labs(title = data %@% "ind_var" |> var_labs())
     } + {
         if (as_percent)
             scale_y_continuous(labels = function(x) paste0(x * 100, "%"))
