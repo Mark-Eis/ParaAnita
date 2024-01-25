@@ -174,7 +174,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
         .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
         if(missing(.dep_var)) {
-            warning("Missing `.dep_var`; setting to default of cbind(pn, qn)")
+            warning("Missing '.dep_var' set to default: cbind(pn, qn)")
             .dep_var <- quote(cbind(pn, qn))
         } else
             .dep_var <- enexpr(.dep_var)
@@ -185,21 +185,20 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
         stop("\n\targument \"conf_level\" must be positive numeric less than 1")
 
-    object <- glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
-        structure(ungroup = .ungroup)
-
-    NextMethod()      
+    glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
+        structure(ungroup = .ungroup) |>
+	    glm_plotdata(conf_level = conf_level, type = type)      
 }
 
 
 # ========================================
-#  Default Method for Format Data for Plotting Univariable GLM Predictions with Error Bars
-#  S3method glm_plotdata.default()
+#  Format Data for Plotting Univariable GLM Predictions with Error Bars for a GLM
+#  S3method glm_plotdata.glm()
 #
 #' @rdname glm_plotdata
 #' @export
 
-glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link", "response")) {
+glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "response")) {
 
     type <- match.arg(type)
     stopifnot(
@@ -231,7 +230,7 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
     if (type == "response")
        lower_upper <- family(object)$linkinv(lower_upper)
 
-    pdta <- data |>
+    object <- data |>
         mutate(
             level = !!ind_var,
             ungrouped = !!ungrouped,
@@ -250,15 +249,31 @@ glm_plotdata.default <- function(object, ..., conf_level = 0.95, type = c("link"
             .keep = "none"
         ) 
 
+    NextMethod(conf_level = conf_level, ind_var = as_name(ind_var), type = type)
+}
+
+
+# ========================================
+#  Default Method for Format Data for Plotting Univariable GLM Predictions with Error Bars
+#  S3method glm_plotdata.default()
+#
+#' @rdname glm_plotdata
+#' @export
+
+glm_plotdata.default <- function(object, ..., conf_level, ind_var, type) {
+
+    check_dots_empty()
+    stopifnot(inherits(object, c("tbl_df", "tbl", "data.frame")))
+
     {
-        if ("ungrouped" %in% (pdta |> names()))
-            pdta |>
+        if ("ungrouped" %in% (object |> names()))
+            object |>
             rename(tmp = "level") |>
-            rename(level = ungrouped, grouped = "tmp")
+            rename(level = "ungrouped", grouped = "tmp")
         else
-           pdta |> mutate(grouped = as.factor(NA))
+           object |> mutate(grouped = as.factor(NA))
     } |> relocate("grouped", .after = "level") |>
-    new_glm_plotdata(conf_level = conf_level, ind_var = as_label(ind_var), type = type)
+    new_glm_plotdata(conf_level = conf_level, ind_var = ind_var, type = type)
 }
 
 
