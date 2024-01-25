@@ -70,7 +70,7 @@ together with the estimates of the regression coefficients, their standard error
 <span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S3 method for default</span></span>
+<span><span class="co"># S3 method for glm</span></span>
 <span><span class="fu">odds_ratio</span><span class="op">(</span></span>
 <span>  <span class="va">object</span>,</span>
 <span>  <span class="va">...</span>,</span>
@@ -167,9 +167,9 @@ univariable <acronym>GLMs</acronym> with a single categorical independent variab
 output these together with the estimates of the regression coefficients, their standard errors and probabilities.
 The function invokes particular <code><a href="https://rdrr.io/r/utils/methods.html" class="external-link">methods</a></code> which depend on the <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code> of the first
 argument.</p>
-<p>The default S3 method is for objects of class <code>"glm"</code> returned by <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> and can be used with
-unvariable <acronym>GLMs</acronym>, or with multivariable <acronym>GLMs</acronym> to calculate "adjusted" odds ratios. Optionally,
-if <code>printcall = TRUE</code> the original call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved from the <code>"glm"</code> object supplied
+<p>The S3 method for objects of class <code>"glm"</code> returned by <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> can be used with unvariable
+<acronym>GLMs</acronym>, or with multivariable <acronym>GLMs</acronym> to calculate "adjusted" odds ratios. Optionally, if
+<code>printcall = TRUE</code> the original call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved from the <code>"glm"</code> object supplied
 as an argument and printed.</p>
 <p>Currently, the S3 methods for classes <code>"data.frame"</code> and <code>"binom_contingency"</code> can only be used with univariable
 <acronym>GLMs</acronym>.</p>
