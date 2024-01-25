@@ -5,7 +5,6 @@
 \alias{glm_plotdata.binom_contingency}
 \alias{glm_plotdata.data.frame}
 \alias{glm_plotdata.glm}
-\alias{glm_plotdata.default}
 \title{Collate Data for Plotting Univariable GLM Predictions with Error Bars}
 \usage{
 glm_plotdata(object, ...)
@@ -30,8 +29,6 @@ glm_plotdata(object, ...)
 )
 
 \method{glm_plotdata}{glm}(object, ..., conf_level = 0.95, type = c("link", "response"))
-
-\method{glm_plotdata}{default}(object, ..., conf_level, ind_var, type)
 }
 \arguments{
 \item{object}{an object from which the data for plotting univariable GLM predictions are to be collated; may be a
