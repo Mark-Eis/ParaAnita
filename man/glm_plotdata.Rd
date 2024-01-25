@@ -33,7 +33,7 @@ glm_plotdata(object, ...)
 \arguments{
 \item{object}{an object from which the data for plotting univariable GLM predictions are to be collated; may be a
 \code{\link[=binom_contingency]{binomial contingency table}}, a \code{\link[base:data.frame]{data frame}} (or a data frame extension
-e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}} as used by the default S3 method.}
+e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}}.}
 
 \item{\dots}{further arguments passed to or from other methods. Not currently used.}
 
@@ -48,8 +48,8 @@ standard error.}
 \item{type}{the type of prediction required. The default is on the scale of the linear predictors;
 the alternative \code{"response"} is on the scale of the response variable; default \code{"link"}.}
 
-\item{.dep_var}{quoted name(s) of the response variable(s) in the data representing the number of successes and
-failures respectively, see \code{\link[stats:glm]{glm()}}; default \code{cbind(pn, qn)}.}
+\item{.dep_var}{quoted name of the response variable in the data representing the number of successes and
+failures respectively, see \emph{Details}; default \code{cbind(pn, qn)}.}
 }
 \value{
 An object of class \code{"glm_plotdata"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -57,7 +57,7 @@ with values on the linear predictor or response scale (depending on \code{type})
 
 \item{level}{Level of the independent variable.}
 
-\item{grouped}{Grouped levels of the independent variable.}
+\item{grouped}{Grouped levels of the independent variable (or \code{NA} if ungrouped).}
 
 \item{n}{Number of observations.}
 
@@ -73,14 +73,16 @@ It also has attributes \code{"conf_level"}, signifying the confidence level, \co
 independent variable, and \code{"type"} (see argument \code{type}).
 }
 \description{
-\code{glm_plotdata()} outputs data collated suitably for easy creation of standardised plots with error bars representing
-confidence intervals or standard errors, based on predictions from univariable general linear models (\acronym{GLM}s).
+\code{glm_plotdata()} outputs data based on predictions from univariable general linear models (\acronym{GLM}s) suitably
+collated for easy creation of standardised plots with error bars representing confidence intervals or standard errors.
 }
 \details{
-This function works with univariable \acronym{GLM}s of Bernoulli or binomial data having a dependent variable
-expressed as numbers of successes and failures and a single independent variable with multiple levels and its output
-may be plotted conveniently using the \code{\link[ggplot2:ggplot]{ggplot()}} S3 method
-\code{\link[=ggplot.glm_plotdata]{ggplot.glm_plotdata()}}.
+This function works with univariable binomial \acronym{GLM}s having a \code{numeric} dependent variable of ones and zeros
+representing numbers of successes and failures, or a two-column \code{matrix} with the columns giving the numbers of
+successes and failures, see \code{\link[stats:glm]{glm()}}, and an independent variable with multiple levels. Its output may
+be plotted conveniently using \code{\link[ggplot2:ggplot]{ggplot()}} in package \pkg{\link[ggplot2]{ggplot2}};
+\pkg{\link[ParaAnita]{ParaAnita}} provides a suitable S3 method \code{\link[=ggplot.glm_plotdata]{ggplot.glm_plotdata()}} for
+this purpose.
 
 \code{glm_plotdata()} allows exploration of proposed groupings of the levels of the independent variable, such as
 obtained using \code{\link[=add_grps]{add_grps()}} or \code{\link[forcats:fct_collapse]{fct_collapse()}}, and will include both the

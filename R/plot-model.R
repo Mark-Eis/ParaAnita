@@ -12,14 +12,16 @@
 #' Collate Data for Plotting Univariable GLM Predictions with Error Bars
 #'
 #' @description
-#' `glm_plotdata()` outputs data collated suitably for easy creation of standardised plots with error bars representing
-#' confidence intervals or standard errors, based on predictions from univariable general linear models (\acronym{GLM}s).
+#' `glm_plotdata()` outputs data based on predictions from univariable general linear models (\acronym{GLM}s) suitably
+#' collated for easy creation of standardised plots with error bars representing confidence intervals or standard errors.
 #'
 #' @details
-#' This function works with univariable \acronym{GLM}s of Bernoulli or binomial data having a dependent variable
-#' expressed as numbers of successes and failures and a single independent variable with multiple levels and its output
-#' may be plotted conveniently using the [`ggplot()`][ggplot2::ggplot] S3 method
-#' [`ggplot.glm_plotdata()`][ggplot.glm_plotdata].
+#' This function works with univariable binomial \acronym{GLM}s having a `numeric` dependent variable of ones and zeros
+#' representing numbers of successes and failures, or a two-column `matrix` with the columns giving the numbers of
+#' successes and failures, see [`glm()`][stats::glm], and an independent variable with multiple levels. Its output may
+#' be plotted conveniently using [`ggplot()`][ggplot2::ggplot] in package \pkg{\link[ggplot2]{ggplot2}};
+#' \pkg{\link[ParaAnita]{ParaAnita}} provides a suitable S3 method [`ggplot.glm_plotdata()`][ggplot.glm_plotdata] for
+#' this purpose.
 #'
 #' `glm_plotdata()` allows exploration of proposed groupings of the levels of the independent variable, such as
 #' obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse], and will include both the
@@ -49,12 +51,12 @@
 #'
 #' @param object an object from which the data for plotting univariable GLM predictions are to be collated; may be a 
 #'   [`binomial contingency table`][binom_contingency], a [`data frame`][base::data.frame] (or a data frame extension
-#'   e.g., a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm] as used by the default S3 method.
+#'   e.g., a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm].
 #'
 #' @param \dots further arguments passed to or from other methods. Not currently used.
 #' 
-#' @param .dep_var quoted name(s) of the response variable(s) in the data representing the number of successes and
-#'   failures respectively, see [`glm()`][stats::glm]; default `cbind(pn, qn)`.
+#' @param .dep_var quoted name of the response variable in the data representing the number of successes and
+#'   failures respectively, see \emph{Details}; default `cbind(pn, qn)`.
 #'
 #' @param .ind_var quoted name of the independent variable.
 #'
@@ -72,7 +74,7 @@
 #'
 #' \item{level}{Level of the independent variable.}
 #'
-#' \item{grouped}{Grouped levels of the independent variable.}
+#' \item{grouped}{Grouped levels of the independent variable (or `NA` if ungrouped).}
 #'
 #' \item{n}{Number of observations.}
 #'
