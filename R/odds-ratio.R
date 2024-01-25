@@ -22,9 +22,9 @@
 #' The function invokes particular [`methods`][utils:: methods] which depend on the [`class`][base::class] of the first
 #' argument.
 #'
-#' The default S3 method is for objects of class `"glm"` returned by [`glm()`][stats::glm] and can be used with
-#' unvariable \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally,
-#' if `printcall = TRUE` the original call to [`glm()`][stats::glm] may be retrieved from the `"glm"` object supplied
+#' The S3 method for objects of class `"glm"` returned by [`glm()`][stats::glm] can be used with unvariable
+#' \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
+#' `printcall = TRUE` the original call to [`glm()`][stats::glm] may be retrieved from the `"glm"` object supplied
 #' as an argument and printed.
 #'
 #' Currently, the S3 methods for classes `"data.frame"` and `"binom_contingency"` can only be used with univariable
@@ -227,9 +227,8 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
-    object <- glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object)
-
-    NextMethod(.printcall = .printcall)           
+    glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
+    odds_ratio(.level = .level, .printcall = .printcall, .stat = .stat, .print_contr = .print_contr)           
 }
 
 # ========================================
@@ -239,7 +238,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.default <- function(object, ..., .level = 0.95, .printcall = TRUE, .stat = FALSE, .print_contr = FALSE) {
+odds_ratio.glm <- function(object, ..., .level = 0.95, .printcall = TRUE, .stat = FALSE, .print_contr = FALSE) {
 
     .glm <- object
     stopifnot(family(.glm)$family %in% c("binomial", "quasibinomial", "poisson"))
@@ -260,7 +259,6 @@ odds_ratio.default <- function(object, ..., .level = 0.95, .printcall = TRUE, .s
         )
     new_odds_ratio(object, ..., .glm = .glm, .print_contr = .print_contr)
 }
-
 
 new_odds_ratio <- function(object = data.frame("x"), ..., .glm = glm(0 ~ NULL), .print_contr = FALSE) {
     object <- announce(object, "Estimates and Odds Ratios")

@@ -4,7 +4,7 @@
 \alias{odds_ratio}
 \alias{odds_ratio.binom_contingency}
 \alias{odds_ratio.data.frame}
-\alias{odds_ratio.default}
+\alias{odds_ratio.glm}
 \title{Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs}
 \usage{
 odds_ratio(object, ...)
@@ -30,7 +30,7 @@ odds_ratio(object, ...)
   .print_contr = FALSE
 )
 
-\method{odds_ratio}{default}(
+\method{odds_ratio}{glm}(
   object,
   ...,
   .level = 0.95,
@@ -94,9 +94,9 @@ output these together with the estimates of the regression coefficients, their s
 The function invokes particular \code{\link[utils:methods]{methods}} which depend on the \code{\link[base:class]{class}} of the first
 argument.
 
-The default S3 method is for objects of class \code{"glm"} returned by \code{\link[stats:glm]{glm()}} and can be used with
-unvariable \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally,
-if \code{printcall = TRUE} the original call to \code{\link[stats:glm]{glm()}} may be retrieved from the \code{"glm"} object supplied
+The S3 method for objects of class \code{"glm"} returned by \code{\link[stats:glm]{glm()}} can be used with unvariable
+\acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
+\code{printcall = TRUE} the original call to \code{\link[stats:glm]{glm()}} may be retrieved from the \code{"glm"} object supplied
 as an argument and printed.
 
 Currently, the S3 methods for classes \code{"data.frame"} and \code{"binom_contingency"} can only be used with univariable
