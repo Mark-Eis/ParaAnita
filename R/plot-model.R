@@ -223,7 +223,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
     } else
         data <- object$data
 
-    pred <- predict(object, data[, as_name(ind_var)], type = "link", se.fit = TRUE)
+    pred <- predict(object, data[deparse(ind_var)], type = "link", se.fit = TRUE)
     if (!is.na(conf_level)) {
         .df <- sum(object$prior.weights) - 1
         ebar <- pred$se.fit * qt((1 + conf_level)/2, .df)
