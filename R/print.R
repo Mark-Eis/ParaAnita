@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -127,6 +127,7 @@ print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_co
 print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
     contr <- (x %@% glm)$contrasts
     has_contr <- !is.null(contr)
+    x["p_val"] <- round(x["p_val"], digits = 6)
     NextMethod()
     if (x %@% "print_contr") {
         if (has_contr)
