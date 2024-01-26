@@ -240,6 +240,8 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 
 odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat = FALSE, .print_contr = FALSE) {
 
+    check_dots_empty()
+
     .glm <- object
     stopifnot(family(.glm)$family %in% c("binomial", "quasibinomial", "poisson"))
 
