@@ -12,7 +12,7 @@ together with the estimates of the regression coefficients, their standard error
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00013</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@ together with the estimates of the regression coefficients, their standard error
 <span>  <span class="va">...</span>,</span>
 <span>  <span class="va">.ind_var</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  .printcall <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .print_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .stat <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
@@ -65,7 +65,7 @@ together with the estimates of the regression coefficients, their standard error
 <span>  <span class="va">.dep_var</span>,</span>
 <span>  <span class="va">.ind_var</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  .printcall <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .print_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .stat <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
@@ -75,7 +75,7 @@ together with the estimates of the regression coefficients, their standard error
 <span>  <span class="va">object</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  .printcall <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  .print_call <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  .stat <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -102,7 +102,7 @@ either a character vector or factor.</p></dd>
 <dd><p>the confidence level required; default <var>0.95</var>.</p></dd>
 
 
-<dt>.printcall</dt>
+<dt>.print_call</dt>
 <dd><p><code>logical</code>, whether or not to print the call for the <acronym>GLM</acronym>.</p></dd>
 
 
@@ -169,7 +169,7 @@ The function invokes particular <code><a href="https://rdrr.io/r/utils/methods.h
 argument.</p>
 <p>The S3 method for objects of class <code>"glm"</code> returned by <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> can be used with unvariable
 <acronym>GLMs</acronym>, or with multivariable <acronym>GLMs</acronym> to calculate "adjusted" odds ratios. Optionally, if
-<code>printcall = TRUE</code> the original call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved from the <code>"glm"</code> object supplied
+<code>print_call = TRUE</code> the original call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved from the <code>"glm"</code> object supplied
 as an argument and printed.</p>
 <p>Currently, the S3 methods for classes <code>"data.frame"</code> and <code>"binom_contingency"</code> can only be used with univariable
 <acronym>GLMs</acronym>.</p>
@@ -467,7 +467,9 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Invoking the S3 method for class "glm"</span></span></span>
 <span class="r-in"><span><span class="va">glm1</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = cbind(pn, qn) ~ iv2 + iv3, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glm(formula = cbind(pn, qn) ~ iv2 + iv3, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -479,7 +481,7 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> iv2h           0.334 0.252 0.186       1.40        0.855        2.30 NS   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> iv3i           1.68  0.267 0           5.36        3.21         9.19 ***  </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">glm1</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.printcall <span class="op">=</span> <span class="cn">FALSE</span>, .stat <span class="op">=</span> <span class="cn">TRUE</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">glm1</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.print_call <span class="op">=</span> <span class="cn">FALSE</span>, .stat <span class="op">=</span> <span class="cn">TRUE</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -522,7 +524,9 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span> <span class="op">~</span> <span class="va">iv</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = cbind(pn, qn) ~ iv, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glm(formula = cbind(pn, qn) ~ iv, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -536,8 +540,8 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd           -<span style="color: #BB0000;">1.22</span>  0.396 0.002<span style="text-decoration: underline;">02</span>       0.294       0.132        0.629 **   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive           -<span style="color: #BB0000;">2.12</span>  0.494 0.000<span style="text-decoration: underline;">018</span>      0.12        0.041<span style="text-decoration: underline;">7</span>       0.298 ***  </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`</span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span>  <span class="co">## Warning about missing .dep_var</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Missing '.dep_var' set to default: cbind(pn, qn)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -567,7 +571,9 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span> <span class="op">~</span> <span class="va">iv</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = cbind(pn, qn) ~ iv, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glm(formula = cbind(pn, qn) ~ iv, family = binomial, data = d)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -581,8 +587,7 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv: a:c v d   -<span style="color: #BB0000;">0.233</span> 0.085<span style="text-decoration: underline;">9</span> 0.006<span style="text-decoration: underline;">77</span>       0.792        0.664       0.932 **   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> iv: a:d v e   -<span style="color: #BB0000;">0.319</span> 0.089<span style="text-decoration: underline;">9</span> 0.000<span style="text-decoration: underline;">384</span>      0.727        0.597       0.854 ***  </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`</span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -598,9 +603,8 @@ methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Printing lengthier output with print_all()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Simulate_Data.html">binom_data</a></span><span class="op">(</span><span class="fl">26</span>, <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="print_all.html">print_all</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
