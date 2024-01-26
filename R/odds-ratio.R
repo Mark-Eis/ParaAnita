@@ -24,7 +24,7 @@
 #'
 #' The S3 method for objects of class `"glm"` returned by [`glm()`][stats::glm] can be used with unvariable
 #' \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
-#' `printcall = TRUE` the original call to [`glm()`][stats::glm] may be retrieved from the `"glm"` object supplied
+#' `print_call = TRUE` the original call to [`glm()`][stats::glm] may be retrieved from the `"glm"` object supplied
 #' as an argument and printed.
 #'
 #' Currently, the S3 methods for classes `"data.frame"` and `"binom_contingency"` can only be used with univariable
@@ -59,7 +59,7 @@
 #'
 #' @param .level the confidence level required; default \var{0.95}.
 #'
-#' @param .printcall `logical`, whether or not to print the call for the \acronym{GLM}.
+#' @param .print_call `logical`, whether or not to print the call for the \acronym{GLM}.
 #'
 #' @param .stat `logical`, whether or not to print `z` or `t` statistic for the \acronym{GLM};
 #'   default `FALSE`.
@@ -152,7 +152,7 @@
 #' ## Invoking the S3 method for class "glm"
 #' glm1 |> odds_ratio()
 #'
-#' glm1 |> odds_ratio(.printcall = FALSE, .stat = TRUE, .print_contr = TRUE)
+#' glm1 |> odds_ratio(.print_call = FALSE, .stat = TRUE, .print_contr = TRUE)
 #'
 #' ## Compare S3 method for class "glm" to that for "data.frame"
 #' ## — only possible for univariable analyses
@@ -161,7 +161,7 @@
 #' glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
 #'     odds_ratio()
 #'
-#' d |> odds_ratio(.ind_var = iv)
+#' d |> odds_ratio(.ind_var = iv)  ## Warning about missing .dep_var
 #'
 #' ## Helmert contrasts given more easily readable names
 #' d |> set_contrasts(iv) <- contr.helmert
@@ -174,11 +174,11 @@
 #' glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
 #'     odds_ratio()
 #'
-#' d |> odds_ratio(.ind_var = iv)
+#' d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
 #'
 #' ## Printing lengthier output with print_all()
 #' binom_data(26, 100) |>
-#'     odds_ratio(.ind_var = iv, .print_contr = TRUE) |>
+#'     odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv, .print_contr = TRUE) |>
 #'     print_all()
 #'
 #' rm(d, glm1)
@@ -193,7 +193,7 @@ odds_ratio <- function(object, ...)
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .printcall = FALSE, .stat = FALSE,
+odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .print_call = FALSE, .stat = FALSE,
     .print_contr = FALSE) {
 
     check_dots_empty()
@@ -208,7 +208,7 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95, .printcall = FALSE,
+odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95, .print_call = FALSE,
     .stat = FALSE, .print_contr = FALSE) {
 
     check_dots_empty()
@@ -216,7 +216,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
         if(missing(.dep_var)) {
-        message("In odds_ratio.data.frame(): using default value of cbind(pn, qn) for  missing `.dep_var`")
+            warning("Missing '.dep_var' set to default: cbind(pn, qn)")
             .dep_var <- quote(cbind(pn, qn))
         } else
             .dep_var <- enexpr(.dep_var)
@@ -228,7 +228,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
     glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
-    odds_ratio(.level = .level, .printcall = .printcall, .stat = .stat, .print_contr = .print_contr)           
+    odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
 }
 
 # ========================================
@@ -238,12 +238,13 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.glm <- function(object, ..., .level = 0.95, .printcall = TRUE, .stat = FALSE, .print_contr = FALSE) {
+odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat = FALSE, .print_contr = FALSE) {
 
     .glm <- object
     stopifnot(family(.glm)$family %in% c("binomial", "quasibinomial", "poisson"))
 
-    if (.printcall) .glm$call |> print()
+    if (.print_call) cat("\nCall:  ", paste(deparse(.glm$call), sep = "\n", collapse = "\n"), 
+        "\n\n", sep = "")
 
     object <- coef(summary(.glm)) |>
         as.data.frame() |>

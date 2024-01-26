@@ -14,7 +14,7 @@ odds_ratio(object, ...)
   ...,
   .ind_var,
   .level = 0.95,
-  .printcall = FALSE,
+  .print_call = FALSE,
   .stat = FALSE,
   .print_contr = FALSE
 )
@@ -25,7 +25,7 @@ odds_ratio(object, ...)
   .dep_var,
   .ind_var,
   .level = 0.95,
-  .printcall = FALSE,
+  .print_call = FALSE,
   .stat = FALSE,
   .print_contr = FALSE
 )
@@ -34,7 +34,7 @@ odds_ratio(object, ...)
   object,
   ...,
   .level = 0.95,
-  .printcall = TRUE,
+  .print_call = TRUE,
   .stat = FALSE,
   .print_contr = FALSE
 )
@@ -51,7 +51,7 @@ either a character vector or factor.}
 
 \item{.level}{the confidence level required; default \var{0.95}.}
 
-\item{.printcall}{\code{logical}, whether or not to print the call for the \acronym{GLM}.}
+\item{.print_call}{\code{logical}, whether or not to print the call for the \acronym{GLM}.}
 
 \item{.stat}{\code{logical}, whether or not to print \code{z} or \code{t} statistic for the \acronym{GLM};
 default \code{FALSE}.}
@@ -96,7 +96,7 @@ argument.
 
 The S3 method for objects of class \code{"glm"} returned by \code{\link[stats:glm]{glm()}} can be used with unvariable
 \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
-\code{printcall = TRUE} the original call to \code{\link[stats:glm]{glm()}} may be retrieved from the \code{"glm"} object supplied
+\code{print_call = TRUE} the original call to \code{\link[stats:glm]{glm()}} may be retrieved from the \code{"glm"} object supplied
 as an argument and printed.
 
 Currently, the S3 methods for classes \code{"data.frame"} and \code{"binom_contingency"} can only be used with univariable
@@ -174,7 +174,7 @@ glm1 |> summary()
 ## Invoking the S3 method for class "glm"
 glm1 |> odds_ratio()
 
-glm1 |> odds_ratio(.printcall = FALSE, .stat = TRUE, .print_contr = TRUE)
+glm1 |> odds_ratio(.print_call = FALSE, .stat = TRUE, .print_contr = TRUE)
 
 ## Compare S3 method for class "glm" to that for "data.frame"
 ## — only possible for univariable analyses
@@ -183,7 +183,7 @@ glm1 |> odds_ratio(.printcall = FALSE, .stat = TRUE, .print_contr = TRUE)
 glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
     odds_ratio()
 
-d |> odds_ratio(.ind_var = iv)
+d |> odds_ratio(.ind_var = iv)  ## Warning about missing .dep_var
 
 ## Helmert contrasts given more easily readable names
 d |> set_contrasts(iv) <- contr.helmert
@@ -196,11 +196,11 @@ contr_colpfx(d$iv) <- ": "
 glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
     odds_ratio()
 
-d |> odds_ratio(.ind_var = iv)
+d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
 
 ## Printing lengthier output with print_all()
 binom_data(26, 100) |>
-    odds_ratio(.ind_var = iv, .print_contr = TRUE) |>
+    odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv, .print_contr = TRUE) |>
     print_all()
 
 rm(d, glm1)
