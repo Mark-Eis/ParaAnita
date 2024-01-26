@@ -1,6 +1,6 @@
 Package: ParaAnita
 Title: Functions for Binary and Binomial Data Analysis
-Version: 1.0.0.00013
+Version: 1.0.0.00014
 Date: 2024-01-26
 Authors@R:
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
@@ -53,4 +53,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-VersonName: La calma antes de la tormenta
+VersonName: Comienza a Amanecer
