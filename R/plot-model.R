@@ -202,6 +202,8 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
 glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "response")) {
 
+    check_dots_empty()
+
     type <- match.arg(type)
     stopifnot(
         inherits(object, c("glm", "lm")),
@@ -217,7 +219,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
     if (bern <- is_glmybern(object)) {
         data <- object$data |> binom_contingency(!!dep_var, !!ind_var, !!ungrouped)
         pn <- qn <- NULL
-        dep_var <- expr(cbind(pn, qn))
+        dep_var <- quote(cbind(pn, qn))
     } else
         data <- object$data
 
