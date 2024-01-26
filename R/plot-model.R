@@ -245,7 +245,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
                 else
                     log((!!dep_var)[, 1] / (!!dep_var)[, 2])
             ),
-            pred = predict(object, data[, as_name(ind_var)], type = type),
+            pred = predict(object, data[deparse(ind_var)], type = type),
             lower = lower_upper[, 1],
             upper = lower_upper[, 2],
             across("pred":"upper", unname),
