@@ -367,7 +367,12 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                 conf_level = .conf_level,
                 type = .type
             ) |>
-            filter(.data$obs > 0, .data$obs < 1)
+            filter(
+	            if(.type == "link")
+		            is.finite(.data$obs)
+	            else
+		            .data$obs > 0 & .data$obs < 1
+            )
         )
 
     if (!is.null(.facet_by)) {
