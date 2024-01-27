@@ -349,7 +349,7 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                             .type = c("link", "response"), .facet_by = NULL) {
 
     check_dots_unnamed()
-    type <- match.arg(type)
+    .type <- match.arg(.type)
 
     .dep_var = enexpr(.dep_var)
     pos <- eval_select(expr(c(...)), data)
