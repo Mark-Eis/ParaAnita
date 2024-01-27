@@ -152,6 +152,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
     type = c("link", "response")) {
 
     check_dots_empty()
+    type <- match.arg(type)
  
     .ind_var <- enexpr(.ind_var)
     .ungroup <- enquo(.ungroup)
@@ -171,6 +172,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     type = c("link", "response")) {
 
     check_dots_empty()
+    type <- match.arg(type)
 
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
@@ -203,8 +205,8 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "response")) {
 
     check_dots_empty()
-
     type <- match.arg(type)
+
     stopifnot(
         inherits(object, c("glm", "lm")),
             family(object)$family %in% c("binomial", "quasibinomial", "poisson")
@@ -347,6 +349,8 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                             .type = c("link", "response"), .facet_by = NULL) {
 
     check_dots_unnamed()
+    type <- match.arg(type)
+
     .dep_var = enexpr(.dep_var)
     pos <- eval_select(expr(c(...)), data)
     if (any(!.ungroups %in% names(pos)))
