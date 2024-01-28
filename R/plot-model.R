@@ -154,7 +154,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
     check_dots_empty()
     type <- match.arg(type)
  
-    .ind_var <- enexpr(.ind_var)
+    .ind_var <- ensym(.ind_var)
     .ungroup <- enquo(.ungroup)
 
     NextMethod(.dep_var = quote(cbind(pn, qn)))
@@ -175,7 +175,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     type <- match.arg(type)
 
     if (!inherits(object, "binom_contingency")) {
-        .ind_var <- enexpr(.ind_var)
+        .ind_var <- ensym(.ind_var)
         .ungroup <- enquo(.ungroup)
         if(missing(.dep_var)) {
             warning("Missing '.dep_var' set to default: cbind(pn, qn)")
@@ -185,7 +185,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     }
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
-        stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
+        stop("\targument .ind_var = ", as_string(.ind_var), " not of type factor or character vector")
     if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
         stop("\n\targument \"conf_level\" must be positive numeric less than 1")
 
@@ -263,7 +263,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
         else
            pdta |> mutate(grouped = as.factor(NA))
     } |> relocate("grouped", .after = "level") |>
-    new_glm_plotdata(conf_level = conf_level, ind_var = as_label(ind_var), type = type)
+    new_glm_plotdata(conf_level = conf_level, ind_var = as_string(ind_var), type = type)
 }
 
 
