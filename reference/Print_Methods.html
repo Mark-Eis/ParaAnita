@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00017</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -216,14 +216,13 @@ the <code>max_footer_lines</code> <a href="https://pillar.r-lib.org/reference/pi
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   parameter   estimate    se p_val$p_val odds_ratio ci[,"2.5 %"] sig  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)   -<span style="color: #BB0000;">0.244</span> 0.248     0.326        1          <span style="color: #BB0000;">NA</span>      NS   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ivb           -<span style="color: #BB0000;">0.251</span> 0.355     0.479        0.778       0.386  NS   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ivc           -<span style="color: #BB0000;">0.124</span> 0.352     0.725        0.883       0.441  NS   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd           -<span style="color: #BB0000;">0.896</span> 0.379     0.018<span style="text-decoration: underline;">2</span>       0.408       0.191  *    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive           -<span style="color: #BB0000;">1.89</span>  0.470     0.000<span style="text-decoration: underline;">06</span>      0.151       0.056<span style="text-decoration: underline;">2</span> ***  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ci[2] &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   parameter   estimate    se   p_val odds_ratio ci[,"2.5 %"] [,"97.5 %"] sig  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Intercept)   -<span style="color: #BB0000;">0.244</span> 0.248 0.326        1          <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     NS   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ivb           -<span style="color: #BB0000;">0.251</span> 0.355 0.479        0.778       0.386        1.56  NS   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ivc           -<span style="color: #BB0000;">0.124</span> 0.352 0.725        0.883       0.441        1.76  NS   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd           -<span style="color: #BB0000;">0.896</span> 0.379 0.018<span style="text-decoration: underline;">2</span>       0.408       0.191        0.850 *    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive           -<span style="color: #BB0000;">1.89</span>  0.470 0.000<span style="text-decoration: underline;">06</span>      0.151       0.056<span style="text-decoration: underline;">2</span>       0.363 ***  </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## print.summanov() — print a 'summanov' object</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="summanov.html">summanov</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span></span></span>
