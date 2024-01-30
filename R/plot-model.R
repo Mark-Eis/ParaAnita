@@ -154,7 +154,7 @@ glm_plotdata.binom_contingency <- function(object, ..., .ind_var, .ungroup = NUL
     check_dots_empty()
     type <- match.arg(type)
  
-    .ind_var <- ensym(.ind_var)
+    .ind_var <- enexpr(.ind_var)
     .ungroup <- enquo(.ungroup)
 
     NextMethod(.dep_var = quote(cbind(pn, qn)))
@@ -175,7 +175,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     type <- match.arg(type)
 
     if (!inherits(object, "binom_contingency")) {
-        .ind_var <- ensym(.ind_var)
+        .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
         if(missing(.dep_var)) {
             warning("Missing '.dep_var' set to default: cbind(pn, qn)")

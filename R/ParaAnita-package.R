@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+# #' @importFrom rlang ensym
 #' @export %@% %|% %||% eval_tidy quos set_names
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export as_labeller element_text ggplot labs theme_get theme_set theme_update
@@ -80,7 +81,6 @@
 #' @importFrom rlang enexprs
 #' @importFrom rlang enquo
 #' @importFrom rlang enquos
-#' @importFrom rlang ensym
 #' @importFrom rlang eval_tidy
 #' @importFrom rlang expr
 #' @importFrom rlang exprs
