@@ -12,7 +12,7 @@ vectors in a dataset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00018</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00019</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,12 @@ vectors in a dataset.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .named <span class="op">=</span> <span class="cn">FALSE</span>, .syms <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">expl_fcts</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  .named <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"syms"</span>, <span class="st">"data_syms"</span>, <span class="st">"character"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -64,8 +69,10 @@ vectors in a dataset.</p>
 automatically named with <code><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names()</a></code>; default <code>FALSE</code>.</p></dd>
 
 
-<dt>.syms</dt>
-<dd><p><code>logical</code>. If <code>FALSE</code>, a <code>character vector</code> is returned rather than a list of <code>symbols</code>; default <code>TRUE</code>.</p></dd>
+<dt>.val</dt>
+<dd><p>the type of output required. The default <code>"syms"</code> returns a list of <code>symbols</code>; the alternative
+<code>"data_syms"</code> returns a list of <code>symbols</code> prefixed with the <code><a href="https://rlang.r-lib.org/reference/dot-data.html" class="external-link">.data</a></code> pronoun. The <code>"character"</code>
+option returns a <code>character vector</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -73,15 +80,19 @@ automatically named with <code><a href="https://rlang.r-lib.org/reference/set_na
     
 
 <p>A <code>list</code> of <code>symbols</code> representing the names of selected explanatory <code>factors</code> or <code>character vectors</code> in
-<code>.data</code>; unless <code>.syms = FALSE</code>, in which case the selected names are returned as a <code>character vector</code> instead.</p>
+<code>.data</code>; unless <code>.val = "data_syms"</code>, in which case the <code>symbols</code> are prefixed with the <code><a href="https://rlang.r-lib.org/reference/dot-data.html" class="external-link">.data</a></code></p>
+
+
+<p>pronoun or <code>.val = "character"</code> whereupon the selected names are returned as a <code>character vector</code> instead.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>By default, <code>expl_fcts()</code> creates a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> of <code><a href="https://rdrr.io/r/base/name.html" class="external-link">symbols</a></code> i.e.,
 <a href="https://rlang.r-lib.org/reference/topic-defuse.html" class="external-link">defused R expressions</a>, representing the names of all or a selection of explanatory factors (or
 character vectors) in <code>.data</code>, using <code><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">syms()</a></code> from package <span class="pkg"><a href="https://rlang.r-lib.org/reference/rlang-package.html" class="external-link">rlang</a></span>. Alternatively,
-if <code>.syms = FALSE</code>, a <code>character vector</code> of the names of the explanatory factors (or character vectors) in <code>.data</code> is
-returned instead.</p>
+if <code>.val = "data_syms"</code>, a list of symbols prefixed with the <code><a href="https://rlang.r-lib.org/reference/dot-data.html" class="external-link">.data</a></code> pronoun is returned instead.
+Finally, if <code>.val = "character"</code>, <code>expl_fcts()</code> returns a <code>character vector</code> of the names of the explanatory factors
+(or character vectors) in <code>.data</code></p>
 <p>Variables in <code>.data</code> may be selected for inclusion or exclusion using the <code>...</code> argument and the
 &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax from package <span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of
 “selection helpers”. If no <code>...</code> arguments are supplied, all categorical variables in <code>.data</code> will
@@ -89,7 +100,7 @@ be included in the list.</p>
 <p>A list of <code>symbols</code> returned by <code>expl_fcts()</code> may be “injected” into the <code>...</code> arguments of
 <code><a href="contingency_table.html">contingency_table()</a></code>, <code><a href="contingency_table.html">xcontingency_table()</a></code>,
 <code><a href="binom_contingency.html">binom_contingency()</a></code> and other similar functions, using the
-<a href="https://rlang.r-lib.org/reference/splice-operator.html" class="external-link">splice-operator</a> <code>!!!</code>. If <code>.syms = FALSE</code>, the functions <code><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of()</a></code>
+<a href="https://rlang.r-lib.org/reference/splice-operator.html" class="external-link">splice-operator</a> <code>!!!</code>. If <code>.val = "character"</code>, the functions <code><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of()</a></code>
 or <code><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of()</a></code> should be used to wrap the resulting <code>character vector</code> of names instead of using
 <code>!!!</code>. A list of <code>symbols</code> returned by <code>expl_fcts()</code> may also be used to provide a list argument with injection
 support to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> (or <span class="pkg"><a href="https://purrr.tidyverse.org/reference/purrr-package.html" class="external-link">purrr</a></span> package <a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a> functions), using the
@@ -156,9 +167,35 @@ support to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-li
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.syms <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.val <span class="op">=</span> <span class="st">"data_syms"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.named <span class="op">=</span> <span class="cn">TRUE</span>, .val <span class="op">=</span> <span class="st">"data_syms"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .data$iv4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.val <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "iv"  "iv2" "iv3" "iv4"</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.named <span class="op">=</span> <span class="cn">TRUE</span>, .syms <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">expl_fcts</span><span class="op">(</span>.named <span class="op">=</span> <span class="cn">TRUE</span>, .val <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    iv   iv2   iv3   iv4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  "iv" "iv2" "iv3" "iv4" </span>
 <span class="r-in"><span></span></span>
@@ -255,7 +292,7 @@ support to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-li
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     h     j     l        16    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     g     j     m        17    49</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     h     j     m         3    63</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, .syms <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, .val <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -296,7 +333,7 @@ support to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-li
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d     j        16    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e     j        17    49</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> f     j         3    63</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="va">iv3</span>, .syms <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="va">iv3</span>, .val <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -337,7 +374,7 @@ support to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-li
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> h     l        16    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> g     m        17    49</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> h     m         3    63</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">iv</span>, <span class="va">iv3</span><span class="op">)</span>, .syms <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu">expl_fcts</span><span class="op">(</span><span class="va">d</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">iv</span>, <span class="va">iv3</span><span class="op">)</span>, .val <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
