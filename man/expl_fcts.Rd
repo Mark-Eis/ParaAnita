@@ -4,7 +4,12 @@
 \alias{expl_fcts}
 \title{Explanatory Factors in Data as List of Expressions}
 \usage{
-expl_fcts(.data, ..., .named = FALSE, .syms = TRUE)
+expl_fcts(
+  .data,
+  ...,
+  .named = FALSE,
+  .val = c("syms", "data_syms", "character")
+)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -15,11 +20,14 @@ expl_fcts(.data, ..., .named = FALSE, .syms = TRUE)
 \item{.named}{\code{logical}, whether to name the elements of the list. If \code{TRUE}, unnamed inputs are
 automatically named with \code{\link[rlang:set_names]{set_names()}}; default \code{FALSE}.}
 
-\item{.syms}{\code{logical}. If \code{FALSE}, a \verb{character vector} is returned rather than a list of \code{symbols}; default \code{TRUE}.}
+\item{.val}{the type of output required. The default \code{"syms"} returns a list of \code{symbols}; the alternative
+\code{"data_syms"} returns a list of \code{symbols} prefixed with the \code{\link[rlang]{.data}} pronoun. The \code{"character"}
+option returns a \verb{character vector}.}
 }
 \value{
 A \code{list} of \code{symbols} representing the names of selected explanatory \code{factors} or \verb{character vectors} in
-\code{.data}; unless \code{.syms = FALSE}, in which case the selected names are returned as a \verb{character vector} instead.
+\code{.data}; unless \code{.val = "data_syms"}, in which case the \code{symbols} are prefixed with the \code{\link[rlang]{.data}}
+pronoun or \code{.val = "character"} whereupon the selected names are returned as a \verb{character vector} instead.
 }
 \description{
 Create a list of defused expressions representing the names of all or a selection of explanatory factors or character
@@ -29,8 +37,9 @@ vectors in a dataset.
 By default, \code{expl_fcts()} creates a \code{\link[base:list]{list}} of \code{\link[base:name]{symbols}} i.e.,
 \link[rlang:topic-defuse]{defused R expressions}, representing the names of all or a selection of explanatory factors (or
 character vectors) in \code{.data}, using \code{\link[rlang:sym]{syms()}} from package \pkg{\link[rlang]{rlang}}. Alternatively,
-if \code{.syms = FALSE}, a \verb{character vector} of the names of the explanatory factors (or character vectors) in \code{.data} is
-returned instead.
+if \code{.val = "data_syms"}, a list of symbols prefixed with the \code{\link[rlang]{.data}} pronoun is returned instead.
+Finally, if \code{.val = "character"}, \code{expl_fcts()} returns a \verb{character vector} of the names of the explanatory factors
+(or character vectors) in \code{.data}
 
 Variables in \code{.data} may be selected for inclusion or exclusion using the \code{\dots} argument and the
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax from package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -40,7 +49,7 @@ be included in the list.
 A list of \code{symbols} returned by \code{expl_fcts()} may be \dQuote{injected} into the \code{\dots} arguments of
 \code{\link[=contingency_table]{contingency_table()}}, \code{\link[=xcontingency_table]{xcontingency_table()}},
 \code{\link[=binom_contingency]{binom_contingency()}} and other similar functions, using the
-\link[rlang:splice-operator]{splice-operator} \verb{!!!}. If \code{.syms = FALSE}, the functions \code{\link[tidyselect:all_of]{all_of()}}
+\link[rlang:splice-operator]{splice-operator} \verb{!!!}. If \code{.val = "character"}, the functions \code{\link[tidyselect:all_of]{all_of()}}
 or \code{\link[tidyselect:all_of]{any_of()}} should be used to wrap the resulting \verb{character vector} of names instead of using
 \verb{!!!}. A list of \code{symbols} returned by \code{expl_fcts()} may also be used to provide a list argument with injection
 support to \code{\link[base:lapply]{lapply()}} (or \pkg{\link[purrr]{purrr}} package \link[purrr:map]{map()} functions), using the
@@ -55,8 +64,10 @@ support to \code{\link[base:lapply]{lapply()}} (or \pkg{\link[purrr]{purrr}} pac
 
 d |> expl_fcts()
 d |> expl_fcts(.named = TRUE)
-d |> expl_fcts(.syms = FALSE)
-d |> expl_fcts(.named = TRUE, .syms = FALSE)
+d |> expl_fcts(.val = "data_syms")
+d |> expl_fcts(.named = TRUE, .val = "data_syms")
+d |> expl_fcts(.val = "character")
+d |> expl_fcts(.named = TRUE, .val = "character")
 
 ## Select or exclude factors
 d |> expl_fcts(iv, iv3)
@@ -75,17 +86,17 @@ d |> expl_fcts(!starts_with("iv"))
 ## Include all explanatory factors
 d |> binom_contingency(dv)
 d |> binom_contingency(dv, !!!expl_fcts(d))
-d |> binom_contingency(dv, all_of(expl_fcts(d, .syms = FALSE)))
+d |> binom_contingency(dv, all_of(expl_fcts(d, .val = "character")))
 
 ## Include only iv and iv3
 d |> binom_contingency(dv, iv, iv3)
 d |> binom_contingency(dv, !!!expl_fcts(d, iv, iv3))
-d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .syms = FALSE)))
+d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .val = "character")))
 
 ## Exclude iv and iv3
 d |> binom_contingency(dv, !c(iv, iv3))
 d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
-d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .syms = FALSE)))
+d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .val = "character")))
 
 ## Use with lapply, binom_contingency(), glm() and odds_ratio()
 expl_fcts(d, .named = TRUE) |>

@@ -2,7 +2,9 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-# #' @importFrom rlang ensym
+# #' @importFrom rlang f_rhs<-
+# #' @importFrom rlang get_expr
+# #' @importFrom rlang is_quosures
 #' @export %@% %|% %||% eval_tidy quos set_names
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export as_labeller element_text ggplot labs theme_get theme_set theme_update
@@ -76,7 +78,9 @@
 #' @importFrom rlang call2
 #' @importFrom rlang check_dots_empty
 #' @importFrom rlang check_dots_unnamed
+#' @importFrom rlang check_dots_used
 #' @importFrom rlang data_sym
+#' @importFrom rlang data_syms
 #' @importFrom rlang enexpr
 #' @importFrom rlang enexprs
 #' @importFrom rlang enquo
@@ -85,10 +89,7 @@
 #' @importFrom rlang expr
 #' @importFrom rlang exprs
 #' @importFrom rlang f_rhs
-#' @importFrom rlang f_rhs<-
-#' @importFrom rlang get_expr
 #' @importFrom rlang inject
-#' @importFrom rlang is_quosures
 #' @importFrom rlang list2
 #' @importFrom rlang quo_get_env
 #' @importFrom rlang quos

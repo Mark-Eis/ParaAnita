@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Dec 2023
+# Mark Eisler - Feb 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -394,8 +394,9 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' By default, `expl_fcts()` creates a [`list`][base::list] of [`symbols`][base::symbol] i.e.,
 #' [defused R expressions][rlang::topic-defuse], representing the names of all or a selection of explanatory factors (or
 #' character vectors) in `.data`, using [`syms()`][rlang::syms] from package \pkg{\link[rlang]{rlang}}. Alternatively,
-#' if `.syms = FALSE`, a `character vector` of the names of the explanatory factors (or character vectors) in `.data` is
-#' returned instead.
+#' if `.val = "data_syms"`, a list of symbols prefixed with the \code{\link[rlang]{.data}} pronoun is returned instead.
+#' Finally, if `.val = "character"`, `expl_fcts()` returns a `character vector` of the names of the explanatory factors
+#' (or character vectors) in `.data`
 #'
 #' Variables in `.data` may be selected for inclusion or exclusion using the \code{\dots} argument and the
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax from package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -405,7 +406,7 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' A list of `symbols` returned by `expl_fcts()` may be \dQuote{injected} into the \code{\dots} arguments of
 #' [`contingency_table()`][contingency_table], [`xcontingency_table()`][xcontingency_table],
 #' [`binom_contingency()`][binom_contingency] and other similar functions, using the
-#' [splice-operator][rlang::splice-operator] `!!!`. If `.syms = FALSE`, the functions [`all_of()`][tidyselect::all_of]
+#' [splice-operator][rlang::splice-operator] `!!!`. If `.val = "character"`, the functions [`all_of()`][tidyselect::all_of]
 #' or [`any_of()`][tidyselect::any_of] should be used to wrap the resulting `character vector` of names instead of using
 #' `!!!`. A list of `symbols` returned by `expl_fcts()` may also be used to provide a list argument with injection
 #' support to [`lapply()`][base::lapply] (or \pkg{\link[purrr]{purrr}} package [map()][purrr::map] functions), using the
@@ -414,7 +415,9 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' @param .named `logical`, whether to name the elements of the list. If `TRUE`, unnamed inputs are
 #'   automatically named with [`set_names()`][rlang::set_names]; default `FALSE`.
 #' 
-#' @param .syms `logical`. If `FALSE`, a `character vector` is returned rather than a list of `symbols`; default `TRUE`.
+#' @param .val the type of output required. The default `"syms"` returns a list of `symbols`; the alternative
+#'   `"data_syms"` returns a list of `symbols` prefixed with the \code{\link[rlang]{.data}} pronoun. The `"character"`
+#'   option returns a `character vector`.
 #'
 #' @inheritParams contingency_table
 #'
@@ -424,7 +427,8 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' @family contingency_table
 #'
 #' @return A `list` of `symbols` representing the names of selected explanatory `factors` or `character vectors` in
-#'   `.data`; unless `.syms = FALSE`, in which case the selected names are returned as a `character vector` instead.
+#'   `.data`; unless `.val = "data_syms"`, in which case the `symbols` are prefixed with the \code{\link[rlang]{.data}}
+#'   pronoun or `.val = "character"` whereupon the selected names are returned as a `character vector` instead.
 #'
 #' @keywords manip models
 #' @export
@@ -437,8 +441,10 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #'
 #' d |> expl_fcts()
 #' d |> expl_fcts(.named = TRUE)
-#' d |> expl_fcts(.syms = FALSE)
-#' d |> expl_fcts(.named = TRUE, .syms = FALSE)
+#' d |> expl_fcts(.val = "data_syms")
+#' d |> expl_fcts(.named = TRUE, .val = "data_syms")
+#' d |> expl_fcts(.val = "character")
+#' d |> expl_fcts(.named = TRUE, .val = "character")
 #'
 #' ## Select or exclude factors
 #' d |> expl_fcts(iv, iv3)
@@ -457,17 +463,17 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #' ## Include all explanatory factors
 #' d |> binom_contingency(dv)
 #' d |> binom_contingency(dv, !!!expl_fcts(d))
-#' d |> binom_contingency(dv, all_of(expl_fcts(d, .syms = FALSE)))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, .val = "character")))
 #'
 #' ## Include only iv and iv3
 #' d |> binom_contingency(dv, iv, iv3)
 #' d |> binom_contingency(dv, !!!expl_fcts(d, iv, iv3))
-#' d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .syms = FALSE)))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .val = "character")))
 #'
 #' ## Exclude iv and iv3
 #' d |> binom_contingency(dv, !c(iv, iv3))
 #' d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
-#' d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .syms = FALSE)))
+#' d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .val = "character")))
 #'
 #' ## Use with lapply, binom_contingency(), glm() and odds_ratio()
 #' expl_fcts(d, .named = TRUE) |>
@@ -485,18 +491,25 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 #'
 #' rm(d)
 
-expl_fcts <- function(.data, ..., .named = FALSE, .syms = TRUE) {
+expl_fcts <- function(.data, ..., .named = FALSE, .val = c("syms", "data_syms", "character")) {
+
+    .val <- match.arg(.val)
+
     if (...length())
         pos <- eval_select(expr(c(...) & chr_or_fct()), data = .data)
     else 
         pos <- eval_select(expr(chr_or_fct()), data = .data)
+
     efs <- names(pos)
+
     if(.named)
         efs <- set_names(efs)
-    if(.syms)
-        syms(efs)
-    else
-        efs
+
+    switch(.val,
+        syms = syms(efs),
+        data_syms = data_syms(efs),
+        character = efs,
+    )
 }
 
 
