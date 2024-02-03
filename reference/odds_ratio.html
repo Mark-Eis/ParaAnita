@@ -12,7 +12,7 @@ together with the estimates of the regression coefficients, their standard error
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.00020</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,17 @@ together with the estimates of the regression coefficients, their standard error
 <span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">odds_ratio</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  <span class="va">.data</span>,</span>
+<span>  .level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  .print_call <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .stat <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .print_contr <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># S3 method for glm</span></span>
 <span><span class="fu">odds_ratio</span><span class="op">(</span></span>
 <span>  <span class="va">object</span>,</span>
@@ -85,8 +96,8 @@ together with the estimates of the regression coefficients, their standard error
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
 <dd><p>an object from which the odds ratios are to be calculated, which may be a <code><a href="binom_contingency.html">binom_contingency</a></code> table,
-a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data frame</a></code> (or a data frame extension e.g., a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>), or a
-<code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code>.</p></dd>
+a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data frame</a></code> (or a data frame extension e.g., a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>), a
+<code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> or a <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code>.</p></dd>
 
 
 <dt>...</dt>
@@ -120,6 +131,10 @@ matrix will be printed; default <code>FALSE</code>.</p></dd>
 <dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name(s) of the response variable(s) in the data
 representing the number of successes and failures respectively, see <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>; default
 <code>cbind(pn, qn)</code>.</p></dd>
+
+
+<dt>.data</dt>
+<dd><p>a data frame, or a data frame extension (e.g. a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -167,12 +182,10 @@ univariable <acronym>GLMs</acronym> with a single categorical independent variab
 output these together with the estimates of the regression coefficients, their standard errors and probabilities.
 The function invokes particular <code><a href="https://rdrr.io/r/utils/methods.html" class="external-link">methods</a></code> which depend on the <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code> of the first
 argument.</p>
-<p>The S3 method for objects of class <code>"glm"</code> returned by <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> can be used with unvariable
-<acronym>GLMs</acronym>, or with multivariable <acronym>GLMs</acronym> to calculate "adjusted" odds ratios. Optionally, if
-<code>print_call = TRUE</code> the original call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved from the <code>"glm"</code> object supplied
-as an argument and printed.</p>
-<p>Currently, the S3 methods for classes <code>"data.frame"</code> and <code>"binom_contingency"</code> can only be used with univariable
-<acronym>GLMs</acronym>.</p>
+<p>The S3 method for objects of class <code>"formula"</code> or <code>"glm"</code> can be used with either unvariable <acronym>GLMs</acronym>, or
+with multivariable <acronym>GLMs</acronym> to calculate "adjusted" odds ratios. Currently, the S3 methods for classes
+<code>"data.frame"</code> and <code>"binom_contingency"</code> can only be used with univariable <acronym>GLMs</acronym>.</p>
+<p>Optionally, if <code>print_call = TRUE</code> the call to <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> may be retrieved and printed.</p>
 <p>If <code>.print_contr = TRUE</code> and any <code>factor</code> independent variables have a contrast <code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attribute</a></code> set,
 the <code>contrast matrix</code> will be printed. Contrasts may be set conveniently for <code>factors</code> in
 <code>data</code> using <code><a href="get_contrasts.html">set_contrasts()</a></code>, see examples.</p>
@@ -183,9 +196,9 @@ value of <var>0.95</var> is used.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="binom_contingency.html">binom_contingency()</a></code>, <code>contrast matrix</code>,
-<code><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts()</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>, <code><a href="get_contrasts.html">set_contrasts()</a></code>,
-<code><a href="https://rdrr.io/r/stats/summary.glm.html" class="external-link">summary.glm()</a></code>; <code><a href="Print_Methods.html">Print_Methods</a></code> and <code><a href="print_all.html">print_all()</a></code> for S3
-methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
+<code><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts()</a></code>, <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code>, <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>,
+<code><a href="get_contrasts.html">set_contrasts()</a></code>, <code><a href="https://rdrr.io/r/stats/summary.glm.html" class="external-link">summary.glm()</a></code>; <code><a href="Print_Methods.html">Print_Methods</a></code> and
+<code><a href="print_all.html">print_all()</a></code> for S3 methods for printing objects of class <code>"odds_ratio"</code>.</p></div>
     </div>
 
     <div class="section level2">
