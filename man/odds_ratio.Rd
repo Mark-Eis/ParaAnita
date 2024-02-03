@@ -4,6 +4,7 @@
 \alias{odds_ratio}
 \alias{odds_ratio.binom_contingency}
 \alias{odds_ratio.data.frame}
+\alias{odds_ratio.formula}
 \alias{odds_ratio.glm}
 \title{Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs}
 \usage{
@@ -30,6 +31,16 @@ odds_ratio(object, ...)
   .print_contr = FALSE
 )
 
+\method{odds_ratio}{formula}(
+  object,
+  ...,
+  .data,
+  .level = 0.95,
+  .print_call = FALSE,
+  .stat = FALSE,
+  .print_contr = FALSE
+)
+
 \method{odds_ratio}{glm}(
   object,
   ...,
@@ -41,8 +52,8 @@ odds_ratio(object, ...)
 }
 \arguments{
 \item{object}{an object from which the odds ratios are to be calculated, which may be a \code{\link{binom_contingency}} table,
-a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a
-\code{\link[stats:glm]{glm}}.}
+a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), a
+\code{\link[stats:formula]{formula}} or a \code{\link[stats:glm]{glm}}.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 
@@ -62,6 +73,8 @@ matrix will be printed; default \code{FALSE}.}
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of the response variable(s) in the data
 representing the number of successes and failures respectively, see \code{\link[stats:glm]{glm()}}; default
 \code{cbind(pn, qn)}.}
+
+\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 }
 \value{
 An object of classes \code{"odds_ratio"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -94,13 +107,11 @@ output these together with the estimates of the regression coefficients, their s
 The function invokes particular \code{\link[utils:methods]{methods}} which depend on the \code{\link[base:class]{class}} of the first
 argument.
 
-The S3 method for objects of class \code{"glm"} returned by \code{\link[stats:glm]{glm()}} can be used with unvariable
-\acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
-\code{print_call = TRUE} the original call to \code{\link[stats:glm]{glm()}} may be retrieved from the \code{"glm"} object supplied
-as an argument and printed.
+The S3 method for objects of class \code{"formula"} or \code{"glm"} can be used with either unvariable \acronym{GLMs}, or
+with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Currently, the S3 methods for classes
+\code{"data.frame"} and \code{"binom_contingency"} can only be used with univariable \acronym{GLMs}.
 
-Currently, the S3 methods for classes \code{"data.frame"} and \code{"binom_contingency"} can only be used with univariable
-\acronym{GLMs}.
+Optionally, if \code{print_call = TRUE} the call to \code{\link[stats:glm]{glm()}} may be retrieved and printed.
 
 If \code{.print_contr = TRUE} and any \code{factor} independent variables have a contrast \code{\link[base:attributes]{attribute}} set,
 the \code{\link[stats:contrast]{contrast matrix}} will be printed. Contrasts may be set conveniently for \code{factors} in
@@ -207,9 +218,9 @@ rm(d, glm1)
 }
 \seealso{
 \code{\link[=binom_contingency]{binom_contingency()}}, \code{\link[stats:contrast]{contrast matrix}},
-\code{\link[stats:contrasts]{contrasts()}}, \code{\link[stats:glm]{glm()}}, \code{\link[=set_contrasts]{set_contrasts()}},
-\code{\link[stats:summary.glm]{summary.glm()}}; \code{\link{Print_Methods}} and \code{\link[=print_all]{print_all()}} for S3
-methods for printing objects of class \code{"odds_ratio"}.
+\code{\link[stats:contrasts]{contrasts()}}, \code{\link[stats:formula]{formula}}, \code{\link[stats:glm]{glm()}},
+\code{\link[=set_contrasts]{set_contrasts()}}, \code{\link[stats:summary.glm]{summary.glm()}}; \code{\link{Print_Methods}} and
+\code{\link[=print_all]{print_all()}} for S3 methods for printing objects of class \code{"odds_ratio"}.
 }
 \concept{odds-ratio}
 \keyword{models}

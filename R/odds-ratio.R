@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Jan 2024
+# Mark Eisler Feb 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -22,13 +22,11 @@
 #' The function invokes particular [`methods`][utils:: methods] which depend on the [`class`][base::class] of the first
 #' argument.
 #'
-#' The S3 method for objects of class `"glm"` returned by [`glm()`][stats::glm] can be used with unvariable
-#' \acronym{GLMs}, or with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Optionally, if
-#' `print_call = TRUE` the original call to [`glm()`][stats::glm] may be retrieved from the `"glm"` object supplied
-#' as an argument and printed.
+#' The S3 method for objects of class `"formula"` or `"glm"` can be used with either unvariable \acronym{GLMs}, or
+#' with multivariable \acronym{GLMs} to calculate "adjusted" odds ratios. Currently, the S3 methods for classes
+#' `"data.frame"` and `"binom_contingency"` can only be used with univariable \acronym{GLMs}.
 #'
-#' Currently, the S3 methods for classes `"data.frame"` and `"binom_contingency"` can only be used with univariable
-#' \acronym{GLMs}.
+#' Optionally, if `print_call = TRUE` the call to [`glm()`][stats::glm] may be retrieved and printed.
 #'
 #' If `.print_contr = TRUE` and any `factor` independent variables have a contrast [`attribute`][base::attributes] set,
 #' the [`contrast matrix`][stats::contr.helmert] will be printed. Contrasts may be set conveniently for `factors` in
@@ -39,14 +37,14 @@
 #' value of \var{0.95} is used.
 #'
 #' @seealso [`binom_contingency()`][binom_contingency], [`contrast matrix`][stats::contr.helmert],
-#'   [`contrasts()`][stats::contrasts], [`glm()`][stats::glm], [`set_contrasts()`][set_contrasts],
-#'   [`summary.glm()`][stats::summary.glm]; [`Print_Methods`][Print_Methods] and [`print_all()`][print_all] for S3
-#'   methods for printing objects of class `"odds_ratio"`.
+#'   [`contrasts()`][stats::contrasts], [`formula`][stats::formula], [`glm()`][stats::glm],
+#'   [`set_contrasts()`][set_contrasts], [`summary.glm()`][stats::summary.glm]; [`Print_Methods`][Print_Methods] and
+#'   [`print_all()`][print_all] for S3 methods for printing objects of class `"odds_ratio"`.
 #' @family odds-ratio
 #'
 #' @param object an object from which the odds ratios are to be calculated, which may be a [`binom_contingency`] table,
-#'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), or a
-#'   [`glm`][stats::glm].
+#'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), a
+#'   [`formula`][stats::formula] or a [`glm`][stats::glm].
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
@@ -66,6 +64,8 @@
 #'
 #' @param .print_contr `logical`. If `TRUE`, and `.ind_var` has a contrast attribute set, the contrast
 #'   matrix will be printed; default `FALSE`.
+#'
+#' @inheritParams contingency_table
 #'
 #' @return An object of classes `"odds_ratio"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
 #'   and containing the following columns: -
@@ -228,6 +228,26 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
     glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
+    odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
+}
+
+# ========================================
+# Odds Ratios And Confidence Intervals for a Formula
+#
+#' @rdname odds_ratio
+#' @export
+
+odds_ratio.formula <- function(object, ..., .data, .level = 0.95, .print_call = FALSE,
+    .stat = FALSE, .print_contr = FALSE) {
+
+    check_dots_empty()
+
+    if (length(object[[3]]) > 1)
+        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+    if (any(!is.numeric(.level), .level < 0, .level >= 1))
+        stop("\n\targument \".level\" must be positive numeric less than 1")
+
+    glm(object, family = "binomial", data = .data) |>
     odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
 }
 
