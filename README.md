@@ -42,4 +42,4 @@ The **ParaAnita R package** includes functions intended to address and simplify 
 
 - Tidies up the R workspace with `rm_objects()`.
 
-– Dataset: [`budworm`](https://mark-eis.github.io/ParaAnita/reference/budworm.html)
+– Dataset: `budworm`

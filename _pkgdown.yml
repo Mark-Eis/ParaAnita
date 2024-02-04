@@ -79,4 +79,7 @@ reference:
 - title: Tidy up workspace
   desc: "Clear the workspace of related objects such as similarly named models. \n"
   contents: rm_objects
+- title: Data
+  desc: "Datasets provided in ParaAnita. \n"
+  contents: budworm
 
