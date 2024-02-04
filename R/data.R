@@ -1,0 +1,33 @@
+# ParaAnita R Package
+# Mark Eisler Feb 2024
+# For Anita Rabaza
+#
+# Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
+#
+# data.R
+
+#' Budworm Data
+#'
+#' @description
+#' Venables and Ripley (2002) state: "Collett (1991, p. 75) reports an experiment on the toxicity to the tobacco
+#' budworm \emph{Heliothis virescens} of doses of the pyrethroid trans-cypermethrin to which the moths were beginning to
+#' show resistance. Batches of 20 moths of each sex were exposed for three days to the pyrethroid and the number in
+#' each batch that were dead or knocked down was recorded."
+#'
+#' Collett, D. (1991) \emph{Modelling Binary Data.} London: Chapman & Hall.
+#'
+#' @format ##
+#' A `data.frame` with 12 rows and 4 columns: –
+#' \describe{
+#'   \item{ldose}{Dose of the pyrethroid trans-cypermethrin.}
+#'   \item{sex}{Sex of the budworm.}
+#'   \item{numdead}{Number that were dead or knocked down.}
+#'   \item{numalive}{Number that were alive.}
+#' }
+
+#' @source
+#' W.N. Venables and B.D. Ripley (2002). \emph{Modern Applied Statistics with S. Fourth Edition 2002.} 
+#' \strong{Statistics and Computing}, © 2002 Springer Science+Business Media New York.
+#' \href{https://doi.org/10.1007/978-0-387-21706-2}{\doi{10.1007/978-0-387-21706-2}}.
+#' Chapter 7: Generalized Linear Models, p. 190.
+"budworm"
