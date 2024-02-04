@@ -242,8 +242,8 @@ odds_ratio.formula <- function(object, ..., .data, .level = 0.95, .print_call = 
 
     check_dots_empty()
 
-    if (length(object[[3]]) > 1)
-        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+    # if (length(object[[3]]) > 1)
+        # stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
