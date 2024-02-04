@@ -227,8 +227,12 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
-    glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
-    odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
+    odds_ratio(
+        inject(!!.dep_var ~ !!.ind_var),
+        .family = "binomial",
+        .data = object,
+        .level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr
+    )           
 }
 
 # ========================================
@@ -237,7 +241,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.formula <- function(object, ..., .data, .level = 0.95, .print_call = FALSE,
+odds_ratio.formula <- function(object, ..., .family = binomial, .data, .level = 0.95, .print_call = FALSE,
     .stat = FALSE, .print_contr = FALSE) {
 
     check_dots_empty()
@@ -245,7 +249,7 @@ odds_ratio.formula <- function(object, ..., .data, .level = 0.95, .print_call = 
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
         stop("\n\targument \".level\" must be positive numeric less than 1")
 
-    glm(object, family = "binomial", data = .data) |>
+    glm(object, family = .family, data = .data) |>
     odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
 }
 

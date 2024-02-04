@@ -34,6 +34,7 @@ odds_ratio(object, ...)
 \method{odds_ratio}{formula}(
   object,
   ...,
+  .family = binomial,
   .data,
   .level = 0.95,
   .print_call = FALSE,
