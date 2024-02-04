@@ -64,7 +64,7 @@ failures respectively, see \emph{Details}; default \code{cbind(pn, qn)}.}
 
 \item{.family}{a description of the error distribution and link function to be used in the model. This can be a
 character string naming a family function, a family function or the result of a call to a family function.
-(See \link[stats:family]{'family'} for details of family functions.)}
+(See \code{\link[stats:family]{family}} for details of family functions.)}
 
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 }

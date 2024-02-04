@@ -67,7 +67,7 @@
 #'
 #' @param .family a description of the error distribution and link function to be used in the model. This can be a
 #'   character string naming a family function, a family function or the result of a call to a family function.
-#'   (See ['family'][stats::family] for details of family functions.)
+#'   (See [`family`][stats::family] for details of family functions.)
 #'
 #' @inheritParams contingency_table
 #'
