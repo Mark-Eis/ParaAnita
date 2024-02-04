@@ -65,6 +65,10 @@
 #' @param .print_contr `logical`. If `TRUE`, and `.ind_var` has a contrast attribute set, the contrast
 #'   matrix will be printed; default `FALSE`.
 #'
+#' @param .family a description of the error distribution and link function to be used in the model. This can be a
+#'   character string naming a family function, a family function or the result of a call to a family function.
+#'   (See ['family'][stats::family] for details of family functions.)
+#'
 #' @inheritParams contingency_table
 #'
 #' @return An object of classes `"odds_ratio"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
@@ -224,8 +228,6 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
-    if (any(!is.numeric(.level), .level < 0, .level >= 1))
-        stop("\n\targument \".level\" must be positive numeric less than 1")
 
     odds_ratio(
         inject(!!.dep_var ~ !!.ind_var),
@@ -246,9 +248,6 @@ odds_ratio.formula <- function(object, ..., .family = binomial, .data, .level = 
 
     check_dots_empty()
 
-    if (any(!is.numeric(.level), .level < 0, .level >= 1))
-        stop("\n\targument \".level\" must be positive numeric less than 1")
-
     glm(object, family = .family, data = .data) |>
     odds_ratio(.level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr)           
 }
@@ -263,9 +262,14 @@ odds_ratio.formula <- function(object, ..., .family = binomial, .data, .level = 
 odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat = FALSE, .print_contr = FALSE) {
 
     check_dots_empty()
+    stopifnot(
+        inherits(object, c("glm", "lm")),
+            family(object)$family %in% c("binomial", "quasibinomial", "poisson")
+    )
+    if (any(!is.numeric(.level), .level < 0, .level >= 1))
+        stop("\n\targument \".level\" must be positive numeric less than 1")
 
     .glm <- object
-    stopifnot(family(.glm)$family %in% c("binomial", "quasibinomial", "poisson"))
 
     if (.print_call) cat("\nCall:  ", paste(deparse(.glm$call), sep = "\n", collapse = "\n"), 
         "\n\n", sep = "")

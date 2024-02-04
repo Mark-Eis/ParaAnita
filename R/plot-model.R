@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Jan 2024
+# Mark Eisler Feb 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -13,7 +13,8 @@
 #'
 #' @description
 #' `glm_plotdata()` outputs data based on predictions from univariable general linear models (\acronym{GLM}s) suitably
-#' collated for easy creation of standardised plots with error bars representing confidence intervals or standard errors.
+#' collated for easy creation of standardised plots with error bars representing confidence intervals or standard
+#' errors.
 #'
 #' @details
 #' This function works with univariable binomial \acronym{GLM}s having a `numeric` dependent variable of ones and zeros
@@ -26,10 +27,11 @@
 #' `glm_plotdata()` allows exploration of proposed groupings of the levels of the independent variable, such as
 #' obtained using [`add_grps()`][add_grps] or [`fct_collapse()`][forcats::fct_collapse], and will include both the
 #' grouped and ungrouped levels in its output. In such cases, `.ind_var` should contain the groupings and the `.ungroup`
-#' argument should name a column in `object`'s data containing the ungrouped levels, see examples. The grouped levels are
-#' used as the independent variable in the \acronym{GLM} and are shown within the output object in the column `grouped`
-#' while the ungrouped levels are shown in the column `level`. If the `.ungroup` is `NULL` (the default), levels of
-#' `.ind_var` will appear in the column `level` and the `grouped` column in the output will contain [`NA`][base::NA].
+#' argument should name a column in `object`'s data containing the ungrouped levels, see examples. The grouped levels
+#' are used as the independent variable in the \acronym{GLM} and are shown within the output object in the column
+#' `grouped` while the ungrouped levels are shown in the column `level`. If the `.ungroup` is `NULL` (the default),
+#' levels of `.ind_var` will appear in the column `level` and the `grouped` column in the output will contain
+#' [`NA`][base::NA].
 #'
 #' If `conf_level` is `0.95` (the default) or a similar value, the `lower` and `upper` columns in the output delimit
 #' the prediction intervals at that confidence level. If `conf_level` is [`NA`][base::NA], then `lower` and `upper`
@@ -45,13 +47,13 @@
 #'   (e.g., using [`confint.glm`][MASS::confint.glm]). If the `conf_level` argument is [`NA`][base::NA], standard
 #'   error is shown rather than a confidence interval.
 #'
-#' @seealso  [`add_grps`][add_grps], [`binom_contingency`][binom_contingency], [`glm`][stats::glm],
-#'   [`imap`][purrr::imap] and  [`tibble`][tibble::tibble-package].
+#' @seealso  [`add_grps`][add_grps], [`binom_contingency`][binom_contingency], [`formula`][stats::formula],
+#'   [`glm`][stats::glm], and  [`tibble`][tibble::tibble-package].
 #' @family plot_model
 #'
-#' @param object an object from which the data for plotting univariable GLM predictions are to be collated; may be a 
-#'   [`binomial contingency table`][binom_contingency], a [`data frame`][base::data.frame] (or a data frame extension
-#'   e.g., a [`tibble`][tibble::tibble-package]), or a [`glm`][stats::glm].
+#' @param object an object from which the odds ratios are to be calculated, which may be a [`binom_contingency`] table,
+#'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), a
+#'   [`formula`][stats::formula] or a [`glm`][stats::glm].
 #'
 #' @param \dots further arguments passed to or from other methods. Not currently used.
 #' 
@@ -60,14 +62,20 @@
 #'
 #' @param .ind_var quoted name of the independent variable.
 #'
-#' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped levels
-#'   of `.ind_var`, see details; default `NULL`.
+#' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped
+#'   levels of `.ind_var`, see details; default `NULL`.
 #'
 #' @param conf_level the confidence level required for the error bars; default \var{0.95}. If `NA`, error bars are
 #'   standard error.
 #'
 #' @param type the type of prediction required. The default is on the scale of the linear predictors;
 #'   the alternative `"response"` is on the scale of the response variable; default `"link"`.
+#'
+#' @param .family a description of the error distribution and link function to be used in the model. This can be a
+#'   character string naming a family function, a family function or the result of a call to a family function.
+#'   (See ['family'][stats::family] for details of family functions.)
+#'
+#' @inheritParams contingency_table
 #'
 #' @return An object of class `"glm_plotdata"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
 #'   with values on the linear predictor or response scale (depending on `type`) in columns as follows: -
@@ -186,12 +194,34 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_string(.ind_var), " not of type factor or character vector")
-    if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
-        stop("\n\targument \"conf_level\" must be positive numeric less than 1")
 
-    glm(inject(!!.dep_var ~ !!.ind_var), family = "binomial", data = object) |>
+    glm_plotdata(
+        inject(!!.dep_var ~ !!.ind_var),
+        .family = "binomial",
+        .data = object,
+        .ungroup = .ungroup,
+        conf_level = conf_level,
+        type = type
+    )
+}
+
+# ========================================
+# Format Data for Plotting Univariable GLM Predictions with Error Bars for a Formula
+#
+#' @rdname glm_plotdata
+#' @export
+
+glm_plotdata.formula <- function(object, ..., .family = binomial, .data, .ungroup = NULL, conf_level = 0.95,
+    type = c("link", "response")) {
+
+    check_dots_empty()
+
+    if (length(object[[3]]) > 1)
+        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+
+    glm(object, family = .family, data = .data) |>
         structure(ungroup = .ungroup) |>
-	    glm_plotdata(conf_level = conf_level, type = type)      
+        glm_plotdata(conf_level = conf_level, type = type)           
 }
 
 
@@ -211,6 +241,8 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
         inherits(object, c("glm", "lm")),
             family(object)$family %in% c("binomial", "quasibinomial", "poisson")
     )
+    if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
+        stop("\n\targument \"conf_level\" must be positive numeric less than 1")
     if (length(formula(object)[[3]]) > 1)
         stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
     
@@ -271,7 +303,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
 #  Constructor for glm_plotdata
 #  new_glm_plotdata()
 #
-# Not exported
+#  Not exported
 
 new_glm_plotdata <- function(x = data.frame(NULL), ..., conf_level = 0.95, ind_var = NULL,
     type = c("link", "response")) {
@@ -368,10 +400,10 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                 type = .type
             ) |>
             filter(
-	            if(.type == "link")
-		            is.finite(.data$obs)
-	            else
-		            .data$obs > 0 & .data$obs < 1
+                if(.type == "link")
+                    is.finite(.data$obs)
+                else
+                    .data$obs > 0 & .data$obs < 1
             )
         )
 

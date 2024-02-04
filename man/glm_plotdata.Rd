@@ -4,6 +4,7 @@
 \alias{glm_plotdata}
 \alias{glm_plotdata.binom_contingency}
 \alias{glm_plotdata.data.frame}
+\alias{glm_plotdata.formula}
 \alias{glm_plotdata.glm}
 \title{Collate Data for Plotting Univariable GLM Predictions with Error Bars}
 \usage{
@@ -28,19 +29,29 @@ glm_plotdata(object, ...)
   type = c("link", "response")
 )
 
+\method{glm_plotdata}{formula}(
+  object,
+  ...,
+  .family = binomial,
+  .data,
+  .ungroup = NULL,
+  conf_level = 0.95,
+  type = c("link", "response")
+)
+
 \method{glm_plotdata}{glm}(object, ..., conf_level = 0.95, type = c("link", "response"))
 }
 \arguments{
-\item{object}{an object from which the data for plotting univariable GLM predictions are to be collated; may be a
-\code{\link[=binom_contingency]{binomial contingency table}}, a \code{\link[base:data.frame]{data frame}} (or a data frame extension
-e.g., a \code{\link[tibble:tibble-package]{tibble}}), or a \code{\link[stats:glm]{glm}}.}
+\item{object}{an object from which the odds ratios are to be calculated, which may be a \code{\link{binom_contingency}} table,
+a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), a
+\code{\link[stats:formula]{formula}} or a \code{\link[stats:glm]{glm}}.}
 
 \item{\dots}{further arguments passed to or from other methods. Not currently used.}
 
 \item{.ind_var}{quoted name of the independent variable.}
 
-\item{.ungroup}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the column containing the ungrouped levels
-of \code{.ind_var}, see details; default \code{NULL}.}
+\item{.ungroup}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the column containing the ungrouped
+levels of \code{.ind_var}, see details; default \code{NULL}.}
 
 \item{conf_level}{the confidence level required for the error bars; default \var{0.95}. If \code{NA}, error bars are
 standard error.}
@@ -50,6 +61,12 @@ the alternative \code{"response"} is on the scale of the response variable; defa
 
 \item{.dep_var}{quoted name of the response variable in the data representing the number of successes and
 failures respectively, see \emph{Details}; default \code{cbind(pn, qn)}.}
+
+\item{.family}{a description of the error distribution and link function to be used in the model. This can be a
+character string naming a family function, a family function or the result of a call to a family function.
+(See \link[stats:family]{'family'} for details of family functions.)}
+
+\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 }
 \value{
 An object of class \code{"glm_plotdata"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -74,7 +91,8 @@ independent variable, and \code{"type"} (see argument \code{type}).
 }
 \description{
 \code{glm_plotdata()} outputs data based on predictions from univariable general linear models (\acronym{GLM}s) suitably
-collated for easy creation of standardised plots with error bars representing confidence intervals or standard errors.
+collated for easy creation of standardised plots with error bars representing confidence intervals or standard
+errors.
 }
 \details{
 This function works with univariable binomial \acronym{GLM}s having a \code{numeric} dependent variable of ones and zeros
@@ -87,10 +105,11 @@ this purpose.
 \code{glm_plotdata()} allows exploration of proposed groupings of the levels of the independent variable, such as
 obtained using \code{\link[=add_grps]{add_grps()}} or \code{\link[forcats:fct_collapse]{fct_collapse()}}, and will include both the
 grouped and ungrouped levels in its output. In such cases, \code{.ind_var} should contain the groupings and the \code{.ungroup}
-argument should name a column in \code{object}'s data containing the ungrouped levels, see examples. The grouped levels are
-used as the independent variable in the \acronym{GLM} and are shown within the output object in the column \code{grouped}
-while the ungrouped levels are shown in the column \code{level}. If the \code{.ungroup} is \code{NULL} (the default), levels of
-\code{.ind_var} will appear in the column \code{level} and the \code{grouped} column in the output will contain \code{\link[base:NA]{NA}}.
+argument should name a column in \code{object}'s data containing the ungrouped levels, see examples. The grouped levels
+are used as the independent variable in the \acronym{GLM} and are shown within the output object in the column
+\code{grouped} while the ungrouped levels are shown in the column \code{level}. If the \code{.ungroup} is \code{NULL} (the default),
+levels of \code{.ind_var} will appear in the column \code{level} and the \code{grouped} column in the output will contain
+\code{\link[base:NA]{NA}}.
 
 If \code{conf_level} is \code{0.95} (the default) or a similar value, the \code{lower} and \code{upper} columns in the output delimit
 the prediction intervals at that confidence level. If \code{conf_level} is \code{\link[base:NA]{NA}}, then \code{lower} and \code{upper}
@@ -155,8 +174,8 @@ d |> glm_plotdata(
 rm(d)
 }
 \seealso{
-\code{\link{add_grps}}, \code{\link{binom_contingency}}, \code{\link[stats:glm]{glm}},
-\code{\link[purrr:imap]{imap}} and  \code{\link[tibble:tibble-package]{tibble}}.
+\code{\link{add_grps}}, \code{\link{binom_contingency}}, \code{\link[stats:formula]{formula}},
+\code{\link[stats:glm]{glm}}, and  \code{\link[tibble:tibble-package]{tibble}}.
 
 Other plot_model: 
 \code{\link{Plot_Model}},
