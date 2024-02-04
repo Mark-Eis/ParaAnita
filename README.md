@@ -41,3 +41,5 @@ The **ParaAnita R package** includes functions intended to address and simplify 
 - Provides auxiliary print functions and prints objects derived from ParaAnita S3 methods with `announce()`, `lf()`, `print_all()` and `print_lf()`.
 
 - Tidies up the R workspace with `rm_objects()`.
+
+– Dataset: [`budworm`](https://mark-eis.github.io/ParaAnita/reference/budworm.html)
