@@ -2,6 +2,7 @@
 % Please edit documentation in R/contingency-table.R
 \name{binom_contingency}
 \alias{binom_contingency}
+\alias{as_binom_contingency}
 \title{Binomial Contingency Table for Data with a Binary Outcome}
 \usage{
 binom_contingency(
@@ -12,12 +13,14 @@ binom_contingency(
   .propci = FALSE,
   .level = 0.95
 )
+
+as_binom_contingency(x)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which should be
-\code{numeric} with values of \var{0} and \var{1}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which
+should be \code{numeric} with values of \var{0} and \var{1}.}
 
 \item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
 \verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
@@ -29,11 +32,14 @@ binom_contingency(
 and confidence intervals; default \code{FALSE}.}
 
 \item{.level}{the confidence level required; default \var{0.95}.}
+
+\item{x}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
+a \code{"binom_contingency"} object.}
 }
 \value{
 An object of class \code{"binom_contingency"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
 with columns \code{pn} and \code{qn} representing the number of "successes" and "failures" respectively, and further columns
-for independant (explanatory) variables.
+for independent (explanatory) variables.
 
 If \code{.propci = TRUE} additional columns are output representing totals, proportions and confidence intervals.
 }
@@ -56,6 +62,8 @@ Use \code{drop_zero = TRUE} to drop \code{\link[base:levels]{levels}} of explana
 \code{.dep_var} are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
 numerically 0 or 1 occurred’ when fitting generalized linear models using \code{\link[stats:glm]{glm()}} or calculating
 odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
+
+\code{as_binom_contingency()} attempts to coerce an object to \code{\link[base:class]{class}} \code{"binom_contingency"}.
 }
 \note{
 Confidence intervals are calculated using \code{\link[stats:prop.test]{prop.test()}}, and are based on Wilson's score method

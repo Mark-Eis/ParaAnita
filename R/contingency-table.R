@@ -238,6 +238,8 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' numerically 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating
 #' odds ratios using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
 #'
+#' `as_binom_contingency()` attempts to coerce an object to [`class`][base::class] `"binom_contingency"`.
+#'
 #' @note
 #' Confidence intervals are calculated using [`prop.test()`][stats::prop.test], and are based on Wilson's score method
 #'   \emph{without} continuity correction (Newcombe, 1998).
@@ -265,8 +267,8 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' @family contingency_table
 #'
-#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a binary dependent variable, which should be
-#'   `numeric` with values of \var{0} and \var{1}. 
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a binary dependent variable, which
+#'   should be `numeric` with values of \var{0} and \var{1}. 
 #'
 #' @param .level the confidence level required; default \var{0.95}.
 #'
@@ -276,12 +278,15 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' @param .propci `logical`. If `TRUE`, each row of the output `"binom_contingency"` object includes totals, proportions
 #'   and confidence intervals; default `FALSE`.
 #'
+#' @param x a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), to be coerced to
+#'   a `"binom_contingency"` object.
+#'
 #' @inheritParams contingency_table
 #'
 #' @return
 #' An object of class `"binom_contingency"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
 #'   with columns `pn` and `qn` representing the number of "successes" and "failures" respectively, and further columns
-#'   for independant (explanatory) variables.
+#'   for independent (explanatory) variables.
 #'
 #' If `.propci = TRUE` additional columns are output representing totals, proportions and confidence intervals.
 #'
@@ -379,6 +384,28 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
 new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer()), ...) {
     stopifnot(inherits(x, "contingency_table"))
     structure(x, class = c("binom_contingency", class(x)), lead  = "Binomial Contingency Table", ...)
+}
+
+
+# ========================================
+#  Convert to a Binomial Contingency Table
+#  as_binom_contingency()
+#
+#' @rdname binom_contingency
+#' @export
+
+as_binom_contingency <- function(x) {
+    stopifnot(inherits(x, "data.frame"))
+    stopifnot(all(c("pn", "qn") %in% names(x)))
+    
+    if(!all(is.integer(x[["pn"]]), is.integer(x[["qn"]]))) {
+        warning("Coercing \"pn\" and/or \"qn\" to integer")
+        x <- mutate(x, across(all_of(c("pn", "qn")), as.integer))
+    }
+
+    if (!inherits(x, "contingency_table"))
+        x <- new_contingency_table(x)
+    new_binom_contingency(x)
 }
 
 
