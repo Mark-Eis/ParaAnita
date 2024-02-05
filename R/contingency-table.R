@@ -397,7 +397,8 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 as_binom_contingency <- function(x) {
     stopifnot(inherits(x, "data.frame"))
     stopifnot(all(c("pn", "qn") %in% names(x)))
-    
+    if (!select(x, chr_or_fct()) |> length())
+	    stop("x must have at least one character vector or factor column.")	
     if(!all(is.integer(x[["pn"]]), is.integer(x[["qn"]]))) {
         warning("Coercing \"pn\" and/or \"qn\" to integer")
         x <- mutate(x, across(all_of(c("pn", "qn")), as.integer))
