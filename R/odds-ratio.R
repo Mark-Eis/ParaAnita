@@ -267,7 +267,7 @@ odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat
             family(object)$family %in% c("binomial", "quasibinomial", "poisson")
     )
     if (any(!is.numeric(.level), .level < 0, .level >= 1))
-        stop("\n\targument \".level\" must be positive numeric less than 1")
+        stop("\".level\" argument in odds_ratio() must be a positive numeric less than 1", call. = FALSE)
 
     .glm <- object
 
