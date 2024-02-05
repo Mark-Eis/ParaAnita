@@ -274,6 +274,8 @@ odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat
     if (.print_call) cat("\nCall:  ", paste(deparse(.glm$call), sep = "\n", collapse = "\n"), 
         "\n\n", sep = "")
 
+    goodterms <- dimnames(coef(summary(.glm)))[[1]]
+
     object <- coef(summary(.glm)) |>
         as.data.frame() |>
         rownames_to_column(var = "parameter") |>
@@ -281,8 +283,8 @@ odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat
         rename(c(estimate = last_col(3), se = last_col(2), p_val = last_col())) |>
         mutate(
             across(last_col(1), \(x) if (.stat) x else NULL),
-            odds_ratio = c(0, coef(.glm)[-1]) |> exp(),
-            ci = rbind(c(NA, NA), confint(.glm, level = .level)[-1,]) |> exp(),
+            odds_ratio = c(0, coef(.glm)[goodterms][-1]) |> exp(),
+            ci = rbind(c(NA, NA), confint(.glm, level = .level)[goodterms,][-1,]) |> exp(),
             sig = starsig(.data$p_val),
             across("estimate":"odds_ratio", zapsmall)
         )
