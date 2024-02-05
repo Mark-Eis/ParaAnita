@@ -3,6 +3,7 @@
 \name{binom_contingency}
 \alias{binom_contingency}
 \alias{as_binom_contingency}
+\alias{as_binom_contingency.data.frame}
 \title{Binomial Contingency Table for Data with a Binary Outcome}
 \usage{
 binom_contingency(
@@ -14,7 +15,9 @@ binom_contingency(
   .level = 0.95
 )
 
-as_binom_contingency(x)
+as_binom_contingency(object, ...)
+
+\method{as_binom_contingency}{data.frame}(object, ...)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -22,8 +25,10 @@ as_binom_contingency(x)
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which
 should be \code{numeric} with values of \var{0} and \var{1}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
-\verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
+\item{\dots}{for \code{as_binomial_contingency()},  <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more
+\code{factors} or \verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.
+
+or for \code{as_binomial_contingency()}, further arguments passed to or from other methods.}
 
 \item{.drop_zero}{\code{logical}. If \code{TRUE}, \code{\link[base:levels]{levels}} of explanatory factors for which values of
 \code{.dep_var} are either all zero or all one are dropped from the output; default \code{FALSE}.}
@@ -33,7 +38,7 @@ and confidence intervals; default \code{FALSE}.}
 
 \item{.level}{the confidence level required; default \var{0.95}.}
 
-\item{x}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
+\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
 a \code{"binom_contingency"} object.}
 }
 \value{

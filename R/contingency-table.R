@@ -270,6 +270,12 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a binary dependent variable, which
 #'   should be `numeric` with values of \var{0} and \var{1}. 
 #'
+#' @param \dots
+#'   for `as_binomial_contingency()`,  <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more
+#'   `factors` or `character vectors` in `.data`, to be included in (or excluded from) the output.
+#'
+#'   or for `as_binomial_contingency()`, further arguments passed to or from other methods.
+#'
 #' @param .level the confidence level required; default \var{0.95}.
 #'
 #' @param .drop_zero `logical`. If `TRUE`, [`levels`][base::levels] of explanatory factors for which values of
@@ -278,7 +284,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' @param .propci `logical`. If `TRUE`, each row of the output `"binom_contingency"` object includes totals, proportions
 #'   and confidence intervals; default `FALSE`.
 #'
-#' @param x a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), to be coerced to
+#' @param object a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), to be coerced to
 #'   a `"binom_contingency"` object.
 #'
 #' @inheritParams contingency_table
@@ -389,24 +395,34 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 
 # ========================================
 #  Convert to a Binomial Contingency Table
-#  as_binom_contingency()
+#  S3method as_binom_contingency()
 #
 #' @rdname binom_contingency
 #' @export
 
-as_binom_contingency <- function(x) {
-    stopifnot(inherits(x, "data.frame"))
-    stopifnot(all(c("pn", "qn") %in% names(x)))
-    if (!select(x, chr_or_fct()) |> length())
-	    stop("x must have at least one character vector or factor column.")	
-    if(!all(is.integer(x[["pn"]]), is.integer(x[["qn"]]))) {
+as_binom_contingency <- function(object, ...)
+    UseMethod("as_binom_contingency")
+
+# ========================================
+#  Convert to a Binomial Contingency Table for a Data Frame
+#  S3method as_binom_contingency.data.frame()
+#
+#' @rdname binom_contingency
+#' @export
+
+as_binom_contingency.data.frame <- function(object, ...) {
+    stopifnot(inherits(object, "data.frame"))
+    stopifnot(all(c("pn", "qn") %in% names(object)))
+    if (!select(object, chr_or_fct()) |> length())
+	    stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
+    if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
         warning("Coercing \"pn\" and/or \"qn\" to integer")
-        x <- mutate(x, across(all_of(c("pn", "qn")), as.integer))
+        object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
 
-    if (!inherits(x, "contingency_table"))
-        x <- new_contingency_table(x)
-    new_binom_contingency(x)
+    if (!inherits(object, "contingency_table"))
+        object <- new_contingency_table(object)
+    new_binom_contingency(object)
 }
 
 
