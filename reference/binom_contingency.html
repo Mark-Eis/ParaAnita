@@ -52,7 +52,12 @@ one or more categorical independent variables, optionally including totals, prop
 <span>  .drop_zero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .propci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -62,13 +67,14 @@ one or more categorical independent variables, optionally including totals, prop
 
 
 <dt>.dep_var</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name of a binary dependent variable, which should be
-<code>numeric</code> with values of <var>0</var> and <var>1</var>.</p></dd>
+<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name of a binary dependent variable, which
+should be <code>numeric</code> with values of <var>0</var> and <var>1</var>.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; quoted name(s) of one or more <code>factors</code> or
-<code>character vectors</code> in <code>.data</code>, to be included in (or excluded from) the output.</p></dd>
+<dd><p>for <code>as_binomial_contingency()</code>,  &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; quoted name(s) of one or more
+<code>factors</code> or <code>character vectors</code> in <code>.data</code>, to be included in (or excluded from) the output.</p>
+<p>or for <code>as_binomial_contingency()</code>, further arguments passed to or from other methods.</p></dd>
 
 
 <dt>.drop_zero</dt>
@@ -84,6 +90,11 @@ and confidence intervals; default <code>FALSE</code>.</p></dd>
 <dt>.level</dt>
 <dd><p>the confidence level required; default <var>0.95</var>.</p></dd>
 
+
+<dt>object</dt>
+<dd><p>a data frame, or a data frame extension (e.g. a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>), to be coerced to
+a <code>"binom_contingency"</code> object.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -91,7 +102,7 @@ and confidence intervals; default <code>FALSE</code>.</p></dd>
 
 <p>An object of class <code>"binom_contingency"</code>, <code>"announce"</code>, inheriting from <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>,
 with columns <code>pn</code> and <code>qn</code> representing the number of "successes" and "failures" respectively, and further columns
-for independant (explanatory) variables.</p>
+for independent (explanatory) variables.</p>
 
 
 <p>If <code>.propci = TRUE</code> additional columns are output representing totals, proportions and confidence intervals.</p>
@@ -110,6 +121,7 @@ contingency table may be selected for inclusion or exclusion using the <code>...
 <code>.dep_var</code> are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
 numerically 0 or 1 occurred’ when fitting generalized linear models using <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> or calculating
 odds ratios using <code><a href="odds_ratio.html">odds_ratio()</a></code>; see examples and Venables &amp; Ripley (2002, pp. 197–8).</p>
+<p><code>as_binom_contingency()</code> attempts to coerce an object to <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code> <code>"binom_contingency"</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
