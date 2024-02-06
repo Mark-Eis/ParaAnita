@@ -185,11 +185,7 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
         .ungroup <- enquo(.ungroup)
-        if(missing(.dep_var)) {
-            warning("Missing '.dep_var' set to default: cbind(pn, qn)")
-            .dep_var <- quote(cbind(pn, qn))
-        } else
-            .dep_var <- enexpr(.dep_var)
+        .dep_var <- enexpr(.dep_var)
     }
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
