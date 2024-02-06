@@ -106,7 +106,7 @@ df |> print_all()                         ## Does nothing more than regular prin
 df |> print_all(linefeeds = 2) |> names() ## Regular data frame printing, with line feeds
 
 binom_data(26, 100) |>
-    odds_ratio(.ind_var = iv, .print_contr = TRUE) |>
+    odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv) |>
     print_all()
 
 rm(df, tib)

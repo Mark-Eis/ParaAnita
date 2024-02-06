@@ -165,7 +165,7 @@
 #' glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
 #'     odds_ratio()
 #'
-#' d |> odds_ratio(.ind_var = iv)  ## Warning about missing .dep_var
+#' d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
 #'
 #' ## Helmert contrasts given more easily readable names
 #' d |> set_contrasts(iv) <- contr.helmert
@@ -219,11 +219,7 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
 
     if (!inherits(object, "binom_contingency")) {
         .ind_var <- enexpr(.ind_var)
-        if(missing(.dep_var)) {
-            warning("Missing '.dep_var' set to default: cbind(pn, qn)")
-            .dep_var <- quote(cbind(pn, qn))
-        } else
-            .dep_var <- enexpr(.dep_var)
+        .dep_var <- enexpr(.dep_var)
     }
 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))

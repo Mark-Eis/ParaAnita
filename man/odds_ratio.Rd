@@ -199,7 +199,7 @@ glm1 |> odds_ratio(.print_call = FALSE, .stat = TRUE, .print_contr = TRUE)
 glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
     odds_ratio()
 
-d |> odds_ratio(.ind_var = iv)  ## Warning about missing .dep_var
+d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
 
 ## Helmert contrasts given more easily readable names
 d |> set_contrasts(iv) <- contr.helmert
