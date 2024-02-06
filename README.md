@@ -1,4 +1,4 @@
-# ParaAnita
+141548# ParaAnita
 ### R Functions for Binary and Binomial Data Analysis
 
 **Author:** Mark C. Eisler
@@ -42,5 +42,5 @@ The **ParaAnita R package** includes functions intended to address and simplify 
 
 - Tidies up the R workspace with `rm_objects()`.
 
-- Includes the dataset: [`budworm`](https://mark-eis.github.io/ParaAnita/reference/budworm.html), from  Collett, D. (1991) *Modelling Binary Data*. London: Chapman & Hall.
+- Includes the dataset: [`budworm`](https://mark-eis.github.io/ParaAnita/reference/budworm.html), from David Collett (1991). *Modelling Binary Data*. London: Chapman & Hall.
 
