@@ -1,4 +1,4 @@
-141548# ParaAnita
+# ParaAnita
 ### R Functions for Binary and Binomial Data Analysis
 
 **Author:** Mark C. Eisler
