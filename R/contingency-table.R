@@ -413,7 +413,7 @@ as_binom_contingency <- function(object, ...)
 as_binom_contingency.data.frame <- function(object, ...) {
     stopifnot(inherits(object, "data.frame"))
     stopifnot(all(c("pn", "qn") %in% names(object)))
-    if (!select(object, chr_or_fct()) |> length())
+    if (!length(eval_select(expr(chr_or_fct()), data = object)))
 	    stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
     if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
         warning("Coercing \"pn\" and/or \"qn\" to integer")
