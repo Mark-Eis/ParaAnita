@@ -1,7 +1,7 @@
 Package: ParaAnita
 Title: Functions for Binary and Binomial Data Analysis
-Version: 1.1.0.00006
-Date: 2024-02-06
+Version: 1.1.0.00007
+Date: 2024-02-12
 Authors@R:
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
