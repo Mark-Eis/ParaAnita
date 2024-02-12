@@ -226,11 +226,11 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
 
     odds_ratio(
-        inject(!!.dep_var ~ !!.ind_var),
+        !!.dep_var ~ !!.ind_var,
         .family = "binomial",
         .data = object,
         .level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr
-    )           
+    ) |> expr() |> eval_tidy(data = object)
 }
 
 # ========================================
