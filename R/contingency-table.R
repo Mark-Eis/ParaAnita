@@ -143,7 +143,7 @@
 contingency_table <- function(.data, .dep_var, ..., .wt = NULL, .rownames = FALSE) {
     .dep_var <- enquo(.dep_var)
     .wt = enquo(.wt)
-    stopifnot(is.data.frame(.data), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
+    stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
 
     if (...length())
         pos <- eval_select(expr(!!.dep_var | (c(...) & chr_or_fct())), data = .data)
@@ -181,7 +181,7 @@ new_contingency_table <- function(x = data.frame(NULL), prt_str = "Contingency T
 xcontingency_table <- function(.data, .dep_var, ..., .crossname = NULL, .wt = NULL, .rownames = FALSE) {
     .dep_var <- enquo(.dep_var)
     .wt = enquo(.wt)
-    stopifnot(is.data.frame(.data), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
+    stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
 
     if (...length())
         pos <- eval_select(expr(!(!!.dep_var) & (c(...) & chr_or_fct())), data = .data)
@@ -355,7 +355,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 
 binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
     .dep_var <- enquo(.dep_var)
-    stopifnot(is.data.frame(.data), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
+    stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
 
     ctab <- contingency_table(.data = .data, .dep_var = !!.dep_var, ...) |>
         rename(pn = "1", qn = "0") |>
