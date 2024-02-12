@@ -192,13 +192,13 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
         stop("\targument .ind_var = ", as_string(.ind_var), " not of type factor or character vector")
 
     glm_plotdata(
-        inject(!!.dep_var ~ !!.ind_var),
+        !!.dep_var ~ !!.ind_var,
         .family = "binomial",
         .data = object,
         .ungroup = .ungroup,
         conf_level = conf_level,
         type = type
-    )
+    ) |> expr() |> eval_tidy(data = object)
 }
 
 # ========================================
@@ -212,8 +212,8 @@ glm_plotdata.formula <- function(object, ..., .family = binomial, .data, .ungrou
 
     check_dots_empty()
 
-    if (length(object[[3]]) > 1)
-        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+    # if (length(object[[3]]) > 1)
+        # stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
 
     glm(object, family = .family, data = .data) |>
         structure(ungroup = .ungroup) |>
@@ -240,7 +240,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
     if (!is.na(conf_level) && any(!is.numeric(conf_level), conf_level < 0, conf_level >= 1))
         stop("\n\targument \"conf_level\" must be positive numeric less than 1")
     if (length(formula(object)[[3]]) > 1)
-        stop("glm_plotdata() works only for univariable models: \"object\" has > 1 term.")
+        stop("glm_plotdata() works only for univariable models: `formula(\"object\")` has > 1 term.")
     
     dep_var <- object$formula[[2]]
     ind_var <- object$formula[[3]]
