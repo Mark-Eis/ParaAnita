@@ -15,15 +15,15 @@ chr_or_fct <- function()
 
 # ========================================
 # is_datapro
-# Is value .data pronoun
+# Is x .data pronoun?
 # Not exported
 is_datapro <- function(x) {
     if (class(x) == "call" && length(x) == 3 && length(x[[1]]) == 1) {
         fun <- match.fun(x[[1]])
-	    all(
-	        identical(fun, `$`) || identical(fun, `[[`),
-	        x[[2]] == quote(.data)
-	    )
+        all(
+            identical(fun, `$`) || identical(fun, `[[`),
+            x[[2]] == quote(.data)
+        )
     } else FALSE
 }
 

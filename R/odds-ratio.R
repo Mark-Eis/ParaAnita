@@ -225,12 +225,14 @@ odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_name(.ind_var), " not of type factor or character vector")
 
+    .ind_var <- rm_datapro(.ind_var)
+
     odds_ratio(
-        !!.dep_var ~ !!.ind_var,
+        inject(!!.dep_var ~ !!.ind_var),
         .family = "binomial",
         .data = object,
         .level = .level, .print_call = .print_call, .stat = .stat, .print_contr = .print_contr
-    ) |> expr() |> eval_tidy(data = object)
+    )
 }
 
 # ========================================
