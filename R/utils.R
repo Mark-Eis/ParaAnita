@@ -7,6 +7,13 @@
 # utils.R
 
 # ========================================
+# chr_or_fct
+# Predicate function
+# Not exported
+chr_or_fct <- function()
+    force(\(x) is.factor(x) | is.character(x))
+
+# ========================================
 # is_datapro
 # Is value .data pronoun
 # Not exported

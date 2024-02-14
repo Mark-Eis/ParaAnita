@@ -556,11 +556,3 @@ expl_fcts <- function(.data, ..., .named = FALSE, .val = c("syms", "data_syms", 
     )
 }
 
-
-# ========================================
-# chr_or_fct
-# Predicate function
-# Not exported
-chr_or_fct <- function()
-    force(\(x) is.factor(x) | is.character(x))
-
