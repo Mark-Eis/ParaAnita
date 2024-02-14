@@ -191,14 +191,16 @@ glm_plotdata.data.frame <- function(object, ..., .dep_var, .ind_var, .ungroup = 
     if (expr(!any(is.factor(!!.ind_var), is.character(!!.ind_var))) |> eval_tidy(data = object))
         stop("\targument .ind_var = ", as_string(.ind_var), " not of type factor or character vector")
 
+    .ind_var <- rm_datapro(.ind_var)
+
     glm_plotdata(
-        !!.dep_var ~ !!.ind_var,
+        inject(!!.dep_var ~ !!.ind_var),
         .family = "binomial",
         .data = object,
         .ungroup = .ungroup,
         conf_level = conf_level,
         type = type
-    ) |> expr() |> eval_tidy(data = object)
+    )
 }
 
 # ========================================
