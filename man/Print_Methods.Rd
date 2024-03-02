@@ -35,7 +35,8 @@
   ...,
   n = NULL,
   max_extra_cols = NULL,
-  max_footer_lines = NULL
+  max_footer_lines = NULL,
+  digits = 6
 )
 
 \method{print}{summ_anov}(x, ...)
@@ -59,6 +60,9 @@ The previously defined \code{n_extra} argument is soft-deprecated.}
 
 \item{max_footer_lines}{Maximum number of footer lines. If \code{NULL},
 the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
+
+\item{digits}{\code{integer} indicating the number of decimal places for p-values, see \code{\link[base:Round]{round()}};
+default 6.}
 }
 \value{
 The argument \code{x}.
@@ -90,6 +94,9 @@ d2 |> contingency_table(dv)
 
 ## print.odds_ratio() — print an 'odds_ratio' object
 d |> odds_ratio(.dep_var = dv, .ind_var = iv)
+
+## print.odds_ratio() — print an 'odds_ratio' object with p values to 9 decimal places
+d |> odds_ratio(.dep_var = dv, .ind_var = iv) |> print(digits = 9)
 
 ## print.summanov() — print a 'summanov' object
 d |> summanov(dv, iv)

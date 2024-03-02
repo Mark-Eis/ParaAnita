@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Jan 2024
+# Mark Eisler Mar 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -22,6 +22,9 @@
 #' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl], [`binom_contingency`][binom_contingency],
 #' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov].
 #' @family print
+#'
+#' @param digits `integer` indicating the number of decimal places for p-values, see [`round()`][base::round];
+#'   default 6.
 #'
 #' @inheritParams base::print
 #' @inheritParams tibble::print.tbl_df
@@ -50,6 +53,9 @@
 #'
 #' ## print.odds_ratio() — print an 'odds_ratio' object
 #' d |> odds_ratio(.dep_var = dv, .ind_var = iv)
+#'
+#' ## print.odds_ratio() — print an 'odds_ratio' object with p values to 9 decimal places
+#' d |> odds_ratio(.dep_var = dv, .ind_var = iv) |> print(digits = 9)
 #'
 #' ## print.summanov() — print a 'summanov' object
 #' d |> summanov(dv, iv)
@@ -124,10 +130,11 @@ print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_co
 #' @rdname Print_Methods
 #' @export
 
-print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL, max_footer_lines = NULL) {
+print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL,
+                             max_footer_lines = NULL,  digits = 6) {
     contr <- (x %@% glm)$contrasts
     has_contr <- !is.null(contr)
-    x <- mutate(x, across(.data$p_val, ~ round(.x,  digits = 6)))
+    x <- mutate(x, across(.data$p_val, ~ round(.x,  digits)))
     NextMethod()
     if (x %@% "print_contr") {
         if (has_contr)
