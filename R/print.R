@@ -24,7 +24,7 @@
 #' @family print
 #'
 #' @param digits `integer` indicating the number of decimal places for p-values, see [`round()`][base::round];
-#'   default 6.
+#'   default 7.
 #'
 #' @inheritParams base::print
 #' @inheritParams tibble::print.tbl_df
@@ -131,7 +131,7 @@ print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_co
 #' @export
 
 print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL,
-                             max_footer_lines = NULL,  digits = 6) {
+                             max_footer_lines = NULL,  digits = 7) {
     contr <- (x %@% glm)$contrasts
     has_contr <- !is.null(contr)
     x <- mutate(x, across(.data$p_val, ~ round(.x,  digits)))
