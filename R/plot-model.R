@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Feb 2024
+# Mark Eisler Mar 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -60,7 +60,7 @@
 #' @param .dep_var quoted name of the response variable in the data representing the number of successes and
 #'   failures respectively, see \emph{Details}; default `cbind(pn, qn)`.
 #'
-#' @param .ind_var quoted name of the independent variable.
+#' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable.
 #'
 #' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped
 #'   levels of `.ind_var`, see details; default `NULL`.

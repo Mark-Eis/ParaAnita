@@ -39,6 +39,7 @@ Imports:
     dplyr,
     forcats,
     ggplot2,
+    methods,
     purrr,
     rlang (>= 0.4.11),
     stats,

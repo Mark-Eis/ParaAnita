@@ -48,7 +48,7 @@ a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \
 
 \item{\dots}{further arguments passed to or from other methods. Not currently used.}
 
-\item{.ind_var}{quoted name of the independent variable.}
+\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable.}
 
 \item{.ungroup}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the column containing the ungrouped
 levels of \code{.ind_var}, see details; default \code{NULL}.}

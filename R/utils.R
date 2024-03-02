@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Feb 2024
+# Mark Eisler Mar 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -18,7 +18,7 @@ chr_or_fct <- function()
 # Is x .data pronoun?
 # Not exported
 is_datapro <- function(x) {
-    if (class(x) == "call" && length(x) == 3 && length(x[[1]]) == 1) {
+    if (is(x, "call") && length(x) == 3 && length(x[[1]]) == 1) {
         fun <- match.fun(x[[1]])
         all(
             identical(fun, `$`) || identical(fun, `[[`),
