@@ -95,8 +95,8 @@ d2 |> contingency_table(dv)
 ## print.odds_ratio() — print an 'odds_ratio' object
 d |> odds_ratio(.dep_var = dv, .ind_var = iv)
 
-## print.odds_ratio() — print an 'odds_ratio' object with p values to 9 decimal places
-d |> odds_ratio(.dep_var = dv, .ind_var = iv) |> print(digits = 9)
+## print.odds_ratio() — print an 'odds_ratio' object with p values to 12 decimal places
+d |> odds_ratio(.dep_var = dv, .ind_var = iv) |> print(digits = 12)
 
 ## print.summanov() — print a 'summanov' object
 d |> summanov(dv, iv)
