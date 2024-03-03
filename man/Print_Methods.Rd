@@ -36,7 +36,7 @@
   n = NULL,
   max_extra_cols = NULL,
   max_footer_lines = NULL,
-  digits = 7
+  digits = 6
 )
 
 \method{print}{summ_anov}(x, ...)
@@ -62,7 +62,7 @@ The previously defined \code{n_extra} argument is soft-deprecated.}
 the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
 
 \item{digits}{\code{integer} indicating the number of decimal places for p-values, see \code{\link[base:Round]{round()}};
-default 7.}
+default 6.}
 }
 \value{
 The argument \code{x}.
