@@ -74,9 +74,8 @@ S3 methods for printing objects of class \code{"announce"}, \code{"binom_conting
 \details{
 These print methods return their argument \code{x} invisibly, via \code{\link[base:invisible]{invisible()}}.
 
-\code{print.odds_ratio()} uses \code{\link[base:Round]{round()}}, to print p-values to the number of decimal places specified
-by the \code{digits} argument, noting that this is a \emph{maximimum}; no more decimal places will be printed than
-necessary to show three significant figures.
+Notwithstanding that \code{print.odds_ratio()} rounds p-values to a \emph{maximimum} number of decimal places as
+specified by the \code{digits} argument, p-values will be printed to show no more than three significant figures.
 }
 \examples{
 

@@ -19,9 +19,8 @@
 #' @details
 #' These print methods return their argument `x` invisibly, via [`invisible()`][base::invisible].
 #'
-#' `print.odds_ratio()` uses [`round()`][base::round], to print p-values to the number of decimal places specified
-#'   by the `digits` argument, noting that this is a \emph{maximimum}; no more decimal places will be printed than
-#'   necessary to show three significant figures. 
+#' Notwithstanding that `print.odds_ratio()` rounds p-values to a \emph{maximimum} number of decimal places as
+#'   specified by the `digits` argument, p-values will be printed to show no more than three significant figures. 
 #'
 #' @seealso [`print()`][base::print], [`print.tbl()`][tibble::print.tbl], [`binom_contingency`][binom_contingency],
 #' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov].

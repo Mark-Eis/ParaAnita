@@ -287,6 +287,7 @@ odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat
             sig = starsig(.data$p_val),
             across(c("estimate", "se", "odds_ratio"), zapsmall)
         )
+    dimnames(object$ci)[[2]] <- gsub(" ", "", dimnames(object$ci)[[2]])
     new_odds_ratio(object, ..., .glm = .glm, .print_contr = .print_contr)
 }
 
