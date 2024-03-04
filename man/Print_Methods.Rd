@@ -36,7 +36,7 @@
   n = NULL,
   max_extra_cols = NULL,
   max_footer_lines = NULL,
-  digits = 6
+  digits = 7
 )
 
 \method{print}{summ_anov}(x, ...)
@@ -61,8 +61,8 @@ The previously defined \code{n_extra} argument is soft-deprecated.}
 \item{max_footer_lines}{Maximum number of footer lines. If \code{NULL},
 the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
 
-\item{digits}{\code{integer} indicating the number of decimal places for p-values, see \code{\link[base:Round]{round()}};
-default 6.}
+\item{digits}{\code{integer} indicating the maximum number of decimal places for p-values, see \code{\link[base:Round]{round()}};
+default 7.}
 }
 \value{
 The argument \code{x}.
@@ -73,6 +73,10 @@ S3 methods for printing objects of class \code{"announce"}, \code{"binom_conting
 }
 \details{
 These print methods return their argument \code{x} invisibly, via \code{\link[base:invisible]{invisible()}}.
+
+\code{print.odds_ratio()} uses \code{\link[base:Round]{round()}}, to print p-values to the number of decimal places specified
+by the \code{digits} argument, noting that this is a \emph{maximimum}; no more decimal places will be printed than
+necessary to show three significant figures.
 }
 \examples{
 

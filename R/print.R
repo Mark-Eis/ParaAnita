@@ -19,12 +19,16 @@
 #' @details
 #' These print methods return their argument `x` invisibly, via [`invisible()`][base::invisible].
 #'
-#' @seealso  [`print()`][base::print], [`print.tbl()`][tibble::print.tbl], [`binom_contingency`][binom_contingency],
+#' `print.odds_ratio()` uses [`round()`][base::round], to print p-values to the number of decimal places specified
+#'   by the `digits` argument, noting that this is a \emph{maximimum}; no more decimal places will be printed than
+#'   necessary to show three significant figures. 
+#'
+#' @seealso [`print()`][base::print], [`print.tbl()`][tibble::print.tbl], [`binom_contingency`][binom_contingency],
 #' [`contingency_table`][contingency_table], [`odds_ratio`][odds_ratio] and [`summ_anov`][summanov].
 #' @family print
 #'
-#' @param digits `integer` indicating the number of decimal places for p-values, see [`round()`][base::round];
-#'   default 6.
+#' @param digits `integer` indicating the maximum number of decimal places for p-values, see [`round()`][base::round];
+#'   default 7.
 #'
 #' @inheritParams base::print
 #' @inheritParams tibble::print.tbl_df
@@ -131,7 +135,7 @@ print.contingency_table <- function(x, width = NULL, ..., n = NULL, max_extra_co
 #' @export
 
 print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NULL,
-                             max_footer_lines = NULL,  digits = 6) {
+                             max_footer_lines = NULL,  digits = 7) {
     contr <- (x %@% glm)$contrasts
     has_contr <- !is.null(contr)
     x <- mutate(x, across(.data$p_val, ~ round(.x,  digits)))
