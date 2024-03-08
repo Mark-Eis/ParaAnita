@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Mar 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -21,8 +21,8 @@
 #' @details
 #' The \code{"contrasts"} attribute of \code{.f} may be set using either a numeric matrix or (the quoted name of) a
 #' function which computes such matrices, supplied to \code{set_contrasts()} using the \code{contr} argument or the
-#' \code{value} argument in the case of the replacement function form \code{set_contrasts()<-}. A suitable contrast matrix
-#' may be obtained using a contrast function such as [`contr.helmert`][stats::contr.helmert],
+#' \code{value} argument in the case of the replacement function form \code{set_contrasts()<-}. A suitable contrast
+#' matrix may be obtained using a contrast function such as [`contr.helmert`][stats::contr.helmert],
 #' [`contr.poly`][stats::contr.poly], [`contr.sum`][stats::contr.sum], [`contr.treatment`][stats::contr.treatment] or
 #' [`contr.SAS`][stats::contr.SAS], or the (quoted) name of the function itself may be supplied. Additional arguments,
 #' such as \code{base = }\var{x}, may be supplied to a contrast function using the \code{\dots} argument of
@@ -215,8 +215,8 @@ set_contrasts <- function(data, .f, how.many = NULL, ..., contr) {
 #' @description
 #' \code{get_contr_data()} shows the \code{"contrasts"} attributes of all or selected factors within a data frame.
 #'
-#' \code{set_contr_treat()} sets the \code{"contrasts"} attribute for selected factors within a data frame to a treatment
-#' contrast matrix with individually specified baseline levels.
+#' \code{set_contr_treat()} sets the \code{"contrasts"} attribute for selected factors within a data frame to a
+#' treatment contrast matrix with individually specified baseline levels.
 #'
 #' \code{set_contr_treat()<-} is the replacement function form.
 #'
@@ -224,13 +224,15 @@ set_contrasts <- function(data, .f, how.many = NULL, ..., contr) {
 #' \code{get_contr_data()} prints the \code{"contrasts"} attributes of all or selected factors and returns \code{data}
 #' invisibly.
 #'
+#' Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with
+#' the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{dplyr}, including use of
+#' \strong{selection helpers}.  If no \code{\dots} arguments are supplied, all categorical variables in `data` (i.e.,
+#' `character` or `factor` columns) will be selected.
+#'
 #' The \code{"contrasts"} attribute of \code{factors} selected with \code{\dots} are set using the contrast function
 #' [`contr.treatment`][stats::contr.treatment] with baseline factor levels as specified numerically in the argument
 #' \code{.baseline} or the \code{value} argument in the case of the replacement function form \code{set_contrasts()<-}.
 #' If no \code{.baseline} argument is supplied, by default the first factor level is used as baseline.
-#'
-#' Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with the
-#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{dplyr}, including use of \strong{selection helpers}.
 #'
 #' The individual \code{.baseline} (or \code{.value}) argument values are capped to be no greater than
 #' [`nlevels`][base::nlevels] for each of the corresponding factors selected in \code{...}. Hence, to ensure the last

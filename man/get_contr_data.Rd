@@ -32,8 +32,8 @@ selected \code{factors}.
 \description{
 \code{get_contr_data()} shows the \code{"contrasts"} attributes of all or selected factors within a data frame.
 
-\code{set_contr_treat()} sets the \code{"contrasts"} attribute for selected factors within a data frame to a treatment
-contrast matrix with individually specified baseline levels.
+\code{set_contr_treat()} sets the \code{"contrasts"} attribute for selected factors within a data frame to a
+treatment contrast matrix with individually specified baseline levels.
 
 \code{set_contr_treat()<-} is the replacement function form.
 }
@@ -41,13 +41,15 @@ contrast matrix with individually specified baseline levels.
 \code{get_contr_data()} prints the \code{"contrasts"} attributes of all or selected factors and returns \code{data}
 invisibly.
 
+Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with
+the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{dplyr}, including use of
+\strong{selection helpers}.  If no \code{\dots} arguments are supplied, all categorical variables in \code{data} (i.e.,
+\code{character} or \code{factor} columns) will be selected.
+
 The \code{"contrasts"} attribute of \code{factors} selected with \code{\dots} are set using the contrast function
 \code{\link[stats:contrast]{contr.treatment}} with baseline factor levels as specified numerically in the argument
 \code{.baseline} or the \code{value} argument in the case of the replacement function form \code{set_contrasts()<-}.
 If no \code{.baseline} argument is supplied, by default the first factor level is used as baseline.
-
-Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with the
-<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{dplyr}, including use of \strong{selection helpers}.
 
 The individual \code{.baseline} (or \code{.value}) argument values are capped to be no greater than
 \code{\link[base:nlevels]{nlevels}} for each of the corresponding factors selected in \code{...}. Hence, to ensure the last

@@ -45,8 +45,8 @@ A dataframe or \code{\link[tibble:tibble-package]{tibble}} with the \code{"contr
 \details{
 The \code{"contrasts"} attribute of \code{.f} may be set using either a numeric matrix or (the quoted name of) a
 function which computes such matrices, supplied to \code{set_contrasts()} using the \code{contr} argument or the
-\code{value} argument in the case of the replacement function form \code{set_contrasts()<-}. A suitable contrast matrix
-may be obtained using a contrast function such as \code{\link[stats:contrast]{contr.helmert}},
+\code{value} argument in the case of the replacement function form \code{set_contrasts()<-}. A suitable contrast
+matrix may be obtained using a contrast function such as \code{\link[stats:contrast]{contr.helmert}},
 \code{\link[stats:contrast]{contr.poly}}, \code{\link[stats:contrast]{contr.sum}}, \code{\link[stats:contrast]{contr.treatment}} or
 \code{\link[stats:contrast]{contr.SAS}}, or the (quoted) name of the function itself may be supplied. Additional arguments,
 such as \code{base = }\var{x}, may be supplied to a contrast function using the \code{\dots} argument of
