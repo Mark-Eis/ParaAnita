@@ -88,7 +88,9 @@ d |> contingency_table(dv, .rownames = TRUE)
 
 ## Use .data pronoun for more informative error messages
 try(d |> contingency_table(dvx))
+
 d |> contingency_table(.data$dv)
+
 try(d |> contingency_table(.data$dvx))
 
 (d <- tibble(
@@ -109,6 +111,7 @@ d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.tes
 
 ## Use .data pronoun for more informative error messages
 d |> contingency_table(dv, .wt = .data$n)
+
 try(d |> contingency_table(dv, .wt = .data$nx))
 
 rm(d)

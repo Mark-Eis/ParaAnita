@@ -82,7 +82,9 @@ d |> binom_contingency(dv, .propci = TRUE)
 
 ## Use .data pronoun for more informative error messages
 try(d |> binom_contingency(dvx))
+
 d |> binom_contingency(.data$dv)
+
 try(d |> binom_contingency(.data$dvx))
 
 ## Bernoulli data for a single explanatory variable with levels at which responses are all zero

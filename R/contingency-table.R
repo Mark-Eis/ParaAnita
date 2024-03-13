@@ -88,7 +88,9 @@
 #' 
 #' ## Use .data pronoun for more informative error messages
 #' try(d |> contingency_table(dvx))
+#' 
 #' d |> contingency_table(.data$dv)
+#' 
 #' try(d |> contingency_table(.data$dvx))
 #'
 #' (d <- tibble(
@@ -109,6 +111,7 @@
 #' 
 #' ## Use .data pronoun for more informative error messages
 #' d |> contingency_table(dv, .wt = .data$n)
+#' 
 #' try(d |> contingency_table(dv, .wt = .data$nx))
 #'
 #' rm(d)
@@ -328,7 +331,9 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' ## Use .data pronoun for more informative error messages
 #' try(d |> binom_contingency(dvx))
+#' 
 #' d |> binom_contingency(.data$dv)
+#' 
 #' try(d |> binom_contingency(.data$dvx))
 #'
 #' ## Bernoulli data for a single explanatory variable with levels at which responses are all zero
