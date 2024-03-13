@@ -196,7 +196,12 @@ new_contingency_table <- function(x = data.frame(NULL), prt_str = "Contingency T
 xcontingency_table <- function(.data, .dep_var, ..., .crossname = NULL, .wt = NULL, .rownames = FALSE) {
     .dep_var <- enquo(.dep_var)
     .wt = enquo(.wt)
-    stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
+    stopifnot(
+        is.data.frame(.data),
+        !quo_is_missing(.dep_var),
+        eval_tidy(expr(is.atomic(!!.dep_var)), .data),
+        eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data)
+    )
 
     .dep_var <- quo_set_expr(.dep_var, rm_datapro(quo_get_expr(.dep_var)))
 
