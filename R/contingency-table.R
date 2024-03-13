@@ -145,6 +145,8 @@ contingency_table <- function(.data, .dep_var, ..., .wt = NULL, .rownames = FALS
     .wt = enquo(.wt)
     stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(is.numeric(!!.wt %||% 1)), .data))
 
+    .dep_var <- quo_set_expr(.dep_var, rm_datapro(quo_get_expr(.dep_var)))
+
     if (...length())
         pos <- eval_select(expr(!!.dep_var | (c(...) & chr_or_fct())), data = .data)
     else 
