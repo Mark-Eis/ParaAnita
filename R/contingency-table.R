@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Feb 2024
+# Mark Eisler - Mar 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -271,7 +271,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'   should be `numeric` with values of \var{0} and \var{1}. 
 #'
 #' @param \dots
-#'   for `as_binomial_contingency()`,  <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more
+#'   for `binomial_contingency()`,  <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more
 #'   `factors` or `character vectors` in `.data`, to be included in (or excluded from) the output.
 #'
 #'   or for `as_binomial_contingency()`, further arguments passed to or from other methods.
