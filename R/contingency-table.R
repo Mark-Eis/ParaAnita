@@ -30,6 +30,10 @@
 #' [`expl_fcts()`][expl_fcts], may be used as the \code{\dots} arguments and should be injected using the
 #' [splice-operator][rlang::splice-operator], `!!!`, see examples.
 #'
+#' If `.wt = NULL`, the number of rows for each unique combination of the dependent and independent variables are
+#' counted. If `.wt` is the quoted name of a numeric variable representing frequency weights, these are summated for
+#' each unique combination of the dependent and independent variables.
+#'
 #' If `.rownames = TRUE`, the resulting contingency table will be a conventional `data.frame` rather than a
 #' `tibble` and the first categorical variable (other than `.dep_var`) will be used for row headings rather than
 #' as a factor. Having row headings allows the result to be passed as an argument to [`chisq.test()`][stats::chisq.test],
@@ -54,13 +58,8 @@
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more `factors` or
 #'   `character vectors` in `.data`, to be included in (or excluded from) the output.
 #'
-#' @param .wt frequency weights, either `NULL` (default) or the quoted name of a numeric variable.
-#' \itemize{
-#'   \item if `NULL`, the number of rows for each unique combination of the dependent and independent
-#'     variables are counted.
-#'   \item if the quoted name of a numeric variable representing frequency weights, these are summated for each
-#'     unique combination of the dependent and independent variables.
-#' }
+#' @param .wt <[`data-masking`][rlang::args_data_masking]> quoted name of a numeric column in `.data` containing
+#'   frequency weights; default `NULL`.
 #'
 #' @param .crossname a character string to be used as the name of the column of for the crossed variables. If
 #'   omitted, the names of the crossed variables are used combined in \dQuote{snake case}.
@@ -86,6 +85,11 @@
 #'
 #' d |> contingency_table(dv)
 #' d |> contingency_table(dv, .rownames = TRUE)
+#' 
+#' ## Use .data pronoun for more informative error messages
+#' try(d |> contingency_table(dvx))
+#' d |> contingency_table(.data$dv)
+#' try(d |> contingency_table(.data$dvx))
 #'
 #' (d <- tibble(
 #'     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
@@ -101,7 +105,11 @@
 #'   ) |> count(iv, dv))
 #'
 #' d |> contingency_table(dv, .wt = n)
-#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
+#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()#' 
+#' 
+#' ## Use .data pronoun for more informative error messages
+#' d |> contingency_table(dv, .wt = .data$n)
+#' try(d |> contingency_table(dv, .wt = .data$nx))
 #'
 #' rm(d)
 #' 

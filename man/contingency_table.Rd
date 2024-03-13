@@ -25,13 +25,8 @@ xcontingency_table(
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more \code{factors} or
 \verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.}
 
-\item{.wt}{frequency weights, either \code{NULL} (default) or the quoted name of a numeric variable.
-\itemize{
-\item if \code{NULL}, the number of rows for each unique combination of the dependent and independent
-variables are counted.
-\item if the quoted name of a numeric variable representing frequency weights, these are summated for each
-unique combination of the dependent and independent variables.
-}}
+\item{.wt}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a numeric column in \code{.data} containing
+frequency weights; default \code{NULL}.}
 
 \item{.rownames}{\code{logical}. If \code{TRUE}, value is a data frame with the levels of the first
 (or crossed) independent variable as row names, rather than a tibble; default \code{FALSE}.}
@@ -67,6 +62,10 @@ A \link[base:list]{list} of \link[rlang:topic-defuse]{defused R expressions}, as
 \code{\link[=expl_fcts]{expl_fcts()}}, may be used as the \code{\dots} arguments and should be injected using the
 \link[rlang:splice-operator]{splice-operator}, \verb{!!!}, see examples.
 
+If \code{.wt = NULL}, the number of rows for each unique combination of the dependent and independent variables are
+counted. If \code{.wt} is the quoted name of a numeric variable representing frequency weights, these are summated for
+each unique combination of the dependent and independent variables.
+
 If \code{.rownames = TRUE}, the resulting contingency table will be a conventional \code{data.frame} rather than a
 \code{tibble} and the first categorical variable (other than \code{.dep_var}) will be used for row headings rather than
 as a factor. Having row headings allows the result to be passed as an argument to \code{\link[stats:chisq.test]{chisq.test()}},
@@ -87,6 +86,11 @@ Multiple categorical explanatory variables in a contingency table compiled by \c
 d |> contingency_table(dv)
 d |> contingency_table(dv, .rownames = TRUE)
 
+## Use .data pronoun for more informative error messages
+try(d |> contingency_table(dvx))
+d |> contingency_table(.data$dv)
+try(d |> contingency_table(.data$dvx))
+
 (d <- tibble(
     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
     dv = c("Success", "Fail", "Borderline")  |> sample(10, replace = TRUE)
@@ -101,7 +105,11 @@ d |> contingency_table(dv, .rownames = TRUE)
   ) |> count(iv, dv))
 
 d |> contingency_table(dv, .wt = n)
-d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
+d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()#' 
+
+## Use .data pronoun for more informative error messages
+d |> contingency_table(dv, .wt = .data$n)
+try(d |> contingency_table(dv, .wt = .data$nx))
 
 rm(d)
 
