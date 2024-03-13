@@ -25,10 +25,10 @@ as_binom_contingency(object, ...)
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a binary dependent variable, which
 should be \code{numeric} with values of \var{0} and \var{1}.}
 
-\item{\dots}{for \code{as_binomial_contingency()},  <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more
-\code{factors} or \verb{character vectors} in \code{.data}, to be included in (or excluded from) the output.
+\item{\dots}{for \code{binomial_contingency()}:  <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more
+\code{factor} or \verb{character vector} columns in \code{.data}, to be included in (or excluded from) the output.
 
-or for \code{as_binomial_contingency()}, further arguments passed to or from other methods.}
+for \code{as_binomial_contingency()}: further arguments passed to or from other methods.}
 
 \item{.drop_zero}{\code{logical}. If \code{TRUE}, \code{\link[base:levels]{levels}} of explanatory factors for which values of
 \code{.dep_var} are either all zero or all one are dropped from the output; default \code{FALSE}.}
@@ -120,7 +120,7 @@ d |>
 
 ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 d |> binom_contingency(dv, last_col(1L))  ## Offset of 1L used, since last column of d is dv
-d |> binom_contingency(dv, !last_col())
+d |> binom_contingency(dv, !last_col(1L))
 d |> binom_contingency(dv, num_range("iv", 2:3))
 d |> binom_contingency(dv, !num_range("iv", 2:3))
 d |> binom_contingency(dv, starts_with("iv"))

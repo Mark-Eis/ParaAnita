@@ -271,10 +271,10 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'   should be `numeric` with values of \var{0} and \var{1}. 
 #'
 #' @param \dots
-#'   for `binomial_contingency()`,  <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more
-#'   `factors` or `character vectors` in `.data`, to be included in (or excluded from) the output.
+#'   for `binomial_contingency()`:  <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more
+#'   `factor` or `character vector` columns in `.data`, to be included in (or excluded from) the output.
 #'
-#'   or for `as_binomial_contingency()`, further arguments passed to or from other methods.
+#'   for `as_binomial_contingency()`: further arguments passed to or from other methods.
 #'
 #' @param .level the confidence level required; default \var{0.95}.
 #'
@@ -344,7 +344,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 #' d |> binom_contingency(dv, last_col(1L))  ## Offset of 1L used, since last column of d is dv
-#' d |> binom_contingency(dv, !last_col())
+#' d |> binom_contingency(dv, !last_col(1L))
 #' d |> binom_contingency(dv, num_range("iv", 2:3))
 #' d |> binom_contingency(dv, !num_range("iv", 2:3))
 #' d |> binom_contingency(dv, starts_with("iv"))
