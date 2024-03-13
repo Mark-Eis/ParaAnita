@@ -205,6 +205,7 @@ Stack Exchange</a>.</p>
 <span class="r-in"><span><span class="co">## Use .data pronoun for more informative error messages</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dvx</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error : object 'dvx' not found</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">dv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
@@ -217,6 +218,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> c        19    47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d        18    48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e         8    58</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">dvx</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in .data$dvx : Column `dvx` not found in `.data`.</span>
 <span class="r-in"><span></span></span>
