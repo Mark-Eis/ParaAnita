@@ -138,7 +138,7 @@ gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
 gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
 
 ## Two more esoteric examples
-ivars <- quos(relig, denom)
+ivars <- exprs(relig, denom)
 gss_cat |> contingency_table(race, !!!ivars)
 
 ivars <- c("relig", "denom")

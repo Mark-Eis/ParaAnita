@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Mar 2024
+# Mark Eisler - Apr 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -138,7 +138,7 @@
 #' gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
 #'
 #' ## Two more esoteric examples
-#' ivars <- quos(relig, denom)
+#' ivars <- exprs(relig, denom)
 #' gss_cat |> contingency_table(race, !!!ivars)
 #'
 #' ivars <- c("relig", "denom")

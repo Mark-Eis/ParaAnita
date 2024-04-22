@@ -29,7 +29,7 @@
 \alias{\%|\%}
 \alias{\%||\%}
 \alias{eval_tidy}
-\alias{quos}
+\alias{exprs}
 \alias{set_names}
 \alias{str_to_title}
 \alias{tibble}
@@ -58,7 +58,7 @@ below to see their documentation.
 
   \item{purrr}{\code{\link[purrr:list_c]{list_rbind}}, \code{\link[purrr]{list_transpose}}, \code{\link[purrr]{map}}, \code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr]{map2}}, \code{\link[purrr:map2]{map2_chr}}}
 
-  \item{rlang}{\code{\link[rlang:op-get-attr]{\%@\%}}, \code{\link[rlang:op-na-default]{\%|\%}}, \code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{quos}}, \code{\link[rlang]{set_names}}}
+  \item{rlang}{\code{\link[rlang:op-get-attr]{\%@\%}}, \code{\link[rlang:op-na-default]{\%|\%}}, \code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{exprs}}, \code{\link[rlang]{set_names}}}
 
   \item{stringr}{\code{\link[stringr:case]{str_to_title}}}
 

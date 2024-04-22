@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Apr 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -27,7 +27,11 @@ rlang::eval_tidy
 
 #' @importFrom rlang quos
 #' @export
-rlang::quos
+# rlang::quos
+
+#' @importFrom rlang exprs
+#' @export
+rlang::exprs
 
 #' @importFrom rlang set_names
 #' @export
