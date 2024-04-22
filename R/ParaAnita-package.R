@@ -2,10 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-# #' @importFrom rlang f_rhs<-
-# #' @importFrom rlang get_expr
-# #' @importFrom rlang is_quosures
-# #' @export %@% %|% %||% eval_tidy quos set_names
 #' @export %@% %|% %||% eval_tidy exprs set_names
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export as_labeller element_text ggplot labs theme_get theme_set theme_update

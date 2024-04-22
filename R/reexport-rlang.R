@@ -25,10 +25,6 @@ rlang::`%||%`
 #' @export
 rlang::eval_tidy
 
-#' @importFrom rlang quos
-#' @export
-# rlang::quos
-
 #' @importFrom rlang exprs
 #' @export
 rlang::exprs
