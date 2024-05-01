@@ -119,7 +119,7 @@
 
 add_grps <- function (data, .fct, .key, .sort = TRUE) {
     .fct = enquo(.fct)
-    grp_fct_ls <- map(.key, \(x) \(fct) call2(fct_collapse, !!!exprs({{ fct }}, !!!x)) |> eval_tidy())
+    grp_fct_ls <- lapply(.key, \(x) \(fct) call2(fct_collapse, !!!exprs({{ fct }}, !!!x)) |> eval_tidy())
 
     data |> mutate(
         across(!!.fct, grp_fct_ls, .names = "{.fn}"),

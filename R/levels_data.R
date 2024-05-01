@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -45,7 +45,7 @@
 #' }
 
 levels_data <- function(data)
-    map(data |> select(where(is.factor)), levels)
+    lapply(data |> select(where(is.factor)), levels)
 
 # ========================================
 # Number of Levels of all Factors in Data

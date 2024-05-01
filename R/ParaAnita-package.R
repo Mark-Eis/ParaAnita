@@ -2,14 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @export %@% %|% %||% eval_tidy exprs set_names
-#' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
-#' @export as_labeller element_text ggplot labs theme_get theme_set theme_update
-#' @export count mutate rename
-#' @export fct_count fct_recode
-#' @export list_rbind list_transpose map map2 map2_chr map_chr map_dbl map_int
-#' @export str_to_title
-#' @export tibble
 #' @importFrom broom glance
 #' @importFrom dplyr across
 #' @importFrom dplyr arrange
@@ -57,7 +49,6 @@
 #' @importFrom purrr imap
 #' @importFrom purrr list_rbind
 #' @importFrom purrr list_transpose
-#' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl
 #' @importFrom purrr map_int

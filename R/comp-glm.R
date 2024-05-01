@@ -390,7 +390,7 @@ anova_tbl <- function(anova_ls) {
 
     duplex <- !identical(row.names(anova_ls[[1]])[1], "NULL")
 
-    an_tbl <- anova_ls |> map(\(x)
+    an_tbl <- anova_ls |> lapply(\(x)
         x[1, !(is.na(x[1,]))] |>
         as_tibble() |>
         rename_with(\(y) gsub("Resid.", if(duplex) "U+00A7" else "Null", y, fixed = TRUE)) |>

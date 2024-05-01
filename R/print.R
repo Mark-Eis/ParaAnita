@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Mar 2024
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -156,6 +156,6 @@ print.odds_ratio <- function(x, width = NULL, ..., n = NULL, max_extra_cols = NU
 #' @export
 
 print.summ_anov <- function(x, ...) {
-    map(x, print)
+    lapply(x, print)
     invisible(x)
 }

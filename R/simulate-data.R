@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -74,7 +74,7 @@ bernoulli_data <- function(levels = 5, length = 66, probs = seq(0.5, 0.1, length
     stopifnot(length(probs) == levels)
     tibble(
         iv = letters[1:levels] |> rep(each = length) |> as.factor(),
-         dv = probs |> map(rbinom, n = length, size = 1) |>
+         dv = probs |> lapply(rbinom, n = length, size = 1) |>
             (\(.b) {.b[-1] |> walk(~ {.b[[1]] <<- c(.b[[1]], .x)}); .b[[1]]})()
     ) |>
     announce("Simulated Bernoulli Data") 

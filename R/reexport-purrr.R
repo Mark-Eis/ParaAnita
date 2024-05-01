@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -16,10 +16,6 @@ purrr::list_rbind
 #' @importFrom purrr list_transpose
 #' @export
 purrr::list_transpose
-
-#' @importFrom purrr map
-#' @export
-purrr::map
 
 #' @importFrom purrr map2
 #' @export
