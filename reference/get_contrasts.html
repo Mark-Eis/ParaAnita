@@ -143,6 +143,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c    0    2   -1   -1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d    0    0    3   -1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e    0    0    0    4</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C         ^4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278  0.1195229</span>
@@ -150,6 +151,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225  0.0000000  0.7171372</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612 -0.6324555 -0.4780914</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225  0.3162278  0.1195229</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.sum</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [,1] [,2] [,3] [,4]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a    1    0    0    0</span>
@@ -157,6 +159,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c    0    0    1    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d    0    0    0    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e   -1   -1   -1   -1</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   b c d e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a 0 0 0 0</span>
@@ -164,6 +167,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.SAS</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a b c d</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
@@ -189,6 +193,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">3</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a b d e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
