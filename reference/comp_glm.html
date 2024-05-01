@@ -12,7 +12,7 @@ a list of terms representing the right-hand side of each of a series of model fo
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.00018</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.00019</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,9 +82,9 @@ string naming a family function, a family function or the result of a call to a 
 
 <p>An object of classes <code>"comp_glm"</code>, <code>"announce"</code>, inheriting from <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code> and hence
 <code>"data.frame"</code>, with columns including the <acronym>RHS</acronym> of the model <code>formula</code>, the <code>glm</code> object and
-eight further goodness-of-fit measures output by <code><a href="https://broom.tidymodels.org/reference/glance.glm.html" class="external-link">glance.glm</a></code>, as follows: -</p>
+eight further goodness-of-fit measures output by <code><a href="https://broom.tidymodels.org/reference/glance.glm.html" class="external-link">glance.glm()</a></code>, as follows: -</p>
 <dl><dt>f_rhs</dt>
-<dd><p>The right-hand side of the formula as supplied in the ... argument.</p></dd>
+<dd><p>The right-hand side of the formula as supplied in the <code>...</code> argument.</p></dd>
 
 
 <dt>.glm</dt>
@@ -206,19 +206,19 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">formula</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f0a5d52a8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd8a7da90&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f0a435a98&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd8791860&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f0a1288d0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd86f4810&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dv ~ iv4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f09d022a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd89eff48&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">summary</span><span class="op">)</span></span></span>
@@ -344,19 +344,19 @@ groupings of factors added to <code>.data</code> using <code><a href="add_grps.h
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">formula</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f09a7d0f0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd6876fe8&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f09ae8338&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd6c4fb20&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f08af8e58&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd66ab168&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $iv4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x559f09b58fd0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x563bd6d44138&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">comps</span><span class="op">$</span><span class="va">.glm</span>, <span class="va">summary</span><span class="op">)</span></span></span>

@@ -14,7 +14,7 @@ set_contrasts()&amp;lt;- is the replacement function form.'><!-- mathjax --><scr
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.00018</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.00019</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c    0    2   -1   -1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d    0    0    3   -1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e    0    0    0    4</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C         ^4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278  0.1195229</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555 -0.4780914</span>
@@ -173,47 +173,19 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## how.many argument</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, <span class="fl">4</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C         ^4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278  0.1195229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555 -0.4780914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225  0.0000000  0.7171372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612 -0.6324555 -0.4780914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225  0.3162278  0.1195229</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, <span class="fl">3</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, <span class="fl">3</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612 -0.6324555</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225  0.3162278</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, <span class="fl">2</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, <span class="fl">1</span>, contr <span class="op">=</span> <span class="va">contr.poly</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## base argument of contr.treatment</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">1</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   b c d e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">2</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a c d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
@@ -224,66 +196,6 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">4</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b c e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">5</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b c d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 0</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Streamline with purrr::map()</span></span></span>
-<span class="r-in"><span><span class="va">d</span><span class="op">$</span><span class="va">iv</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"base="</span>, <span class="va">letters</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="va">x</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`base=a`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   b c d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`base=b`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a c d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`base=c`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`base=d`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b c e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`base=e`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b c d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## base argument of contr.treatment limited to nlevels(d$iv) </span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span> <span class="fl">99L</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a b c d</span>
@@ -297,7 +209,6 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## set_contrasts()&lt;- replacement form</span></span></span>
 <span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.helmert</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
@@ -309,7 +220,7 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e    0    0    0    4</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.poly</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C         ^4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278  0.1195229</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555 -0.4780914</span>
@@ -345,17 +256,8 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## how.many argument</span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.poly</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C         ^4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278  0.1195229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555 -0.4780914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225  0.0000000  0.7171372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612 -0.6324555 -0.4780914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225  0.3162278  0.1195229</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.poly</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q         .C</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225 -0.3162278</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612  0.6324555</span>
@@ -363,49 +265,13 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612 -0.6324555</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225  0.3162278</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.poly</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L         .Q</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555  0.5345225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278 -0.2672612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000 -0.5345225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278 -0.2672612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555  0.5345225</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.poly</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/zapsmall.html" class="external-link">zapsmall</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           .L</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a -0.6324555</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b -0.3162278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c  0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d  0.3162278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e  0.6324555</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## base argument of contr.treatment</span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.treatment</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   b c d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.treatment</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a c d e</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> b 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.treatment</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b d e</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
 <span class="r-in"><span></span></span>
@@ -417,15 +283,6 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 1</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.treatment</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   a b c d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 1 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 1 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> d 0 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e 0 0 0 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">set_contrasts</span><span class="op">(</span><span class="va">d</span>, <span class="va">iv</span>, base <span class="op">=</span> <span class="fl">99L</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">contr.treatment</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
@@ -446,14 +303,8 @@ attribute will be removed from <code>.f</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1" "2" "3" "4"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">ct5</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">iv</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">ct5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1" "2" "3" "4" "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-in"><span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">ct5</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">iv</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "b" "c" "d" "e"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">set_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">ct5</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">get_contrasts</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
