@@ -21,12 +21,12 @@ numbers of successes and failures e.g., \code{cbind(pn, qn)}.}
 \item{.family}{a family function; default \code{"binomial"}. (See \code{\link[stats:family]{family}} for details of family
 functions.)}
 
-\item{.test}{a character string, (partially) matching one of \code{"none", "Chisq", "LRT", "Rao", "F"} or \code{"Cp"};
-default \code{"none"}.}
+\item{.test}{a character string, (partially) matching one of \code{"none"}, \code{"Chisq"}, \code{"LRT"}, \code{"Rao"}, \code{"F"} or
+\code{"Cp"}; default \code{"none"}.}
 }
 \value{
-An object of class \verb{c("univ_anova" "announce")}, inheriting from \code{"anova"} and \code{"data.frame"} as for \code{add1()}, summarising
-the differences between the fitted univariable \acronym{GLMs} and the null model.
+An object of class \verb{c("univ_anova" "announce")}, inheriting from \code{"anova"} and \code{"data.frame"} as for \code{add1()},
+summarising the differences between the fitted univariable \acronym{GLMs} and the null model.
 }
 \description{
 \code{univ_anova()} provides a succinct summary of the analyses of deviance for all univariable GLMs based on each
@@ -39,11 +39,11 @@ the null model. Other data types e.g. \code{"character"} vectors will be ignored
 \code{"factor"} to be included in this analysis.
 }
 \examples{
-d <- list(
+(d <- list(
     iv2 = list(g = c("a", "c", "e"), h = c("b", "d", "f")),
     iv3 = list(i = c("a", "b", "c"), j = c("d", "e", "f")),
     iv4 = list(k = c("a", "b"), l = c("c", "d"), m = c("e", "f"))
-) |> add_grps(bernoulli_data(levels = 6), iv, .key = _) |> print()
+) |> add_grps(bernoulli_data(levels = 6), iv, .key = _))
 
 d |> univ_anova(dv, .test = "LRT")
 

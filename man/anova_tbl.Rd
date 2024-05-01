@@ -7,7 +7,7 @@
 anova_tbl(anova_ls)
 }
 \arguments{
-\item{anova_ls}{a \code{\link{list}} of \code{anova} objects.}
+\item{anova_ls}{a \code{\link[base:list]{list}} of \code{anova} objects.}
 }
 \value{
 An object of classes \code{"anova_tbl"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}}, showing the

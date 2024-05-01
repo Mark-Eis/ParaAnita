@@ -20,7 +20,7 @@ in \code{.data}, to be included (or excluded)  as independent variables in the l
 string naming a family function, a family function or the result of a call to a family function; default
 \code{binomial}.}
 
-\item{.test}{a character string, (partially) matching one of \code{"Chisq", "LRT", "Rao", "F"} or \code{"Cp"};
+\item{.test}{a character string, (partially) matching one of \code{"Chisq"}, \code{"LRT"}, \code{"Rao"}, \code{"F"} or \code{"Cp"};
 default \code{"Chisq"}.}
 }
 \value{

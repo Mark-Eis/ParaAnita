@@ -26,9 +26,9 @@ string naming a family function, a family function or the result of a call to a 
 \value{
 An object of classes \code{"comp_glm"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}} and hence
 \code{"data.frame"}, with columns including the \acronym{RHS} of the model \code{formula}, the \code{glm} object and
-eight further goodness-of-fit measures output by \code{\link[broom]{glance.glm}}, as follows: -
+eight further goodness-of-fit measures output by \code{\link[broom:glance.glm]{glance.glm()}}, as follows: -
 
-\item{f_rhs}{The right-hand side of the formula as supplied in the \dots argument.}
+\item{f_rhs}{The right-hand side of the formula as supplied in the \code{\dots} argument.}
 
 \item{.glm}{A list-column containing the glm model objects.}
 

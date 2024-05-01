@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Jan 2023
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -16,14 +16,14 @@
 #' a list of terms representing the right-hand side of each of a series of model formulae.
 #'
 #' @details
-#' \code{comp_glm()} builds the formulas from the dependent variable and the formula right-hand side, calls
-#' [`glm`][stats::glm], and saves the resulting objects of class \code{"glm"} as a list column in a
+#' `comp_glm()` builds the formulas from the dependent variable and the formula right-hand side, calls
+#' [`glm`][stats::glm], and saves the resulting objects of class `"glm"` as a list column in a
 #' [`tibble`][tibble::tibble-package], together with model fit information obtained using
 #' [`glance.glm`][broom::glance.glm] from the \pkg{\link[broom]{broom}} package. The output may be ordered by a
 #' selected column, otherwise by default in descending order of Akaike's Information Criterion (\acronym{AIC}).
 #'
-#' \code{comp_glm()} may be used conveniently to compare a series of related binomial \acronym{GLMs} based on different
-#' groupings of factors added to \code{.data} using [`add_grps`][add_grps].
+#' `comp_glm()` may be used conveniently to compare a series of related binomial \acronym{GLMs} based on different
+#' groupings of factors added to `.data` using [`add_grps`][add_grps].
 #'
 #' @seealso [`add_grps`][add_grps], [`formula`][stats::formula], [`glance.glm`][broom::glance.glm] and
 #'   [`glm`][stats::glm].
@@ -33,26 +33,26 @@
 #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable to be used
 #'   as the \acronym{LHS} of the model formula; should be numeric with values of \var{0} and \var{1}, or a two-column
-#'   matrix with the columns giving the numbers of successes and failures e.g., \code{cbind(pn, qn)}.
+#'   matrix with the columns giving the numbers of successes and failures e.g., `cbind(pn, qn)`.
 #'
 #' @param \dots <[`dynamic-dots`][rlang::dyn-dots]> the \acronym{RHS} of any number of model formulae to be compared,
 #'   based on independent variables in `.data`.
 #'
 #' @param .family a description of the error distribution and link function to be used in the model. Can be a character
 #'   string naming a family function, a family function or the result of a call to a family function; default
-#'   \code{binomial}.
+#'   `binomial`.
 #'
 #' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name of a column for ordering results. Use
-#'   [`desc`][dplyr::desc] to sort by a variable in descending order; default \code{desc(AIC)}.
+#'   [`desc`][dplyr::desc] to sort by a variable in descending order; default `desc(AIC)`.
 #'
 #' @note It is the user's responsibility to check models are suitably nested to ensure meaningful comparisons.
 #'
 #' @return
 #' An object of classes `"comp_glm"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package] and hence
-#'   `"data.frame"`, with columns including the \acronym{RHS} of the model \code{formula}, the \code{glm} object and
-#'   eight further goodness-of-fit measures output by \code{\link[broom]{glance.glm}}, as follows: -
+#'   `"data.frame"`, with columns including the \acronym{RHS} of the model `formula`, the `glm` object and
+#'   eight further goodness-of-fit measures output by [`glance.glm()`][broom::glance.glm], as follows: -
 #'
-#' \item{f_rhs}{The right-hand side of the formula as supplied in the \dots argument.}
+#' \item{f_rhs}{The right-hand side of the formula as supplied in the \code{\dots} argument.}
 #'
 #' \item{.glm}{A list-column containing the glm model objects.}
 #'
@@ -150,7 +150,7 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 #' possible categorical independent variable in a Bernoulli or binomial data set.
 #'
 #' @details
-#' \code{univ_anova()} uses [`add1()`][stats::add1] in the \pkg{\link[stats]{stats}} package to compare univariable
+#' `univ_anova()` uses [`add1()`][stats::add1] in the \pkg{\link[stats]{stats}} package to compare univariable
 #' \acronym{GLMs} for each possible categorical independent variable (i.e., `"factor"` columns) in `.data` with
 #' the null model. Other data types e.g. `"character"` vectors will be ignored and should be converted to
 #' `"factor"` to be included in this analysis.
@@ -162,28 +162,28 @@ new_comp_glm <- function(x = data.frame(NULL), prt_str = "Compare Nested GLMs", 
 #' @param data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the binary dependent variable, which
-#'   should be \code{numeric} with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the 
-#'   numbers of successes and failures e.g., \code{cbind(pn, qn)}.
+#'   should be `numeric` with values of \var{0} and \var{1}, or a two-column matrix with the columns giving the 
+#'   numbers of successes and failures e.g., `cbind(pn, qn)`.
 #'
-#' @param .family a family function; default \code{"binomial"}. (See [`family`][stats::family] for details of family
+#' @param .family a family function; default `"binomial"`. (See [`family`][stats::family] for details of family
 #'   functions.)
 #'
-#' @param .test a character string, (partially) matching one of \code{"none", "Chisq", "LRT", "Rao", "F"} or \code{"Cp"};
-#'   default \code{"none"}.
+#' @param .test a character string, (partially) matching one of `"none"`, `"Chisq"`, `"LRT"`, `"Rao"`, `"F"` or
+#'   `"Cp"`; default `"none"`.
 #' 
 #' @return
-#' An object of class `c("univ_anova" "announce")`, inheriting from `"anova"` and `"data.frame"` as for `add1()`, summarising
-#'   the differences between the fitted univariable \acronym{GLMs} and the null model.
+#' An object of class `c("univ_anova" "announce")`, inheriting from `"anova"` and `"data.frame"` as for `add1()`,
+#'   summarising the differences between the fitted univariable \acronym{GLMs} and the null model.
 #' 
 #' @keywords models regression
 #' @export
 #' @export
 #' @examples
-#' d <- list(
+#' (d <- list(
 #'     iv2 = list(g = c("a", "c", "e"), h = c("b", "d", "f")),
 #'     iv3 = list(i = c("a", "b", "c"), j = c("d", "e", "f")),
 #'     iv4 = list(k = c("a", "b"), l = c("c", "d"), m = c("e", "f"))
-#' ) |> add_grps(bernoulli_data(levels = 6), iv, .key = _) |> print()
+#' ) |> add_grps(bernoulli_data(levels = 6), iv, .key = _))
 #'
 #' d |> univ_anova(dv, .test = "LRT")
 #'
@@ -232,7 +232,7 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' \acronym{GLMs} of data with a binary dependent variable or a (two-column) dependent variable of binomial proportions.
 #'
 #' @details
-#' Variables in \code{.data} to be included (or excluded)  as independent variables in the list of \acronym{GLM}
+#' Variables in `.data` to be included (or excluded)  as independent variables in the list of \acronym{GLM}
 #' analyses may be selected using the \code{\dots} argument with the<[`tidy-select`][dplyr::dplyr_tidy_select]> syntax
 #' of package \pkg{\link[dplyr]{dplyr}}, including use of \strong{selection helpers}.
 #'
@@ -241,7 +241,7 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' the univariable \acronym{GLM} anovas (analysis of deviance).
 #'
 #' [`univ_anova`][univ_anova] provides a succinct summmary of the univariable analyses of deviance for all potential
-#' categorical independent variables in \code{data}. [`anova_tbl`][anova_tbl] also provides a succinct summmary from
+#' categorical independent variables in `data`. [`anova_tbl`][anova_tbl] also provides a succinct summmary from
 #' the list of anovas.
 #'
 #' @seealso [`anova.glm()`][stats::anova.glm], [`list_transpose()`][purrr::list_transpose], [`glm()`][stats::glm] and
@@ -250,10 +250,10 @@ new_univ_anova <- function(x = anova(NULL), ...) {
 #' @family comp_glm
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> quoted name(s) of one or more factors or character vectors
-#'   in \code{.data}, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.
+#'   in `.data`, to be included (or excluded)  as independent variables in the list of \acronym{GLM} analyses.
 #'
-#' @param .test a character string, (partially) matching one of \code{"Chisq", "LRT", "Rao", "F"} or \code{"Cp"};
-#'   default \code{"Chisq"}.
+#' @param .test a character string, (partially) matching one of `"Chisq"`, `"LRT"`, `"Rao"`, `"F"` or `"Cp"`;
+#'   default `"Chisq"`.
 #'
 #' @inheritParams comp_glm
 #'
@@ -333,14 +333,14 @@ new_summ_anov <- function(x = glm(0~NULL), test = "Chisq") {
 #' all must be comparisons of two models. If any of the models has more than one independent variable, the results
 #' may be difficult to interpret and a warning will be given.
 #'
-#' \code{anova_tbl()} can be used to be easily and conveniently compare a list of anovas obtained with
+#' `anova_tbl()` can be used to be easily and conveniently compare a list of anovas obtained with
 #' [`summanov`][summanov] and  [`list_transpose`][purrr::list_transpose], see examples.
 #'
 #' @seealso [`anova.glm()`][stats::anova.glm] [`list_transpose()`][purrr::list_transpose], and
 #'   [`tibble`][tibble::tibble-package].
 #' @family comp_glm
 #'
-#' @param anova_ls a \code{\link{list}} of \code{anova} objects.
+#' @param anova_ls a [`list`][base::list] of `anova` objects.
 #' 
 #' @return
 #' An object of classes `"anova_tbl"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package], showing the
