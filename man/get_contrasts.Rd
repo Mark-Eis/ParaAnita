@@ -76,6 +76,7 @@ d |> set_contrasts(iv, 3, contr = contr.poly) |> get_contrasts(iv)
 ## base argument of contr.treatment
 d |> set_contrasts(iv, base = 1, contr = contr.treatment) |> get_contrasts(iv)
 d |> set_contrasts(iv, base = 3, contr = contr.treatment) |> get_contrasts(iv)
+
 ## base argument of contr.treatment limited to nlevels(d$iv) 
 d |> set_contrasts(iv, base = 99L, contr = contr.treatment) |> get_contrasts(iv)
 
@@ -109,35 +110,9 @@ d |> get_contrasts(iv)
 set_contrasts(d, iv, base = 4) <- contr.treatment
 d |> get_contrasts(iv)
 
+## base argument of contr.treatment limited to nlevels(d$iv) 
 set_contrasts(d, iv, base = 99L) <- contr.treatment
 d |> get_contrasts(iv)
-
-## Naming contrasts matrix columns isn't always automatic
-## This is one way…
-ct5 <- contr.SAS(5)
-dimnames(ct5)
-(dimnames(ct5)[[2]] <- levels(d$iv)[-1])
-
-d |> set_contrasts(iv) <- ct5
-d |> get_contrasts(iv)
-
-## Set "contrasts" attribute for d$iv to Helmert contrasts matrix
-set_contrasts(d, iv) <- contr.helmert
-attr(d$iv, "contrasts")
-d |> get_contrasts(iv)
-## get_contrasts() return value identical to that of contrasts() 
-identical(contrasts(d$iv), d |> get_contrasts(iv))
-
-## Remove "contrasts" attribute 
-set_contrasts(d, iv) <- NULL
-## get_contrasts() return value no longer identical to that of contrasts() 
-identical(contrasts(d$iv), d |> get_contrasts(iv))
-## get_contrasts() shows NULL "contrasts" attribute… 
-d |> get_contrasts(iv)
-attr(d$iv, "contrasts")
-## …whereas contrasts() now shows default (unordered) contrasts from options("contrasts") 
-contrasts(d$iv)
-options("contrasts") 
 
 rm(d)
 }
