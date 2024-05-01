@@ -39,7 +39,7 @@ and the corresponding series of related binomial \code{\link[stats:glm]{glm}}s c
 (d <- binom_data(levels = 6))
 
 ## One grouped factor
-grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f"))
+(grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f")))
 
 d |> add_grps(iv, list(iv2 = grp_key))
 
@@ -65,16 +65,17 @@ add_grps(d, iv, .key = _)
     mutate(across(iv, \(x) fct_recode(x, !!!setNames(letters[1:12], month.abb)))) |>
     rename(month = "iv"))
 
-## Name three lists of different month groupings using purrr::map()
-list(
+## Name three lists of different month groupings using lapply()
+(grp_key <- list(
     list(1:3, 4:6, 7:9, 10:12),
     list(1:4, 5:8, 9:12),
     list(c(1:3, 10:12), 4:9)
 ) |>
-map(\(x) map(x, \(y) month.abb[y])) |>
-map(\(x) setNames(x, paste0("group", seq_along(x)))) |>
-(\(x) setNames(x, paste0("months", seq_along(x))))() |>
-add_grps(d, month, .key = _)        ## Add the new year groups to data
+lapply(\(x) lapply(x, \(y) month.abb[y])) |>
+lapply(\(x) setNames(x, paste0("group", seq_along(x)))) |>
+(\(x) setNames(x, paste0("months", seq_along(x))))())
+
+add_grps(d, month, grp_key)        ## Add the new year groups to data
 
 ## Example from fct_collapse() using gss_cat dataset from {forcats} package
 \dontshow{

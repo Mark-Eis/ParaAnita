@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Dec 2023
+# Mark Eisler - May 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -46,7 +46,7 @@
 #' (d <- binom_data(levels = 6))
 #'
 #' ## One grouped factor
-#' grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f"))
+#' (grp_key <- list(g = c("a", "c", "e"), h = c("b", "d", "f")))
 #'
 #' d |> add_grps(iv, list(iv2 = grp_key))
 #'
@@ -72,16 +72,17 @@
 #'     mutate(across(iv, \(x) fct_recode(x, !!!setNames(letters[1:12], month.abb)))) |>
 #'     rename(month = "iv"))
 #' 
-#' ## Name three lists of different month groupings using purrr::map()
-#' list(
+#' ## Name three lists of different month groupings using lapply()
+#' (grp_key <- list(
 #'     list(1:3, 4:6, 7:9, 10:12),
 #'     list(1:4, 5:8, 9:12),
 #'     list(c(1:3, 10:12), 4:9)
 #' ) |>
-#' map(\(x) map(x, \(y) month.abb[y])) |>
-#' map(\(x) setNames(x, paste0("group", seq_along(x)))) |>
-#' (\(x) setNames(x, paste0("months", seq_along(x))))() |>
-#' add_grps(d, month, .key = _)        ## Add the new year groups to data
+#' lapply(\(x) lapply(x, \(y) month.abb[y])) |>
+#' lapply(\(x) setNames(x, paste0("group", seq_along(x)))) |>
+#' (\(x) setNames(x, paste0("months", seq_along(x))))())
+#'
+#' add_grps(d, month, grp_key)        ## Add the new year groups to data
 #' 
 #' ## Example from fct_collapse() using gss_cat dataset from {forcats} package
 #' \dontshow{
@@ -118,7 +119,7 @@
 
 add_grps <- function (data, .fct, .key, .sort = TRUE) {
     .fct = enquo(.fct)
-    grp_fct_ls <- map(.key, ~ function(fct) call2(fct_collapse, !!!exprs({{ fct }}, !!!.x)) |> eval_tidy())
+    grp_fct_ls <- map(.key, \(x) \(fct) call2(fct_collapse, !!!exprs({{ fct }}, !!!x)) |> eval_tidy())
 
     data |> mutate(
         across(!!.fct, grp_fct_ls, .names = "{.fn}"),
