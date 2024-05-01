@@ -56,9 +56,13 @@
 #'
 #' ## set_contrasts()
 #' d |> set_contrasts(iv, contr = contr.helmert) |> get_contrasts(iv)
+#'
 #' d |> set_contrasts(iv, contr = contr.poly) |> get_contrasts(iv)
+#'
 #' d |> set_contrasts(iv, contr = contr.sum) |> get_contrasts(iv)
+#'
 #' d |> set_contrasts(iv, contr = contr.treatment) |> get_contrasts(iv)
+#'
 #' d |> set_contrasts(iv, contr = contr.SAS) |> get_contrasts(iv)
 #'
 #' ## how.many argument
@@ -66,6 +70,7 @@
 #'
 #' ## base argument of contr.treatment
 #' d |> set_contrasts(iv, base = 1, contr = contr.treatment) |> get_contrasts(iv)
+#'
 #' d |> set_contrasts(iv, base = 3, contr = contr.treatment) |> get_contrasts(iv)
 #'
 #' ## base argument of contr.treatment limited to nlevels(d$iv) 
