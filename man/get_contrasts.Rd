@@ -65,42 +65,29 @@ attribute will be removed from \code{.f}.
 
 ## set_contrasts()
 d |> set_contrasts(iv, contr = contr.helmert) |> get_contrasts(iv)
-d |> set_contrasts(iv, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
+d |> set_contrasts(iv, contr = contr.poly) |> get_contrasts(iv)
 d |> set_contrasts(iv, contr = contr.sum) |> get_contrasts(iv)
 d |> set_contrasts(iv, contr = contr.treatment) |> get_contrasts(iv)
 d |> set_contrasts(iv, contr = contr.SAS) |> get_contrasts(iv)
 
 ## how.many argument
-d |> set_contrasts(iv, 4, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-d |> set_contrasts(iv, 3, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-d |> set_contrasts(iv, 2, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-d |> set_contrasts(iv, 1, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
+d |> set_contrasts(iv, 3, contr = contr.poly) |> get_contrasts(iv)
 
 ## base argument of contr.treatment
 d |> set_contrasts(iv, base = 1, contr = contr.treatment) |> get_contrasts(iv)
-d |> set_contrasts(iv, base = 2, contr = contr.treatment) |> get_contrasts(iv)
 d |> set_contrasts(iv, base = 3, contr = contr.treatment) |> get_contrasts(iv)
-d |> set_contrasts(iv, base = 4, contr = contr.treatment) |> get_contrasts(iv)
-d |> set_contrasts(iv, base = 5, contr = contr.treatment) |> get_contrasts(iv)
-
-## Streamline with purrr::map()
-d$iv |> levels() |> seq_along() |> set_names(\(x) paste0("base=", letters[seq_along(x)])) |>
-  map(\(x) set_contrasts(d, iv, base = x, contr = contr.treatment) |>
-  get_contrasts(iv))
-
 ## base argument of contr.treatment limited to nlevels(d$iv) 
 d |> set_contrasts(iv, base = 99L, contr = contr.treatment) |> get_contrasts(iv)
 
 ## Remove "contrasts" attribute using NULL
 d |> set_contrasts(iv, contr = NULL) |> get_contrasts(iv)
 
-
 ## set_contrasts()<- replacement form
 set_contrasts(d, iv) <- contr.helmert
 d |> get_contrasts(iv)
 
 set_contrasts(d, iv) <- contr.poly
-d |> get_contrasts(iv) |> zapsmall()
+d |> get_contrasts(iv)
 
 set_contrasts(d, iv) <- contr.sum
 d |> get_contrasts(iv)
@@ -112,32 +99,14 @@ set_contrasts(d, iv) <- contr.SAS
 d |> get_contrasts(iv)
 
 ## how.many argument
-set_contrasts(d, iv, 4) <- contr.poly
-d |> get_contrasts(iv) |> zapsmall()
-
 set_contrasts(d, iv, 3) <- contr.poly
-d |> get_contrasts(iv) |> zapsmall()
-
-set_contrasts(d, iv, 2) <- contr.poly
-d |> get_contrasts(iv) |> zapsmall()
-
-set_contrasts(d, iv, 1) <- contr.poly
-d |> get_contrasts(iv) |> zapsmall()
-
-## base argument of contr.treatment
-set_contrasts(d, iv, base = 1) <- contr.treatment
 d |> get_contrasts(iv)
 
+## base argument of contr.treatment
 set_contrasts(d, iv, base = 2) <- contr.treatment
 d |> get_contrasts(iv)
 
-set_contrasts(d, iv, base = 3) <- contr.treatment
-d |> get_contrasts(iv)
-
 set_contrasts(d, iv, base = 4) <- contr.treatment
-d |> get_contrasts(iv)
-
-set_contrasts(d, iv, base = 5) <- contr.treatment
 d |> get_contrasts(iv)
 
 set_contrasts(d, iv, base = 99L) <- contr.treatment
@@ -147,8 +116,7 @@ d |> get_contrasts(iv)
 ## This is one way…
 ct5 <- contr.SAS(5)
 dimnames(ct5)
-dimnames(ct5)[[2]] <- levels(d$iv)[-1]
-dimnames(ct5)
+(dimnames(ct5)[[2]] <- levels(d$iv)[-1])
 
 d |> set_contrasts(iv) <- ct5
 d |> get_contrasts(iv)

@@ -38,8 +38,7 @@ treatment contrast matrix with individually specified baseline levels.
 \code{set_contr_treat()<-} is the replacement function form.
 }
 \details{
-\code{get_contr_data()} prints the \code{"contrasts"} attributes of all or selected factors and returns \code{data}
-invisibly.
+\code{get_contr_data()} returns the \code{"contrasts"} attributes of all or selected factors.
 
 Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with
 the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{dplyr}, including use of

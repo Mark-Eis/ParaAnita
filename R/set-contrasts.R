@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Mar 2024
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -56,42 +56,30 @@
 #'
 #' ## set_contrasts()
 #' d |> set_contrasts(iv, contr = contr.helmert) |> get_contrasts(iv)
-#' d |> set_contrasts(iv, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
+#' d |> set_contrasts(iv, contr = contr.poly) |> get_contrasts(iv)
 #' d |> set_contrasts(iv, contr = contr.sum) |> get_contrasts(iv)
 #' d |> set_contrasts(iv, contr = contr.treatment) |> get_contrasts(iv)
 #' d |> set_contrasts(iv, contr = contr.SAS) |> get_contrasts(iv)
 #'
 #' ## how.many argument
-#' d |> set_contrasts(iv, 4, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-#' d |> set_contrasts(iv, 3, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-#' d |> set_contrasts(iv, 2, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
-#' d |> set_contrasts(iv, 1, contr = contr.poly) |> get_contrasts(iv) |> zapsmall()
+#' d |> set_contrasts(iv, 3, contr = contr.poly) |> get_contrasts(iv)
 #'
 #' ## base argument of contr.treatment
 #' d |> set_contrasts(iv, base = 1, contr = contr.treatment) |> get_contrasts(iv)
-#' d |> set_contrasts(iv, base = 2, contr = contr.treatment) |> get_contrasts(iv)
 #' d |> set_contrasts(iv, base = 3, contr = contr.treatment) |> get_contrasts(iv)
-#' d |> set_contrasts(iv, base = 4, contr = contr.treatment) |> get_contrasts(iv)
-#' d |> set_contrasts(iv, base = 5, contr = contr.treatment) |> get_contrasts(iv)
-#' 
-#' ## Streamline with purrr::map()
-#' d$iv |> levels() |> seq_along() |> set_names(\(x) paste0("base=", letters[seq_along(x)])) |>
-#'   map(\(x) set_contrasts(d, iv, base = x, contr = contr.treatment) |>
-#'   get_contrasts(iv))
-#'
+# #'
 #' ## base argument of contr.treatment limited to nlevels(d$iv) 
 #' d |> set_contrasts(iv, base = 99L, contr = contr.treatment) |> get_contrasts(iv)
 #' 
 #' ## Remove "contrasts" attribute using NULL
 #' d |> set_contrasts(iv, contr = NULL) |> get_contrasts(iv)
 #'
-#' 
 #' ## set_contrasts()<- replacement form
 #' set_contrasts(d, iv) <- contr.helmert
 #' d |> get_contrasts(iv)
 #' 
 #' set_contrasts(d, iv) <- contr.poly
-#' d |> get_contrasts(iv) |> zapsmall()
+#' d |> get_contrasts(iv)
 #' 
 #' set_contrasts(d, iv) <- contr.sum
 #' d |> get_contrasts(iv)
@@ -103,32 +91,14 @@
 #' d |> get_contrasts(iv)
 #'
 #' ## how.many argument
-#' set_contrasts(d, iv, 4) <- contr.poly
-#' d |> get_contrasts(iv) |> zapsmall()
-#' 
 #' set_contrasts(d, iv, 3) <- contr.poly
-#' d |> get_contrasts(iv) |> zapsmall()
-#' 
-#' set_contrasts(d, iv, 2) <- contr.poly
-#' d |> get_contrasts(iv) |> zapsmall()
-#' 
-#' set_contrasts(d, iv, 1) <- contr.poly
-#' d |> get_contrasts(iv) |> zapsmall()
-#' 
-#' ## base argument of contr.treatment
-#' set_contrasts(d, iv, base = 1) <- contr.treatment
 #' d |> get_contrasts(iv)
 #' 
+#' ## base argument of contr.treatment
 #' set_contrasts(d, iv, base = 2) <- contr.treatment
 #' d |> get_contrasts(iv)
 #' 
-#' set_contrasts(d, iv, base = 3) <- contr.treatment
-#' d |> get_contrasts(iv)
-#' 
 #' set_contrasts(d, iv, base = 4) <- contr.treatment
-#' d |> get_contrasts(iv)
-#' 
-#' set_contrasts(d, iv, base = 5) <- contr.treatment
 #' d |> get_contrasts(iv)
 #' 
 #' set_contrasts(d, iv, base = 99L) <- contr.treatment
@@ -138,8 +108,7 @@
 #' ## This is one way…
 #' ct5 <- contr.SAS(5)
 #' dimnames(ct5)
-#' dimnames(ct5)[[2]] <- levels(d$iv)[-1]
-#' dimnames(ct5)
+#' (dimnames(ct5)[[2]] <- levels(d$iv)[-1])
 #' 
 #' d |> set_contrasts(iv) <- ct5
 #' d |> get_contrasts(iv)
@@ -169,7 +138,8 @@ get_contrasts <- function(data, .f) {
     if (!is.data.frame(data)) stop("\n\targument \"data\" not a data frame")
     if (eval_tidy(expr(!is.factor(!!.f)), data))
         stop("\targument ", as_name(.f), " not of type factor")
-    eval_tidy(expr({{.f}} %@% contrasts), data)
+    eval_tidy(expr({{.f}} %@% contrasts), data) |>
+        zapsmall()
 }
 
 # ========================================
@@ -221,8 +191,7 @@ set_contrasts <- function(data, .f, how.many = NULL, ..., contr) {
 #' \code{set_contr_treat()<-} is the replacement function form.
 #'
 #' @details
-#' \code{get_contr_data()} prints the \code{"contrasts"} attributes of all or selected factors and returns \code{data}
-#' invisibly.
+#' \code{get_contr_data()} returns the \code{"contrasts"} attributes of all or selected factors.
 #'
 #' Factors in \code{.data} may be selected for getting and setting contrasts using the \code{\dots} argument with
 #' the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{dplyr}, including use of
@@ -269,8 +238,7 @@ get_contr_data <- function (data, ...) {
     pos <- eval_select(expr(where(is.factor)), data = data)
     if (...length())
         pos <- intersect(pos, eval_select(expr(c(...)), data = data))
-    data[pos] |> map(\(x) x %@% contrasts) |>
-    print() |> invisible()
+    data[pos] |> lapply(\(x) x %@% contrasts)
 }
 
 # ========================================
@@ -288,7 +256,7 @@ set_contr_treat <- function (data, ..., .baseline = NULL, .verbose = TRUE) {
     .baseline <- .baseline %||% rep(1L, length(efs))
     map2(efs, .baseline, \(ef, baseline) set_contrasts(data, !!ef, base = baseline) <<- contr.treatment)
     if(.verbose) report(data, "after:")
-    data
+    data |> invisible()
 }
 
 # ========================================
