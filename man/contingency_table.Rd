@@ -88,11 +88,11 @@ d |> contingency_table(dv)
 d |> contingency_table(dv, .rownames = TRUE)
 
 ## Use .data pronoun for more informative error messages
-try(d |> contingency_table(dvx))
-
 d |> contingency_table(.data$dv)
 
-try(d |> contingency_table(.data$dvx))
+try(d |> contingency_table(dx))
+
+try(d |> contingency_table(.data$dx))
 
 (d <- tibble(
     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
@@ -110,13 +110,14 @@ d |> contingency_table(dv, .rownames = TRUE)
 
 d |> contingency_table(dv, .wt = n)
 
-d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
+d |> contingency_table(dv, .wt = n, .rownames = TRUE) |>
+    print_lf() |>
+    chisq.test()
 
 ## Use .data pronoun for more informative error messages
-
 d |> contingency_table(dv, .wt = .data$n)
 
-try(d |> contingency_table(dv, .wt = .data$nx))
+try(d |> contingency_table(dv, .wt = .data$x))
 
 rm(d)
 
@@ -141,7 +142,9 @@ gss_cat |> xcontingency_table(race, !c(marital, rincome:partyid))
 
 gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
 
-gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
+gss_cat |>
+    xcontingency_table(race, relig, denom, .rownames = TRUE) |>
+    head(10)
 
 ## Two more esoteric examples
 ivars <- exprs(relig, denom)

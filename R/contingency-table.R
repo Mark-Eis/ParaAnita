@@ -88,11 +88,11 @@
 #' d |> contingency_table(dv, .rownames = TRUE)
 #' 
 #' ## Use .data pronoun for more informative error messages
-#' try(d |> contingency_table(dvx))
-#' 
 #' d |> contingency_table(.data$dv)
 #' 
-#' try(d |> contingency_table(.data$dvx))
+#' try(d |> contingency_table(dx))
+#' 
+#' try(d |> contingency_table(.data$dx))
 #'
 #' (d <- tibble(
 #'     iv = letters[1:4] |> sample(10, replace = TRUE) |> as.factor(),
@@ -110,13 +110,14 @@
 #'
 #' d |> contingency_table(dv, .wt = n)
 #'
-#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
+#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |>
+#'     print_lf() |>
+#'     chisq.test()
 #' 
 #' ## Use .data pronoun for more informative error messages
-#'
 #' d |> contingency_table(dv, .wt = .data$n)
 #' 
-#' try(d |> contingency_table(dv, .wt = .data$nx))
+#' try(d |> contingency_table(dv, .wt = .data$x))
 #'
 #' rm(d)
 #' 
@@ -141,7 +142,9 @@
 #'
 #' gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
 #'
-#' gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
+#' gss_cat |>
+#'     xcontingency_table(race, relig, denom, .rownames = TRUE) |>
+#'     head(10)
 #'
 #' ## Two more esoteric examples
 #' ivars <- exprs(relig, denom)
@@ -338,25 +341,38 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' d |> binom_contingency(dv, .propci = TRUE)
 #'
 #' ## Use .data pronoun for more informative error messages
-#' try(d |> binom_contingency(dvx))
-#' 
 #' d |> binom_contingency(.data$dv)
 #' 
-#' try(d |> binom_contingency(.data$dvx))
+#' try(d |> binom_contingency(dx))
+#' 
+#' try(d |> binom_contingency(.data$dx))
 #'
-#' ## Bernoulli data with levels of a single explanatory variable having all zero responses
-#' d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5))
-#' d |> binom_contingency(dv)
+#' ## NB this section is intended to be pasted in, rather than run by example()
+#' \dontrun{
+#'     oldopt <- options(warn = 0, nwarnings = 50)
 #'
-#' ## Invokes 'fitted probabilities numerically 0 or 1 occurred' warning in odds_ratio()
-#' try(d |> binom_contingency(dv) |>
-#'     odds_ratio(.ind_var = iv))
+#'     ## Bernoulli data with identical responses for
+#'     ##   the last level of the explanatory variable
+#'     d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5))
+#'     d |> binom_contingency(dv)
 #'
-#' ##  Argument .drop_zero = TRUE in binomial contingency() prevents this warning
-#' d |> binom_contingency(dv, .drop_zero = TRUE)
+#'     ## Elicits mutiple warnings in glm.fit()
+#'     ##   'fitted probabilities numerically 0 or 1 occurred'
+#'     d |> binom_contingency(dv) |>
+#'         glm(cbind(pn, qn) ~ iv, binomial, data = _) |>
+#'         confint()
+#'     summary(warnings())
 #'
-#' d |> binom_contingency(dv, .drop_zero = TRUE) |>
-#'     odds_ratio(.ind_var = iv)
+#'     ##  Argument .drop_zero = TRUE in binom_contingency()
+#'     ##    prevents these warnings
+#'     d |> binom_contingency(dv, .drop_zero = TRUE)
+#'
+#'     d |> binom_contingency(dv, .drop_zero = TRUE) |>
+#'         glm(cbind(pn, qn) ~ iv, binomial, data = _) |>
+#'         confint()
+#'
+#'     options(oldopt)
+#' }
 #'
 #' ## Bernoulli data with multiple explanatory variables
 #' (d <- list(
