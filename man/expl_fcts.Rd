@@ -63,49 +63,68 @@ support to \code{\link[base:lapply]{lapply()}} (or \pkg{\link[purrr]{purrr}} pac
 ) |> add_grps(bernoulli_data(levels = 6), iv, .key = _))
 
 d |> expl_fcts()
+
 d |> expl_fcts(.named = TRUE)
+
 d |> expl_fcts(.val = "data_syms")
+
 d |> expl_fcts(.named = TRUE, .val = "data_syms")
+
 d |> expl_fcts(.val = "character")
+
 d |> expl_fcts(.named = TRUE, .val = "character")
 
 ## Select or exclude factors
 d |> expl_fcts(iv, iv3)
+
 d |> expl_fcts(!c(iv, iv3))
 
 ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 d |> expl_fcts(last_col(1L))  ## Offset of 1L used, since last column of d is dv
+
 d |> expl_fcts(!last_col())
+
 d |> expl_fcts(num_range("iv", 2:3))
+
 d |> expl_fcts(!num_range("iv", 2:3))
+
 d |> expl_fcts(starts_with("iv"))
+
 ## Negation of selection helper excludes all explanatory factors
 d |> expl_fcts(!starts_with("iv"))
 
 ## In following three examples, each triplet should give identical results
 ## Include all explanatory factors
 d |> binom_contingency(dv)
+
 d |> binom_contingency(dv, !!!expl_fcts(d))
+
 d |> binom_contingency(dv, all_of(expl_fcts(d, .val = "character")))
 
 ## Include only iv and iv3
 d |> binom_contingency(dv, iv, iv3)
+
 d |> binom_contingency(dv, !!!expl_fcts(d, iv, iv3))
+
 d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .val = "character")))
 
 ## Exclude iv and iv3
 d |> binom_contingency(dv, !c(iv, iv3))
+
 d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
+
 d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .val = "character")))
 
 ## Use with lapply, binom_contingency(), glm() and odds_ratio()
 expl_fcts(d, .named = TRUE) |>
     lapply(\(x) binom_contingency(d, dv, !!x))
+
 expl_fcts(d, .named = TRUE) |>
     lapply(\(x)
         binom_contingency(d, dv, !!x) |>
         glm(cbind(pn, qn) ~ ., binomial, data = _)
     )
+
 expl_fcts(d, .named = TRUE) |>
     lapply(\(x)
         binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>

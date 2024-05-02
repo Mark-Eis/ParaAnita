@@ -77,7 +77,9 @@ Confidence intervals are calculated using \code{\link[stats:prop.test]{prop.test
 \examples{
 ## Bernoulli data with a single explanatory variable
 (d <- bernoulli_data())
+
 d |> binom_contingency(dv)
+
 d |> binom_contingency(dv, .propci = TRUE)
 
 ## Use .data pronoun for more informative error messages
@@ -87,16 +89,17 @@ d |> binom_contingency(.data$dv)
 
 try(d |> binom_contingency(.data$dvx))
 
-## Bernoulli data for a single explanatory variable with levels at which responses are all zero
-(d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5)))
+## Bernoulli data with levels of a single explanatory variable having all zero responses
+d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5))
 d |> binom_contingency(dv)
-## Invokes warning: -
-##   '! glm.fit: fitted probabilities numerically 0 or 1 occurred'
+
+## Invokes 'fitted probabilities numerically 0 or 1 occurred' warning in odds_ratio()
 try(d |> binom_contingency(dv) |>
     odds_ratio(.ind_var = iv))
 
 ##  Argument .drop_zero = TRUE in binomial contingency() prevents this warning
 d |> binom_contingency(dv, .drop_zero = TRUE)
+
 d |> binom_contingency(dv, .drop_zero = TRUE) |>
     odds_ratio(.ind_var = iv)
 
@@ -108,11 +111,15 @@ d |> binom_contingency(dv, .drop_zero = TRUE) |>
 ) |> add_grps(bernoulli_data(levels = 8), iv, .key = _))
 
 d |> binom_contingency(dv)
+
 d |> binom_contingency(dv, iv, iv3)
+
 d |> binom_contingency(dv, !c(iv2, iv4))
+
 d |> binom_contingency(dv, !!!expl_fcts(d))
 
 d |> binom_contingency(dv, .propci = TRUE)
+
 d |> binom_contingency(dv, .drop_zero = TRUE)
 
 d |>
@@ -127,10 +134,15 @@ d |>
 
 ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 d |> binom_contingency(dv, last_col(1L))  ## Offset of 1L used, since last column of d is dv
+
 d |> binom_contingency(dv, !last_col(1L))
+
 d |> binom_contingency(dv, num_range("iv", 2:3))
+
 d |> binom_contingency(dv, !num_range("iv", 2:3))
+
 d |> binom_contingency(dv, starts_with("iv"))
+
 d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
 
 rm(d)

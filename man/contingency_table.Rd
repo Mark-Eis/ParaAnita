@@ -84,6 +84,7 @@ Multiple categorical explanatory variables in a contingency table compiled by \c
 ))
 
 d |> contingency_table(dv)
+
 d |> contingency_table(dv, .rownames = TRUE)
 
 ## Use .data pronoun for more informative error messages
@@ -99,6 +100,7 @@ try(d |> contingency_table(.data$dvx))
   ))
 
 d |> contingency_table(dv)
+
 d |> contingency_table(dv, .rownames = TRUE)
 
 (d <- tibble(
@@ -107,9 +109,11 @@ d |> contingency_table(dv, .rownames = TRUE)
   ) |> count(iv, dv))
 
 d |> contingency_table(dv, .wt = n)
-d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()#' 
+
+d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
 
 ## Use .data pronoun for more informative error messages
+
 d |> contingency_table(dv, .wt = .data$n)
 
 try(d |> contingency_table(dv, .wt = .data$nx))
@@ -124,17 +128,19 @@ rm(d)
 }
 
 gss_cat |> contingency_table(race, relig, denom)
+
 gss_cat |> contingency_table(race, !c(marital, rincome:partyid))
 
-\dontrun{
-  gss_cat |> contingency_table(race, relig, denom, .rownames = TRUE) 
-  ## gives error message "duplicate 'row.names' are not allowed";
-  ## use xcontingency_table() instead
-}
+## Invokes warning and error message about duplicate 'row.names'
+try(gss_cat |> contingency_table(race, relig, denom, .rownames = TRUE)) 
 
+## Using xcontingency_table() avoids warning and error
 gss_cat |> xcontingency_table(race, relig, denom)
+
 gss_cat |> xcontingency_table(race, !c(marital, rincome:partyid))
+
 gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
+
 gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
 
 ## Two more esoteric examples

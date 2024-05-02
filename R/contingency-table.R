@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Apr 2024
+# Mark Eisler - May 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -84,6 +84,7 @@
 #' ))
 #'
 #' d |> contingency_table(dv)
+#'
 #' d |> contingency_table(dv, .rownames = TRUE)
 #' 
 #' ## Use .data pronoun for more informative error messages
@@ -99,6 +100,7 @@
 #'   ))
 #'
 #' d |> contingency_table(dv)
+#'
 #' d |> contingency_table(dv, .rownames = TRUE)
 #'
 #' (d <- tibble(
@@ -107,9 +109,11 @@
 #'   ) |> count(iv, dv))
 #'
 #' d |> contingency_table(dv, .wt = n)
-#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()#' 
+#'
+#' d |> contingency_table(dv, .wt = n, .rownames = TRUE) |> print_lf() |> chisq.test()
 #' 
 #' ## Use .data pronoun for more informative error messages
+#'
 #' d |> contingency_table(dv, .wt = .data$n)
 #' 
 #' try(d |> contingency_table(dv, .wt = .data$nx))
@@ -124,17 +128,19 @@
 #' }
 #'
 #' gss_cat |> contingency_table(race, relig, denom)
+#'
 #' gss_cat |> contingency_table(race, !c(marital, rincome:partyid))
 #'
-#' \dontrun{
-#'   gss_cat |> contingency_table(race, relig, denom, .rownames = TRUE) 
-#'   ## gives error message "duplicate 'row.names' are not allowed";
-#'   ## use xcontingency_table() instead
-#' }
+#' ## Invokes warning and error message about duplicate 'row.names'
+#' try(gss_cat |> contingency_table(race, relig, denom, .rownames = TRUE)) 
 #'
+#' ## Using xcontingency_table() avoids warning and error
 #' gss_cat |> xcontingency_table(race, relig, denom)
+#'
 #' gss_cat |> xcontingency_table(race, !c(marital, rincome:partyid))
+#'
 #' gss_cat |> xcontingency_table(race, relig, denom, .crossname = "Denomination")
+#'
 #' gss_cat |> xcontingency_table(race, relig, denom, .rownames = TRUE) |> head(10)
 #'
 #' ## Two more esoteric examples
@@ -326,7 +332,9 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' @examples
 #' ## Bernoulli data with a single explanatory variable
 #' (d <- bernoulli_data())
+#'
 #' d |> binom_contingency(dv)
+#'
 #' d |> binom_contingency(dv, .propci = TRUE)
 #'
 #' ## Use .data pronoun for more informative error messages
@@ -336,16 +344,17 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' 
 #' try(d |> binom_contingency(.data$dvx))
 #'
-#' ## Bernoulli data for a single explanatory variable with levels at which responses are all zero
-#' (d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5)))
+#' ## Bernoulli data with levels of a single explanatory variable having all zero responses
+#' d <- bernoulli_data(probs = seq(0.4, 0, length.out = 5))
 #' d |> binom_contingency(dv)
-#' ## Invokes warning: -
-#' ##   '! glm.fit: fitted probabilities numerically 0 or 1 occurred'
+#'
+#' ## Invokes 'fitted probabilities numerically 0 or 1 occurred' warning in odds_ratio()
 #' try(d |> binom_contingency(dv) |>
 #'     odds_ratio(.ind_var = iv))
 #'
 #' ##  Argument .drop_zero = TRUE in binomial contingency() prevents this warning
 #' d |> binom_contingency(dv, .drop_zero = TRUE)
+#'
 #' d |> binom_contingency(dv, .drop_zero = TRUE) |>
 #'     odds_ratio(.ind_var = iv)
 #'
@@ -357,11 +366,15 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' ) |> add_grps(bernoulli_data(levels = 8), iv, .key = _))
 #'
 #' d |> binom_contingency(dv)
+#'
 #' d |> binom_contingency(dv, iv, iv3)
+#'
 #' d |> binom_contingency(dv, !c(iv2, iv4))
+#'
 #' d |> binom_contingency(dv, !!!expl_fcts(d))
 #'
 #' d |> binom_contingency(dv, .propci = TRUE)
+#'
 #' d |> binom_contingency(dv, .drop_zero = TRUE)
 #'
 #' d |>
@@ -376,10 +389,15 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 #' d |> binom_contingency(dv, last_col(1L))  ## Offset of 1L used, since last column of d is dv
+#'
 #' d |> binom_contingency(dv, !last_col(1L))
+#'
 #' d |> binom_contingency(dv, num_range("iv", 2:3))
+#'
 #' d |> binom_contingency(dv, !num_range("iv", 2:3))
+#'
 #' d |> binom_contingency(dv, starts_with("iv"))
+#'
 #' d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
 #'
 #' rm(d)
@@ -516,49 +534,68 @@ as_binom_contingency.data.frame <- function(object, ...) {
 #' ) |> add_grps(bernoulli_data(levels = 6), iv, .key = _))
 #'
 #' d |> expl_fcts()
+#'
 #' d |> expl_fcts(.named = TRUE)
+#'
 #' d |> expl_fcts(.val = "data_syms")
+#'
 #' d |> expl_fcts(.named = TRUE, .val = "data_syms")
+#'
 #' d |> expl_fcts(.val = "character")
+#'
 #' d |> expl_fcts(.named = TRUE, .val = "character")
 #'
 #' ## Select or exclude factors
 #' d |> expl_fcts(iv, iv3)
+#'
 #' d |> expl_fcts(!c(iv, iv3))
 #'
 #' ## Use {dplyr} selection helpers e.g., last_col(), num_range() and starts_with()
 #' d |> expl_fcts(last_col(1L))  ## Offset of 1L used, since last column of d is dv
+#'
 #' d |> expl_fcts(!last_col())
+#'
 #' d |> expl_fcts(num_range("iv", 2:3))
+#'
 #' d |> expl_fcts(!num_range("iv", 2:3))
+#'
 #' d |> expl_fcts(starts_with("iv"))
+#'
 #' ## Negation of selection helper excludes all explanatory factors
 #' d |> expl_fcts(!starts_with("iv"))
 #'
 #' ## In following three examples, each triplet should give identical results
 #' ## Include all explanatory factors
 #' d |> binom_contingency(dv)
+#'
 #' d |> binom_contingency(dv, !!!expl_fcts(d))
+#'
 #' d |> binom_contingency(dv, all_of(expl_fcts(d, .val = "character")))
 #'
 #' ## Include only iv and iv3
 #' d |> binom_contingency(dv, iv, iv3)
+#'
 #' d |> binom_contingency(dv, !!!expl_fcts(d, iv, iv3))
+#'
 #' d |> binom_contingency(dv, all_of(expl_fcts(d, iv, iv3, .val = "character")))
 #'
 #' ## Exclude iv and iv3
 #' d |> binom_contingency(dv, !c(iv, iv3))
+#'
 #' d |> binom_contingency(dv, !!!expl_fcts(d, !c(iv, iv3)))
+#'
 #' d |> binom_contingency(dv, all_of(expl_fcts(d, !c(iv, iv3), .val = "character")))
 #'
 #' ## Use with lapply, binom_contingency(), glm() and odds_ratio()
 #' expl_fcts(d, .named = TRUE) |>
 #'     lapply(\(x) binom_contingency(d, dv, !!x))
+#'
 #' expl_fcts(d, .named = TRUE) |>
 #'     lapply(\(x)
 #'         binom_contingency(d, dv, !!x) |>
 #'         glm(cbind(pn, qn) ~ ., binomial, data = _)
 #'     )
+#'
 #' expl_fcts(d, .named = TRUE) |>
 #'     lapply(\(x)
 #'         binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>
