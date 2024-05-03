@@ -422,15 +422,19 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' ## as_binom_contingency() 
 #'
+#' (d <- data.frame(
+#'         iv = letters[1:5],
+#'         s = c(34L, 31L, 16L, 11L, 10L),
+#'         f = c(32L, 35L, 50L, 55L, 56L)
+#'     ))
+#'
+#' as_binom_contingency(d, .successes = "s", .failures = "f")
+#'
 #' (d <- binom_data())
 #'
 #' d |> as_binom_contingency()
 #'
-#' (dd <- rename(d, all_of(c(s = "pn", f = "qn"))))
-#'
-#' as_binom_contingency(dd, .successes = "s", .failures = "f")
-#'
-#' rm(d, dd)
+#' rm(d)
 
 
 binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
@@ -490,28 +494,12 @@ as_binom_contingency <- function(object, ...)
 #' @rdname binom_contingency
 #' @export
 
-# # as_binom_contingency.data.frame <- function(object, ...) {
-    # stopifnot(inherits(object, "data.frame"))
-    # stopifnot(all(c("pn", "qn") %in% names(object)))
-    # if (!length(eval_select(expr(chr_or_fct()), data = object)))
-	    # stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
-    # if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
-        # warning("Coercing \"pn\" and/or \"qn\" to integer")
-        # object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
-    # }
-
-    # if (!inherits(object, "contingency_table"))
-        # object <- new_contingency_table(object)
-    # new_binom_contingency(object)
-# }
-
-
 as_binom_contingency.data.frame <- function(object, ..., .successes = NULL, .failures = NULL) {
-	check_dots_used()
+    check_dots_used()
     stopifnot(inherits(object, "data.frame"))
     stopifnot(all(c(.successes %||% "pn", .failures %||% "qn") %in% names(object)))
     if (!length(eval_select(expr(chr_or_fct()), data = object)))
-	    stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
+        stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")
     object <- rename(object, all_of(c(pn = .successes %||% "pn", qn = .failures %||% "qn")))
     if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
         warning("Coercing \"pn\" and/or \"qn\" to integer")

@@ -164,15 +164,19 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 
 ## as_binom_contingency() 
 
+(d <- data.frame(
+        iv = letters[1:5],
+        s = c(34L, 31L, 16L, 11L, 10L),
+        f = c(32L, 35L, 50L, 55L, 56L)
+    ))
+
+as_binom_contingency(d, .successes = "s", .failures = "f")
+
 (d <- binom_data())
 
 d |> as_binom_contingency()
 
-(dd <- rename(d, all_of(c(s = "pn", f = "qn"))))
-
-as_binom_contingency(dd, .successes = "s", .failures = "f")
-
-rm(d, dd)
+rm(d)
 }
 \references{
 Confidence interval from R's \code{prop.test()} differs from hand calculation and result from SAS.
