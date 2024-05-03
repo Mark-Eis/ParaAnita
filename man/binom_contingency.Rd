@@ -17,7 +17,7 @@ binom_contingency(
 
 as_binom_contingency(object, ...)
 
-\method{as_binom_contingency}{data.frame}(object, ...)
+\method{as_binom_contingency}{data.frame}(object, ..., .successes = NULL, .failures = NULL)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -40,6 +40,9 @@ and confidence intervals; default \code{FALSE}.}
 
 \item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
 a \code{"binom_contingency"} object.}
+
+\item{.successes, .failures}{\code{character} vector, names of columns in \code{.data} representing numbers of successes and
+failures in Bernoulli trials; default \code{NULL}.}
 }
 \value{
 An object of class \code{"binom_contingency"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -68,7 +71,8 @@ Use \code{drop_zero = TRUE} to drop \code{\link[base:levels]{levels}} of explana
 numerically 0 or 1 occurred’ when fitting generalized linear models using \code{\link[stats:glm]{glm()}} or calculating
 odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
 
-\code{as_binom_contingency()} attempts to coerce an object to \code{\link[base:class]{class}} \code{"binom_contingency"}.
+\code{as_binom_contingency()} attempts to coerce an object to \code{\link[base:class]{class}} \code{"binom_contingency"}. If
+\code{successes} or \code{failures} arguments are not provided these will be assumed to be \code{pn} an \code{qn} respectively.
 }
 \note{
 Confidence intervals are calculated using \code{\link[stats:prop.test]{prop.test()}}, and are based on Wilson's score method
@@ -162,13 +166,13 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 
 (d <- binom_data())
 
-class(d)
+d |> as_binom_contingency()
 
-(d <- d |> as_binom_contingency())
+(dd <- rename(d, all_of(c(s = "pn", f = "qn"))))
 
-class(d)
+as_binom_contingency(dd, .successes = "s", .failures = "f")
 
-rm(d)
+rm(d, dd)
 }
 \references{
 Confidence interval from R's \code{prop.test()} differs from hand calculation and result from SAS.

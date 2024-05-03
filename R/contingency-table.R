@@ -272,7 +272,8 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' numerically 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating
 #' odds ratios using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
 #'
-#' `as_binom_contingency()` attempts to coerce an object to [`class`][base::class] `"binom_contingency"`.
+#' `as_binom_contingency()` attempts to coerce an object to [`class`][base::class] `"binom_contingency"`. If
+#' `successes` or `failures` arguments are not provided these will be assumed to be `pn` an `qn` respectively.
 #'
 #' @note
 #' Confidence intervals are calculated using [`prop.test()`][stats::prop.test], and are based on Wilson's score method
@@ -320,6 +321,9 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' @param object a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), to be coerced to
 #'   a `"binom_contingency"` object.
+#'
+#' @param .successes,.failures `character` vector, names of columns in `.data` representing numbers of successes and
+#'   failures in Bernoulli trials; default `NULL`.
 #'
 #' @inheritParams contingency_table
 #'
@@ -420,13 +424,13 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' (d <- binom_data())
 #'
-#' class(d)
+#' d |> as_binom_contingency()
 #'
-#' (d <- d |> as_binom_contingency())
+#' (dd <- rename(d, all_of(c(s = "pn", f = "qn"))))
 #'
-#' class(d)
+#' as_binom_contingency(dd, .successes = "s", .failures = "f")
 #'
-#' rm(d)
+#' rm(d, dd)
 
 
 binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
@@ -486,16 +490,33 @@ as_binom_contingency <- function(object, ...)
 #' @rdname binom_contingency
 #' @export
 
-as_binom_contingency.data.frame <- function(object, ...) {
+# # as_binom_contingency.data.frame <- function(object, ...) {
+    # stopifnot(inherits(object, "data.frame"))
+    # stopifnot(all(c("pn", "qn") %in% names(object)))
+    # if (!length(eval_select(expr(chr_or_fct()), data = object)))
+	    # stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
+    # if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
+        # warning("Coercing \"pn\" and/or \"qn\" to integer")
+        # object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
+    # }
+
+    # if (!inherits(object, "contingency_table"))
+        # object <- new_contingency_table(object)
+    # new_binom_contingency(object)
+# }
+
+
+as_binom_contingency.data.frame <- function(object, ..., .successes = NULL, .failures = NULL) {
+	check_dots_used()
     stopifnot(inherits(object, "data.frame"))
-    stopifnot(all(c("pn", "qn") %in% names(object)))
+    stopifnot(all(c(.successes %||% "pn", .failures %||% "qn") %in% names(object)))
     if (!length(eval_select(expr(chr_or_fct()), data = object)))
 	    stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")	
+    object <- rename(object, all_of(c(pn = .successes %||% "pn", qn = .failures %||% "qn")))
     if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
         warning("Coercing \"pn\" and/or \"qn\" to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
-
     if (!inherits(object, "contingency_table"))
         object <- new_contingency_table(object)
     new_binom_contingency(object)
