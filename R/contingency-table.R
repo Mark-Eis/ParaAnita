@@ -416,6 +416,16 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
 #'
+#' ## as_binom_contingency() 
+#'
+#' (d <- binom_data())
+#'
+#' class(d)
+#'
+#' (d <- d |> as_binom_contingency())
+#'
+#' class(d)
+#'
 #' rm(d)
 
 
