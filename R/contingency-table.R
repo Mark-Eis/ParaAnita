@@ -449,22 +449,10 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
         rename(pn = "1", qn = "0") |>
         relocate("qn", .after = "pn")
 
-    if (.drop_zero)
-            ctab <- ctab |>
-                filter(as.logical(.data$pn), as.logical(.data$qn)) |>
-                mutate(across(where(is.factor), fct_drop))
-
-    if (.propci) {
-        ctab <- mutate(ctab,
-            n = .data$pn + .data$qn,
-            proptest = map2(.data$pn, n, \(x, n) prop.test(x, n, conf.level = .level, correct = FALSE)),
-            p = .data$proptest |> map_dbl("estimate"),
-            lower = .data$proptest |> map_dbl(list("conf.int", 1)),
-            upper = .data$proptest |> map_dbl(list("conf.int", 2)),
-            across("proptest", ~ NULL)
-        )
-        ctab %@% "conf.level" <- .level
-    }
+    if(.drop_zero)
+        ctab <- drop_zero(ctab)
+    if(.propci)
+        ctab <- propci(ctab, .level)
     new_binom_contingency(ctab)
 }
 
