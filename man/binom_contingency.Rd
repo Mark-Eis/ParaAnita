@@ -17,7 +17,15 @@ binom_contingency(
 
 as_binom_contingency(object, ...)
 
-\method{as_binom_contingency}{data.frame}(object, ..., .successes = NULL, .failures = NULL)
+\method{as_binom_contingency}{data.frame}(
+  object,
+  ...,
+  .successes = NULL,
+  .failures = NULL,
+  .drop_zero = FALSE,
+  .propci = FALSE,
+  .level = 0.95
+)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -166,15 +174,19 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 
 (d <- data.frame(
         iv = letters[1:5],
-        s = c(34L, 31L, 16L, 11L, 10L),
-        f = c(32L, 35L, 50L, 55L, 56L)
+        s = c(34L, 31L, 16L, 0L, 10L),
+        f = c(32L, 35L, 50L, 66L, 56L)
     ))
 
 as_binom_contingency(d, .successes = "s", .failures = "f")
 
+as_binom_contingency(d, .successes = "s", .failures = "f", .drop_zero = TRUE)
+
 (d <- binom_data())
 
 d |> as_binom_contingency()
+
+d |> as_binom_contingency(.propci = TRUE)
 
 rm(d)
 }

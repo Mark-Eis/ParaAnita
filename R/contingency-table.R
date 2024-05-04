@@ -424,15 +424,19 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' (d <- data.frame(
 #'         iv = letters[1:5],
-#'         s = c(34L, 31L, 16L, 11L, 10L),
-#'         f = c(32L, 35L, 50L, 55L, 56L)
+#'         s = c(34L, 31L, 16L, 0L, 10L),
+#'         f = c(32L, 35L, 50L, 66L, 56L)
 #'     ))
 #'
 #' as_binom_contingency(d, .successes = "s", .failures = "f")
 #'
+#' as_binom_contingency(d, .successes = "s", .failures = "f", .drop_zero = TRUE)
+#'
 #' (d <- binom_data())
 #'
 #' d |> as_binom_contingency()
+#'
+#' d |> as_binom_contingency(.propci = TRUE)
 #'
 #' rm(d)
 
@@ -478,6 +482,36 @@ new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer())
 
 
 # ========================================
+#  Drop all success (or failure) levels of explanatory factor
+#  drop_zero()
+#
+#  Not exported
+
+drop_zero <- function(ctab)
+    ctab |>
+        filter(as.logical(.data$pn), as.logical(.data$qn)) |>
+        mutate(across(where(is.factor), forcats::fct_drop))
+
+
+# ========================================
+#  Totals, proportions and confidence intervals
+#  propci()
+#
+#  Not exported
+
+propci <- function(ctab, level)
+    mutate(ctab,
+        n = .data$pn + .data$qn,
+        proptest = map2(.data$pn, n, \(x, n) prop.test(x, n, conf.level = level, correct = FALSE)),
+        p = .data$proptest |> map_dbl("estimate"),
+        lower = .data$proptest |> map_dbl(list("conf.int", 1)),
+        upper = .data$proptest |> map_dbl(list("conf.int", 2)),
+        across("proptest", ~ NULL)
+    ) |>
+    structure("conf.level" = level)
+
+
+# ========================================
 #  Convert to a Binomial Contingency Table
 #  S3method as_binom_contingency()
 #
@@ -494,7 +528,15 @@ as_binom_contingency <- function(object, ...)
 #' @rdname binom_contingency
 #' @export
 
-as_binom_contingency.data.frame <- function(object, ..., .successes = NULL, .failures = NULL) {
+as_binom_contingency.data.frame <- function(
+    object,
+    ...,
+    .successes = NULL,
+    .failures = NULL,
+    .drop_zero = FALSE,
+    .propci = FALSE,
+    .level = 0.95
+) {
     check_dots_used()
     stopifnot(inherits(object, "data.frame"))
     stopifnot(all(c(.successes %||% "pn", .failures %||% "qn") %in% names(object)))
@@ -505,6 +547,10 @@ as_binom_contingency.data.frame <- function(object, ..., .successes = NULL, .fai
         warning("Coercing \"pn\" and/or \"qn\" to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
+    if(.drop_zero)
+        object <- drop_zero(object)
+    if(.propci)
+        object <- propci(object, .level)
     if (!inherits(object, "contingency_table"))
         object <- new_contingency_table(object)
     new_binom_contingency(object)
