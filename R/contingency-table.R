@@ -532,7 +532,7 @@ as_binom_contingency.data.frame <- function(
         stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")
     object <- rename(object, all_of(c(pn = .successes %||% "pn", qn = .failures %||% "qn")))
     if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
-        warning("Coercing \"pn\" and/or \"qn\" to integer")
+        message("Coercing \"pn\" and/or \"qn\" to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
     if(.drop_zero)
