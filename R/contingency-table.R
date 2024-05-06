@@ -562,6 +562,8 @@ as_binom_contingency.data.frame <- function(
         object <- drop_zero(object)
     if(.propci)
         object <- propci(object, .level)
+    if (!inherits(object, "tibble"))
+        object <- as_tibble(object)
     if (!inherits(object, "contingency_table"))
         object <- new_contingency_table(object)
     new_binom_contingency(object)
