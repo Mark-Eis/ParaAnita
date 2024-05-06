@@ -9,7 +9,7 @@ reference:
   desc: |
     Summarise binary and binomial proportion data in contingency tables.
   contents:
-  - as_binomial_contingency
+  - as_binom_contingency
   - binom_contingency
   - contingency_table
   - xcontingency_table
