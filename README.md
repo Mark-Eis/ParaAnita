@@ -20,7 +20,10 @@ devtools::install_github("Mark-Eis/ParaAnita")
 
 The **ParaAnita R package** includes functions intended to address and simplify a number of issues commonly encountered during binary (Bernoulli) and binomial data analysis using generalised linear models. More specifically, *ParaAnita* does the following: – 
 
-- Summarises binary and binomial proportion data in contingency tables with `contingency_table()`, `xcontingency_table()`, `binom_contingency()`.
+- Summarises binary and binomial proportion data in contingency tables with `as_binom_contingency()`,
+ `binom_contingency()`.
+
+- Create contingency tables with `contingency_table()`, `xcontingency_table()`.
 
 - Calculates odds ratios and their confidence intervals and associated probabilities with `odds_ratio()`.
 
