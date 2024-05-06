@@ -171,7 +171,6 @@ d |> binom_contingency(dv, starts_with("iv"))
 d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
 
 ## as_binom_contingency() 
-
 (d <- data.frame(
         iv = letters[1:5],
         s = c(34, 31, 16, 0, 10),

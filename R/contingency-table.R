@@ -421,7 +421,6 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all explanatory factors
 #'
 #' ## as_binom_contingency() 
-#'
 #' (d <- data.frame(
 #'         iv = letters[1:5],
 #'         s = c(34, 31, 16, 0, 10),
@@ -516,33 +515,6 @@ as_binom_contingency <- function(object, ...)
 #' @rdname binom_contingency
 #' @export
 
-# as_binom_contingency.data.frame <- function(
-    # object,
-    # ...,
-    # .successes = NULL,
-    # .failures = NULL,
-    # .drop_zero = FALSE,
-    # .propci = FALSE,
-    # .level = 0.95
-# ) {
-    # check_dots_used()
-    # stopifnot(inherits(object, "data.frame"))
-    # stopifnot(all(c(.successes %||% "pn", .failures %||% "qn") %in% names(object)))
-    # if (!length(eval_select(expr(chr_or_fct()), data = object)))
-        # stop("\'", deparse(substitute(object)), "'\ must have at least one character vector or factor column.")
-    # object <- rename(object, all_of(c(pn = .successes %||% "pn", qn = .failures %||% "qn")))
-    # if(!all(is.integer(object[["pn"]]), is.integer(object[["qn"]]))) {
-        # message("Coercing \"pn\" and/or \"qn\" to integer")
-        # object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
-    # }
-    # if(.drop_zero)
-        # object <- drop_zero(object)
-    # if(.propci)
-        # object <- propci(object, .level)
-    # if (!inherits(object, "contingency_table"))
-        # object <- new_contingency_table(object)
-    # new_binom_contingency(object)
-# }
 as_binom_contingency.data.frame <- function(
     object,
     ...,
