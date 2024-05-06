@@ -524,6 +524,7 @@ as_binom_contingency.data.frame <- function(
     .propci = FALSE,
     .level = 0.95
 ) {
+    pn <- qn <-  NULL
     check_dots_used()
     .pn <- enquo(.pn)
     .qn <- enquo(.qn)
