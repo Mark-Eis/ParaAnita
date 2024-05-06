@@ -6,6 +6,7 @@
 \alias{odds_ratio.data.frame}
 \alias{odds_ratio.formula}
 \alias{odds_ratio.glm}
+\alias{formula.odds_ratio}
 \title{Odds Ratios, Standard Errors, Confidence Intervals and P-Values for Binomial GLMs}
 \usage{
 odds_ratio(object, ...)
@@ -50,6 +51,8 @@ odds_ratio(object, ...)
   .stat = FALSE,
   .print_contr = FALSE
 )
+
+\method{formula}{odds_ratio}(x, ...)
 }
 \arguments{
 \item{object}{an object from which the odds ratios are to be calculated, which may be a \code{\link{binom_contingency}} table,
@@ -81,6 +84,8 @@ character string naming a family function, a family function or the result of a 
 (See \code{\link[stats:family]{family}} for details of family functions.)}
 
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
+
+\item{x}{an object of class \code{"odds_ratio"}.}
 }
 \value{
 An object of classes \code{"odds_ratio"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},
@@ -168,7 +173,7 @@ d |> odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 d |> set_contrasts(iv, contr = contr.treatment) |>
     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 
-# Restore default contrasts in options("contrasts")
+## Restore default contrasts in options("contrasts")
 options("contrasts" =  c(unordered = "contr.treatment", ordered = "contr.poly"))
 options("contrasts")
 
@@ -192,6 +197,9 @@ glm1 |> summary()
 glm1 |> odds_ratio()
 
 glm1 |> odds_ratio(.print_call = FALSE, .stat = TRUE, .print_contr = TRUE)
+
+## Invoking the S3 formula() method for class "odds_ratio"
+glm1 |> odds_ratio(.print_call = FALSE) |> formula()
 
 ## Compare S3 method for class "glm" to that for "data.frame"
 ## — only possible for univariable analyses

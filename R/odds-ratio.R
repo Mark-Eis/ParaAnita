@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Mar 2024
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -70,6 +70,8 @@
 #'   character string naming a family function, a family function or the result of a call to a family function.
 #'   (See [`family`][stats::family] for details of family functions.)
 #'
+#' @param x an object of class `"odds_ratio"`.
+#'
 #' @inheritParams contingency_table
 #'
 #' @return An object of classes `"odds_ratio"`, `"announce"`, inheriting from [`tibble`][tibble::tibble-package],
@@ -134,7 +136,7 @@
 #' d |> set_contrasts(iv, contr = contr.treatment) |>
 #'     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
 #'
-#' # Restore default contrasts in options("contrasts")
+#' ## Restore default contrasts in options("contrasts")
 #' options("contrasts" =  c(unordered = "contr.treatment", ordered = "contr.poly"))
 #' options("contrasts")
 #'
@@ -158,6 +160,9 @@
 #' glm1 |> odds_ratio()
 #'
 #' glm1 |> odds_ratio(.print_call = FALSE, .stat = TRUE, .print_contr = TRUE)
+#'
+#' ## Invoking the S3 formula() method for class "odds_ratio"
+#' glm1 |> odds_ratio(.print_call = FALSE) |> formula()
 #'
 #' ## Compare S3 method for class "glm" to that for "data.frame"
 #' ## — only possible for univariable analyses
@@ -296,3 +301,15 @@ new_odds_ratio <- function(object = data.frame("x"), ..., .glm = glm(0 ~ NULL), 
     structure(object, class = c("odds_ratio", class(object)), ..., glm = .glm, print_contr = .print_contr)
 }
 
+
+# ========================================
+#  Formula Method for Odds Ratio
+#  S3method formula.odds_ratio()
+#
+#' @rdname odds_ratio
+#' @export
+
+formula.odds_ratio <- function(x, ...){
+    check_dots_empty()
+    formula(x %@% glm)
+}
