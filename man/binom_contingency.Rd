@@ -20,8 +20,8 @@ as_binom_contingency(object, ...)
 \method{as_binom_contingency}{data.frame}(
   object,
   ...,
-  .successes = NULL,
-  .failures = NULL,
+  .pn = NULL,
+  .qn = NULL,
   .drop_zero = FALSE,
   .propci = FALSE,
   .level = 0.95
@@ -49,7 +49,7 @@ and confidence intervals; default \code{FALSE}.}
 \item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
 a \code{"binom_contingency"} object.}
 
-\item{.successes, .failures}{\code{character} vector, names of columns in \code{.data} representing numbers of successes and
+\item{.pn, .qn}{\verb{character vector}, names of columns in \code{object} representing numbers of successes and
 failures in Bernoulli trials; default \code{NULL}.}
 }
 \value{
@@ -80,7 +80,7 @@ numerically 0 or 1 occurred’ when fitting generalized linear models using \cod
 odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
 
 \code{as_binom_contingency()} attempts to coerce an object to \code{\link[base:class]{class}} \code{"binom_contingency"}. If
-\code{successes} or \code{failures} arguments are not provided these will be assumed to be \code{pn} an \code{qn} respectively.
+\code{.pn} or \code{.qn} arguments are not provided, these will be assumed to be columns \code{"pn"} and \code{"qn"} respectively.
 }
 \note{
 Confidence intervals are calculated using \code{\link[stats:prop.test]{prop.test()}}, and are based on Wilson's score method
@@ -174,13 +174,13 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 
 (d <- data.frame(
         iv = letters[1:5],
-        s = c(34L, 31L, 16L, 0L, 10L),
-        f = c(32L, 35L, 50L, 66L, 56L)
+        s = c(34, 31, 16, 0, 10),
+        f = c(32, 35, 50, 66, 56)
     ))
 
-as_binom_contingency(d, .successes = "s", .failures = "f")
+as_binom_contingency(d, .pn = "s", .qn = "f")
 
-as_binom_contingency(d, .successes = "s", .failures = "f", .drop_zero = TRUE)
+as_binom_contingency(d, .pn = "s", .qn = "f", .drop_zero = TRUE)
 
 (d <- binom_data())
 

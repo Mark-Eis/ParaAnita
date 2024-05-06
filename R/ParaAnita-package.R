@@ -83,6 +83,7 @@
 #' @importFrom rlang quo_get_env
 #' @importFrom rlang quo_get_expr
 #' @importFrom rlang quo_is_missing
+#' @importFrom rlang quo_is_null
 #' @importFrom rlang quo_set_expr
 #' @importFrom rlang quos
 #' @importFrom rlang set_names
