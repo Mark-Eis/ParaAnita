@@ -423,13 +423,13 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' ## as_binom_contingency() 
 #' (d <- data.frame(
 #'         iv = letters[1:5],
-#'         s = c(34, 31, 16, 0, 10),
-#'         f = c(32, 35, 50, 66, 56)
+#'         success = c(34, 31, 16, 0, 10),
+#'         failure = c(32, 35, 50, 66, 56)
 #'     ))
 #'
-#' as_binom_contingency(d, .pn = "s", .qn = "f")
+#' as_binom_contingency(d, .pn = success, .qn = failure)
 #'
-#' as_binom_contingency(d, .pn = "s", .qn = "f", .drop_zero = TRUE)
+#' as_binom_contingency(d, .pn = success, .qn = failure, .drop_zero = TRUE)
 #'
 #' (d <- binom_data())
 #'
@@ -531,30 +531,27 @@ as_binom_contingency.data.frame <- function(
 
     if (!length(eval_select(expr(chr_or_fct()), data = object)))
         stop("`object` must have at least one character vector or factor column.")
-    if (quo_is_null(.pn))
-        .pn <- expr(pn)
-    else
-        if(tryCatch(
-            error = function(cnd) {
-                cat("Error:\n! Column `", as_name(.pn), "` not found in `object`\n", sep = "")
-                TRUE
-            }, {
-	            names(object)[eval_select(.pn, object)] <- "pn"
-                FALSE           	
-            }
-        )) return(invisible(NULL))
-    if (quo_is_null(.qn))
-        .qn <- expr(qn)
-    else
-        if(tryCatch(
-            error = function(cnd) {
-                cat("Error:\n! Column `", as_name(.qn), "` not found in `object`\n", sep = "")
-                TRUE
-            }, {
-	            names(object)[eval_select(.qn, object)] <- "qn"
-                FALSE           	
-            }
-        )) return(invisible(NULL))
+    if (rlang::quo_is_null(.pn))
+        .pn <- rlang::expr(pn)
+    if (rlang::quo_is_null(.qn))
+        .qn <- rlang::expr(qn)
+
+    errlst <- character()
+    purrr::walk2(list(.pn, .qn), c("pn", "qn"), \(quo_pnqn, pnqn) {
+        pos <- tryCatch(
+            error = function(cnd) 0,
+            tidyselect::eval_select(quo_pnqn, object)
+        )
+        if(pos)
+            names(object)[pos] <<- pnqn
+        else
+            errlst <<- c(errlst, as_name(quo_pnqn))
+    })
+
+    if (as.logical(length(errlst))) {
+        cat("Error:\n", paste("! Column `", errlst, "` not found in `object`", sep = "", collapse = "\n "))
+        return(invisible())
+    }
     if(!all(is.integer(object$pn), is.integer(object$qn))) {
         message("Coercing `.pn` and/or `.qn` to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))

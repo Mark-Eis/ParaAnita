@@ -56,6 +56,7 @@
 #' @importFrom purrr map2
 #' @importFrom purrr map2_chr
 #' @importFrom purrr walk
+#' @importFrom purrr walk2
 #' @importFrom rlang :=
 #' @importFrom rlang .data
 #' @importFrom rlang %@%

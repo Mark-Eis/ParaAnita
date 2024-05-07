@@ -173,13 +173,13 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 ## as_binom_contingency() 
 (d <- data.frame(
         iv = letters[1:5],
-        s = c(34, 31, 16, 0, 10),
-        f = c(32, 35, 50, 66, 56)
+        success = c(34, 31, 16, 0, 10),
+        failure = c(32, 35, 50, 66, 56)
     ))
 
-as_binom_contingency(d, .pn = "s", .qn = "f")
+as_binom_contingency(d, .pn = success, .qn = failure)
 
-as_binom_contingency(d, .pn = "s", .qn = "f", .drop_zero = TRUE)
+as_binom_contingency(d, .pn = success, .qn = failure, .drop_zero = TRUE)
 
 (d <- binom_data())
 
