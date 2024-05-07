@@ -550,7 +550,7 @@ as_binom_contingency.data.frame <- function(
     })
 
     if (as.logical(length(errlst))) {
-        cat("Error:\n", paste("! Column `", errlst, "` not found in `object`", sep = "", collapse = "\n "))
+        cat("Error:\n", paste("! Column `", errlst, "` not found in `object`\n", sep = ""))
         return(invisible())
     }
     if(!all(is.integer(object$pn), is.integer(object$qn))) {
