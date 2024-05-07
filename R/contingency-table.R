@@ -530,7 +530,7 @@ as_binom_contingency.data.frame <- function(
     .qn <- enquo(.qn)
 
     if (!length(eval_select(expr(chr_or_fct()), data = object)))
-        stop("`object` must have at least one character vector or factor column.")
+        stop("\n! `object` must have at least one character vector or factor column.\n", call. = FALSE)
     if (quo_is_null(.pn))
         .pn <- quo(pn)
     if (quo_is_null(.qn))
@@ -538,15 +538,13 @@ as_binom_contingency.data.frame <- function(
 
     errlst <- character()
     walk2(c(.pn, .qn), c("pn", "qn"), \(quo_pqn, pqn) {
-        oldname <- as_name(quo_pqn)
-        pos <- tryCatch(
-            error = function(cnd) 0,
-            eval_select(expr(c(oldname)), object)
-        )
-        if(pos)
-            names(object)[pos] <<- pqn
-        else
-            errlst <<- c(errlst, oldname)
+        if (tryCatch(
+            error = function(cnd) TRUE,
+            {
+                names(object)[eval_select(quo_pqn, object, allow_empty = FALSE)] <<- pqn
+                FALSE
+            }
+        )) errlst <<- c(errlst, as_name(quo_pqn))
     })
 
     if (as.logical(length(errlst))) {
