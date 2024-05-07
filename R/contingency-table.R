@@ -531,21 +531,22 @@ as_binom_contingency.data.frame <- function(
 
     if (!length(eval_select(expr(chr_or_fct()), data = object)))
         stop("`object` must have at least one character vector or factor column.")
-    if (rlang::quo_is_null(.pn))
-        .pn <- rlang::expr(pn)
-    if (rlang::quo_is_null(.qn))
-        .qn <- rlang::expr(qn)
+    if (quo_is_null(.pn))
+        .pn <- quo(pn)
+    if (quo_is_null(.qn))
+        .qn <- quo(qn)
 
     errlst <- character()
-    purrr::walk2(list(.pn, .qn), c("pn", "qn"), \(quo_pnqn, pnqn) {
+    walk2(c(.pn, .qn), c("pn", "qn"), \(quo_pqn, pqn) {
+        oldname <- as_name(quo_pqn)
         pos <- tryCatch(
             error = function(cnd) 0,
-            tidyselect::eval_select(quo_pnqn, object)
+            eval_select(expr(c(oldname)), object)
         )
         if(pos)
-            names(object)[pos] <<- pnqn
+            names(object)[pos] <<- pqn
         else
-            errlst <<- c(errlst, as_name(quo_pnqn))
+            errlst <<- c(errlst, oldname)
     })
 
     if (as.logical(length(errlst))) {

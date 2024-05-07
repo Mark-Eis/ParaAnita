@@ -81,6 +81,7 @@
 #' @importFrom rlang f_rhs
 #' @importFrom rlang inject
 #' @importFrom rlang list2
+#' @importFrom rlang quo
 #' @importFrom rlang quo_get_env
 #' @importFrom rlang quo_get_expr
 #' @importFrom rlang quo_is_missing
