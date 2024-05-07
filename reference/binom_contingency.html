@@ -12,7 +12,7 @@ one or more categorical independent variables, optionally including totals, prop
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.00005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.00006</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -517,17 +517,17 @@ Stack Exchange</a>.</p>
 <span class="r-in"><span><span class="co">## as_binom_contingency() </span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        iv <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>        s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">31</span>, <span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">35</span>, <span class="fl">50</span>, <span class="fl">66</span>, <span class="fl">56</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        success <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">31</span>, <span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        failure <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">35</span>, <span class="fl">50</span>, <span class="fl">66</span>, <span class="fl">56</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   iv  s  f</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  a 34 32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  b 31 35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  c 16 50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  d  0 66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  e 10 56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   iv success failure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  a      34      32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  b      31      35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  c      16      50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  d       0      66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  e      10      56</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="st">"s"</span>, .qn <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coercing `.pn` and/or `.qn` to integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
@@ -541,7 +541,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d         0    66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e        10    56</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="st">"s"</span>, .qn <span class="op">=</span> <span class="st">"f"</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coercing `.pn` and/or `.qn` to integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
