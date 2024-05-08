@@ -177,9 +177,9 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
         failure = c(32, 35, 50, 66, 56)
     ))
 
-as_binom_contingency(d, .pn = success, .qn = failure)
+d |> as_binom_contingency(.pn = success, .qn = failure)
 
-as_binom_contingency(d, .pn = success, .qn = failure, .drop_zero = TRUE)
+d |> as_binom_contingency(.pn = success, .qn = failure, .drop_zero = TRUE)
 
 (d <- binom_data())
 
