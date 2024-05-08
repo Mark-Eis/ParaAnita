@@ -558,14 +558,14 @@ as_binom_contingency.data.frame <- function(
         .qn <- quo(qn)
 
     errlst <- character()
-    walk2(c(.pn, .qn), c("pn", "qn"), \(quo_pqn, pqn) {
+    iwalk(c(pn = .pn, qn = .qn), \(quox, idx) {
         if (tryCatch(
             error = function(cnd) TRUE,
             {
-                names(object)[eval_select(quo_pqn, object, allow_empty = FALSE)] <<- pqn
+                names(object)[eval_select(quox, object, allow_empty = FALSE)] <<- idx
                 FALSE
             }
-        )) errlst <<- c(errlst, as_name(quo_pqn))
+        )) errlst <<- c(errlst, as_name(quox))
     })
 
     if (as.logical(length(errlst))) {
