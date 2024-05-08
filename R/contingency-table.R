@@ -434,8 +434,14 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' rm(d)
 
-
-binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci = FALSE, .level = 0.95) {
+binom_contingency <- function(
+    .data,
+    .dep_var,
+    ...,
+    .drop_zero = FALSE,
+    .propci = FALSE,
+    .level = 0.95
+) {
     .dep_var <- enquo(.dep_var)
     stopifnot(is.data.frame(.data), !quo_is_missing(.dep_var), eval_tidy(expr(all(!!.dep_var %in% 0:1)), .data))
 
@@ -460,6 +466,28 @@ binom_contingency <- function(.data, .dep_var, ..., .drop_zero = FALSE, .propci 
 new_binom_contingency <- function(x = data.frame(pn = integer(), qn = integer()), ...) {
     stopifnot(inherits(x, "contingency_table"))
     structure(x, class = c("binom_contingency", class(x)), lead  = "Binomial Contingency Table", ...)
+}
+
+
+# ========================================
+#  Validator
+#  validate_binom_contingency()
+#
+#  not exported
+
+validate_binom_contingency <- function(binom_contingency) {
+
+    if (tryCatch(error = function(cnd) TRUE,
+        {
+	        eval_select(expr(chr_or_fct()), data = binom_contingency, allow_empty = FALSE)
+	        FALSE
+        }
+    )) stop(
+        "\n! `binom_contingency` must have at least one character vector or factor column.\n",
+        call. = FALSE
+    )
+    
+    binom_contingency
 }
 
 
@@ -524,8 +552,6 @@ as_binom_contingency.data.frame <- function(
     .pn <- enquo(.pn)
     .qn <- enquo(.qn)
 
-    if (!length(eval_select(expr(chr_or_fct()), data = object)))
-        stop("\n! `object` must have at least one character vector or factor column.\n", call. = FALSE)
     if (quo_is_null(.pn))
         .pn <- quo(pn)
     if (quo_is_null(.qn))
@@ -558,7 +584,8 @@ as_binom_contingency.data.frame <- function(
         object <- as_tibble(object)
     if (!inherits(object, "contingency_table"))
         object <- new_contingency_table(object)
-    new_binom_contingency(object)
+    new_binom_contingency(object) |>
+    validate_binom_contingency()
 }
 
 
