@@ -238,11 +238,6 @@ xcontingency_table <- function(.data, .dep_var, ..., .crossname = NULL, .wt = NU
 #
 # Not exported
 
-# new_xcontingency_table <- function(x = data.frame(NULL), ...) {
-    # stopifnot(is.data.frame(x))
-    # structure(x, class = c("xcontingency_table", class(x)), ...)
-# }
-
 new_xcontingency_table <- function(x = data.frame(NULL), ...) {
     stopifnot(is.data.frame(x))
     structure(x, class = c("xcontingency_table", class(x)), lead = "Crossed Contingency Table", ...)
