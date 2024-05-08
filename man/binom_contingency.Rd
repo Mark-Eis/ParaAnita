@@ -49,8 +49,8 @@ and confidence intervals; default \code{FALSE}.}
 \item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
 a \code{"binom_contingency"} object.}
 
-\item{.pn, .qn}{\verb{character vector}, names of columns in \code{object} representing numbers of successes and
-failures in Bernoulli trials; default \code{NULL}.}
+\item{.pn, .qn}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted names of columns in \code{object} representing numbers
+of successes and failures in Bernoulli trials; default \code{NULL}.}
 }
 \value{
 An object of class \code{"binom_contingency"}, \code{"announce"}, inheriting from \code{\link[tibble:tibble-package]{tibble}},

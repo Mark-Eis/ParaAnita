@@ -322,8 +322,8 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' @param object a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), to be coerced to
 #'   a `"binom_contingency"` object.
 #'
-#' @param .pn,.qn `character vector`, names of columns in `object` representing numbers of successes and
-#'   failures in Bernoulli trials; default `NULL`.
+#' @param .pn,.qn <[`data-masking`][rlang::args_data_masking]> quoted names of columns in `object` representing numbers
+#'   of successes and failures in Bernoulli trials; default `NULL`.
 #'
 #' @inheritParams contingency_table
 #'
