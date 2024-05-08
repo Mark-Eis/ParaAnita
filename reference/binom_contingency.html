@@ -527,7 +527,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4  d       0      66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  e      10      56</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">as_binom_contingency</span><span class="op">(</span>.pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coercing `.pn` and/or `.qn` to integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
@@ -541,7 +541,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d         0    66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e        10    56</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">as_binom_contingency</span><span class="op">(</span><span class="va">d</span>, .pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">as_binom_contingency</span><span class="op">(</span>.pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coercing `.pn` and/or `.qn` to integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
