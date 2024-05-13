@@ -568,10 +568,8 @@ as_binom_contingency.data.frame <- function(
         )) errlst <<- c(errlst, as_name(quox))
     })
 
-    if (as.logical(length(errlst))) {
-        cat("Error:\n", paste("! Column `", errlst, "` not found in `object`\n", sep = ""))
-        return(invisible())
-    }
+    if (as.logical(length(errlst)))
+        stop("\n", paste("! Column `", errlst, "` not found in `object`\n", sep = ""), call.= FALSE)
     if(!all(is.integer(object$pn), is.integer(object$qn))) {
         message("Coercing `.pn` and/or `.qn` to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
