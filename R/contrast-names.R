@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Dec 2023
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -144,7 +144,7 @@ helm_names <- function(x)
 
 `helm_names<-` <- function(x, value) {
 	
-	if(!identical(contrasts(x) |> `dimnames<-`(NULL), contr.helmert(length(levels(x))) |> `dimnames<-`(NULL))) {
+	if (!identical(contrasts(x) |> `dimnames<-`(NULL), contr.helmert(length(levels(x))) |> `dimnames<-`(NULL))) {
 		message("Setting Helmert contrasts for factor x with `helm_names()<-`.")
 		contrasts(x)<- contr.helmert
 	}	

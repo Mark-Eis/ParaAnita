@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler Mar 2024
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -393,12 +393,12 @@ glm_plotlist <- function(data, .dep_var, ..., .ungroups = NULL, .conf_level = 0.
                 data,
                 .dep_var = !!.dep_var,
                 .ind_var = !!sym(level),
-                .ungroup = !!(if(identical(ugp, level)) expr(NULL) else sym(ugp)),
+                .ungroup = !!(if (identical(ugp, level)) expr(NULL) else sym(ugp)),
                 conf_level = .conf_level,
                 type = .type
             ) |>
             filter(
-                if(.type == "link")
+                if (.type == "link")
                     is.finite(.data$obs)
                 else
                     .data$obs > 0 & .data$obs < 1
@@ -613,7 +613,7 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     ) +
     geom_errorbar(
         aes(ymax = .data$upper, ymin = .data$lower),
-        linewidth = if(faceted) 0.75 else 1,
+        linewidth = if (faceted) 0.75 else 1,
         width = 0.2
     ) +
     geom_point(
@@ -627,14 +627,14 @@ ggplot.glm_plotdata <- function(data = NULL, mapping = aes(), as_percent = FALSE
     theme(
         axis.text.x = element_text(
             color = "black",
-            size = if(faceted) 12 else 15
+            size = if (faceted) 12 else 15
         ),
         strip.text.x = element_text(color = "black", size = 12)
     ) +
     geom_text(
         aes(label = paste("n", "=", n, sep = ifelse(faceted, "", " ")), y = 0),
-        size = if(faceted) 3.5 else 5,
-        vjust = if(faceted) 1.4 else 1.75
+        size = if (faceted) 3.5 else 5,
+        vjust = if (faceted) 1.4 else 1.75
     ) +
     labs(
         x = NULL,

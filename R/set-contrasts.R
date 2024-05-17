@@ -133,7 +133,7 @@ set_contrasts <- function(data, .f, how.many = NULL, ..., contr) {
     if (eval_tidy(expr(!is.factor(!!.f)), data))
         stop("\targument ", as_name(.f), " not of type factor")
     arg4 <- list2(...)
-    if(!is.null(arg4[["base"]]))
+    if (!is.null(arg4[["base"]]))
         arg4[["base"]] <- arg4[["base"]] %:<% eval_tidy(expr(nlevels(!!.f)), data)
     data |> mutate(across(!!.f, \(x) C(x, contr, how.many, !!!arg4)))
 }
@@ -151,7 +151,7 @@ set_contrasts <- function(data, .f, how.many = NULL, ..., contr) {
     if (eval_tidy(expr(!is.factor(!!.f)), data))
         stop("\targument ", as_name(.f), " not of type factor")
     arg4 <- list2(...)
-    if(!is.null(arg4[["base"]]))
+    if (!is.null(arg4[["base"]]))
         arg4[["base"]] <- arg4[["base"]] %:<% eval_tidy(expr(nlevels(!!.f)), data)
     data |> mutate(across(!!.f, \(x) C(x, value, how.many, !!!arg4)))
 }
@@ -227,14 +227,14 @@ get_contr_data <- function (data, ...) {
 #' @export
 
 set_contr_treat <- function (data, ..., .baseline = NULL, .verbose = TRUE) {
-    if(.verbose) report(data, "before:")
+    if (.verbose) report(data, "before:")
     pos <- eval_select(expr(where(is.factor)), data = data)
     if (...length())
         pos <- intersect(pos, eval_select(expr(c(...)), data = data))
     efs <- syms(names(data[pos]))
     .baseline <- .baseline %||% rep(1L, length(efs))
     map2(efs, .baseline, \(ef, baseline) set_contrasts(data, !!ef, base = baseline) <<- contr.treatment)
-    if(.verbose) report(data, "after:")
+    if (.verbose) report(data, "after:")
     data |> invisible()
 }
 

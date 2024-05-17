@@ -449,9 +449,9 @@ binom_contingency <- function(
         rename(pn = "1", qn = "0") |>
         relocate("qn", .after = "pn")
 
-    if(.drop_zero)
+    if (.drop_zero)
         ctab <- drop_zero(ctab)
-    if(.propci)
+    if (.propci)
         ctab <- propci(ctab, .level)
     new_binom_contingency(ctab)
 }
@@ -570,13 +570,13 @@ as_binom_contingency.data.frame <- function(
 
     if (as.logical(length(errlst)))
         stop("\n", paste("! Column `", errlst, "` not found in `object`\n", sep = ""), call.= FALSE)
-    if(!all(is.integer(object$pn), is.integer(object$qn))) {
+    if (!all(is.integer(object$pn), is.integer(object$qn))) {
         message("Coercing `.pn` and/or `.qn` to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
-    if(.drop_zero)
+    if (.drop_zero)
         object <- drop_zero(object)
-    if(.propci)
+    if (.propci)
         object <- propci(object, .level)
     if (!inherits(object, "tibble"))
         object <- as_tibble(object)
@@ -726,7 +726,7 @@ expl_fcts <- function(.data, ..., .named = FALSE, .val = c("syms", "data_syms", 
 
     efs <- names(pos)
 
-    if(.named)
+    if (.named)
         efs <- set_names(efs)
 
     switch(.val,

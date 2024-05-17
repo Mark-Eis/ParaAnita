@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -28,14 +28,14 @@ new_announce <- function(object = vector(), lead = "Announce: -\n", ...) {
 validate_announce <- function(x) {
     lead <- x %@% lead
 
-    if(!is.character(lead)) {
+    if (!is.character(lead)) {
 	    stop(
 	        "\"lead\" attribute must be of type character",
 		     call. = FALSE
 	    )
     }
 
-    if(!length(lead) || !nchar(lead)) {
+    if (!length(lead) || !nchar(lead)) {
 	    stop(
 	        "\"lead\" attribute cannot be empty",
 		     call. = FALSE

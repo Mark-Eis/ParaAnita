@@ -1,5 +1,5 @@
 # First R Package
-# Mark Eisler Dec 2023
+# Mark Eisler May 2024
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -69,7 +69,7 @@ print_lf <- function(x, n = 1) {
 #  Not exported
 
 linefeed <- function(n)
-    if(!is.null(n)) {
+    if (!is.null(n)) {
         n <- as.integer(n[[1]])
         if (n < 0)
             n <- 0L

@@ -393,9 +393,9 @@ anova_tbl <- function(anova_ls) {
     an_tbl <- anova_ls |> lapply(\(x)
         x[1, !(is.na(x[1,]))] |>
         as_tibble() |>
-        rename_with(\(y) gsub("Resid.", if(duplex) "U+00A7" else "Null", y, fixed = TRUE)) |>
+        rename_with(\(y) gsub("Resid.", if (duplex) "U+00A7" else "Null", y, fixed = TRUE)) |>
         bind_cols(x[2, ] |> as_tibble())  |>
-        rename_with(\(y) gsub(if(duplex) "Resid." else "U+00A7", "M2_Resid.", y, fixed = TRUE)) |>
+        rename_with(\(y) gsub(if (duplex) "Resid." else "U+00A7", "M2_Resid.", y, fixed = TRUE)) |>
         rename_with(~ gsub("U+00A7", "M1_Resid.", .x, fixed = TRUE))) |>
     list_rbind(names_to = "Name")
 
