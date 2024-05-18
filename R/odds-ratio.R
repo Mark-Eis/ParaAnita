@@ -275,7 +275,7 @@ odds_ratio.glm <- function(object, ..., .level = 0.95, .print_call = TRUE, .stat
 
     .glm <- object
 
-    if (.print_call) cat("\nCall:  ", paste(deparse(.glm$call), sep = "\n", collapse = "\n"), 
+    if (.print_call) cat("\nCall:  ", paste(deparse1(.glm$call), sep = "\n", collapse = "\n"), 
         "\n\n", sep = "")
 
     goodterms <- dimnames(coef(summary(.glm)))[[1]]

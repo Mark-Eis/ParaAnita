@@ -255,7 +255,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
     } else
         data <- object$data
 
-    pred <- predict(object, data[deparse(ind_var)], type = "link", se.fit = TRUE)
+    pred <- predict(object, data[deparse1(ind_var)], type = "link", se.fit = TRUE)
     if (!is.na(conf_level)) {
         .df <- sum(object$prior.weights) - 1
         ebar <- pred$se.fit * qt((1 + conf_level)/2, .df)
@@ -277,7 +277,7 @@ glm_plotdata.glm <- function(object, ..., conf_level = 0.95, type = c("link", "r
                 else
                     log((!!dep_var)[, 1] / (!!dep_var)[, 2])
             ),
-            pred = predict(object, data[deparse(ind_var)], type = type),
+            pred = predict(object, data[deparse1(ind_var)], type = type),
             lower = lower_upper[, 1],
             upper = lower_upper[, 2],
             across("pred":"upper", unname),
