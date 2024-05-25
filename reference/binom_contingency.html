@@ -12,7 +12,7 @@ one or more categorical independent variables, optionally including totals, prop
     
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.00012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.00013</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@ one or more categorical independent variables, optionally including totals, prop
 <span>  <span class="va">.data</span>,</span>
 <span>  <span class="va">.dep_var</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  .drop_zero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .drop_zero_depvar <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .propci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span></span>
 <span><span class="op">)</span></span>
@@ -62,7 +62,7 @@ one or more categorical independent variables, optionally including totals, prop
 <span>  <span class="va">...</span>,</span>
 <span>  .pn <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  .qn <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  .drop_zero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  .drop_zero_depvar <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .propci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  .level <span class="op">=</span> <span class="fl">0.95</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -85,7 +85,7 @@ should be <code>numeric</code> with values of <var>0</var> and <var>1</var>.</p>
 <p>for <code>as_binomial_contingency()</code>: further arguments passed to or from other methods.</p></dd>
 
 
-<dt>.drop_zero</dt>
+<dt>.drop_zero_depvar</dt>
 <dd><p><code>logical</code>. If <code>TRUE</code>, <code><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></code> of explanatory factors for which values of
 <code>.dep_var</code> are either all zero or all one are dropped from the output; default <code>FALSE</code>.</p></dd>
 
@@ -130,7 +130,7 @@ contingency table may be selected for inclusion or exclusion using the <code>...
 <p>A <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of <a href="https://rlang.r-lib.org/reference/topic-defuse.html" class="external-link">defused R expressions</a>, as for instance created by
 <code><a href="expl_fcts.html">expl_fcts()</a></code>, may be used as the <code>...</code> arguments and should be injected using the
 <a href="https://rlang.r-lib.org/reference/splice-operator.html" class="external-link">splice-operator</a>, <code>!!!</code>, see examples.</p>
-<p>Use <code>drop_zero = TRUE</code> to drop <code><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></code> of explanatory factors for which values of
+<p>Use <code>.drop_zero_depvar = TRUE</code> to drop <code><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></code> of explanatory factors for which values of
 <code>.dep_var</code> are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
 numerically 0 or 1 occurred’ when fitting generalized linear models using <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> or calculating
 odds ratios using <code><a href="odds_ratio.html">odds_ratio()</a></code>; see examples and Venables &amp; Ripley (2002, pp. 197–8).</p>
@@ -254,11 +254,11 @@ Stack Exchange</a>.</p>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/warnings.html" class="external-link">warnings</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="co">##  Argument .drop_zero = TRUE in binom_contingency()</span></span></span>
+<span class="r-in"><span>    <span class="co">##  Argument .drop_zero_depvar = TRUE in binom_contingency()</span></span></span>
 <span class="r-in"><span>    <span class="co">##    prevents these warnings</span></span></span>
-<span class="r-in"><span>    <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span> <span class="op">~</span> <span class="va">iv</span>, <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -370,7 +370,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> h     j     l     h         7    59    66 0.106 0.052<span style="text-decoration: underline;">3</span> 0.203</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Confidence level 0.95 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -387,13 +387,13 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> h     j     l     h         7    59</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>   <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv2</span>, <span class="va">iv3</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv2</span>, <span class="va">iv3</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> glm(formula = cbind(pn, qn) ~ ., family = binomial, data = binom_contingency(d, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     dv, iv2, iv3, .drop_zero = TRUE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dv, iv2, iv3, .drop_zero_depvar = TRUE))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
@@ -413,11 +413,11 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>   <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv2</span>, <span class="va">iv3</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="fu">binom_contingency</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv2</span>, <span class="va">iv3</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="odds_ratio.html">odds_ratio</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glm(formula = cbind(pn, qn) ~ ., family = binomial, data = binom_contingency(d, dv, iv2, iv3, .drop_zero = TRUE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glm(formula = cbind(pn, qn) ~ ., family = binomial, data = binom_contingency(d, dv, iv2, iv3, .drop_zero_depvar = TRUE))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
@@ -540,7 +540,7 @@ Stack Exchange</a>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> d         0    66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> e        10    56</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">as_binom_contingency</span><span class="op">(</span>.pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span>, .drop_zero <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">as_binom_contingency</span><span class="op">(</span>.pn <span class="op">=</span> <span class="va">success</span>, .qn <span class="op">=</span> <span class="va">failure</span>, .drop_zero_depvar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Coercing `.pn` and/or `.qn` to integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binomial Contingency Table: -</span>
