@@ -127,7 +127,7 @@ expl_fcts(d, .named = TRUE) |>
 
 expl_fcts(d, .named = TRUE) |>
     lapply(\(x)
-        binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>
+        binom_contingency(d, dv, !!x, .drop_zero_depvar = TRUE) |>
         odds_ratio(.ind_var = !!x)
     )
 
