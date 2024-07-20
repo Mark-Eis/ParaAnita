@@ -1,117 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/404.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/ParaAnita-package.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/Print_Methods.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/Simulate_Data.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/add_grps.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/announce.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/anova_tbl.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/binom_contingency.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/budworm.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/chsqfish.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/comp_glm.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/contingency_table.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/contr_colnames.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/expl_fcts.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/fct_to_num.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/get_contr_data.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/get_contrasts.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/glm_plotdata.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/glm_plotlist.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/good_levels.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/helm_names.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/levels_data.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/lf.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/odds_ratio.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/plot_model.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/print_all.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/rm_objects.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/starsig.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/summanov.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/tidyeval.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/univ_anova.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/ParaAnita/reference/var_labs.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://mark-eis.github.io/ParaAnita/404.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/LICENSE-text.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/LICENSE.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/authors.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/index.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/ParaAnita-package.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/Print_Methods.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/Simulate_Data.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/add_grps.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/announce.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/anova_tbl.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/binom_contingency.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/budworm.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/chsqfish.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/comp_glm.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/contingency_table.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/contr_colnames.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/expl_fcts.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/fct_to_num.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/get_contr_data.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/get_contrasts.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/glm_plotdata.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/glm_plotlist.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/good_levels.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/helm_names.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/index.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/levels_data.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/lf.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/odds_ratio.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/plot_model.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/print_all.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/reexports.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/rm_objects.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/starsig.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/summanov.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/tidyeval.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/univ_anova.html</loc></url>
+<url><loc>https://mark-eis.github.io/ParaAnita/reference/var_labs.html</loc></url>
 </urlset>
+
