@@ -10,7 +10,7 @@ binom_contingency(
   .data,
   .dep_var,
   ...,
-  .drop_zero_depvar = FALSE,
+  .drop_zero = FALSE,
   .propci = FALSE,
   .level = 0.95
 )
@@ -22,7 +22,7 @@ as_binom_contingency(object, ...)
   ...,
   .pn = NULL,
   .qn = NULL,
-  .drop_zero_depvar = FALSE,
+  .drop_zero = FALSE,
   .propci = FALSE,
   .level = 0.95
 )
@@ -38,7 +38,7 @@ should be \code{numeric} with values of \var{0} and \var{1}.}
 
 for \code{as_binomial_contingency()}: further arguments passed to or from other methods.}
 
-\item{.drop_zero_depvar}{\code{logical}. If \code{TRUE}, \code{\link[base:levels]{levels}} of explanatory factors for which values of
+\item{.drop_zero}{\code{logical}. If \code{TRUE}, \code{\link[base:levels]{levels}} of explanatory factors for which values of
 \code{.dep_var} are either all zero or all one are dropped from the output; default \code{FALSE}.}
 
 \item{.propci}{\code{logical}. If \code{TRUE}, each row of the output \code{"binom_contingency"} object includes totals, proportions
@@ -74,7 +74,7 @@ A \link[base:list]{list} of \link[rlang:topic-defuse]{defused R expressions}, as
 \code{\link[=expl_fcts]{expl_fcts()}}, may be used as the \code{\dots} arguments and should be injected using the
 \link[rlang:splice-operator]{splice-operator}, \verb{!!!}, see examples.
 
-Use \code{.drop_zero_depvar = TRUE} to drop \code{\link[base:levels]{levels}} of explanatory factors for which values of
+Use \code{.drop_zero = TRUE} to drop \code{\link[base:levels]{levels}} of explanatory factors for which values of
 \code{.dep_var} are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
 numerically 0 or 1 occurred’ when fitting generalized linear models using \code{\link[stats:glm]{glm()}} or calculating
 odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
@@ -117,11 +117,11 @@ try(d |> binom_contingency(.data$dx))
         confint()
     summary(warnings())
 
-    ##  Argument .drop_zero_depvar = TRUE in binom_contingency()
+    ##  Argument .drop_zero = TRUE in binom_contingency()
     ##    prevents these warnings
-    d |> binom_contingency(dv, .drop_zero_depvar = TRUE)
+    d |> binom_contingency(dv, .drop_zero = TRUE)
 
-    d |> binom_contingency(dv, .drop_zero_depvar = TRUE) |>
+    d |> binom_contingency(dv, .drop_zero = TRUE) |>
         glm(cbind(pn, qn) ~ iv, binomial, data = _) |>
         confint()
 
@@ -145,15 +145,15 @@ d |> binom_contingency(dv, !!!expl_fcts(d))
 
 d |> binom_contingency(dv, .propci = TRUE)
 
-d |> binom_contingency(dv, .drop_zero_depvar = TRUE)
+d |> binom_contingency(dv, .drop_zero = TRUE)
 
 d |>
-   binom_contingency(dv, iv2, iv3, .drop_zero_depvar = TRUE) |>
+   binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
    summary()
 
 d |>
-   binom_contingency(dv, iv2, iv3, .drop_zero_depvar = TRUE) |>
+   binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
    odds_ratio()
 
@@ -179,7 +179,7 @@ d |> binom_contingency(dv, !starts_with("iv")) ## Here, negation excludes all ex
 
 d |> as_binom_contingency(.pn = success, .qn = failure)
 
-d |> as_binom_contingency(.pn = success, .qn = failure, .drop_zero_depvar = TRUE)
+d |> as_binom_contingency(.pn = success, .qn = failure, .drop_zero = TRUE)
 
 (d <- binom_data())
 

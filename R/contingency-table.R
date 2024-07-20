@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - May 2024
+# Mark Eisler - Jul 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -262,7 +262,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' [`expl_fcts()`][expl_fcts], may be used as the \code{\dots} arguments and should be injected using the
 #' [splice-operator][rlang::splice-operator], `!!!`, see examples.
 #'
-#' Use `.drop_zero_depvar = TRUE` to drop [`levels`][base::levels] of explanatory factors for which values of
+#' Use `.drop_zero = TRUE` to drop [`levels`][base::levels] of explanatory factors for which values of
 #' `.dep_var` are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
 #' numerically 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating
 #' odds ratios using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
@@ -308,7 +308,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' @param .level the confidence level required; default \var{0.95}.
 #'
-#' @param .drop_zero_depvar `logical`. If `TRUE`, [`levels`][base::levels] of explanatory factors for which values of
+#' @param .drop_zero `logical`. If `TRUE`, [`levels`][base::levels] of explanatory factors for which values of
 #'   `.dep_var` are either all zero or all one are dropped from the output; default `FALSE`.
 #'
 #' @param .propci `logical`. If `TRUE`, each row of the output `"binom_contingency"` object includes totals, proportions
@@ -362,11 +362,11 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'         confint()
 #'     summary(warnings())
 #'
-#'     ##  Argument .drop_zero_depvar = TRUE in binom_contingency()
+#'     ##  Argument .drop_zero = TRUE in binom_contingency()
 #'     ##    prevents these warnings
-#'     d |> binom_contingency(dv, .drop_zero_depvar = TRUE)
+#'     d |> binom_contingency(dv, .drop_zero = TRUE)
 #'
-#'     d |> binom_contingency(dv, .drop_zero_depvar = TRUE) |>
+#'     d |> binom_contingency(dv, .drop_zero = TRUE) |>
 #'         glm(cbind(pn, qn) ~ iv, binomial, data = _) |>
 #'         confint()
 #'
@@ -390,15 +390,15 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' d |> binom_contingency(dv, .propci = TRUE)
 #'
-#' d |> binom_contingency(dv, .drop_zero_depvar = TRUE)
+#' d |> binom_contingency(dv, .drop_zero = TRUE)
 #'
 #' d |>
-#'    binom_contingency(dv, iv2, iv3, .drop_zero_depvar = TRUE) |>
+#'    binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
 #'    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
 #'    summary()
 #'
 #' d |>
-#'    binom_contingency(dv, iv2, iv3, .drop_zero_depvar = TRUE) |>
+#'    binom_contingency(dv, iv2, iv3, .drop_zero = TRUE) |>
 #'    glm(cbind(pn, qn) ~ ., binomial, data = _) |>
 #'    odds_ratio()
 #'
@@ -424,7 +424,7 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'
 #' d |> as_binom_contingency(.pn = success, .qn = failure)
 #'
-#' d |> as_binom_contingency(.pn = success, .qn = failure, .drop_zero_depvar = TRUE)
+#' d |> as_binom_contingency(.pn = success, .qn = failure, .drop_zero = TRUE)
 #'
 #' (d <- binom_data())
 #'
@@ -438,7 +438,7 @@ binom_contingency <- function(
     .data,
     .dep_var,
     ...,
-    .drop_zero_depvar = FALSE,
+    .drop_zero = FALSE,
     .propci = FALSE,
     .level = 0.95
 ) {
@@ -449,7 +449,7 @@ binom_contingency <- function(
         rename(pn = "1", qn = "0") |>
         relocate("qn", .after = "pn")
 
-    if (.drop_zero_depvar)
+    if (.drop_zero)
         ctab <- drop_zero_depvar(ctab)
     if (.propci)
         ctab <- propci(ctab, .level)
@@ -543,7 +543,7 @@ as_binom_contingency.data.frame <- function(
     ...,
     .pn = NULL,
     .qn = NULL,
-    .drop_zero_depvar = FALSE,
+    .drop_zero = FALSE,
     .propci = FALSE,
     .level = 0.95
 ) {
@@ -574,7 +574,7 @@ as_binom_contingency.data.frame <- function(
         message("Coercing `.pn` and/or `.qn` to integer")
         object <- mutate(object, across(all_of(c("pn", "qn")), as.integer))
     }
-    if (.drop_zero_depvar)
+    if (.drop_zero)
         object <- drop_zero_depvar(object)
     if (.propci)
         object <- propci(object, .level)
@@ -709,7 +709,7 @@ as_binom_contingency.data.frame <- function(
 #'
 #' expl_fcts(d, .named = TRUE) |>
 #'     lapply(\(x)
-#'         binom_contingency(d, dv, !!x, .drop_zero_depvar = TRUE) |>
+#'         binom_contingency(d, dv, !!x, .drop_zero = TRUE) |>
 #'         odds_ratio(.ind_var = !!x)
 #'     )
 #'
