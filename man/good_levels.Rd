@@ -4,13 +4,18 @@
 \alias{good_levels}
 \alias{drop_null}
 \alias{drop_zero}
+\alias{drop_zero.binom_contingency}
 \title{Remove Levels of Independent Variable where Dependent Variable All Success or All Failure}
 \usage{
 good_levels(.data, .dep_var, .ind_var)
 
 drop_null(.data, .dep_var, .ind_var)
 
-drop_zero(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn))
+drop_zero(object, ...)
+
+drop_zero(object, ...)
+
+\method{drop_zero}{binom_contingency}(object, ...)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -22,6 +27,14 @@ see \code{\link[stats:glm]{glm()}}.}
 
 \item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable, which may be
 a \code{factor}, or a \verb{character vector}.}
+
+\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
+a \code{"binom_contingency"} object.}
+
+\item{...}{for \code{binomial_contingency()}:  <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more
+\code{factor} or \verb{character vector} columns in \code{.data}, to be included in (or excluded from) the output.
+
+for \code{as_binomial_contingency()}: further arguments passed to or from other methods.}
 }
 \value{
 \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the

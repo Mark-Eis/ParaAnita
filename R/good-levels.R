@@ -131,9 +131,33 @@ drop_null <- function(.data, .dep_var, .ind_var) {
 #' @rdname good_levels
 #' @export
 
-drop_zero <- function(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn)) {
-    .dep_var <- enquo(.dep_var)
-    .data |>
-        filter(as.logical((!!.dep_var)[, 1]), as.logical((!!.dep_var)[, 2])) |>
-        mutate(across({{.ind_var}}, fct_drop))
-}
+# drop_zero <- function(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn)) {
+    # .dep_var <- enquo(.dep_var)
+    # .data |>
+        # filter(as.logical((!!.dep_var)[, 1]), as.logical((!!.dep_var)[, 2])) |>
+        # mutate(across({{.ind_var}}, fct_drop))
+# }
+
+
+# ========================================
+# Remove levels of independent variable having binomial dependent variable values of either all zero or all one
+#  S3method drop_zero()
+#
+#' @rdname good_levels
+#' @export
+
+drop_zero <- function(object, ...)
+    UseMethod("drop_zero")
+
+# ========================================
+# Remove levels of independent variable having binomial dependent variable values of either all zero or all one
+# for a binomial contingency table
+#  S3method drop_zero.binom_contingency()
+#
+#' @rdname good_levels
+#' @export
+
+drop_zero.binom_contingency <- function(object, ...)
+    object |>
+        filter(as.logical(.data$pn), as.logical(.data$qn)) |>
+        mutate(across(where(is.factor), fct_drop))
