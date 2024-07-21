@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - May 2024
+# Mark Eisler - Jul 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -120,7 +120,7 @@ good_levels <- function(.data, .dep_var, .ind_var) {
 
 drop_null <- function(.data, .dep_var, .ind_var) {
     .ind_var <- enquo(.ind_var)
-    .data |> (\(.x)
+    .data |> (\(.x)    # anon func here because otherwise filter() passes .data pronoun to good_levels()
         filter(.x, !!.ind_var %in% good_levels(.x, {{.dep_var}}, !!.ind_var)) |>
         mutate(across(!!.ind_var, fct_drop))
     )()
