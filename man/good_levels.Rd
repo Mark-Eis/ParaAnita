@@ -13,8 +13,6 @@ drop_null(.data, .dep_var, .ind_var)
 
 drop_zero(object, ...)
 
-drop_zero(object, ...)
-
 \method{drop_zero}{binom_contingency}(object, ...)
 }
 \arguments{
