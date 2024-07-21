@@ -2,6 +2,7 @@
 
 S3method(as_binom_contingency,data.frame)
 S3method(drop_zero,binom_contingency)
+S3method(drop_zero,data.frame)
 S3method(formula,odds_ratio)
 S3method(ggplot,glm_plotdata)
 S3method(glm_plotdata,binom_contingency)

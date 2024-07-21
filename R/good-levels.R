@@ -62,12 +62,15 @@
 #' d |> binom_contingency(dv)
 #' d |> levels_data()
 #' d |> good_levels(dv, iv)
-#' d |> drop_null(dv, iv) |> levels_data()
-#' d |> drop_null(dv, iv) |> binom_contingency(dv)
+# #' d |> drop_null(dv, iv) |> levels_data()
+# #' d |> drop_null(dv, iv) |> binom_contingency(dv)
+#' d |> drop_zero(dv, iv) |> levels_data()
+#' d |> drop_zero(dv, iv) |> binom_contingency(dv)
 #' d |> binom_contingency(dv) |> drop_zero(iv)
 #'
 #' identical(
-#'   d |> drop_null(dv, iv) |> binom_contingency(dv),
+# #'   d |> drop_null(dv, iv) |> binom_contingency(dv),
+#'   d |> drop_zero(dv, iv) |> binom_contingency(dv),
 #'   d |> binom_contingency(dv) |> drop_zero(iv)
 #' )
 #'
@@ -161,3 +164,17 @@ drop_zero.binom_contingency <- function(object, ...)
     object |>
         filter(as.logical(.data$pn), as.logical(.data$qn)) |>
         mutate(across(where(is.factor), fct_drop))
+
+# ========================================
+# Remove levels of independent variable having Bernouilli dependent variable values of either all zero or all one
+# for a data frame
+#  S3method drop_zero.data.frame()
+#
+#' @rdname good_levels
+#' @export
+
+drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
+    .ind_var <- enquo(.ind_var)
+    filter(object, !!.ind_var %in% good_levels(object, {{.dep_var}}, !!.ind_var)) |>
+    mutate(across(!!.ind_var, fct_drop))
+}

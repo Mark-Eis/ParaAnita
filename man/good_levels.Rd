@@ -5,6 +5,7 @@
 \alias{drop_null}
 \alias{drop_zero}
 \alias{drop_zero.binom_contingency}
+\alias{drop_zero.data.frame}
 \title{Remove Levels of Independent Variable where Dependent Variable All Success or All Failure}
 \usage{
 good_levels(.data, .dep_var, .ind_var)
@@ -14,6 +15,8 @@ drop_null(.data, .dep_var, .ind_var)
 drop_zero(object, ...)
 
 \method{drop_zero}{binom_contingency}(object, ...)
+
+\method{drop_zero}{data.frame}(object, .dep_var, .ind_var, ...)
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
@@ -72,12 +75,12 @@ d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
 d |> binom_contingency(dv)
 d |> levels_data()
 d |> good_levels(dv, iv)
-d |> drop_null(dv, iv) |> levels_data()
-d |> drop_null(dv, iv) |> binom_contingency(dv)
+d |> drop_zero(dv, iv) |> levels_data()
+d |> drop_zero(dv, iv) |> binom_contingency(dv)
 d |> binom_contingency(dv) |> drop_zero(iv)
 
 identical(
-  d |> drop_null(dv, iv) |> binom_contingency(dv),
+  d |> drop_zero(dv, iv) |> binom_contingency(dv),
   d |> binom_contingency(dv) |> drop_zero(iv)
 )
 
