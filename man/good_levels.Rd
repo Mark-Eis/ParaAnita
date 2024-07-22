@@ -29,13 +29,10 @@ see \code{\link[stats:glm]{glm()}}.}
 \item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable, which may be
 a \code{factor}, or a \verb{character vector}.}
 
-\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), to be coerced to
-a \code{"binom_contingency"} object.}
+\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), or a
+\code{"binom_contingency"} object.}
 
-\item{...}{for \code{binomial_contingency()}:  <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> quoted name(s) of one or more
-\code{factor} or \verb{character vector} columns in \code{.data}, to be included in (or excluded from) the output.
-
-for \code{as_binomial_contingency()}: further arguments passed to or from other methods.}
+\item{\dots}{further arguments passed to or from other methods.}
 }
 \value{
 \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the

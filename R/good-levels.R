@@ -48,6 +48,11 @@
 #' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable, which may be
 #'   a `factor`, or a `character vector`. 
 #'
+#' @param object a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]), or a
+#'   `"binom_contingency"` object.
+#'
+#' @param \dots further arguments passed to or from other methods.
+#'
 #' @inheritParams binom_contingency
 #'
 #' @return `good_levels()` returns a character vector comprising the `levels` of `.ind_var` for which the
