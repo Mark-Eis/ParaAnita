@@ -16,7 +16,8 @@
 #' variable are neither all zero nor all one i.e., those for which \eqn{0 < p < 1}{0 < p < 1}.
 #'
 #' `drop_null()` drops all data with `levels` of an independent variable for which a Bernoulli dependent
-#' variable has values either all zero or all one i.e., those identified by `good_levels()`.
+#' variable has values either all zero or all one i.e., those identified by `good_levels()`. Deprecated,
+#' use `drop_zero()` S3 method for class `'data.frame'`.
 #'
 #' `drop_zero()` drops all data with `levels` of an independent variable for which a binomial dependent variable
 #' has either all successes or failures.
@@ -28,22 +29,22 @@
 #' @details
 #' For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, `good_levels()`
 #' identifies  [`levels`][base::levels] of an independent variable for which values of the dependent variable are
-#' neither all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
+#' neither all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}. The S3 method for class
+#' [`binom_contingency`][binom_contingency] work similarly.
 #'
 #' For a similar dataset, `drop_null()` drops all rows of data other than those with `levels` of the
 #' independent variable identified by `good_levels()`. Unused factor levels are dropped from the independent
-#' variable.
+#' variable. Deprecated, use `drop_zero()` S3 method for class `'data.frame'`.
 #'
-#' For a binomial dataset, `drop_zero()` drops rows of data having either all successes and no failures, or no
-#' successes and all failures.
+#' For a Bernoulli trial dataset as a [`data.frame`][data.frame] or a binomial dataset instantiated as a
+#' [`binom_contingency`][binom_contingency] object, `drop_zero()` drops rows of data with `levels` of an independent
+#' variable having either all successes and no failures, or no successes and all failures.
 #'
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
 #' @family levels_data
 #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of a Bernoulli dependent variable that
-#'   should be `numeric` with values of \var{0} and \var{1}; or in the case of `drop zero()`, a binomial dependent
-#'   variable, default `cbind(.data$pn, .data$qn)`, representing the number of successes and failures respectively,
-#'   see [`glm()`][stats::glm].
+#'   should be `numeric` with values of \var{0} and \var{1}.
 #'
 #' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable, which may be
 #'   a `factor`, or a `character vector`. 
@@ -56,10 +57,10 @@
 #' @inheritParams binom_contingency
 #'
 #' @return `good_levels()` returns a character vector comprising the `levels` of `.ind_var` for which the
-#'   corresponding values of `.dep_var` are neither all zero nor all one. Both `drop_null()` and
-#'   `drop_zero()` return a data frame or a data frame extension e.g., a [`tibble`][tibble::tibble-package],
-#'   equivalent to data, including only rows with levels of `.ind_var` for which `.dep_var` values are neither
-#'   all zero nor all one, or neither having all successes nor all failures respectively.
+#'   corresponding values of `.dep_var` are neither all zero nor all one. `drop_zero()` return a data frame or a
+#'   data frame extension e.g., a [`tibble`][tibble::tibble-package], equivalent to data, including only rows with
+#'   levels of `.ind_var` for which `.dep_var` values are neither all zero nor all one, or neither having all
+#'   successes nor all failures respectively.
 #'
 #' @export
 #' @examples
