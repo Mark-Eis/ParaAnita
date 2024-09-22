@@ -111,17 +111,26 @@
 #'     rm(gss_cat)
 #' }
 
-# good_levels <- function(.data, .dep_var, .ind_var) {
-    # .ind_var <- enquo(.ind_var)
-    # .data |>
-        # contingency_table({{.dep_var}}, !!.ind_var) |>
-        # filter(.data$`1` != 0, .data$`0` != 0) |>
-        # pull(!!.ind_var) |>
-        # fct_drop() |>
-        # levels()
-# }
+# ========================================
+# Levels of independent variable having binomial dependent variable values of either all zero or all one
+# S3method good_levels()
+#
+# @rdname good_levels
+# @export
 
-good_levels <- function(.data, .dep_var, .ind_var) {
+good_levels <- function(object, ...)
+    UseMethod("good_levels")
+
+# ========================================
+# Levels of independent variable having Bernouilli dependent variable values of either all zero or all one
+# for a data frame
+#  S3method good_levels.data.frame()
+#
+#' @rdname good_levels
+#' @export
+
+good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
+	marker()
     .dep_var <- enquo(.dep_var)
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.dep_var))
@@ -129,10 +138,30 @@ good_levels <- function(.data, .dep_var, .ind_var) {
     if (quo_is_missing(.ind_var))
         stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
     .data |>
-        contingency_table(!!.dep_var, !!.ind_var) |>
-        filter(.data$`1` != 0, .data$`0` != 0) |>
+        binom_contingency(!!.dep_var, !!.ind_var, .drop_zero = TRUE) |>
         pull(!!.ind_var) |>
-        fct_drop() |>
+        levels()
+}
+
+# ========================================
+# Levels of independent variable having binomial dependent variable values of either all zero or all one
+# for a binomial contingency table
+#  S3method good_levels.binom_contingency()
+#
+#' @rdname good_levels
+#' @export
+
+good_levels.binom_contingency <- function(.data, .dep_var, .ind_var) {
+	marker()
+    .dep_var <- enquo(.dep_var)
+    .ind_var <- enquo(.ind_var)
+    if (quo_is_missing(.dep_var))
+        stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
+    if (quo_is_missing(.ind_var))
+        stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
+    .data |>
+        drop_zero_depvar() |>
+        pull(!!.ind_var) |>
         levels()
 }
 
