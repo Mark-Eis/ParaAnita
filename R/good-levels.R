@@ -22,10 +22,6 @@
 #' `drop_zero()` drops all data with `levels` of an independent variable for which a binomial dependent variable
 #' has either all successes or failures.
 #'
-#' `levels_data` returns the levels for all factors in data. 
-#'
-#' `nlevels_data` returns the number of levels for all factors in data. 
-#'
 #' @details
 #' For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, `good_levels()`
 #' identifies  [`levels`][base::levels] of an independent variable for which values of the dependent variable are
@@ -57,7 +53,7 @@
 #' @inheritParams binom_contingency
 #'
 #' @return `good_levels()` returns a character vector comprising the `levels` of `.ind_var` for which the
-#'   corresponding values of `.dep_var` are neither all zero nor all one. `drop_zero()` return a data frame or a
+#'   corresponding values of `.dep_var` are neither all zero nor all one. `drop_zero()` returns a data frame or a
 #'   data frame extension e.g., a [`tibble`][tibble::tibble-package], equivalent to data, including only rows with
 #'   levels of `.ind_var` for which `.dep_var` values are neither all zero nor all one, or neither having all
 #'   successes nor all failures respectively.
