@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Jul 2024
+# Mark Eisler - Sep 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -111,10 +111,25 @@
 #'     rm(gss_cat)
 #' }
 
+# good_levels <- function(.data, .dep_var, .ind_var) {
+    # .ind_var <- enquo(.ind_var)
+    # .data |>
+        # contingency_table({{.dep_var}}, !!.ind_var) |>
+        # filter(.data$`1` != 0, .data$`0` != 0) |>
+        # pull(!!.ind_var) |>
+        # fct_drop() |>
+        # levels()
+# }
+
 good_levels <- function(.data, .dep_var, .ind_var) {
+    .dep_var <- enquo(.dep_var)
     .ind_var <- enquo(.ind_var)
+    if (quo_is_missing(.dep_var))
+        stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
+    if (quo_is_missing(.ind_var))
+        stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
     .data |>
-        contingency_table({{.dep_var}}, !!.ind_var) |>
+        contingency_table(!!.dep_var, !!.ind_var) |>
         filter(.data$`1` != 0, .data$`0` != 0) |>
         pull(!!.ind_var) |>
         fct_drop() |>
