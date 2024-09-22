@@ -66,7 +66,10 @@
 #' d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
 #' d |> binom_contingency(dv)
 #' d |> levels_data()
+#' ## S3 method for class 'data.frame' 
 #' d |> good_levels(dv, iv)
+#' ## S3 method for class 'binom_contingency' 
+#' d |> binom_contingency(dv) |> good_levels(dv, iv)
 # #' d |> drop_null(dv, iv) |> levels_data()
 # #' d |> drop_null(dv, iv) |> binom_contingency(dv)
 #' d |> drop_zero(dv, iv) |> levels_data()
@@ -130,7 +133,6 @@ good_levels <- function(object, ...)
 #' @export
 
 good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
-	marker()
     .dep_var <- enquo(.dep_var)
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.dep_var))
@@ -152,7 +154,6 @@ good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
 #' @export
 
 good_levels.binom_contingency <- function(.data, .dep_var, .ind_var) {
-	marker()
     .dep_var <- enquo(.dep_var)
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.dep_var))

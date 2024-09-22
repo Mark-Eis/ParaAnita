@@ -2,13 +2,19 @@
 % Please edit documentation in R/good-levels.R
 \name{good_levels}
 \alias{good_levels}
+\alias{good_levels.data.frame}
+\alias{good_levels.binom_contingency}
 \alias{drop_null}
 \alias{drop_zero}
 \alias{drop_zero.binom_contingency}
 \alias{drop_zero.data.frame}
 \title{Remove Levels of Independent Variable where Dependent Variable All Success or All Failure}
 \usage{
-good_levels(.data, .dep_var, .ind_var)
+good_levels(object, ...)
+
+\method{good_levels}{data.frame}(.data, .dep_var, .ind_var)
+
+\method{good_levels}{binom_contingency}(.data, .dep_var, .ind_var)
 
 drop_null(.data, .dep_var, .ind_var)
 
@@ -19,6 +25,11 @@ drop_zero(object, ...)
 \method{drop_zero}{data.frame}(object, .dep_var, .ind_var, ...)
 }
 \arguments{
+\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), or a
+\code{"binom_contingency"} object.}
+
+\item{\dots}{further arguments passed to or from other methods.}
+
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a Bernoulli dependent variable that
@@ -28,11 +39,6 @@ see \code{\link[stats:glm]{glm()}}.}
 
 \item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable, which may be
 a \code{factor}, or a \verb{character vector}.}
-
-\item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), or a
-\code{"binom_contingency"} object.}
-
-\item{\dots}{further arguments passed to or from other methods.}
 }
 \value{
 \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the
@@ -71,7 +77,10 @@ successes and all failures.
 d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
 d |> binom_contingency(dv)
 d |> levels_data()
+## S3 method for class 'data.frame' 
 d |> good_levels(dv, iv)
+## S3 method for class 'binom_contingency' 
+d |> binom_contingency(dv) |> good_levels(dv, iv)
 d |> drop_zero(dv, iv) |> levels_data()
 d |> drop_zero(dv, iv) |> binom_contingency(dv)
 d |> binom_contingency(dv) |> drop_zero(iv)
