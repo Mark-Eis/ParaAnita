@@ -210,10 +210,13 @@ drop_zero <- function(object, ...)
 #' @rdname good_levels
 #' @export
 
+# drop_zero.binom_contingency <- function(object, ...)
+    # object |>
+        # filter(as.logical(.data$pn), as.logical(.data$qn)) |>
+        # mutate(across(where(is.factor), fct_drop))
+
 drop_zero.binom_contingency <- function(object, ...)
-    object |>
-        filter(as.logical(.data$pn), as.logical(.data$qn)) |>
-        mutate(across(where(is.factor), fct_drop))
+    object |> drop_zero_depvar()
 
 # ========================================
 # Remove levels of independent variable having Bernouilli dependent variable values of either all zero or all one
