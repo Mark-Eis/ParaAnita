@@ -500,7 +500,7 @@ validate_binom_contingency <- function(binom_contingency) {
 drop_zero_depvar <- function(ctab)
     ctab |>
         filter(as.logical(.data$pn), as.logical(.data$qn)) |>
-        mutate(across(where(is.factor), fct_drop))
+        purge_fcts()
 
 
 # ========================================
