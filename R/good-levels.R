@@ -30,7 +30,7 @@
 #' The `drop_zero()` S3 method for objects of class `"binom_contingency"` returns a binomial contingency table equivalent
 #' to the original having been created using [`binom_contingency()`][binom_contingency] with argument `.drop_zero = TRUE`.
 #'
-#' `drop_null()` is deprecated, please use the `drop_zero()` S3 method for class `"data.frame"`.
+#' `drop_null()` is deprecated, please use the `drop_zero()`.
 #'
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
 #' @family levels_data
@@ -46,7 +46,7 @@
 #' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable, which may be
 #'   a `factor`, or a `character vector`. 
 #'
-#' @inheritParams binom_contingency
+# #' @inheritParams binom_contingency
 #'
 #' @return
 #' \item{`good_levels()`}{returns a `character vector` comprising `levels` of `.ind_var` for which the corresponding
@@ -136,7 +136,8 @@ good_levels.binom_contingency <- function(object, .ind_var, ...) {
         stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
 
     object |>
-        drop_zero_depvar() |>
+        filter(as.logical(.data$pn), as.logical(.data$qn)) |>
+        purge_fcts() |>
         pull(!!.ind_var) |>
         levels()
 }
@@ -184,12 +185,14 @@ drop_zero.binom_contingency <- function(object, ...) {
 
 # ========================================
 # Remove Levels Of Independent Variable Having Bernoulli Dependent Variable Values Of Either All Zero Or All One
-# drop_null() - Deprecated
+# drop_null() - Deprecated, now synonym for drop zero
 #' @rdname good_levels
 #' @export
 
-drop_null <- function(...)
-	drop_zero(...)
+# drop_null <- function(...)
+	# drop_zero(...)
+
+drop_null <- drop_zero
 
 # ========================================
 #  Drop unused factor levels in data

@@ -22,7 +22,7 @@ drop_zero(object, ...)
 
 \method{drop_zero}{binom_contingency}(object, ...)
 
-drop_null(...)
+drop_null(object, ...)
 }
 \arguments{
 \item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), or an object
@@ -65,7 +65,7 @@ independent variable and from any other factors in the data.
 The \code{drop_zero()} S3 method for objects of class \code{"binom_contingency"} returns a binomial contingency table equivalent
 to the original having been created using \code{\link[=binom_contingency]{binom_contingency()}} with argument \code{.drop_zero = TRUE}.
 
-\code{drop_null()} is deprecated, please use the \code{drop_zero()} S3 method for class \code{"data.frame"}.
+\code{drop_null()} is deprecated, please use the \code{drop_zero()}.
 }
 \examples{
 (d_bern <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 )))
