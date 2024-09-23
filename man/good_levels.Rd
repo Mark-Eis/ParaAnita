@@ -88,22 +88,12 @@ identical(
   d_bin |> drop_zero()
 )
 
-d_ls <- map2(c(0.5, 0.4, 1, 1), c(0.1, 0, 0.6, 0), seq, length.out = 5) |>
-    lapply(\(x) bernoulli_data(probs = x)) |>
-    (\(x) setNames(x, paste0("data", seq_along(x))))()
-
-d_ls |> lapply(\(d) d |> binom_contingency(dv))
-d_ls |> lapply(levels_data)
-d_ls |> lapply(\(d) d |> good_levels(dv, iv))
-d_ls |> lapply(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv))
-d_ls |> lapply(\(d) d |> binom_contingency(dv) |> drop_zero())
-
 identical(
-  d_ls |> lapply(\(d) d |> drop_null(dv, iv) |> binom_contingency(dv)), 
-  d_ls |> lapply(\(d) d |> binom_contingency(dv) |> drop_zero())
+  d_bern |> binom_contingency(dv, iv, .drop_zero = TRUE),
+  d_bin |> drop_zero()
 )
 
-rm(d_bern, d_bin, d_ls)
+rm(d_bern, d_bin)
 }
 \seealso{
 \code{\link{binom_contingency}} and \code{\link[base:levels]{levels}}.
