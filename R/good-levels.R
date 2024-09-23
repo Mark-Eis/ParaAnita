@@ -25,7 +25,7 @@
 #'
 #' For a similar Bernoulli trial dataset, the generic function `drop_zero()` drops all rows of data other than those
 #' with `levels` of the independent variable identified by `good_levels()`. Unused factor levels are dropped from the
-#' independent variable.
+#' independent variable and from any other factors in the data.
 #'
 #' The `drop_zero()` S3 method for objects of class `"binom_contingency"` returns a binomial contingency table equivalent
 #' to the original having been created using [`binom_contingency()`][binom_contingency] with argument `.drop_zero = TRUE`.
@@ -165,7 +165,7 @@ drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
     .ind_var <- enquo(.ind_var)
 
     filter(object, !!.ind_var %in% good_levels(object, {{.dep_var}}, !!.ind_var)) |>
-    mutate(across(!!.ind_var, fct_drop))
+    purge_fcts()
 }
 
 # ========================================
@@ -188,10 +188,14 @@ drop_zero.binom_contingency <- function(object, ...) {
 #' @rdname good_levels
 #' @export
 
-drop_null <- function(.data, .dep_var, .ind_var) {
-    .ind_var <- enquo(.ind_var)
-    .data |> (\(.x)    # anon func here because otherwise filter() passes .data pronoun to good_levels()
-        filter(.x, !!.ind_var %in% good_levels(.x, {{.dep_var}}, !!.ind_var)) |>
-        mutate(across(!!.ind_var, fct_drop))
-    )()
-}
+drop_null <- function(...)
+	drop_zero(...)
+
+# ========================================
+#  Drop unused factor levels in data
+#  purge_fcts()
+#
+#  Not exported
+
+purge_fcts <- function(.data)
+    .data |> mutate(across(where(is.factor), fct_drop))

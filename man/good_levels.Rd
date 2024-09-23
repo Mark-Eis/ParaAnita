@@ -22,7 +22,7 @@ drop_zero(object, ...)
 
 \method{drop_zero}{binom_contingency}(object, ...)
 
-drop_null(.data, .dep_var, .ind_var)
+drop_null(...)
 }
 \arguments{
 \item{object}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}), or an object
@@ -35,8 +35,6 @@ should be \code{numeric} with values of \var{0} and \var{1}.}
 
 \item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable, which may be
 a \code{factor}, or a \verb{character vector}.}
-
-\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 }
 \value{
 \item{\code{good_levels()}}{returns a \verb{character vector} comprising \code{levels} of \code{.ind_var} for which the corresponding
@@ -62,7 +60,7 @@ variable are neither all zero nor all one i.e., \eqn{0 < p < 1}{0 < p < 1}.
 
 For a similar Bernoulli trial dataset, the generic function \code{drop_zero()} drops all rows of data other than those
 with \code{levels} of the independent variable identified by \code{good_levels()}. Unused factor levels are dropped from the
-independent variable.
+independent variable and from any other factors in the data.
 
 The \code{drop_zero()} S3 method for objects of class \code{"binom_contingency"} returns a binomial contingency table equivalent
 to the original having been created using \code{\link[=binom_contingency]{binom_contingency()}} with argument \code{.drop_zero = TRUE}.
