@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler - Jul 2024
+# Mark Eisler - Sep 2024
 # For Binary and Binomial Data Analysis
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -291,9 +291,9 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'   \href{https://stats.stackexchange.com/questions/5206/yates-continuity-correction-in-confidence-interval-returned-by-prop-test}{
 #'   Stack Exchange}.
 #'
-#' @seealso [`drop_zero()`][drop_zero], [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio],
-#'   [`prop.test()`][stats::prop.test] and [`tibble`][tibble::tibble-package];
-#'   [`Print_Methods`][Print_Methods] for S3 method for printing objects of class `"binom_contingency"`.
+#' @seealso [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio], [`prop.test()`][stats::prop.test] and
+#'   [`tibble`][tibble::tibble-package]; [`Print_Methods`][Print_Methods] for S3 method for printing objects of class
+#'   `"binom_contingency"`.
 #'
 #' @family contingency_table
 #'

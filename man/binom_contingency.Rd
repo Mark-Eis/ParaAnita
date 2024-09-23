@@ -207,9 +207,9 @@ Yates' continuity correction in confidence interval returned by \code{prop.test}
 Stack Exchange}.
 }
 \seealso{
-\code{\link[=drop_zero]{drop_zero()}}, \code{\link[stats:glm]{glm()}}, \code{\link[=odds_ratio]{odds_ratio()}},
-\code{\link[stats:prop.test]{prop.test()}} and \code{\link[tibble:tibble-package]{tibble}};
-\code{\link{Print_Methods}} for S3 method for printing objects of class \code{"binom_contingency"}.
+\code{\link[stats:glm]{glm()}}, \code{\link[=odds_ratio]{odds_ratio()}}, \code{\link[stats:prop.test]{prop.test()}} and
+\code{\link[tibble:tibble-package]{tibble}}; \code{\link{Print_Methods}} for S3 method for printing objects of class
+\code{"binom_contingency"}.
 
 Other contingency_table: 
 \code{\link{contingency_table}()},
