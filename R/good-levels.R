@@ -46,8 +46,6 @@
 #' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable, which may be
 #'   a `factor`, or a `character vector`. 
 #'
-# #' @inheritParams binom_contingency
-#'
 #' @return
 #' \item{`good_levels()`}{returns a `character vector` comprising `levels` of `.ind_var` for which the corresponding
 #'   values of `.dep_var` are neither all one (success) nor all zero (failure)}
@@ -188,9 +186,6 @@ drop_zero.binom_contingency <- function(object, ...) {
 # drop_null() - Deprecated, now synonym for drop zero
 #' @rdname good_levels
 #' @export
-
-# drop_null <- function(...)
-	# drop_zero(...)
 
 drop_null <- drop_zero
 
