@@ -71,21 +71,23 @@ For a Bernoulli trial dataset as a \code{\link{data.frame}} or a binomial datase
 variable having either all successes and no failures, or no successes and all failures.
 }
 \examples{
-d <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 ))
-d |> binom_contingency(dv)
-d |> levels_data()
-## S3 method for class 'data.frame' 
-d |> good_levels(dv, iv)
+(d_bern <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 )))
+d_bern |> levels_data()
+
+## S3 methods for class 'data.frame' 
+d_bern |> good_levels(dv, iv)
+d_bern |> drop_zero(dv, iv) |> levels_data()
+
+(d_bin <- d_bern |> binom_contingency(dv, iv))
 ## S3 method for class 'binom_contingency' 
-d |> binom_contingency(dv) |> good_levels(dv, iv)
-d |> drop_zero(dv, iv) |> levels_data()
-d |> drop_zero(dv, iv) |> binom_contingency(dv)
-d |> binom_contingency(dv) |> drop_zero(iv)
+d_bin |> good_levels(iv)
+d_bin |> drop_zero(iv)
 
 identical(
-  d |> drop_zero(dv, iv) |> binom_contingency(dv),
-  d |> binom_contingency(dv) |> drop_zero(iv)
+  d_bern |> drop_zero(dv, iv) |> binom_contingency(dv),
+  d_bern |> binom_contingency(dv) |> drop_zero(iv)
 )
+
 
 d_ls <- map2(c(0.5, 0.4, 1, 1), c(0.1, 0, 0.6, 0), seq, length.out = 5) |>
     lapply(\(x) bernoulli_data(probs = x)) |>
