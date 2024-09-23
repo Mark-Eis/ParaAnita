@@ -150,11 +150,21 @@ good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
 #' @rdname good_levels
 #' @export
 
-good_levels.binom_contingency <- function(.data, .dep_var, .ind_var) {
-    .dep_var <- enquo(.dep_var)
+# good_levels.binom_contingency <- function(.data, .dep_var, .ind_var) {
+    # .dep_var <- enquo(.dep_var)
+    # .ind_var <- enquo(.ind_var)
+    # if (quo_is_missing(.dep_var))
+        # stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
+    # if (quo_is_missing(.ind_var))
+        # stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
+    # .data |>
+        # drop_zero_depvar() |>
+        # pull(!!.ind_var) |>
+        # levels()
+# }
+
+good_levels.binom_contingency <- function(.data, .ind_var) {
     .ind_var <- enquo(.ind_var)
-    if (quo_is_missing(.dep_var))
-        stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
     if (quo_is_missing(.ind_var))
         stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
     .data |>
@@ -200,6 +210,20 @@ drop_zero <- function(object, ...)
     UseMethod("drop_zero")
 
 # ========================================
+# Remove levels of independent variable having Bernouilli dependent variable values of either all zero or all one
+# for a data frame
+#  S3method drop_zero.data.frame()
+#
+#' @rdname good_levels
+#' @export
+
+drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
+    .ind_var <- enquo(.ind_var)
+    filter(object, !!.ind_var %in% good_levels(object, {{.dep_var}}, !!.ind_var)) |>
+    mutate(across(!!.ind_var, fct_drop))
+}
+
+# ========================================
 # Remove levels of independent variable having binomial dependent variable values of either all zero or all one
 # for a binomial contingency table
 #  S3method drop_zero.binom_contingency()
@@ -214,17 +238,3 @@ drop_zero <- function(object, ...)
 
 drop_zero.binom_contingency <- function(object, ...)
     object |> drop_zero_depvar()
-
-# ========================================
-# Remove levels of independent variable having Bernouilli dependent variable values of either all zero or all one
-# for a data frame
-#  S3method drop_zero.data.frame()
-#
-#' @rdname good_levels
-#' @export
-
-drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
-    .ind_var <- enquo(.ind_var)
-    filter(object, !!.ind_var %in% good_levels(object, {{.dep_var}}, !!.ind_var)) |>
-    mutate(across(!!.ind_var, fct_drop))
-}

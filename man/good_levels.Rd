@@ -40,7 +40,7 @@ a \code{factor}, or a \verb{character vector}.}
 }
 \value{
 \code{good_levels()} returns a character vector comprising the \code{levels} of \code{.ind_var} for which the
-corresponding values of \code{.dep_var} are neither all zero nor all one. \code{drop_zero()} return a data frame or a
+corresponding values of \code{.dep_var} are neither all zero nor all one. \code{drop_zero()} returns a data frame or a
 data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}, equivalent to data, including only rows with
 levels of \code{.ind_var} for which \code{.dep_var} values are neither all zero nor all one, or neither having all
 successes nor all failures respectively.
@@ -55,10 +55,6 @@ use \code{drop_zero()} S3 method for class \code{'data.frame'}.
 
 \code{drop_zero()} drops all data with \code{levels} of an independent variable for which a binomial dependent variable
 has either all successes or failures.
-
-\code{levels_data} returns the levels for all factors in data.
-
-\code{nlevels_data} returns the number of levels for all factors in data.
 }
 \details{
 For a Bernoulli trial dataset with a numeric dependent variable coded as \var{0} or \var{1}, \code{good_levels()}
