@@ -65,6 +65,7 @@
 #'
 #' ## S3 methods for class 'data.frame' 
 #' d_bern |> good_levels(dv, iv)
+#' d_bern |> drop_zero(dv, iv)
 #' d_bern |> drop_zero(dv, iv) |> levels_data()
 #'
 #' (d_bin <- d_bern |> binom_contingency(dv, iv))
@@ -73,8 +74,8 @@
 #' d_bin |> drop_zero(iv)
 #'
 #' identical(
-#'   d_bern |> drop_zero(dv, iv) |> binom_contingency(dv),
-#'   d_bern |> binom_contingency(dv) |> drop_zero(iv)
+#'   d_bern |> drop_zero(dv, iv) |> binom_contingency(dv, iv),
+#'   d_bin |> drop_zero(iv)
 #' )
 #'
 # #' d |> drop_null(dv, iv) |> levels_data()
@@ -95,22 +96,7 @@
 #'   d_ls |> lapply(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
 #' )
 #'
-#' rm(d, d_ls)
-#'
-#' ## Using gss_cat dataset from {forcats} package
-#' \dontshow{
-#'    if (!requireNamespace("forcats", quietly = TRUE)) 
-#'        warning("package 'forcats' must be installed")
-#'    try(gss_cat <- forcats::gss_cat)
-#' }
-#'
-#' gss_cat |> names()
-#' gss_cat |> levels_data()
-#' gss_cat |> nlevels_data()
-#'
-#' \dontshow{
-#'     rm(gss_cat)
-#' }
+#' rm(d_bern, d_bin, d_ls)
 
 # ========================================
 # Levels of independent variable having binomial dependent variable values of either all zero or all one
@@ -130,13 +116,16 @@ good_levels <- function(object, ...)
 #' @rdname good_levels
 #' @export
 
-good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
+good_levels.data.frame <- function(.data, .dep_var, .ind_var, ...) {
+
+    check_dots_empty()
     .dep_var <- enquo(.dep_var)
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.dep_var))
         stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
     if (quo_is_missing(.ind_var))
         stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
+
     .data |>
         binom_contingency(!!.dep_var, !!.ind_var, .drop_zero = TRUE) |>
         pull(!!.ind_var) |>
@@ -151,10 +140,13 @@ good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
 #' @rdname good_levels
 #' @export
 
-good_levels.binom_contingency <- function(.data, .ind_var) {
+good_levels.binom_contingency <- function(.data, .ind_var, ...) {
+
+    check_dots_empty()
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.ind_var))
         stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
+
     .data |>
         drop_zero_depvar() |>
         pull(!!.ind_var) |>
@@ -180,7 +172,10 @@ drop_zero <- function(object, ...)
 #' @export
 
 drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
+
+    check_dots_empty()
     .ind_var <- enquo(.ind_var)
+
     filter(object, !!.ind_var %in% good_levels(object, {{.dep_var}}, !!.ind_var)) |>
     mutate(across(!!.ind_var, fct_drop))
 }
@@ -198,8 +193,11 @@ drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
         # filter(as.logical(.data$pn), as.logical(.data$qn)) |>
         # mutate(across(where(is.factor), fct_drop))
 
-drop_zero.binom_contingency <- function(object, ...)
+drop_zero.binom_contingency <- function(object, ...) {
+
+    check_dots_empty()
     object |> drop_zero_depvar()
+}
 
 # ========================================
 # Remove Levels Of Independent Variable Having Bernoulli Dependent Variable Values Of Either All Zero Or All One

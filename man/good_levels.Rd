@@ -12,9 +12,9 @@
 \usage{
 good_levels(object, ...)
 
-\method{good_levels}{data.frame}(.data, .dep_var, .ind_var)
+\method{good_levels}{data.frame}(.data, .dep_var, .ind_var, ...)
 
-\method{good_levels}{binom_contingency}(.data, .ind_var)
+\method{good_levels}{binom_contingency}(.data, .ind_var, ...)
 
 drop_zero(object, ...)
 
@@ -76,6 +76,7 @@ d_bern |> levels_data()
 
 ## S3 methods for class 'data.frame' 
 d_bern |> good_levels(dv, iv)
+d_bern |> drop_zero(dv, iv)
 d_bern |> drop_zero(dv, iv) |> levels_data()
 
 (d_bin <- d_bern |> binom_contingency(dv, iv))
@@ -84,8 +85,8 @@ d_bin |> good_levels(iv)
 d_bin |> drop_zero(iv)
 
 identical(
-  d_bern |> drop_zero(dv, iv) |> binom_contingency(dv),
-  d_bern |> binom_contingency(dv) |> drop_zero(iv)
+  d_bern |> drop_zero(dv, iv) |> binom_contingency(dv, iv),
+  d_bin |> drop_zero(iv)
 )
 
 
@@ -104,22 +105,7 @@ identical(
   d_ls |> lapply(\(d) d |> binom_contingency(dv) |> drop_zero(iv))
 )
 
-rm(d, d_ls)
-
-## Using gss_cat dataset from {forcats} package
-\dontshow{
-   if (!requireNamespace("forcats", quietly = TRUE)) 
-       warning("package 'forcats' must be installed")
-   try(gss_cat <- forcats::gss_cat)
-}
-
-gss_cat |> names()
-gss_cat |> levels_data()
-gss_cat |> nlevels_data()
-
-\dontshow{
-    rm(gss_cat)
-}
+rm(d_bern, d_bin, d_ls)
 }
 \seealso{
 \code{\link{binom_contingency}} and \code{\link[base:levels]{levels}}.
