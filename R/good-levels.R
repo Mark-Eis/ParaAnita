@@ -150,19 +150,6 @@ good_levels.data.frame <- function(.data, .dep_var, .ind_var) {
 #' @rdname good_levels
 #' @export
 
-# good_levels.binom_contingency <- function(.data, .dep_var, .ind_var) {
-    # .dep_var <- enquo(.dep_var)
-    # .ind_var <- enquo(.ind_var)
-    # if (quo_is_missing(.dep_var))
-        # stop("`.dep_var` is absent but must be supplied.", call. = FALSE)
-    # if (quo_is_missing(.ind_var))
-        # stop("`.ind_var` is absent but must be supplied.", call. = FALSE)
-    # .data |>
-        # drop_zero_depvar() |>
-        # pull(!!.ind_var) |>
-        # levels()
-# }
-
 good_levels.binom_contingency <- function(.data, .ind_var) {
     .ind_var <- enquo(.ind_var)
     if (quo_is_missing(.ind_var))
@@ -171,19 +158,6 @@ good_levels.binom_contingency <- function(.data, .ind_var) {
         drop_zero_depvar() |>
         pull(!!.ind_var) |>
         levels()
-}
-
-# ========================================
-# Remove Levels Of Independent Variable Having Bernoulli Dependent Variable Values Of Either All Zero Or All One
-#' @rdname good_levels
-#' @export
-
-drop_null <- function(.data, .dep_var, .ind_var) {
-    .ind_var <- enquo(.ind_var)
-    .data |> (\(.x)    # anon func here because otherwise filter() passes .data pronoun to good_levels()
-        filter(.x, !!.ind_var %in% good_levels(.x, {{.dep_var}}, !!.ind_var)) |>
-        mutate(across(!!.ind_var, fct_drop))
-    )()
 }
 
 # ========================================
@@ -225,3 +199,17 @@ drop_zero.data.frame <- function(object, .dep_var, .ind_var, ...) {
 
 drop_zero.binom_contingency <- function(object, ...)
     object |> drop_zero_depvar()
+
+# ========================================
+# Remove Levels Of Independent Variable Having Bernoulli Dependent Variable Values Of Either All Zero Or All One
+# drop_null() - Deprecated
+#' @rdname good_levels
+#' @export
+
+drop_null <- function(.data, .dep_var, .ind_var) {
+    .ind_var <- enquo(.ind_var)
+    .data |> (\(.x)    # anon func here because otherwise filter() passes .data pronoun to good_levels()
+        filter(.x, !!.ind_var %in% good_levels(.x, {{.dep_var}}, !!.ind_var)) |>
+        mutate(across(!!.ind_var, fct_drop))
+    )()
+}
