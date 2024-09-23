@@ -186,19 +186,6 @@ drop_null <- function(.data, .dep_var, .ind_var) {
     )()
 }
 
-# # ========================================
-# # Remove levels of independent variable having binomial dependent variable values of either all zero or all one
-# #' @rdname good_levels
-# #' @export
-
-# drop_zero <- function(.data, .ind_var, .dep_var = cbind(.data$pn, .data$qn)) {
-    # .dep_var <- enquo(.dep_var)
-    # .data |>
-        # filter(as.logical((!!.dep_var)[, 1]), as.logical((!!.dep_var)[, 2])) |>
-        # mutate(across({{.ind_var}}, fct_drop))
-# }
-
-
 # ========================================
 # Remove levels of independent variable having binomial dependent variable values of either all zero or all one
 #  S3method drop_zero()
