@@ -1,8 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-07-20T17:03Z
+last_built: 2024-09-23T21:22Z
 urls:
   reference: https://mark-eis.github.io/ParaAnita/reference
   article: https://mark-eis.github.io/ParaAnita/articles
