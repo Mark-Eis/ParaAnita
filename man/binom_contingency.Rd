@@ -75,9 +75,9 @@ A \link[base:list]{list} of \link[rlang:topic-defuse]{defused R expressions}, as
 \link[rlang:splice-operator]{splice-operator}, \verb{!!!}, see examples.
 
 Use \code{.drop_zero = TRUE} to drop \code{\link[base:levels]{levels}} of explanatory factors for which values of
-\code{.dep_var} are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
-numerically 0 or 1 occurred’ when fitting generalized linear models using \code{\link[stats:glm]{glm()}} or calculating
-odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
+\code{.dep_var} are either all zero or all one, to prevent warning messages that ‘fitted probabilities numerically
+0 or 1 occurred’ when fitting generalized linear models using \code{\link[stats:glm]{glm()}} or calculating odds ratios
+using \code{\link[=odds_ratio]{odds_ratio()}}; see examples and Venables & Ripley (2002, pp. 197–8).
 
 \code{as_binom_contingency()} attempts to coerce an object to \code{\link[base:class]{class}} \code{"binom_contingency"}. If
 \code{.pn} or \code{.qn} arguments are not provided, these will be assumed to be columns \code{"pn"} and \code{"qn"} respectively.

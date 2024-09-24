@@ -34,10 +34,10 @@
 #' `drop_null()` is deprecated, please use `drop_zero()`.
 #'
 #' @note
-#' Dropping [`levels`] of explanatory factors for which values of `.dep_var` are either all zero or all one, to
-#' prevent a warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting generalized
-#' linear models using [`glm()`][stats::glm] or calculating odds ratios using [`odds_ratio()`][odds_ratio]; see 
-#' examples and Venables & Ripley (2002, pp. 197–8).
+#' Dropping [`levels`] of explanatory factors for which values of a Bernoulli dependent variable are either all zero
+#' or all one, prevents warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting
+#' generalized linear models using [`glm()`][stats::glm] or calculating odds ratios using [`odds_ratio()`][odds_ratio]; 
+#' see [`binom_contingency()`][binom_contingency].
 #'
 #' @seealso [`binom_contingency`][binom_contingency] and [`levels`][base::levels].
 #' @family levels_data

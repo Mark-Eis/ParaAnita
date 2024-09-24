@@ -69,10 +69,10 @@ equivalent to the original having been created using \code{\link[=binom_continge
 \code{drop_null()} is deprecated, please use \code{drop_zero()}.
 }
 \note{
-Dropping \code{\link{levels}} of explanatory factors for which values of \code{.dep_var} are either all zero or all one, to
-prevent a warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting generalized
-linear models using \code{\link[stats:glm]{glm()}} or calculating odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see
-examples and Venables & Ripley (2002, pp. 197–8).
+Dropping \code{\link{levels}} of explanatory factors for which values of a Bernoulli dependent variable are either all zero
+or all one, prevents warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting
+generalized linear models using \code{\link[stats:glm]{glm()}} or calculating odds ratios using \code{\link[=odds_ratio]{odds_ratio()}};
+see \code{\link[=binom_contingency]{binom_contingency()}}.
 }
 \examples{
 (d_bern <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 )))

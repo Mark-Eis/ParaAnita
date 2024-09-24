@@ -263,9 +263,9 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #' [splice-operator][rlang::splice-operator], `!!!`, see examples.
 #'
 #' Use `.drop_zero = TRUE` to drop [`levels`][base::levels] of explanatory factors for which values of
-#' `.dep_var` are either all zero or all one, to prevent a warning messages that ‘fitted probabilities
-#' numerically 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating
-#' odds ratios using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
+#' `.dep_var` are either all zero or all one, to prevent warning messages that ‘fitted probabilities numerically
+#' 0 or 1 occurred’ when fitting generalized linear models using [`glm()`][stats::glm] or calculating odds ratios
+#' using [`odds_ratio()`][odds_ratio]; see examples and Venables & Ripley (2002, pp. 197–8).
 #'
 #' `as_binom_contingency()` attempts to coerce an object to [`class`][base::class] `"binom_contingency"`. If
 #' `.pn` or `.qn` arguments are not provided, these will be assumed to be columns `"pn"` and `"qn"` respectively.
