@@ -291,8 +291,8 @@ new_xcontingency_table <- function(x = data.frame(NULL), ...) {
 #'   \href{https://stats.stackexchange.com/questions/5206/yates-continuity-correction-in-confidence-interval-returned-by-prop-test}{
 #'   Stack Exchange}.
 #'
-#' @seealso [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio], [`prop.test()`][stats::prop.test] and
-#'   [`tibble`][tibble::tibble-package]; [`Print_Methods`][Print_Methods] for S3 method for printing objects of class
+#' @seealso [`drop_zero()`][drop_zero], [`glm()`][stats::glm], [`odds_ratio()`][odds_ratio] and
+#'   [`prop.test()`][stats::prop.test]; [`Print_Methods`][Print_Methods] for S3 method for printing objects of class
 #'   `"binom_contingency"`.
 #'
 #' @family contingency_table

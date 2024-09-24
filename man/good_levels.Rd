@@ -8,7 +8,7 @@
 \alias{drop_zero.data.frame}
 \alias{drop_zero.binom_contingency}
 \alias{drop_null}
-\title{Levels of Independent Variable where Dependent Variable Neither All Success Nor All Failure}
+\title{Levels of Independent Variable where a Bernoulli Dependent Variable is Neither All Success Nor All Failure}
 \usage{
 good_levels(object, ...)
 
@@ -40,11 +40,11 @@ a \code{factor}, or a \verb{character vector}.}
 \item{\code{good_levels()}}{returns a \verb{character vector} comprising \code{levels} of \code{.ind_var} for which the corresponding
 values of \code{.dep_var} are neither all one (success) nor all zero (failure)}
 
-\item{\code{drop_zero()}}{returns an object of the same class as that provided by argument \code{object}: either
-a data frame (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}) comprising only rows with levels
-of the independent variable for which values of the Bernoulli dependent variable are neither all zero nor all one;
-or a \code{\link[=binom_contingency]{"binom_contingency"}} object excluding any rows for which values of the Bernoulli dependent
-variable are either all one (success) or all zero (failure).}
+\item{\code{drop_zero()}}{returns an object of the same \code{\link[base:class]{class}} as that provided by argument \code{object}:
+either a data frame (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}) comprising only rows
+with levels of the independent variable for which values of the Bernoulli dependent variable are neither all
+zero nor all one; or a \code{\link[=binom_contingency]{"binom_contingency"}} object excluding any rows for which values of
+the Bernoulli dependent variable are either all one (success) or all zero (failure).}
 }
 \description{
 \code{good_levels()} identifies \code{levels} of an independent variable for which values of a Bernoulli dependent
@@ -62,10 +62,17 @@ For a similar Bernoulli trial dataset, the generic function \code{drop_zero()} d
 with \code{levels} of the independent variable identified by \code{good_levels()}. Unused factor levels are dropped from the
 independent variable and from any other factors in the data.
 
-The \code{drop_zero()} S3 method for objects of class \code{"binom_contingency"} returns a binomial contingency table equivalent
-to the original having been created using \code{\link[=binom_contingency]{binom_contingency()}} with argument \code{.drop_zero = TRUE}.
+The \code{drop_zero()} S3 method for objects of class \code{"binom_contingency"} returns a binomial contingency table
+equivalent to the original having been created using \code{\link[=binom_contingency]{binom_contingency()}} with argument
+\code{.drop_zero = TRUE}.
 
-\code{drop_null()} is deprecated, please use the \code{drop_zero()}.
+\code{drop_null()} is deprecated, please use \code{drop_zero()}.
+}
+\note{
+Dropping \code{\link{levels}} of explanatory factors for which values of \code{.dep_var} are either all zero or all one, to
+prevent a warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting generalized
+linear models using \code{\link[stats:glm]{glm()}} or calculating odds ratios using \code{\link[=odds_ratio]{odds_ratio()}}; see
+examples and Venables & Ripley (2002, pp. 197–8).
 }
 \examples{
 (d_bern <- bernoulli_data(probs = c(0.8, 0.4, 0, 0.3, 0.6 )))
@@ -77,15 +84,20 @@ d_bern |> drop_zero(dv, iv)
 d_bern |> drop_zero(dv, iv) |> levels_data()
 
 (d_bin <- d_bern |> binom_contingency(dv, iv))
-## S3 method for class 'binom_contingency' 
+
+## S3 methods for class 'binom_contingency' 
 d_bin |> good_levels(iv)
 d_bin |> drop_zero()
 
+## Results identical whether drop_zero() used
+## before or after binom_contingency()
 identical(
   d_bern |> drop_zero(dv, iv) |> binom_contingency(dv, iv),
   d_bin |> drop_zero()
 )
 
+## Results identical whether drop_zero() used
+## during or after binom_contingency()
 identical(
   d_bern |> binom_contingency(dv, iv, .drop_zero = TRUE),
   d_bin |> drop_zero()
