@@ -13,7 +13,7 @@ variable are either all one (success) or all zero (failure)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.00019</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2.00000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,10 +120,10 @@ equivalent to the original having been created using <code><a href="binom_contin
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Dropping <code><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></code> of explanatory factors for which values of <code>.dep_var</code> are either all zero or all one, to
-prevent a warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting generalized
-linear models using <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> or calculating odds ratios using <code><a href="odds_ratio.html">odds_ratio()</a></code>; see
-examples and Venables &amp; Ripley (2002, pp. 197–8).</p>
+    <p>Dropping <code><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></code> of explanatory factors for which values of a Bernoulli dependent variable are either all zero
+or all one, prevents warning messages that ‘fitted probabilities numerically 0 or 1 occurred’ when fitting
+generalized linear models using <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code> or calculating odds ratios using <code><a href="odds_ratio.html">odds_ratio()</a></code>;
+see <code><a href="binom_contingency.html">binom_contingency()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
