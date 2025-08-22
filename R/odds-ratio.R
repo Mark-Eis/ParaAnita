@@ -203,7 +203,7 @@ odds_ratio <- function(object, ...)
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .print_call = FALSE, .stat = FALSE,
+odds_ratio.binom_contingency <- function(object, .ind_var, ..., .level = 0.95, .print_call = FALSE, .stat = FALSE,
     .print_contr = FALSE) {
 
     check_dots_empty()
@@ -218,7 +218,7 @@ odds_ratio.binom_contingency <- function(object, ..., .ind_var, .level = 0.95, .
 #' @rdname odds_ratio
 #' @export
 
-odds_ratio.data.frame <- function(object, ..., .dep_var, .ind_var, .level = 0.95, .print_call = FALSE,
+odds_ratio.data.frame <- function(object, .dep_var, .ind_var, ..., .level = 0.95, .print_call = FALSE,
     .stat = FALSE, .print_contr = FALSE) {
 
     check_dots_empty()
