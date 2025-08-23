@@ -61,14 +61,14 @@
 #' @param .print_contr `logical`. If `TRUE`, and `.ind_var` has a contrast attribute set, the contrast
 #'   matrix will be printed; default `FALSE`.
 #'
-#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the `numeric` response variable in
-#'   the data, either a vector with values of `1` and `0`, representing the number of successes and failures
-#'   respectively, or as a two-column matrix with the columns giving the numbers of successes and failures see
-#'   [`glm()`][stats::glm].
+#' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the response variable
+#'   in the data, either a `numeric vector` with values of `1` and `0`, representing success or
+#'   failure respectively, or as a two-column matrix with the columns giving the numbers of
+#'   successes and failures see [`glm()`][stats::glm].
 #'
-#' @param .family a description of the error distribution and link function to be used in the model. This can be a
-#'   character string naming a family function, a family function or the result of a call to a family function.
-#'   (See [`family`][stats::family] for details of family functions.)
+#' @param .family a description of the error distribution and link function to be used in the model.
+#'   This can be a character string naming a family function, a family function or the result of a
+#'   call to a family function. (See [`family`][stats::family] for details of family functions.)
 #'
 #' @param x an object of class `"odds_ratio"`.
 #'
