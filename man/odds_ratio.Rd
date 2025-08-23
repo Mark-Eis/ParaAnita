@@ -13,8 +13,8 @@ odds_ratio(object, ...)
 
 \method{odds_ratio}{binom_contingency}(
   object,
-  ...,
   .ind_var,
+  ...,
   .level = 0.95,
   .print_call = FALSE,
   .stat = FALSE,
@@ -23,9 +23,9 @@ odds_ratio(object, ...)
 
 \method{odds_ratio}{data.frame}(
   object,
-  ...,
   .dep_var,
   .ind_var,
+  ...,
   .level = 0.95,
   .print_call = FALSE,
   .stat = FALSE,
