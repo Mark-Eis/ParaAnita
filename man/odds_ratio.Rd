@@ -74,14 +74,14 @@ default \code{FALSE}.}
 \item{.print_contr}{\code{logical}. If \code{TRUE}, and \code{.ind_var} has a contrast attribute set, the contrast
 matrix will be printed; default \code{FALSE}.}
 
-\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the \code{numeric} response variable in
-the data, either a vector with values of \code{1} and \code{0}, representing the number of successes and failures
-respectively, or as a two-column matrix with the columns giving the numbers of successes and failures see
-\code{\link[stats:glm]{glm()}}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the response variable
+in the data, either a \verb{numeric vector} with values of \code{1} and \code{0}, representing success or
+failure respectively, or as a two-column matrix with the columns giving the numbers of
+successes and failures see \code{\link[stats:glm]{glm()}}.}
 
-\item{.family}{a description of the error distribution and link function to be used in the model. This can be a
-character string naming a family function, a family function or the result of a call to a family function.
-(See \code{\link[stats:family]{family}} for details of family functions.)}
+\item{.family}{a description of the error distribution and link function to be used in the model.
+This can be a character string naming a family function, a family function or the result of a
+call to a family function. (See \code{\link[stats:family]{family}} for details of family functions.)}
 
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 

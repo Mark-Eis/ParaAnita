@@ -62,8 +62,8 @@
 #'   matrix will be printed; default `FALSE`.
 #'
 #' @param .dep_var <[`data-masking`][rlang::args_data_masking]> quoted name of the response variable
-#'   in the data, either a `numeric vector` with values of `1` and `0`, representing success or
-#'   failure respectively, or as a two-column matrix with the columns giving the numbers of
+#'   in the data, either as a `numeric vector` with values of `1` and `0`, representing success or
+#'   failure respectively, or as a two-column `matrix` with the columns giving the numbers of
 #'   successes and failures see [`glm()`][stats::glm].
 #'
 #' @param .family a description of the error distribution and link function to be used in the model.
