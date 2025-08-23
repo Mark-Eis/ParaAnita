@@ -12,8 +12,8 @@ glm_plotdata(object, ...)
 
 \method{glm_plotdata}{binom_contingency}(
   object,
-  ...,
   .ind_var,
+  ...,
   .ungroup = NULL,
   conf_level = 0.95,
   type = c("link", "response")
@@ -21,9 +21,9 @@ glm_plotdata(object, ...)
 
 \method{glm_plotdata}{data.frame}(
   object,
-  ...,
   .dep_var,
   .ind_var,
+  ...,
   .ungroup = NULL,
   conf_level = 0.95,
   type = c("link", "response")
@@ -46,9 +46,10 @@ glm_plotdata(object, ...)
 a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), a
 \code{\link[stats:formula]{formula}} or a \code{\link[stats:glm]{glm}}.}
 
-\item{\dots}{further arguments passed to or from other methods. Not currently used.}
+\item{...}{further arguments passed to or from other methods.}
 
-\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the independent variable.}
+\item{.ind_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of an independent variable, which may be
+either a character vector or factor.}
 
 \item{.ungroup}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the column containing the ungrouped
 levels of \code{.ind_var}, see details; default \code{NULL}.}
@@ -59,8 +60,10 @@ standard error.}
 \item{type}{the type of prediction required. The default is on the scale of the linear predictors;
 the alternative \code{"response"} is on the scale of the response variable; default \code{"link"}.}
 
-\item{.dep_var}{quoted name of the response variable in the data representing the number of successes and
-failures respectively, see \emph{Details}; default \code{cbind(pn, qn)}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the \code{numeric} response variable in
+the data, either a vector with values of \code{1} and \code{0}, representing the number of successes and failures
+respectively, or as a two-column matrix with the columns giving the numbers of successes and failures see
+\code{\link[stats:glm]{glm()}}.}
 
 \item{.family}{a description of the error distribution and link function to be used in the model. This can be a
 character string naming a family function, a family function or the result of a call to a family function.

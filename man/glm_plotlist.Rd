@@ -17,8 +17,10 @@ glm_plotlist(
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{.dep_var}{quoted name of the response variable in the data representing the number of successes and
-failures respectively, see \emph{Details}; default \code{cbind(pn, qn)}.}
+\item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the \code{numeric} response variable in
+the data, either a vector with values of \code{1} and \code{0}, representing the number of successes and failures
+respectively, or as a two-column matrix with the columns giving the numbers of successes and failures see
+\code{\link[stats:glm]{glm()}}.}
 
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> independent variables to be included in the plot data.}
 
