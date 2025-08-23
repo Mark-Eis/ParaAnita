@@ -18,8 +18,8 @@ glm_plotlist(
 \item{data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the response variable
-in the data, either a \verb{numeric vector} with values of \code{1} and \code{0}, representing success or
-failure respectively, or as a two-column matrix with the columns giving the numbers of
+in the data, either as a \verb{numeric vector} with values of \code{1} and \code{0}, representing success or
+failure respectively, or as a two-column \code{matrix} with the columns giving the numbers of
 successes and failures see \code{\link[stats:glm]{glm()}}.}
 
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> independent variables to be included in the plot data.}

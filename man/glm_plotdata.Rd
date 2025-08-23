@@ -61,8 +61,8 @@ standard error.}
 the alternative \code{"response"} is on the scale of the response variable; default \code{"link"}.}
 
 \item{.dep_var}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the response variable
-in the data, either a \verb{numeric vector} with values of \code{1} and \code{0}, representing success or
-failure respectively, or as a two-column matrix with the columns giving the numbers of
+in the data, either as a \verb{numeric vector} with values of \code{1} and \code{0}, representing success or
+failure respectively, or as a two-column \code{matrix} with the columns giving the numbers of
 successes and failures see \code{\link[stats:glm]{glm()}}.}
 
 \item{.family}{a description of the error distribution and link function to be used in the model.
