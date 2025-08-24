@@ -1,5 +1,5 @@
 # ParaAnita R Package
-# Mark Eisler May 2024
+# Mark Eisler Aug 2025
 # For Anita Rabaza
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -102,26 +102,26 @@
 #' ## Invoking the S3 method for class "data.frame" and using the default
 #' ## contrasts from options("contrasts")
 #' ## — contrasts not printed 
-#' d |> odds_ratio(.dep_var = dv, .ind_var = iv)
+#' d |> odds_ratio(dv, iv)
 #'
 #' ## Using the default contrasts from options("contrasts")
 #' ## — adjust confidence level, contrasts are printed 
-#' d |> odds_ratio(.dep_var = dv, .ind_var = iv, .level = 0.99, .print_contr = TRUE)
+#' d |> odds_ratio(dv, iv, .level = 0.99, .print_contr = TRUE)
 #'
 #' ## Specifying treatment contrasts, with last level as base
 #' ## — contrasts not printed
 #' d |> set_contrasts(iv, base =  99L, contr = contr.treatment) |>
-#'     odds_ratio(.dep_var = dv, .ind_var = iv)
+#'     odds_ratio(dv, iv)
 #'
 #' ## Specifying treatment contrasts, with last level as base
 #' ## — contrasts printed
 #' d |> set_contrasts(iv, base =  99L, contr = contr.treatment) |>
-#'     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
+#'     odds_ratio(dv, iv, .print_contr = TRUE)
 #'
 #' ## Helmert contrasts specified
 #' ## — contrasts printed
 #' d |> set_contrasts(iv, contr = contr.helmert) |>
-#'     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
+#'     odds_ratio(dv, iv, .print_contr = TRUE)
 #'
 #' # Set default unordered contrasts in options("contrasts") to Helmert
 #' options("contrasts" =  c(unordered = "contr.helmert", ordered = "contr.poly"))
@@ -129,19 +129,19 @@
 #'
 #' ## Using the default, unordered Helmert contrasts
 #' ## — contrasts printed
-#' d |> odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
+#' d |> odds_ratio(dv, iv, .print_contr = TRUE)
 #'
 #' ## Specify treatment contrasts
 #' ## — contrasts printed
 #' d |> set_contrasts(iv, contr = contr.treatment) |>
-#'     odds_ratio(.dep_var = dv, .ind_var = iv, .print_contr = TRUE)
+#'     odds_ratio(dv, iv, .print_contr = TRUE)
 #'
 #' ## Restore default contrasts in options("contrasts")
 #' options("contrasts" =  c(unordered = "contr.treatment", ordered = "contr.poly"))
 #' options("contrasts")
 #'
 #' ## Invoking the S3 method for class "binom_contingency" 
-#' d |> binom_contingency(dv, iv) |> odds_ratio(.ind_var = iv)
+#' d |> binom_contingency(dv, iv) |> odds_ratio(iv)
 #' 
 #' ## Create multivariable glm object and specify treatment contrasts
 #' (d <- list(
@@ -171,7 +171,7 @@
 #' glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
 #'     odds_ratio()
 #'
-#' d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
+#' d |> odds_ratio(cbind(pn, qn), iv)
 #'
 #' ## Helmert contrasts given more easily readable names
 #' d |> set_contrasts(iv) <- contr.helmert
@@ -184,11 +184,11 @@
 #' glm(cbind(pn, qn) ~ iv, family = binomial, data = d) |>
 #'     odds_ratio()
 #'
-#' d |> odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv)
+#' d |> odds_ratio(cbind(pn, qn), iv)
 #'
 #' ## Printing lengthier output with print_all()
 #' binom_data(26, 100) |>
-#'     odds_ratio(.dep_var = cbind(pn, qn), .ind_var = iv, .print_contr = TRUE) |>
+#'     odds_ratio(cbind(pn, qn), iv, .print_contr = TRUE) |>
 #'     print_all()
 #'
 #' rm(d, glm1)
