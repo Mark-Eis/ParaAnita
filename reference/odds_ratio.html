@@ -236,7 +236,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="co">## Invoking the S3 method for class "data.frame" and using the default</span></span></span>
 <span class="r-in"><span><span class="co">## contrasts from options("contrasts")</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts not printed </span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -252,7 +252,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Using the default contrasts from options("contrasts")</span></span></span>
 <span class="r-in"><span><span class="co">## — adjust confidence level, contrasts are printed </span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .level <span class="op">=</span> <span class="fl">0.99</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .level <span class="op">=</span> <span class="fl">0.99</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -275,7 +275,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="co">## Specifying treatment contrasts, with last level as base</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts not printed</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_contrasts.html">set_contrasts</a></span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span>  <span class="fl">99L</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -292,7 +292,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="co">## Specifying treatment contrasts, with last level as base</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts printed</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_contrasts.html">set_contrasts</a></span><span class="op">(</span><span class="va">iv</span>, base <span class="op">=</span>  <span class="fl">99L</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -320,7 +320,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="co">## Helmert contrasts specified</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts printed</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_contrasts.html">set_contrasts</a></span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.helmert</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -353,7 +353,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Using the default, unordered Helmert contrasts</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts printed</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -376,7 +376,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="co">## Specify treatment contrasts</span></span></span>
 <span class="r-in"><span><span class="co">## — contrasts printed</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="get_contrasts.html">set_contrasts</a></span><span class="op">(</span><span class="va">iv</span>, contr <span class="op">=</span> <span class="va">contr.treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="va">dv</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -410,7 +410,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Invoking the S3 method for class "binom_contingency" </span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="binom_contingency.html">binom_contingency</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">iv</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -528,7 +528,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span><span class="va">glm1</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.print_call <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cbind(pn, qn) ~ iv2 + iv3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55d1a0aaba80&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x561ce40a3c38&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Compare S3 method for class "glm" to that for "data.frame"</span></span></span>
 <span class="r-in"><span><span class="co">## — only possible for univariable analyses</span></span></span>
@@ -563,7 +563,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ivd          -<span style="color: #BB0000;">1.01</span>   0.391 0.009<span style="text-decoration: underline;">98</span>       0.365      0.166       0.775 **   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ive          -<span style="color: #BB0000;">1.54</span>   0.437 0.000<span style="text-decoration: underline;">419</span>      0.214      0.086<span style="text-decoration: underline;">9</span>      0.489 ***  </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -609,7 +609,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> iv: a:c v d  -<span style="color: #BB0000;">0.190</span>  0.084<span style="text-decoration: underline;">0</span> 0.023<span style="text-decoration: underline;">6</span>       0.827       0.696      0.969 *    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> iv: a:d v e  -<span style="color: #BB0000;">0.221</span>  0.076<span style="text-decoration: underline;">7</span> 0.003<span style="text-decoration: underline;">96</span>      0.802       0.682      0.924 **   </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu">odds_ratio</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, <span class="va">iv</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimates and Odds Ratios: -</span>
@@ -625,7 +625,7 @@ value of <var>0.95</var> is used.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Printing lengthier output with print_all()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Simulate_Data.html">binom_data</a></span><span class="op">(</span><span class="fl">26</span>, <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span>.dep_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, .ind_var <span class="op">=</span> <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu">odds_ratio</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pn</span>, <span class="va">qn</span><span class="op">)</span>, <span class="va">iv</span>, .print_contr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="print_all.html">print_all</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting for profiling to be done...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ____________________________</span>
