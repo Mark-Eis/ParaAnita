@@ -40,6 +40,7 @@ Imports:
     dplyr,
     forcats,
     ggplot2,
+    lifecycle,
     methods,
     purrr,
     rlang,

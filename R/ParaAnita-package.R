@@ -45,6 +45,7 @@
 #' @importFrom ggplot2 theme_get
 #' @importFrom ggplot2 theme_set
 #' @importFrom ggplot2 theme_update
+#' @importFrom lifecycle deprecated
 #' @importFrom methods is
 #' @importFrom purrr imap
 #' @importFrom purrr iwalk
