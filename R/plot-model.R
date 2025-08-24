@@ -106,19 +106,19 @@
 #' ## Ungrouped data, 95% Confidence interval (default)
 #'
 #' ## On linear predictor scale (default)
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv)
+#' d |> glm_plotdata(cbind(pn, qn), iv)
 #'
 #' ## On response scale
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, type = "response")
+#' d |> glm_plotdata(cbind(pn, qn), iv, type = "response")
 #'
 #' ## ________________________________
 #' ## Ungrouped data, standard error
 #'
 #' ## On linear predictor scale (default)
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA)
+#' d |> glm_plotdata(cbind(pn, qn), iv, conf_level = NA)
 #'
 #' ## On response scale
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv, conf_level = NA, type = "response")
+#' d |> glm_plotdata(cbind(pn, qn), iv, conf_level = NA, type = "response")
 #'
 #' (d <- list(iv2 = list(ab = c("a", "b"), cd = c("c", "d"))) |>
 #'     add_grps(d, iv, .key = _))
@@ -127,20 +127,20 @@
 #' ## Grouped data, 95% Confidence interval (default)
 #'
 #' ## On linear predictor scale (default)
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv)
+#' d |> glm_plotdata(cbind(pn, qn), iv2, .ungroup = iv)
 #'
 #' ## On response scale
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response")
+#' d |> glm_plotdata(cbind(pn, qn), iv2, .ungroup = iv, type = "response")
 #'
 #' ## ______________________________
 #' ## Grouped data, standard error
 #'
 #' ## On linear predictor scale (default)
-#' d |> glm_plotdata(.dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, conf_level = NA)
+#' d |> glm_plotdata(cbind(pn, qn), iv2, .ungroup = iv, conf_level = NA)
 #'
 #' ## On response scale
 #' d |> glm_plotdata(
-#'         .dep_var = cbind(pn, qn), .ind_var = iv2,
+#'         cbind(pn, qn), iv2,
 #'         .ungroup = iv, conf_level = NA, type = "response"
 #'      )
 #'
@@ -537,7 +537,7 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #'     add_grps(binom_data(), iv, .key = _))
 #'
 #' ## Ungrouped GLM plot data on linear predictor scale
-#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv))
+#' (dp <- glm_plotdata(d, cbind(pn, qn), iv))
 #'
 #' ## Plot model predictions and CI error bars
 #' dp |> ggplot()
@@ -546,13 +546,13 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' dp |> ggplot(rev_y = TRUE)
 #'
 #' ## Grouped GLM plot data on linear predictor scale
-#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv))
+#' (dp <- glm_plotdata(d, cbind(pn, qn), iv2, .ungroup = iv))
 #'
 #' ## Plot model predictions and CI error bars with reversed y-axis
 #' dp |> ggplot(rev_y = TRUE)
 #'
 #' ## Ungrouped GLM plot data on reponse scale
-#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv, type = "response"))
+#' (dp <- glm_plotdata(d, cbind(pn, qn), iv, type = "response"))
 #'
 #' ## Plot model predictions and CI error bars
 #' dp |> ggplot()
@@ -561,14 +561,14 @@ var_labs <- ggplot2::as_labeller(stringr::str_to_title)
 #' dp |> ggplot(as_percent = TRUE)
 #'
 #' ## Grouped GLM plot data on reponse scale
-#' (dp <- glm_plotdata(d, .dep_var = cbind(pn, qn), .ind_var = iv2, .ungroup = iv, type = "response"))
+#' (dp <- glm_plotdata(d, cbind(pn, qn), iv2, .ungroup = iv, type = "response"))
 #'
 #' ## Plot model predictions and CI error bars
 #' dp |> ggplot(as_percent = TRUE)
 #'
 #' ## Grouped GLM plot data on reponse scale with standard errors 
 #' (dp <- glm_plotdata(
-#'                     d, .dep_var = cbind(pn, qn), .ind_var = iv2,
+#'                     d, cbind(pn, qn), iv2,
 #'                     .ungroup = iv, conf_level = NA, type = "response"
 #'                    ))
 #'
