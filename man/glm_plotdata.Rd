@@ -42,7 +42,7 @@ glm_plotdata(object, ...)
 \method{glm_plotdata}{glm}(object, ..., conf_level = 0.95, type = c("link", "response"))
 }
 \arguments{
-\item{object}{an object from which the odds ratios are to be calculated, which may be a \code{\link{binom_contingency}} table,
+\item{object}{an object from which the plot data are to be calculated, which may be a \code{\link{binom_contingency}} table,
 a \code{\link[base:data.frame]{data frame}} (or a data frame extension e.g., a \code{\link[tibble:tibble-package]{tibble}}), a
 \code{\link[stats:formula]{formula}} or a \code{\link[stats:glm]{glm}}.}
 
@@ -128,6 +128,9 @@ the t distribution with \emph{n - 1} degrees of freedom, at the probability give
 confidence intervals are generally more conservative i.e., a little wider, than those obtained by "profiling"
 (e.g., using \code{\link[MASS:confint]{confint.glm}}). If the \code{conf_level} argument is \code{\link[base:NA]{NA}}, standard
 error is shown rather than a confidence interval.
+
+If \code{object} is a \code{\link{binom_contingency}} table it should be "univariable" i.e., having only one row for each level of
+\code{.ind_var}, otherwise the output of \code{glm_plotdata()} will be undefined.
 }
 \examples{
 (d <- binom_data())
