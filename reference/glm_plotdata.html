@@ -11,7 +11,7 @@ errors."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ParaAnita</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@ errors.</p>
 
 
 <dl><dt id="arg-object">object<a class="anchor" aria-label="anchor" href="#arg-object"></a></dt>
-<dd><p>an object from which the odds ratios are to be calculated, which may be a <code><a href="binom_contingency.html">binom_contingency</a></code> table,
+<dd><p>an object from which the plot data are to be calculated, which may be a <code><a href="binom_contingency.html">binom_contingency</a></code> table,
 a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data frame</a></code> (or a data frame extension e.g., a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>), a
 <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> or a <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></code>.</p></dd>
 
@@ -197,6 +197,8 @@ the t distribution with <em>n - 1</em> degrees of freedom, at the probability gi
 confidence intervals are generally more conservative i.e., a little wider, than those obtained by "profiling"
 (e.g., using <code>confint.glm</code>). If the <code>conf_level</code> argument is <code><a href="https://rdrr.io/r/base/NA.html" class="external-link">NA</a></code>, standard
 error is shown rather than a confidence interval.</p>
+<p>If <code>object</code> is a <code><a href="binom_contingency.html">binom_contingency</a></code> table it should be "univariable" i.e., having only one row for each level of
+<code>.ind_var</code>, otherwise the output of <code>glm_plotdata()</code> will be undefined.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
