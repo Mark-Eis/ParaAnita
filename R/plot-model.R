@@ -47,20 +47,16 @@
 #'   (e.g., using [`confint.glm`][MASS::confint.glm]). If the `conf_level` argument is [`NA`][base::NA], standard
 #'   error is shown rather than a confidence interval.
 #'
+#' If `object` is a binomial contingency table it should be "univariable" i.e., having only one row for each level of
+#'   `.ind_var`, otherwise the output of `glm_plotdata()` may give unexpected results.
+#'
 #' @seealso  [`add_grps`][add_grps], [`binom_contingency`][binom_contingency], [`formula`][stats::formula],
 #'   [`glm`][stats::glm], and  [`tibble`][tibble::tibble-package].
 #' @family plot_model
 #'
-# #' @param object an object from which the odds ratios are to be calculated, which may be a [`binom_contingency`] table,
-# #'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), a
-# #'   [`formula`][stats::formula] or a [`glm`][stats::glm].
-# #'
-# #' @param \dots further arguments passed to or from other methods. Not currently used.
-# #'
-# #' @param .ind_var <[`data-masking`][rlang::args_data_masking]> quoted name of the independent variable.
-# #' 
-# #' @param .dep_var quoted name of the response variable in the data representing the number of successes and
-# #'   failures respectively, see \emph{Details}; default `cbind(pn, qn)`.
+#' @param object an object from which the plot data are to be calculated, which may be a [`binom_contingency`] table,
+#'   a [`data frame`][base::data.frame] (or a data frame extension e.g., a [`tibble`][tibble::tibble-package]), a
+#'   [`formula`][stats::formula] or a [`glm`][stats::glm].
 #'
 #' @param .ungroup <[`data-masking`][rlang::args_data_masking]> quoted name of the column containing the ungrouped
 #'   levels of `.ind_var`, see details; default `NULL`.
@@ -70,10 +66,6 @@
 #'
 #' @param type the type of prediction required. The default is on the scale of the linear predictors;
 #'   the alternative `"response"` is on the scale of the response variable; default `"link"`.
-# #'
-# #' @param .family a description of the error distribution and link function to be used in the model. This can be a
-# #'   character string naming a family function, a family function or the result of a call to a family function.
-# #'   (See [`family`][stats::family] for details of family functions.)
 #'
 #' @inheritParams odds_ratio
 #'
