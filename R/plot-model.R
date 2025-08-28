@@ -47,7 +47,7 @@
 #'   (e.g., using [`confint.glm`][MASS::confint.glm]). If the `conf_level` argument is [`NA`][base::NA], standard
 #'   error is shown rather than a confidence interval.
 #'
-#' If `object` is a binomial contingency table it should be "univariable" i.e., having only one row for each level of
+#' If `object` is a [`binom_contingency`] table it should be "univariable" i.e., having only one row for each level of
 #'   `.ind_var`, otherwise the output of `glm_plotdata()` will be undefined.
 #'
 #' @seealso  [`add_grps`][add_grps], [`binom_contingency`][binom_contingency], [`formula`][stats::formula],
