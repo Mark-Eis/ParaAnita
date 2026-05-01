@@ -12,8 +12,8 @@
 You can install the development version of ParaAnita from [GitHub](https://github.com/) with:
       
 ``` r
-# install.packages("devtools")
-devtools::install_github("Mark-Eis/ParaAnita")
+# install.packages("pak")
+pak::pkg_install("Mark-Eis/ParaAnita")
 ```
 
 ### ParaAnita Package Description: –
